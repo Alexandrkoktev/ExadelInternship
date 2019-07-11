@@ -1,8 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 // import logo from './logo.svg'
-import './App.css'
+import './App.scss'
+import './styles.sass'
 import { Button, Card, Form, Navbar } from 'react-bootstrap'
+
 // eslint-disable-next-line no-unused-vars
 // import Greetings from './Greetings'
 
@@ -112,7 +114,7 @@ class Content extends React.Component {
 }
 class Footer extends React.Component {
   render() {
-    return <div className={'fixed-bottom'}> Footer</div>
+    return <div className={'body'}> Footer</div>
   }
 }
 export default App
