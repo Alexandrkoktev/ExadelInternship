@@ -10,12 +10,10 @@ class Header extends React.Component {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto"></Nav>
           <Nav>
-            <Nav.Link href="#features">Statistics</Nav.Link>
-            <Nav.Link href="#pricing">Notifications</Nav.Link>
-            <Nav.Link href="#deets">Routes</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Username
-            </Nav.Link>
+            <Nav.Link href="#stats" onClick={()=> alert('Stats')}>Statistics</Nav.Link>
+            <Nav.Link href="#notifications" onClick={()=> alert('Notifications')}>Notifications</Nav.Link>
+            <Nav.Link href="#routes" onClick={()=> alert('Routes')}>Routes</Nav.Link>
+            <Nav.Link href="#user" onClick={()=> alert('User')}>Username</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

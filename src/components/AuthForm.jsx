@@ -19,7 +19,7 @@ class AuthForm extends React.Component {
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
-              <Button variant="dark" type="submit">
+              <Button variant="dark" type="submit" onClick={()=> alert('Signing...')}>
                 Sign in
               </Button>
             </Form>
