@@ -1,35 +1,9 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
-// import logo from './logo.svg'
-import './App.css'
-import {
-  Button,
-  Card,
-  Form,
-  Navbar,
-} from 'react-bootstrap'
-// eslint-disable-next-line no-unused-vars
-// import Greetings from './Greetings'
 
-// function App() {
-//   const name = '11111'
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <Greetings name={name} />
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   )
-// }
+import './App.css'
+import Footer from './components/Footer'
+import { Button, Card, Form, Navbar } from 'react-bootstrap'
+
 class App extends React.Component {
   render() {
     return (
@@ -92,7 +66,7 @@ class Header extends React.Component {
 class Content extends React.Component {
   render() {
     return (
-      <Card style={{ width: '18rem',margin:'5rem auto' }}>
+      <Card style={{ width: '18rem', margin: '5rem auto' }}>
         <Card.Body>
           <Form>
             <Form.Group controlId="formBasicLogin">
@@ -115,9 +89,5 @@ class Content extends React.Component {
     )
   }
 }
-class Footer extends React.Component {
-  render() {
-    return <div className={'fixed-bottom'}> Footer</div>
-  }
-}
+
 export default App
