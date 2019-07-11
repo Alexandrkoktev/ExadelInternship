@@ -3,12 +3,8 @@ import React from 'react'
 // import logo from './logo.svg'
 import './App.scss'
 import './styles.sass'
-import {
-  Button,
-  Card,
-  Form,
-  Navbar,
-} from 'react-bootstrap'
+import { Button, Card, Form, Navbar } from 'react-bootstrap'
+
 // eslint-disable-next-line no-unused-vars
 // import Greetings from './Greetings'
 
@@ -93,7 +89,7 @@ class Header extends React.Component {
 class Content extends React.Component {
   render() {
     return (
-      <Card style={{ width: '18rem',margin:'5rem auto' }}>
+      <Card style={{ width: '18rem', margin: '5rem auto' }}>
         <Card.Body>
           <Form>
             <Form.Group controlId="formBasicLogin">
