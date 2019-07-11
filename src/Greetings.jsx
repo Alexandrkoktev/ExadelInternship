@@ -1,15 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 class Greetings extends React.Component {
-    render() {
-        const {name} = this.props;
+  render() {
+    const { name } = this.props
 
-        return (
-            <div>
-                Hello, {name}
-            </div>
-            )
-    }
+    return <div>Hello, {name}</div>
+  }
 }
 
-export default Greetings;
+export default Greetings
