@@ -1,8 +1,13 @@
 import React from 'react'
 
-import './App.css'
 import Footer from './components/Footer'
+// import logo from './logo.svg'
+import './App.scss'
+import './styles.sass'
 import { Button, Card, Form, Navbar } from 'react-bootstrap'
+
+// eslint-disable-next-line no-unused-vars
+// import Greetings from './Greetings'
 
 class App extends React.Component {
   render() {
