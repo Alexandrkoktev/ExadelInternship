@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles.sass'
 import { Navbar } from 'react-bootstrap'
 
 class Footer extends React.Component {
@@ -7,11 +8,7 @@ class Footer extends React.Component {
       '© 2019 Exadel, Inc. | Privacy Policy | Terms & Conditions | Team4 Internship'
     return (
       <div className="fixed-bottom">
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand>
-            <footer>{FOOTER_TEXT}</footer>
-          </Navbar.Brand>
-        </Navbar>
+            <footer className='footer'>{FOOTER_TEXT}</footer>
       </div>
     )
   }
