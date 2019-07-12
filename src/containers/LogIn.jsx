@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
-import '../styles.sass'
-class AuthForm extends React.Component {
+//import '../styles.sass'
+class LogIn extends React.Component {
   render() {
     return (
       <div className={'content'}>
@@ -19,7 +19,11 @@ class AuthForm extends React.Component {
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
-              <Button variant="dark" type="submit" onClick={()=> alert('Signing...')}>
+              <Button
+                variant="dark"
+                type="submit"
+                onClick={() => alert('Signing...')}
+              >
                 Sign in
               </Button>
             </Form>
@@ -29,4 +33,4 @@ class AuthForm extends React.Component {
     )
   }
 }
-export default AuthForm
+export default LogIn

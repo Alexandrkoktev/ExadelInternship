@@ -6,8 +6,8 @@ class CustomList extends React.Component {
   render() {
     return (
       <ListGroup>
-        <CustomListItem text="Minsk - Ratomka" />
-        <CustomListItem text="Minsk - Khmelevka" />
+        <CustomListItem />
+        <CustomListItem />
       </ListGroup>
     )
   }
