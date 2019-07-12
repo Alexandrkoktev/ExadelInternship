@@ -12,9 +12,7 @@ class AuthPage extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <AuthForm />
-        <Footer />
       </div>
     )
   }
