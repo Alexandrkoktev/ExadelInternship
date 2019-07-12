@@ -6,9 +6,11 @@ class Footer extends React.Component {
     const FOOTER_TEXT =
       '© 2019 Exadel, Inc. | Privacy Policy | Terms & Conditions | Team4 Internship'
     return (
-      <div className="fixed-bottom">
-            <footer className='footer'>{FOOTER_TEXT}</footer>
-      </div>
+      <Navbar bg="dark" variant="dark" fixed="bottom">
+        <Navbar.Text>
+          <footer>{FOOTER_TEXT}</footer>
+        </Navbar.Text>
+      </Navbar>
     )
   }
 }
