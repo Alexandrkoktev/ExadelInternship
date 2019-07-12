@@ -1,19 +1,22 @@
 import React from 'react'
-import './App.scss'
-import './styles.sass'
+//import './App.scss'
+//import './styles.sass'
 // eslint-disable-next-line no-unused-vars
-import Footer from './components/Footer'
-import Header from './components/Header'
-import AuthPage from './containers/AuthPage'
+
+import { BrowserRouter as Router } from 'react-router-dom'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Header'
+import Content from './components/Content'
 // eslint-disable-next-line no-unused-vars
+
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <Router>
         <Header />
-        <AuthPage/>
+        <Content />
         <Footer />
-      </div>
+      </Router>
     )
   }
 }
