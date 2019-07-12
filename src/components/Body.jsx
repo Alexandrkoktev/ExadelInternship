@@ -3,7 +3,7 @@ import LogIn from '../containers/LogIn'
 import { Switch, Route } from 'react-router-dom'
 import Routes from '../containers/Routes'
 
-class Content extends React.Component {
+class Body extends React.Component {
   render() {
     return (
       <Switch>
@@ -15,4 +15,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content
+export default Body
