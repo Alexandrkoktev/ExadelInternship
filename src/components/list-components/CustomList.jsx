@@ -9,14 +9,14 @@ class CustomList extends React.Component {
         <Tabs>
           <Tab eventKey="passenger" title="Passenger">
             <ListGroup>
-              <CustomListItem />
-              <CustomListItem />
+              <CustomListItem my_text="Passenger" />
+              <CustomListItem my_text="Passenger" />
             </ListGroup>
           </Tab>
           <Tab eventKey="driver" title="Driver">
             <ListGroup>
-              <CustomListItem />
-              <CustomListItem />
+              <CustomListItem my_text="Driver" />
+              <CustomListItem my_text="Driver" />
             </ListGroup>
           </Tab>
         </Tabs>
