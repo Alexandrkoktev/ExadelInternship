@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
-
+import '../styles.sass'
 class AuthForm extends React.Component {
   render() {
     return (

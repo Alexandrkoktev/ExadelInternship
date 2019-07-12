@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
+import '../styles.sass'
 
 class Header extends React.Component {
   render() {
