@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup, Tabs, Tab } from 'react-bootstrap'
+import { ListGroup, Tab, Nav } from 'react-bootstrap'
 import CustomListItem from './CustomListItem'
 
 class CustomList extends React.Component {
@@ -20,14 +20,30 @@ class CustomList extends React.Component {
 
   render() {
     return (
-      <Tabs>
-        <Tab eventKey="passenger" title="Passenger">
-          <ListGroup>{this.createList(3, 'Passenger')}</ListGroup>
-        </Tab>
-        <Tab eventKey="driver" title="Driver">
-          <ListGroup>{this.createList(20, 'Driver')}</ListGroup>
-        </Tab>
-      </Tabs>
+      <>
+        <Tab.Container defaultActiveKey="driver">
+          <Nav justify variant="tabs">
+            <Nav.Item>
+              <Nav.Link eventKey="passenger">Passenger</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="driver">Driver</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <Tab.Content>
+            <Tab.Pane eventKey="passenger">
+              <ListGroup>
+                {this.createList(this.state.size, 'Passenger')}
+              </ListGroup>
+            </Tab.Pane>
+            <Tab.Pane eventKey="driver">
+              <ListGroup>
+                {this.createList(this.state.size, 'Driver')}
+              </ListGroup>
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
+      </>
     )
   }
 }

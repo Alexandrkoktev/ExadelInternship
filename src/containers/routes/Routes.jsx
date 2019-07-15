@@ -7,7 +7,7 @@ class Routes extends React.Component {
   render() {
     return (
       <>
-        <CustomList />
+        <CustomList size={20} />
       </>
     )
   }
