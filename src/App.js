@@ -1,24 +1,23 @@
 import React from 'react'
-import './App.scss'
-import './styles.sass'
+//import './App.scss'
+//import './styles.sass'
 // eslint-disable-next-line no-unused-vars
-import Footer from './components/Footer'
-import Header from './components/Header'
-import AuthForm from './components/AuthForm'
-import Home from './containers/Home'
+
+import { BrowserRouter as Router } from 'react-router-dom'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Header'
+import Content from './components/content/Content'
 // eslint-disable-next-line no-unused-vars
-import { Button, Card, Form, Navbar, Nav, Image } from 'react-bootstrap'
 
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <Router>
         <Header />
-        <Home />
+        <Content />
         <Footer />
-      </div>
+      </Router>
     )
   }
 }
-
 export default App
