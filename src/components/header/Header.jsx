@@ -6,7 +6,13 @@ import { Link } from 'react-router-dom'
 class Header extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        sticky="top"
+      >
         <Link to="/">
           <Navbar.Brand>CarPool</Navbar.Brand>
         </Link>
