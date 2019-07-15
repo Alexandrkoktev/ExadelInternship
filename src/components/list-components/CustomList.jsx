@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Tab, Nav } from 'react-bootstrap'
 import CustomListItem from './CustomListItem'
+import './style.sass'
 
 class CustomList extends React.Component {
   constructor(props) {
@@ -20,16 +21,16 @@ class CustomList extends React.Component {
 
   render() {
     return (
-      <>
-        <Tab.Container defaultActiveKey="driver">
-          <Nav justify variant="tabs">
-            <Nav.Item>
-              <Nav.Link eventKey="passenger">Passenger</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="driver">Driver</Nav.Link>
-            </Nav.Item>
-          </Nav>
+      <Tab.Container defaultActiveKey="driver">
+        <Nav justify variant="tabs">
+          <Nav.Item>
+            <Nav.Link eventKey="passenger">Passenger</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="driver">Driver</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <div className="scrollable">
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
               <ListGroup>
@@ -42,8 +43,8 @@ class CustomList extends React.Component {
               </ListGroup>
             </Tab.Pane>
           </Tab.Content>
-        </Tab.Container>
-      </>
+        </div>
+      </Tab.Container>
     )
   }
 }
