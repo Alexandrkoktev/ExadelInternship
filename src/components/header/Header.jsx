@@ -1,6 +1,7 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
-import '../styles.sass'
+import { Link } from 'react-router-dom'
+//import '../styles.sass'
 
 class Header extends React.Component {
   render() {
@@ -12,7 +13,9 @@ class Header extends React.Component {
         variant="dark"
         sticky="top"
       >
-        <Navbar.Brand href="#home">CarPool</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>CarPool</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto"></Nav>
@@ -26,9 +29,9 @@ class Header extends React.Component {
             >
               Notifications
             </Nav.Link>
-            <Nav.Link href="#routes" onClick={() => alert('Routes')}>
-              Routes
-            </Nav.Link>
+            <Link to="/routes">
+              <Nav.Link href="#routes">Routes</Nav.Link>
+            </Link>
             <Nav.Link href="#user" onClick={() => alert('User')}>
               Username
             </Nav.Link>
@@ -38,4 +41,5 @@ class Header extends React.Component {
     )
   }
 }
+
 export default Header

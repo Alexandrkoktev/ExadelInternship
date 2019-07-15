@@ -1,12 +1,12 @@
 import React from 'react'
-import CustomList from '../components/list-components/CustomList'
-import ListSwitchButton from '../components/ListSwtchButton'
+// eslint-disable-next-line no-unused-vars
+import CustomList from '../../components/list-components/CustomList'
+// eslint-disable-next-line no-unused-vars
 
 class Routes extends React.Component {
   render() {
     return (
       <>
-        <ListSwitchButton />
         <CustomList />
       </>
     )
