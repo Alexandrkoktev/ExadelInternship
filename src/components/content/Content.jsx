@@ -3,12 +3,14 @@ import LogIn from '../../containers/login/LogIn'
 import { Switch, Route } from 'react-router-dom'
 import Routes from '../../containers/routes/Routes'
 import OneRouteInfo from '../../containers/routeinfo/OneRouteInfo'
+import Home from '../../containers/home/Home';
 
 class Content extends React.Component {
   render() {
     return (
       <Switch>
         <Route exact path="/" component={LogIn} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/routes" component={Routes} />
         <Route
           exact
