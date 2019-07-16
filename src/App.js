@@ -1,13 +1,14 @@
 import React from 'react'
-//import './App.scss'
-//import './styles.sass'
 // eslint-disable-next-line no-unused-vars
-
+import './styleForApp.sass'
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router } from 'react-router-dom'
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
-import Content from './components/content/Content'
 // eslint-disable-next-line no-unused-vars
+import Footer from './components/footer/Footer'
+// eslint-disable-next-line no-unused-vars
+import Header from './components/header/Header'
+// eslint-disable-next-line no-unused-vars
+import Content from './components/content/Content'
 
 class App extends React.Component {
   render() {
