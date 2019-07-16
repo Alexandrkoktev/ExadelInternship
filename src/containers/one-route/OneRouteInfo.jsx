@@ -18,10 +18,10 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="6">
-                <Map/>
+                <Map />
               </Col>
               <Col sm="6">
-                <ListOfPassengers/>
+                <ListOfPassengers />
               </Col>
             </Row>
             <Row>
@@ -31,14 +31,14 @@ class OneRouteInfo extends React.Component {
                 </div>
               </Col>
               <Col sm="2">
-                <EditDate/>
+                <EditDate />
               </Col>
             </Row>
             <Row>
-              <Col sm = "11">
-                <DeleteButton/>
+              <Col sm="11">
+                <DeleteButton />
               </Col>
-              <Col sm = "1">
+              <Col sm="1">
                 <Button variant="dark">Ok</Button>
               </Col>
             </Row>
