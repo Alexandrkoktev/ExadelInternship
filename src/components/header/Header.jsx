@@ -1,7 +1,8 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Nav, Navbar } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
-//import '../styles.sass'
 
 class Header extends React.Component {
   render() {
@@ -23,12 +24,9 @@ class Header extends React.Component {
             <Nav.Link href="#stats" onClick={() => alert('Stats')}>
               Statistics
             </Nav.Link>
-            <Nav.Link
-              href="#notifications"
-              onClick={() => alert('Notifications')}
-            >
-              Notifications
-            </Nav.Link>
+            <Link to="/new-ride">
+              <Nav.Link href="#notifications">Notifications</Nav.Link>
+            </Link>
             <Link to="/routes">
               <Nav.Link href="#routes">Routes</Nav.Link>
             </Link>
