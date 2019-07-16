@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Routes from '../../containers/routes/Routes'
 import OneRouteInfo from '../../containers/routeinfo/OneRouteInfo'
 import NewRoute from '../../containers/newRoute/NewRoute'
+import OneRouteInfo from '../../containers/one-route/OneRouteInfo'
 
 class Content extends React.Component {
   render() {
