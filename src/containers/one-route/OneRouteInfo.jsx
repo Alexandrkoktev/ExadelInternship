@@ -26,7 +26,7 @@ class OneRouteInfo extends React.Component {
             </Row>
             <Row>
               <Col sm="2">
-                <div class = "date-sector-bitton">
+                <div class = "date-selector-button">
                 <DateSelector/>
                 </div>
               </Col>
