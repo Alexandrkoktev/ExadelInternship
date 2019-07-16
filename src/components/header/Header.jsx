@@ -30,9 +30,9 @@ class Header extends React.Component {
             <Link to="/routes">
               <Nav.Link href="#routes">Routes</Nav.Link>
             </Link>
-            <Nav.Link href="#user" onClick={() => alert('User')}>
-              Username
-            </Nav.Link>
+            <Link to="/profile">
+              <Nav.Link href="#user">Username</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

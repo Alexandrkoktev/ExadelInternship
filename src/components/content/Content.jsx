@@ -4,11 +4,14 @@ import LogIn from '../../containers/login/LogIn'
 import { Switch, Route } from 'react-router-dom'
 
 import Routes from '../../containers/routes/Routes'
+
+import Profile from '../../containers/profile/Profile'
 // eslint-disable-next-line no-unused-vars
 import Home from '../../containers/home/Home'
 import NewRoute from '../../containers/newRoute/NewRoute'
 import OneRouteInfo from '../../containers/one-route/OneRouteInfo'
 import NewRide from '../../containers/newRide/NewRide'
+
 class Content extends React.Component {
   render() {
     return (
@@ -21,6 +24,8 @@ class Content extends React.Component {
           path="/routes/route-info/:routeid"
           component={OneRouteInfo}
         />
+
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/new-ride" component={NewRide}/>
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>

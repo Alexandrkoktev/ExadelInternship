@@ -15,12 +15,12 @@ class CustomListItem extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={10}> I am a {this.state.text}</Col>
+          <Col xs={8}>{this.state.text}</Col>
           <Col>
             <Link to={this.state.routeid}>
               <Button variant="outline-dark">Route Info</Button>
             </Link>
-            <Button variant="outline-danger">Bish Bye</Button>
+            <Button variant="outline-danger">Delete</Button>
           </Col>
         </Row>
       </ListGroup.Item>
