@@ -15,7 +15,7 @@ class CustomListItem extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={10}>{this.state.text}</Col>
+          <Col xs={8}>{this.state.text}</Col>
           <Col>
             <Link to={this.state.routeid}>
               <Button variant="outline-dark">Route Info</Button>

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Tab, Nav, Button, ListGroup, Row, Col } from 'react-bootstrap'
+import { Tab, Nav, Button, ListGroup } from 'react-bootstrap'
 import './profile-style.sass'
 import CustomListItem from '../../components/list-components/CustomListItem'
 import CarsListItem from '../../components/list-components/CarsListItem'
+import UserInfo from '../../components/profile/UserInfo'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -35,12 +36,7 @@ class Profile extends React.Component {
     return (
       <>
         <h1>Profile</h1>
-        <div>
-          <Row>
-            <Col>.....</Col>
-            <Col>.....</Col>
-          </Row>
-        </div>
+        <UserInfo />
         <Tab.Container defaultActiveKey="favroutes">
           <Nav className="justify-content-center">
             <Nav.Item>
