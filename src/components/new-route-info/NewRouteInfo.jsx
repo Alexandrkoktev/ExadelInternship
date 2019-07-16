@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Card, Form, ListGroup } from 'react-bootstrap'
+import { Button, Form, ListGroup } from 'react-bootstrap'
 
 class NewRouteInfo extends React.Component {
   render() {
@@ -38,7 +38,7 @@ class NewRouteInfo extends React.Component {
             </Form.Control>
           </Form.Group>
           <Button variant="dark" type="submit" onClick={() => alert('Created')}>
-            Crete route
+            Create route
           </Button>
         </Form>
       </ListGroup>

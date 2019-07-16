@@ -2,11 +2,11 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { ListGroup } from 'react-bootstrap'
 
-class FavouritesList extends React.Component {
+class RoutesList extends React.Component {
   render() {
     return (
       <ListGroup>
-        <h1>Favourites:</h1>
+        <h1>{this.props.type}:</h1>
         <ListGroup.Item action onClick={() => alert('clicked')}>
           1st route
         </ListGroup.Item>
@@ -26,4 +26,4 @@ class FavouritesList extends React.Component {
     )
   }
 }
-export default FavouritesList
+export default RoutesList

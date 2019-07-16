@@ -2,9 +2,9 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
-import FavouritesList from '../../components/ListOfFavourites/FavouritesList'
+import RoutesList from '../../components/list-of-routes/RoutesList'
 // eslint-disable-next-line no-unused-vars
-import NewRouteInfo from '../../components/NewRouteInfo/NewRouteInfo'
+import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
 class NewRoute extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={6}>
             <ListGroup>
-              <FavouritesList />
+              <RoutesList type={"Favourite"}/>
               <NewRouteInfo />
             </ListGroup>
           </Col>
