@@ -2,7 +2,7 @@ import React from 'react'
 import LogIn from '../containers/LogIn'
 import { Switch, Route } from 'react-router-dom'
 import Routes from '../containers/Routes'
-import OneRouteInfo from '../containers/OneRouteInfo'
+import OneRouteInfo from '../containers/oneRoute/OneRouteInfo'
 
 class Content extends React.Component {
   render() {
