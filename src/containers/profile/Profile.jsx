@@ -35,8 +35,7 @@ class Profile extends React.Component {
   render() {
     return (
       <>
-        <h1>Profile</h1>
-        <UserInfo />
+        <UserInfo username="Van Ivan Minivan" stars={4.5} />
         <Tab.Container defaultActiveKey="favroutes">
           <Nav className="justify-content-center">
             <Nav.Item>
