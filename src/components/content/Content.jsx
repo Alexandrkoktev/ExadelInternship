@@ -1,9 +1,10 @@
 import React from 'react'
 import LogIn from '../../containers/login/LogIn'
+// eslint-disable-next-line no-unused-vars
 import { Switch, Route } from 'react-router-dom'
 import Routes from '../../containers/routes/Routes'
 import OneRouteInfo from '../../containers/routeinfo/OneRouteInfo'
-import Profile from '../../containers/profile/Profile'
+import NewRoute from '../../containers/newRoute/NewRoute'
 
 class Content extends React.Component {
   render() {
@@ -16,7 +17,7 @@ class Content extends React.Component {
           path="/routes/route-info/:routeid"
           component={OneRouteInfo}
         />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/new-ride" component={NewRoute} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>
     )
