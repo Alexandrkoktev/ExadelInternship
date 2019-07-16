@@ -4,7 +4,7 @@ import LogIn from '../../containers/login/LogIn'
 import { Switch, Route } from 'react-router-dom'
 
 import Routes from '../../containers/routes/Routes'
-import Home from '../../containers/home/Home';
+import Home from '../../containers/home/Home'
 import NewRoute from '../../containers/newRoute/NewRoute'
 import OneRouteInfo from '../../containers/one-route/OneRouteInfo'
 
@@ -20,7 +20,7 @@ class Content extends React.Component {
           path="/routes/route-info/:routeid"
           component={OneRouteInfo}
         />
-        <Route exact path="/new-ride" component={NewRoute}/>
+        <Route exact path="/new-ride" component={NewRoute} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>
     )

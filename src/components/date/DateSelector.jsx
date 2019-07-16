@@ -11,10 +11,7 @@ class DateSelector extends Component {
     return (
       <div className="date-selector">
         <div className="test">
-          <DateTimePicker
-            onChange={this.onChange}
-            value={this.state.date}
-          />
+          <DateTimePicker onChange={this.onChange} value={this.state.date} />
         </div>
       </div>
     )
