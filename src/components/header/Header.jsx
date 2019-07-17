@@ -2,9 +2,10 @@ import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { Nav, Navbar } from "react-bootstrap";
 // eslint-disable-next-line no-unused-vars
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
 //import '../styles.sass'
 
 class Header extends React.Component {
