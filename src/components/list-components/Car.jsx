@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 
-class CarsListItem extends React.Component {
+class Car extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,4 +24,4 @@ class CarsListItem extends React.Component {
   }
 }
 
-export default CarsListItem
+export default Car

@@ -5,7 +5,7 @@ class EditDate extends React.Component {
   render() {
     return (
       <div class="edit-date">
-        <Button variant="light">edit</Button>
+        <Button variant="light">Edit</Button>
       </div>
     )
   }

@@ -8,6 +8,7 @@ import Routes from '../../containers/routes/Routes'
 import Profile from '../../containers/profile/Profile'
 // eslint-disable-next-line no-unused-vars
 import Home from '../../containers/home/Home'
+
 import NewRoute from '../../containers/new-route/NewRoute'
 import OneRouteInfo from '../../containers/one-route/OneRouteInfo'
 import NewRide from '../../containers/new-ride/NewRide'
@@ -27,6 +28,7 @@ class Content extends React.Component {
           component={OneRouteInfo}
         />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/new-ride" component={NewRide} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>
     )

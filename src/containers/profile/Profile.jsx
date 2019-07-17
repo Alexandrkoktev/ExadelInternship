@@ -1,8 +1,8 @@
 import React from 'react'
 import { Tab, Nav, Button, ListGroup } from 'react-bootstrap'
 import './profile-style.sass'
-import CustomListItem from '../../components/list-components/CustomListItem'
-import CarsListItem from '../../components/list-components/CarsListItem'
+import Route from '../../components/list-components/Route'
+import Car from '../../components/list-components/Car'
 import UserInfo from '../../components/profile/UserInfo'
 
 class Profile extends React.Component {
@@ -19,14 +19,14 @@ class Profile extends React.Component {
   createRoutesList = function(num, text) {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<CustomListItem my_text={text} />)
+      list.push(<Route my_text={text} />)
     }
     return list
   }
   createCarsList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<CarsListItem carid={i} description={text} />)
+      list.push(<Car carid={i} description={text} />)
     }
     list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
     return list
