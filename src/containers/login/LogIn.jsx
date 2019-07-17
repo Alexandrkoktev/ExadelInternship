@@ -1,28 +1,31 @@
-import React from 'react'
-import { Button, Card, Form } from 'react-bootstrap'
-import { connect } from 'react-redux'
-import { getUserDone } from '../../actions/user'
+import React from "react";
+// eslint-disable-next-line no-unused-vars
+import { Button, Card, Form } from "react-bootstrap";
+
+import { connect } from "react-redux";
+import { getUserDone } from "../../actions/user";
 //import '../styles.sass'
+
 class LogIn extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      username: '',
-    }
+      username: ""
+    };
   }
 
   handleChange = event => {
-    const value = event.target.value
-    this.setState({ username: value })
-  }
+    const value = event.target.value;
+    this.setState({ username: value });
+  };
 
   render() {
-    const { setUser } = this.props
-    const { username } = this.state
-    console.log(username)
+    const { setUser } = this.props;
+    const { username } = this.state;
+    console.log(username);
     return (
-      <div className={'content'}>
-        <Card style={{ width: '18rem', margin: '5rem auto' }}>
+      <div className={"content"}>
+        <Card style={{ width: "18rem", margin: "5rem auto" }}>
           <Card.Body>
             <Form>
               <Form.Group>
@@ -52,24 +55,24 @@ class LogIn extends React.Component {
           </Card.Body>
         </Card>
       </div>
-    )
+    );
   }
 }
 const mapStateToProps = state => ({
-  userinfo: state.userinfo,
-})
+  userinfo: state.userinfo
+});
 
 const mapDispatchToProps = dispatch => ({
   setUser: username => {
     dispatch(
       getUserDone({
         lastName: username,
-        firstName: username,
+        firstName: username
       })
-    )
-  },
-})
+    );
+  }
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LogIn)
+)(LogIn);

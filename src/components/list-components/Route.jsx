@@ -2,7 +2,7 @@ import React from 'react'
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-class CustomListItem extends React.Component {
+class Route extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,12 +15,12 @@ class CustomListItem extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={10}> I am a {this.state.text}</Col>
+          <Col xs={8}>{this.state.text}</Col>
           <Col>
             <Link to={this.state.routeid}>
               <Button variant="outline-dark">Route Info</Button>
             </Link>
-            <Button variant="outline-danger">Bish Bye</Button>
+            <Button variant="outline-danger">Delete</Button>
           </Col>
         </Row>
       </ListGroup.Item>
@@ -28,4 +28,4 @@ class CustomListItem extends React.Component {
   }
 }
 
-export default CustomListItem
+export default Route
