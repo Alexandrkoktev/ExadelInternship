@@ -12,7 +12,6 @@ class NewRouteInfo extends React.Component {
         <h3>New route:</h3>
         <Form>
           <Form.Group as={Row}>
-            <Col sm="4" />
             <RoutesList type="From Favourites" />
           </Form.Group>
           <Form.Group as={Row}>
