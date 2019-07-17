@@ -1,9 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import Route from '../list-components/Route'
 
 class ClosestRoutesList extends React.Component {
   render() {
+    console.log(this.props)
+
     return (
       <>
         <div style={{ display: 'inline-block', width: '50%' }}>

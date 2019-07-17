@@ -27,7 +27,7 @@ class NewRouteInfo extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Time:</Form.Label>
-            <DateSelector/>
+            <DateSelector />
           </Form.Group>
           <Form.Group>
             <Form.Label>Seats:</Form.Label>

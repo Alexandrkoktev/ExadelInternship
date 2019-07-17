@@ -15,12 +15,12 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={6}>
             <ListGroup>
-              <RoutesList type={"Favourite"}/>
+              <RoutesList type={'Favourite'} />
               <NewRouteInfo />
             </ListGroup>
           </Col>
           <Col sm={6}>
-            <Map/>
+            <Map />
           </Col>
         </Row>
       </Container>
