@@ -1,6 +1,6 @@
 import React from 'react'
-import { ButtonGroup } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
+import { ButtonGroup, Button } from 'react-bootstrap'
 
 class AddRouteBTNs extends React.Component {
   render() {
@@ -8,8 +8,20 @@ class AddRouteBTNs extends React.Component {
       <>
         <div className="d-flex flex-column">
           <ButtonGroup size="lg">
-            <Button>New Driver route</Button>
-            <Button>New Passenger route</Button>
+            <Button
+              href="/home/new-route"
+              variant="light"
+              style={{ width: '50%', height: '80px' }}
+            >
+              Add new route as a driver
+            </Button>
+            <Button
+              href="/home/new-ride"
+              variant="light"
+              style={{ width: '50%' }}
+            >
+              Add new route as a passenger
+            </Button>
           </ButtonGroup>
         </div>
       </>

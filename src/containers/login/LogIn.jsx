@@ -1,8 +1,11 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Button, Card, Form } from 'react-bootstrap'
+
 import { connect } from 'react-redux'
 import { getUserDone } from '../../actions/user'
 //import '../styles.sass'
+
 class LogIn extends React.Component {
   constructor() {
     super()
@@ -21,6 +24,7 @@ class LogIn extends React.Component {
     const { username } = this.state
     console.log(username)
     return (
+
       <div className={'content'}>
         <Card style={{ width: '18rem', margin: '5rem auto' }}>
           <Card.Body>
