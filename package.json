@@ -11,6 +11,8 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-star-rating-component": "^1.4.1",
+    "react-star-rating-input": "^8.0.1",
     "react-star-ratings": "^2.3.0"
   },
   "scripts": {

@@ -4,6 +4,7 @@ import './profile-style.sass'
 import Route from '../../components/list-components/Route'
 import Car from '../../components/list-components/Car'
 import UserInfo from '../../components/profile/UserInfo'
+import PreviousRoute from '../../components/list-components/PreviousRoute'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -29,6 +30,14 @@ class Profile extends React.Component {
       list.push(<Car carid={i} description={text} />)
     }
     list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
+    return list
+  }
+
+  createPrevRoutesList = (num, text) => {
+    let list = []
+    for (let i = 0; i < num; i++) {
+      list.push(<PreviousRoute my_text={text} />)
+    }
     return list
   }
 
@@ -66,7 +75,7 @@ class Profile extends React.Component {
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>
-                  {this.createRoutesList(20, 'Prevous Route')}
+                  {this.createPrevRoutesList(20, 'Prevous Route')}
                 </ListGroup>
               </Tab.Pane>
             </Tab.Content>
