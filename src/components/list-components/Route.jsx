@@ -8,6 +8,7 @@ class Route extends React.Component {
     this.state = {
       text: props.my_text,
       routeid: 'routes/route-info/' + props.routeid,
+      buttontext: props.buttontext,
     }
   }
 
@@ -15,12 +16,16 @@ class Route extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={8}>{this.state.text}</Col>
+          <Col sm={3}>{this.state.text}</Col>
           <Col>
             <Link to={this.state.routeid}>
-              <Button variant="outline-dark">Route Info</Button>
+              <Button variant="outline-dark" className="right">
+                Route Info
+              </Button>
             </Link>
-            <Button variant="outline-danger">Delete</Button>
+            <Button variant="outline-danger" className="right">
+              {this.state.buttontext}
+            </Button>
           </Col>
         </Row>
       </ListGroup.Item>

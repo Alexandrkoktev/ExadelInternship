@@ -7,20 +7,31 @@ import RoutesList from '../../components/list-of-routes/RoutesList'
 import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
 import Map from '../../components/map/Map'
+import Route from '../../components/list-components/Route'
 // eslint-disable-next-line no-unused-vars
 class NewRoute extends React.Component {
+  createList = (num, text) => {
+    let list = []
+    for (let i = 0; i < num; i++) {
+      list.push(<Route routeid={i} my_text={text} buttontext="Join" />)
+    }
+    return list
+  }
+
   render() {
     return (
-      <Container style={{ marginLeft: '5rem' }}>
+      <Container>
         <Row>
           <Col sm={6}>
+            <div className="pscrollable">
+              {this.createList(20, 'All routes')}
+            </div>
             <ListGroup>
-              <RoutesList type={"Favourite"}/>
               <NewRouteInfo />
             </ListGroup>
           </Col>
           <Col sm={6}>
-            <Map/>
+            <Map />
           </Col>
         </Row>
       </Container>

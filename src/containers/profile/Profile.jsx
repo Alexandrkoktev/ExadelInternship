@@ -9,7 +9,7 @@ import PreviousRoute from '../../components/list-components/PreviousRoute'
 class Profile extends React.Component {
   constructor(props) {
     super(props)
-    var { stars, points, username } = props
+    const { stars, points, username } = props
     this.state = {
       stars: stars,
       points: points,
@@ -17,18 +17,18 @@ class Profile extends React.Component {
     }
   }
 
-  createRoutesList = function(num, text) {
-    let list = []
-    for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} />)
-    }
+  createRoutesList = function(text) {
+    let list = text
+    list = list.map(function(text, index) {
+      return <Route my_text={text} routeid={index} buttontext="Delete" />
+    })
     return list
   }
-  createCarsList = (num, text) => {
-    let list = []
-    for (let i = 0; i < num; i++) {
-      list.push(<Car carid={i} description={text} />)
-    }
+  createCarsList = text => {
+    let list = text
+    list = list.map(text => {
+      return <Car description={text} />
+    })
     list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
     return list
   }
@@ -67,11 +67,11 @@ class Profile extends React.Component {
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
                 <ListGroup>
-                  {this.createRoutesList(10, 'Favorite Route')}
+                  {this.createRoutesList(['Favorite Route', 'Ugh', 'Me'])}
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
-                {this.createCarsList(10, 'Stolen Camaro')}
+                {this.createCarsList(['Stolen Camaro', 'Krasnaya Devyatka'])}
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>

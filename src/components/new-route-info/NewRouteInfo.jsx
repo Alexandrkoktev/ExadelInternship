@@ -1,47 +1,73 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Form, ListGroup } from 'react-bootstrap'
+import { Button, Form, ListGroup, Col, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
+import RoutesList from '../list-of-routes/RoutesList'
 
 class NewRouteInfo extends React.Component {
   render() {
     return (
       <ListGroup>
-        <h1>New route:</h1>
+        <h3>New route:</h3>
         <Form>
-          <Form.Group>
-            <Form.Label>Type:</Form.Label>
-            <Form.Control as={'select'}>
-              <option>Regular </option>
-              <option>Disposable</option>
-            </Form.Control>
+          <Form.Group as={Row}>
+            <Col sm="4" />
+            <RoutesList type="From Favourites" />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>From:</Form.Label>
-            <Form.Control type="text" />
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              Type:
+            </Form.Label>
+            <Col>
+              <Form.Control as={'select'}>
+                <option>Regular </option>
+                <option>Disposable</option>
+              </Form.Control>
+            </Col>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>To:</Form.Label>
-            <Form.Control type="text" />
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              From:
+            </Form.Label>
+            <Col>
+              <Form.Control type="text" />
+            </Col>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Time:</Form.Label>
-            <DateSelector/>
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              To:
+            </Form.Label>
+            <Col>
+              <Form.Control type="text" />
+            </Col>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Seats:</Form.Label>
-            <Form.Control as={'select'}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </Form.Control>
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              Time:
+            </Form.Label>
+            <Col sm="4">
+              <DateSelector />
+            </Col>
           </Form.Group>
-          <Button variant="dark" type="submit" onClick={() => alert('Created')}>
-            Create route
-          </Button>
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">
+              Seats:
+            </Form.Label>
+            <Col sm="4">
+              <Form.Control type="text" />
+            </Col>
+            <Col>
+              <Button
+                className="right"
+                variant="dark"
+                type="submit"
+                onClick={() => alert('Created')}
+              >
+                Create route
+              </Button>
+            </Col>
+          </Form.Group>
         </Form>
       </ListGroup>
     )
