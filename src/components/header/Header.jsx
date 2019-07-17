@@ -1,10 +1,12 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 //import '../styles.sass'
 
 class Header extends React.Component {
   render() {
+    const { userinfo } = this.props
     return (
       <Navbar
         collapseOnSelect
@@ -33,7 +35,7 @@ class Header extends React.Component {
               <Nav.Link href="#routes">Routes</Nav.Link>
             </Link>
             <Nav.Link href="#user" onClick={() => alert('User')}>
-              Username
+              {userinfo.firstName}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -41,5 +43,7 @@ class Header extends React.Component {
     )
   }
 }
-
-export default Header
+const mapStateToProps = state => ({
+  userinfo: state.userinfo,
+})
+export default connect(mapStateToProps)(Header)
