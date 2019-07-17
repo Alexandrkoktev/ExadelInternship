@@ -49,7 +49,7 @@ class LogIn extends React.Component {
               <Button
                 variant="dark"
                 type="submit"
-                onClick={() => setUser(this.state.username)}
+                onClick={(event) => {setUser(this.state.username); event.preventDefault()}}
               >
                 Sign in
               </Button>
