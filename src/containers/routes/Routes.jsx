@@ -1,13 +1,13 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import CustomList from '../../components/list-components/CustomList'
+import RoutesList from '../../components/list-components/RoutesList'
 // eslint-disable-next-line no-unused-vars
 
 class Routes extends React.Component {
   render() {
     return (
       <>
-        <CustomList size={20} />
+        <RoutesList size={20} />
       </>
     )
   }

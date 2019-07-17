@@ -2,7 +2,7 @@ import React from 'react'
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-class CustomListItem extends React.Component {
+class Route extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,4 +28,4 @@ class CustomListItem extends React.Component {
   }
 }
 
-export default CustomListItem
+export default Route

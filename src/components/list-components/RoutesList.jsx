@@ -1,9 +1,9 @@
 import React from 'react'
 import { ListGroup, Tab, Nav } from 'react-bootstrap'
-import CustomListItem from './CustomListItem'
+import Route from './Route'
 import './style.sass'
 
-class CustomList extends React.Component {
+class RoutesList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ class CustomList extends React.Component {
   createList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<CustomListItem my_text={text} routeid={i} />)
+      list.push(<Route my_text={text} routeid={i} />)
     }
     return list
   }
@@ -48,4 +48,4 @@ class CustomList extends React.Component {
     )
   }
 }
-export default CustomList
+export default RoutesList
