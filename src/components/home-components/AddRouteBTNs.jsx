@@ -8,10 +8,18 @@ class AddRouteBTNs extends React.Component {
       <>
         <div className="d-flex flex-column">
           <ButtonGroup size="lg">
-            <Button variant="light" style={{ width: '50%', height: '80px' }}>
+            <Button
+              href="/home/new-route"
+              variant="light"
+              style={{ width: '50%', height: '80px' }}
+            >
               Add new route as a driver
             </Button>
-            <Button variant="light" style={{ width: '50%' }}>
+            <Button
+              href="/home/new-ride"
+              variant="light"
+              style={{ width: '50%' }}
+            >
               Add new route as a passenger
             </Button>
           </ButtonGroup>

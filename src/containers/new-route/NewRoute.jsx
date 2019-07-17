@@ -6,6 +6,8 @@ import RoutesList from '../../components/list-of-routes/RoutesList'
 // eslint-disable-next-line no-unused-vars
 import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
+import Map from '../../components/map/Map'
+// eslint-disable-next-line no-unused-vars
 class NewRoute extends React.Component {
   render() {
     return (
@@ -17,7 +19,9 @@ class NewRoute extends React.Component {
               <NewRouteInfo />
             </ListGroup>
           </Col>
-          <Col sm={6}>Map</Col>
+          <Col sm={6}>
+            <Map/>
+          </Col>
         </Row>
       </Container>
     )

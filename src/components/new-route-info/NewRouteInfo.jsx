@@ -1,6 +1,8 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { Button, Form, ListGroup } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
+import DateSelector from '../date/DateSelector'
 
 class NewRouteInfo extends React.Component {
   render() {
@@ -25,7 +27,7 @@ class NewRouteInfo extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Time:</Form.Label>
-            <Form.Control type="text" />
+            <DateSelector/>
           </Form.Group>
           <Form.Group>
             <Form.Label>Seats:</Form.Label>
