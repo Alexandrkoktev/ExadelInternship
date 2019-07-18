@@ -1,33 +1,32 @@
-import React from "react";
+import React from 'react'
 // eslint-disable-next-line no-unused-vars
 
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form } from 'react-bootstrap'
 
-import { connect } from "react-redux";
-import { getUserDone } from "../../actions/user";
+import { connect } from 'react-redux'
+import { getUserDone, getUserError, getUserStarting } from '../../actions/user'
 
 //import '../styles.sass'
 
 class LogIn extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      username: ""
-    };
+      username: '',
+    }
   }
 
   handleChange = event => {
-    const value = event.target.value;
-    this.setState({ username: value });
-  };
+    const value = event.target.value
+    this.setState({ username: value })
+  }
 
   render() {
-    const { setUser } = this.props;
-    const { username } = this.state;
-    console.log(username);
+    const { setUser } = this.props
+    const { username } = this.state
     return (
-      <div className={"content"}>
-        <Card style={{ width: "18rem", margin: "5rem auto" }}>
+      <div className={'content'}>
+        <Card style={{ width: '18rem', margin: '5rem auto' }}>
           <Card.Body>
             <Form>
               <Form.Group>
@@ -41,16 +40,19 @@ class LogIn extends React.Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password"/>
               </Form.Group>
               <Form.Group>
-                <Form.Check type="checkbox" label="Check me out" />
+                <Form.Check type="checkbox" label="Check me out"/>
               </Form.Group>
               <Button
                 variant="dark"
                 type="submit"
-                onClick={(event) => {setUser(this.state.username);
-                event.preventDefault()}}
+                onClick={(event) => {
+                  setUser(this.state.username)
+                  event.preventDefault()
+                }}
+
               >
                 Sign in
               </Button>
@@ -58,24 +60,50 @@ class LogIn extends React.Component {
           </Card.Body>
         </Card>
       </div>
-    );
+    )
   }
 }
-const mapStateToProps = state => ({
-  userinfo: state.userinfo
-});
 
-const mapDispatchToProps = dispatch => ({
-  setUser: username => {
-    dispatch(
-      getUserDone({
-        lastName: username,
-        firstName: username
-      })
-    );
+const mapStateToProps = state => ({
+  userinfo: state.userinfo,
+})
+
+export function delay(data, time = 1000) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data)
+    }, time)
+  })
+}
+
+const fakeUser = (email, password) => {
+  return delay({
+    lastName: email,
+    firstName: email,
+    role: '',
+    email: email,
+  })
+}
+
+const getUser = (email, password) => {
+  // redux-thunk
+  return async function(dispatch) {
+    try {
+      dispatch(getUserStarting())
+      const userInfo = await fakeUser(email, password);
+      dispatch(getUserDone(userInfo))
+    } catch (e) {
+      dispatch(getUserError(e))
+    }
   }
-});
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (email, password) => dispatch(getUser(email, password)),
+})
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(LogIn);
+  mapDispatchToProps,
+)(LogIn)
+
+
