@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import PassengerForm from '../../components/passenger-form/PassengerForm'
 // eslint-disable-next-line no-unused-vars

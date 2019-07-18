@@ -1,14 +1,18 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Tab, Nav, Button, ListGroup } from 'react-bootstrap'
 import './profile-style.sass'
+// eslint-disable-next-line no-unused-vars
 import Route from '../../components/list-components/Route'
+// eslint-disable-next-line no-unused-vars
 import Car from '../../components/list-components/Car'
+// eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props)
-    var { stars, points, username } = props
+    let { stars, points, username } = props
     this.state = {
       stars: stars,
       points: points,
@@ -19,16 +23,16 @@ class Profile extends React.Component {
   createRoutesList = function(num, text) {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} key={i}/>)
+      list.push(<Route my_text={text} key={i} />)
     }
     return list
   }
   createCarsList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Car carid={i} description={text} key={i}/>)
+      list.push(<Car carid={i} description={text} key={i} />)
     }
-    list.push(<ListGroup.Item key={num+1}>Add new Car</ListGroup.Item>)
+    list.push(<ListGroup.Item key={num + 1}>Add new Car</ListGroup.Item>)
     return list
   }
 

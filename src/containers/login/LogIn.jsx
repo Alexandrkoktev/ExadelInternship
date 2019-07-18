@@ -1,10 +1,10 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 
+// eslint-disable-next-line no-unused-vars
 import { Button, Card, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import {mapStateToProps,mapDispatchToProps} from '../../commands/user'
-
+import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 
 class LogIn extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class LogIn extends React.Component {
 
   render() {
     const { setUser } = this.props
-  //  const { username } = this.state
+    //  const { username } = this.state
     return (
       <div className={'content'}>
         <Card style={{ width: '18rem', margin: '5rem auto' }}>
@@ -38,19 +38,18 @@ class LogIn extends React.Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password"/>
+                <Form.Control type="password" placeholder="Password" />
               </Form.Group>
               <Form.Group>
-                <Form.Check type="checkbox" label="Check me out"/>
+                <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
               <Button
                 variant="dark"
                 type="submit"
-                onClick={(event) => {
+                onClick={event => {
                   setUser(this.state.username)
                   event.preventDefault()
                 }}
-
               >
                 Sign in
               </Button>
@@ -64,7 +63,5 @@ class LogIn extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(LogIn)
-
-

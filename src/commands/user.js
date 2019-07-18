@@ -5,7 +5,7 @@ export const mapStateToProps = state => ({
   userinfo: state.userinfo,
 })
 
-export const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = dispatch => ({
   setUser: (email, password) => dispatch(getUser(email, password)),
 })
 
@@ -14,7 +14,7 @@ export const getUser = (email, password) => {
   return async function(dispatch) {
     try {
       dispatch(getUserStarting())
-      const userInfo = await fakeUser(email, password);
+      const userInfo = await fakeUser(email, password)
       dispatch(getUserDone(userInfo))
     } catch (e) {
       dispatch(getUserError(e))

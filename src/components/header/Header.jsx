@@ -30,9 +30,7 @@ class Header extends React.Component {
             </Nav.Link>
             <Nav.Link href="#notifications">Notifications</Nav.Link>
             <Nav.Link href="/routes">Routes</Nav.Link>
-            <Nav.Link href="/profile">
-              {userinfo.firstName}
-            </Nav.Link>
+            <Nav.Link href="/profile">{userinfo.firstName}</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
