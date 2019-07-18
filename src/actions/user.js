@@ -12,11 +12,13 @@ export function getUserStarting() {
 }
 
 export function getUserDone(userData) {
+
   return {
     type: GET_USER_DATA_SUCCESS,
     payload: userData,
   }
 }
+
 
 export function getUserError(error) {
   return {
