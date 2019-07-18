@@ -6,6 +6,7 @@ import { Nav, Navbar } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 class Header extends React.Component {
   render() {
@@ -30,7 +31,16 @@ class Header extends React.Component {
             </Nav.Link>
             <Nav.Link href="#notifications">Notifications</Nav.Link>
             <Nav.Link href="/routes">Routes</Nav.Link>
-            <Nav.Link href="/profile">{userinfo.firstName}</Nav.Link>
+
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {userinfo.firstName}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="/profile/">Profile</Dropdown.Item>
+                <Dropdown.Item href="/">LogOut</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
