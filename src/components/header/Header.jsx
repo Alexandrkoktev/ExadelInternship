@@ -6,7 +6,6 @@ import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-//import '../styles.sass'
 
 class Header extends React.Component {
   render() {

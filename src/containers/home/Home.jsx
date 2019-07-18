@@ -5,6 +5,11 @@ import AddRouteBTNs from '../../components/home-components/AddRouteBTNs'
 import ClosestRoutesList from '../../components/home-components/ClosestRoutesList'
 
 class Home extends React.Component {
+  componentDidMount() {
+    // from maptoDToP
+    // this.reaquestRides()
+  }
+
   render() {
     return (
       <>
@@ -14,5 +19,5 @@ class Home extends React.Component {
     )
   }
 }
-
+// maptoSToP, maptoDToP
 export default Home
