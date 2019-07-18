@@ -1,4 +1,5 @@
 import { getUserDone, getUserError, getUserStarting } from '../actions/user'
+import { push } from 'connected-react-router'
 import { fakeUser } from './fakeUser'
 
 export const mapStateToProps = state => ({
@@ -16,8 +17,10 @@ export const getUser = (email, password) => {
       dispatch(getUserStarting())
       const userInfo = await fakeUser(email, password);
       dispatch(getUserDone(userInfo))
+      dispatch(push('/home'))
     } catch (e) {
       dispatch(getUserError(e))
     }
+
   }
 }
