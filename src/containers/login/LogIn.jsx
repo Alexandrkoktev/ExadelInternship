@@ -52,6 +52,7 @@ class LogIn extends React.Component {
                   setUser(this.state.username)
                   event.preventDefault()
                 }}
+
               >
                 Sign in
               </Button>
