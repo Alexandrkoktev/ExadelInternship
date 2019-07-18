@@ -14,7 +14,7 @@ class RoutesList extends React.Component {
   createList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} routeid={i} />)
+      list.push(<Route my_text={text} key={i} />)
     }
     return list
   }

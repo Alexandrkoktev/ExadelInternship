@@ -19,16 +19,16 @@ class Profile extends React.Component {
   createRoutesList = function(num, text) {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} />)
+      list.push(<Route my_text={text} key={i}/>)
     }
     return list
   }
   createCarsList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Car carid={i} description={text} />)
+      list.push(<Car carid={i} description={text} key={i}/>)
     }
-    list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
+    list.push(<ListGroup.Item key={num+1}>Add new Car</ListGroup.Item>)
     return list
   }
 
