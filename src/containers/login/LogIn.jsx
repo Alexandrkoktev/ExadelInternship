@@ -2,11 +2,9 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 
 import { Button, Card, Form } from 'react-bootstrap'
-
 import { connect } from 'react-redux'
-import { getUserDone, getUserError, getUserStarting } from '../../actions/user'
+import {mapStateToProps,mapDispatchToProps} from '../../commands/user'
 
-//import '../styles.sass'
 
 class LogIn extends React.Component {
   constructor() {
@@ -64,43 +62,6 @@ class LogIn extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userinfo: state.userinfo,
-})
-
-export function delay(data, time = 1000) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(data)
-    }, time)
-  })
-}
-
-const fakeUser = (email, password) => {
-  return delay({
-    lastName: email,
-    firstName: email,
-    role: '',
-    email: email,
-  })
-}
-
-const getUser = (email, password) => {
-  // redux-thunk
-  return async function(dispatch) {
-    try {
-      dispatch(getUserStarting())
-      const userInfo = await fakeUser(email, password);
-      dispatch(getUserDone(userInfo))
-    } catch (e) {
-      dispatch(getUserError(e))
-    }
-  }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (email, password) => dispatch(getUser(email, password)),
-})
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
