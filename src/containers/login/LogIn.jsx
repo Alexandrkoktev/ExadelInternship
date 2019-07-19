@@ -22,7 +22,6 @@ class LogIn extends React.Component {
 
   render() {
     const { setUser } = this.props
-    // const { username } = this.state
     return (
       <div className={'content'}>
         <Card style={{ width: '18rem', margin: '5rem auto' }}>
