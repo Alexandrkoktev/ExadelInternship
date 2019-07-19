@@ -17,7 +17,6 @@ class LogIn extends React.Component {
   handleChange = event => {
     const value = event.target.value
     this.setState({ username: value })
-    console.log(this.state)
   }
 
   render() {
@@ -48,7 +47,6 @@ class LogIn extends React.Component {
                 type="submit"
                 onClick={event => {
                   setUser(this.state.username)
-                  console.log(this.props)
                   event.preventDefault()
                 }}
               >

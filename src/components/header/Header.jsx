@@ -6,6 +6,7 @@ import { Nav, Navbar } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+// eslint-disable-next-line no-unused-vars
 import Dropdown from 'react-bootstrap/Dropdown'
 import './heade.sass'
 import { logOut } from '../../commands/user'
@@ -23,7 +24,7 @@ class Header extends React.Component {
           variant="dark"
           sticky="top"
         >
-          <Link to="/">
+          <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
