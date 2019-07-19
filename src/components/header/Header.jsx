@@ -12,7 +12,7 @@ import { logOut } from '../../commands/user'
 
 class Header extends React.Component {
   render() {
-    const { userinfo, log_out } = this.props
+    const { userinfo, userLogOut } = this.props
     return (
       <header>
 
@@ -42,7 +42,7 @@ class Header extends React.Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/profile/">Profile</Dropdown.Item>
-                  <Dropdown.Item onClick={log_out}>LogOut</Dropdown.Item>
+                  <Dropdown.Item onClick={userLogOut}>LogOut</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
@@ -59,7 +59,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  log_out() {
+  userLogOut() {
     dispatch(logOut())
   },
 })
