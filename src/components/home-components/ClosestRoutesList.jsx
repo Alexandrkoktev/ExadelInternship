@@ -4,21 +4,32 @@ import Route from '../list-components/Route'
 
 class ClosestRoutesList extends React.Component {
   render() {
+    const { passengerRides = [], driverRides = [] } = this.props
+    const clientRides = passengerRides.map(item => (
+      <Route
+        routeid={item.id}
+        depPoint={item.depPoint}
+        destPoint={item.destPoint}
+        depTime={item.depTime}
+      />
+    ))
+
+    const driverrides = driverRides.map(item => (
+      <Route
+        routeid={item.id}
+        depPoint={item.depPoint}
+        destPoint={item.destPoint}
+        depTime={item.depTime}
+      />
+    ))
+
     return (
       <>
         <div style={{ display: 'inline-block', width: '50%' }}>
-          <ListGroup>
-            <Route my_text="Driver" routeid="1" />
-            <Route my_text="Driver" routeid="2" />
-            <Route my_text="Driver" routeid="3" />
-          </ListGroup>
+          <ListGroup>{driverrides}</ListGroup>
         </div>
         <div style={{ display: 'inline-block', width: '50%' }}>
-          <ListGroup>
-            <Route my_text="Passenger" routeid="4" />
-            <Route my_text="Passenger" routeid="5" />
-            <Route my_text="Passenger" routeid="6" />
-          </ListGroup>
+          <ListGroup>{clientRides}</ListGroup>
         </div>
       </>
     )
