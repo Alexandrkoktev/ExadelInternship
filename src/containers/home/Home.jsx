@@ -8,16 +8,21 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.requestRides();
+    this.props.requestRides()
   }
 
   render() {
-    const { homeRides: {passengerRides, driverRides} } = this.props;
+    const {
+      homeRides: { passengerRides, driverRides },
+    } = this.props
 
     return (
       <>
         <AddRouteBTNs />
-        <ClosestRoutesList passengerRides={passengerRides} driverRides={driverRides} />
+        <ClosestRoutesList
+          passengerRides={passengerRides}
+          driverRides={driverRides}
+        />
       </>
     )
   }

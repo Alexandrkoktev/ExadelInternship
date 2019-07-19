@@ -1,5 +1,7 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 
 class Route extends React.Component {
@@ -7,10 +9,12 @@ class Route extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={8}>{this.props.depPoint} -> {this.props.destPoint}</Col>
+          <Col xs={8}>
+            {this.props.depPoint} -> {this.props.destPoint}
+          </Col>
           <Col>
             <Link to={'routes/route-info/' + this.props.routeid}>
-              <Button variant="outline-dark">Route Info</Button>
+              <Button variant="outline-success">Route Info</Button>
             </Link>
           </Col>
         </Row>
