@@ -7,7 +7,7 @@ class RoutesList extends React.Component {
     const { rides = [] } = this.props.rides
     const dRidesArr = rides.map(item => {
       return (
-        <ListGroup.Item key={Math.random()}>
+        <ListGroup.Item key={item.id}>
           From: {item.depPoint} To: {item.destPoint} Time: {item.depTime}
         </ListGroup.Item>
       )

@@ -15,7 +15,7 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={6}>
             <ListGroup>
-              <RoutesList type={'Favourite'} />
+              <RoutesList type={'Favourite'} rides={[]}/>
               <NewRouteInfo />
             </ListGroup>
           </Col>
