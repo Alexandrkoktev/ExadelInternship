@@ -3,16 +3,13 @@ import React from 'react'
 import AddRouteBTNs from '../../components/home-components/AddRouteBTNs'
 // eslint-disable-next-line no-unused-vars
 import ClosestRoutesList from '../../components/home-components/ClosestRoutesList'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.passengerRoutes = [];  // массив поездок (пассажир)
-    this.driverRoutes = [];     // массив поездок (водитель)
-  }
-
+/*
   requestRides = () => {
-    this.passengerRoutes = [
+    this.passengerRides = [
       {
         id: 1,
         depPoint: 'depPoint1',
@@ -32,55 +29,39 @@ class Home extends React.Component {
         depTime: 'depTime3'
       }
     ];
-    this.driverRoutes = [
+    this.driverRides = [
       {
-        id: 1,
+        id: 4,
         depPoint: 'depPoint1',
         destPoint: 'destPoint1',
         depTime: 'depTime1'
       },
       {
-        id: 2,
+        id: 5,
         depPoint: 'depPoint2',
         destPoint: 'destPoint2',
         depTime: 'depTime2'
-      },
-      {
-        id: 3,
-        depPoint: 'depPoint3',
-        destPoint: 'destPoint3',
-        depTime: 'depTime3'
       }
     ]
-    // получаем поездки(пассажир и водитель отдельно?)
-    // this.passengerRoutesID = state.
   }
-
+*/
   componentDidMount() {
-    // from maptoDToP
-    // this.reaquestRides()
+    this.props.requestRides();
   }
 
   render() {
-    const { passengerRides } = this.props;
-
+    const { homeRides: {passengerRides, driverRides} } = this.props;
+    alert(passengerRides);
     return (
       <>
         <AddRouteBTNs />
-        <ClosestRoutesList passengerRides={passengerRides} />
+        <ClosestRoutesList passengerRides={passengerRides} driverRides={driverRides} />
       </>
     )
   }
 }
 
-export const mapStateToProps = state => ({
-  passengerRides: state.home.rides,
-  driverRides: state.home.driverRides
-})
-
-export const mapDispatchToProps = dispatch => ({
-
-  setUser: (email, password) => dispatch(getUser(email, password)),
-})
-
-export default Home
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

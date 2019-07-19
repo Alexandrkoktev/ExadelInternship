@@ -3,29 +3,19 @@ import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class Route extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      depPoint: props.depPoint,
-      destPoint: props.destPoint,
-      depTime: props.depTime,
-      routeid: 'routes/route-info/' + props.routeid,
-    }
-  }
-
   render() {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={8}>{this.state.depPoint} -> {this.state.destPoint}</Col>
+          <Col xs={8}>{this.props.depPoint} -> {this.props.destPoint}</Col>
           <Col>
-            <Link to={this.state.routeid}>
+            <Link to={'routes/route-info/' + this.props.routeid}>
               <Button variant="outline-dark">Route Info</Button>
             </Link>
           </Col>
         </Row>
         <Row>
-          <Col xs={8}>Departure time: {this.state.depTime}</Col>
+          <Col xs={8}>Departure time: {this.props.depTime}</Col>
           <Col>
             <Button variant="outline-danger">Delete</Button>
           </Col>

@@ -3,23 +3,18 @@ import { ListGroup } from 'react-bootstrap'
 import Route from '../list-components/Route'
 
 class ClosestRoutesList extends React.Component {
-  constructor() {
-    super();
-    // чо-та-там
-  }
-
-
-  const { passengerRides } = this.props;
-  const clientRides = passengerRides.map(value => ( <Route my_text="Passenger" info={value} routeid="4" />));
-
   render() {
+
+  const { passengerRides=[], driverRides=[] } = this.props;
+  const clientRides = passengerRides.map(item => ( <Route routeid={item.id} depPoint={item.depPoint} destPoint={item.destPoint} depTime={item.depTime} />));
+
+  const driverrides = driverRides.map(item => ( <Route routeid={item.id} depPoint={item.depPoint} destPoint={item.destPoint} depTime={item.depTime} />));
+
     return (
       <>
         <div style={{ display: 'inline-block', width: '50%' }}>
           <ListGroup>
-            <Route depPoint="Офис ПВТ" destPoint="Зелёный Луг" depTime="18:00" routeid="1" />
-            <Route depPoint="Офис ПВТ" destPoint="Малиновка" depTime="18:40" routeid="2" />
-            <Route depPoint="Офис ПВТ" destPoint="Каменная Горка" depTime="20:30" routeid="3" />
+            {driverrides}
           </ListGroup>
         </div>
         <div style={{ display: 'inline-block', width: '50%' }}>
