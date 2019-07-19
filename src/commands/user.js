@@ -1,4 +1,4 @@
-import { getUserDone, getUserError, getUserStarting } from '../actions/user'
+import { getUserDone, getUserError, getUserStarting,  resetUserData } from '../actions/user'
 import { push } from 'connected-react-router'
 import { fakeUser } from './fakeUser'
 
@@ -22,5 +22,12 @@ export const getUser = (email, password) => {
       dispatch(getUserError(e))
     }
 
+  }
+}
+
+export const logOut = () => {
+  return async function(dispatch) {
+    dispatch(resetUserData())
+    dispatch(push('/'))
   }
 }

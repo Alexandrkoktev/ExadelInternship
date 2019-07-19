@@ -28,7 +28,8 @@ export function getUserError(error) {
 }
 
 export function resetUserData() {
+  localStorage.clear();
   return {
-    type: RESET_USER_DATA,
+    type: RESET_USER_DATA
   }
 }
