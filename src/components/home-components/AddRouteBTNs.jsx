@@ -8,24 +8,30 @@ class AddRouteBTNs extends React.Component {
       <>
         <div className="d-flex flex-column">
           <ButtonToolbar className="justify-content">
-          <ButtonGroup size="m" style={{ width: "40%", margin: "10px auto", align: "center" }}>
-            <Button
-              href="/home/new-route"
-              variant="info"
-              style={{ width: '20%', padding: '10px' }}
+            <ButtonGroup
+              size="m"
+              style={{ width: '40%', margin: '10px auto', align: 'center' }}
             >
-              Add new route as a driver
-            </Button>
+              <Button
+                href="/home/new-route"
+                variant="info"
+                style={{ width: '20%', padding: '10px' }}
+              >
+                Add new route as a driver
+              </Button>
             </ButtonGroup>
-          <ButtonGroup size="m" style={{ width: "40%", margin: "10px auto", align: "center" }}>
-            <Button
-              href="/home/new-ride"
-              variant="info"
-              style={{ width: '20%', padding: '10px' }}
+            <ButtonGroup
+              size="m"
+              style={{ width: '40%', margin: '10px auto', align: 'center' }}
             >
-              Add new route as a passenger
-            </Button>
-          </ButtonGroup>
+              <Button
+                href="/home/new-ride"
+                variant="info"
+                style={{ width: '20%', padding: '10px' }}
+              >
+                Add new route as a passenger
+              </Button>
+            </ButtonGroup>
           </ButtonToolbar>
         </div>
       </>

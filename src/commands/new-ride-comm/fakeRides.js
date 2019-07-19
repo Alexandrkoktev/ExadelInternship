@@ -1,6 +1,6 @@
 import { delay } from '../../util'
 
-export  const dRides = [
+export const dRides = [
   { id: '1', depPoint: 'a', destPoint: 'b', depTime: '12:12' },
   { id: '2', depPoint: 'c', destPoint: 'd', depTime: '22:12' },
   { id: '3', depPoint: 'a', destPoint: 'r', depTime: '10:12' },

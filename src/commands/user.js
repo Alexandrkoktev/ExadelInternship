@@ -1,4 +1,9 @@
-import { getUserDone, getUserError, getUserStarting,  resetUserData } from '../actions/user'
+import {
+  getUserDone,
+  getUserError,
+  getUserStarting,
+  resetUserData,
+} from '../actions/user'
 import { push } from 'connected-react-router'
 import { fakeUser } from './fakeUser'
 

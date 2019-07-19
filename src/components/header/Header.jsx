@@ -16,7 +16,6 @@ class Header extends React.Component {
     const { userinfo, userLogOut } = this.props
     return (
       <header>
-
         <Navbar
           collapseOnSelect
           expand="lg"
@@ -27,9 +26,9 @@ class Header extends React.Component {
           <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto"/>
+            <Nav className="mr-auto" />
             <Nav>
               <Nav.Link href="#stats" onClick={() => alert('Stats')}>
                 Statistics
@@ -52,7 +51,6 @@ class Header extends React.Component {
       </header>
     )
   }
-
 }
 
 const mapStateToProps = state => ({
@@ -65,4 +63,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)
