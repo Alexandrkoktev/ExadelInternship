@@ -34,5 +34,4 @@ class Content extends React.Component {
     )
   }
 }
-
 export default Content

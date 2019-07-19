@@ -1,17 +1,8 @@
-import { getUserDone, getUserError, getUserStarting } from '../actions/user'
+import { getUserDone, getUserError, getUserStarting,  resetUserData } from '../actions/user'
 import { push } from 'connected-react-router'
 import { fakeUser } from './fakeUser'
 
-export const mapStateToProps = state => ({
-  userinfo: state.userinfo,
-})
-
-export const mapDispatchToProps = dispatch => ({
-  setUser: (email, password) => dispatch(getUser(email, password)),
-})
-
 export const getUser = (email, password) => {
-  // redux-thunk
   return async function(dispatch) {
     try {
       dispatch(getUserStarting())
@@ -21,6 +12,20 @@ export const getUser = (email, password) => {
     } catch (e) {
       dispatch(getUserError(e))
     }
-
   }
 }
+
+export const logOut = () => {
+  return async function(dispatch) {
+    dispatch(resetUserData())
+    dispatch(push('/'))
+  }
+}
+
+export const mapStateToProps = state => ({
+  userinfo: state.userinfo,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setUser: (email, password) => dispatch(getUser(email, password)),
+})
