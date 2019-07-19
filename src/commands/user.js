@@ -23,7 +23,7 @@ export const logOut = () => {
 }
 
 export const mapStateToProps = state => ({
-  userinfo: state.userinfo,
+  userInfo: state.userInfo,
 })
 
 export const mapDispatchToProps = dispatch => ({

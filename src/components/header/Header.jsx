@@ -12,7 +12,8 @@ import { logOut } from '../../commands/user'
 
 class Header extends React.Component {
   render() {
-    const { userinfo, userLogOut } = this.props
+    const { userInfo, userLogOut } = this.props
+    const isLoggedIn = !!userInfo.email;
     return (
       <header>
 
@@ -27,7 +28,7 @@ class Header extends React.Component {
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-          <Navbar.Collapse id="responsive-navbar-nav">
+          { isLoggedIn && <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"/>
             <Nav>
               <Nav.Link href="#stats" onClick={() => alert('Stats')}>
@@ -38,7 +39,7 @@ class Header extends React.Component {
 
               <Dropdown>
                 <Dropdown.Toggle variant="dark" id="dropdown-button">
-                  {userinfo.firstName}
+                  {userInfo.firstName}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/profile/">Profile</Dropdown.Item>
@@ -46,7 +47,7 @@ class Header extends React.Component {
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
-          </Navbar.Collapse>
+          </Navbar.Collapse>}
         </Navbar>
       </header>
     )
@@ -55,7 +56,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userinfo: state.userinfo,
+  userInfo: state.userInfo,
 })
 
 const mapDispatchToProps = dispatch => ({
