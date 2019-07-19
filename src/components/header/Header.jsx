@@ -7,12 +7,12 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Dropdown from 'react-bootstrap/Dropdown'
-import "./heade.sass"
+import './heade.sass'
 import { logOut } from '../../commands/user'
 
 class Header extends React.Component {
   render() {
-    const { userinfo } = this.props
+    const { userinfo, log_out } = this.props
     return (
       <header>
 
@@ -42,10 +42,7 @@ class Header extends React.Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/profile/">Profile</Dropdown.Item>
-                  <Dropdown.Item onClick={() => {
-                    this.props.dispatch(
-                    logOut())
-                    }}>LogOut</Dropdown.Item>
+                  <Dropdown.Item onClick={log_out}>LogOut</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
@@ -60,4 +57,11 @@ class Header extends React.Component {
 const mapStateToProps = state => ({
   userinfo: state.userinfo,
 })
-export default connect(mapStateToProps)(Header)
+
+const mapDispatchToProps = dispatch => ({
+  log_out() {
+    dispatch(logOut())
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
