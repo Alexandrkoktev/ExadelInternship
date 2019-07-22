@@ -1,6 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { ButtonGroup, Button, ButtonToolbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class AddRouteBTNs extends React.Component {
   render() {
@@ -8,30 +9,37 @@ class AddRouteBTNs extends React.Component {
       <>
         <div className="d-flex flex-column">
           <ButtonToolbar className="justify-content">
-            <ButtonGroup
-              size="m"
-              style={{ width: '40%', margin: '10px auto', align: 'center' }}
-            >
-              <Button
-                href="/home/new-route"
-                variant="info"
-                style={{ width: '20%', padding: '10px' }}
+            <div style={{ width: '50%', marginTop:"1%", marginBottom:"1%" }}>
+              <ButtonGroup
+                size="m"
               >
-                Add new route as a driver
-              </Button>
-            </ButtonGroup>
-            <ButtonGroup
-              size="m"
-              style={{ width: '40%', margin: '10px auto', align: 'center' }}
-            >
-              <Button
-                href="/home/new-ride"
-                variant="info"
-                style={{ width: '20%', padding: '10px' }}
+                <Link to="/home/new-route">
+                  <div style={{ width: '100%', marginLeft: '80%'}}>
+                    <Button
+                      variant="info"
+                    >
+                      Add new route as a driver
+                    </Button>
+                  </div>
+                </Link>
+
+              </ButtonGroup>
+            </div>
+            <div style={{ width: '50%', marginTop:"1%", marginBottom:"1%" }}>
+              <ButtonGroup
+                size="m"
               >
-                Add new route as a passenger
-              </Button>
-            </ButtonGroup>
+                <Link to="/home/new-ride">
+                  <div style={{ width: '100%', marginLeft: '80%' }}>
+                    <Button
+                      variant="info"
+                    >
+                      Add new route as a passenger
+                    </Button>
+                  </div>
+                </Link>
+              </ButtonGroup>
+            </div>
           </ButtonToolbar>
         </div>
       </>

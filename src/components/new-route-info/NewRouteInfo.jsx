@@ -55,7 +55,10 @@ class NewRouteInfo extends React.Component {
                 className="right"
                 variant="dark"
                 type="submit"
-                onClick={() => alert('Created')}
+                onClick={event => {
+                  alert('Created')
+                  event.preventDefault()
+                }}
               >
                 Create route
               </Button>
