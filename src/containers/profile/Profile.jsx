@@ -27,14 +27,6 @@ class Profile extends React.Component {
     return list
   }
 
-  createPrevRoutesList = (num, text) => {
-    let list = []
-    for (let i = 0; i < num; i++) {
-      list.push(<PreviousRoute my_text={text} />)
-    }
-    return list
-  }
-
   render() {
     const { rides: { rides } = [] } = this.props
     const dRidesArr = rides.map(item => {
@@ -46,6 +38,11 @@ class Profile extends React.Component {
           destPoint={item.destPoint}
           depTime={item.depTime}
         />
+      )
+    })
+    const prevRides = rides.map(item => {
+      return (
+        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} />
       )
     })
     return (
@@ -81,7 +78,7 @@ class Profile extends React.Component {
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>
-                  {this.createPrevRoutesList(20, 'Prevous Route')}
+                  {prevRides}
                 </ListGroup>
               </Tab.Pane>
             </Tab.Content>

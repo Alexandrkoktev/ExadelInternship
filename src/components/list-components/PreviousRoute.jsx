@@ -3,12 +3,11 @@ import { ListGroup, Row, Col } from 'react-bootstrap'
 import StarRatingComponent from 'react-star-rating-component'
 
 class PreviousRoute extends React.Component {
-  constructor(props) {
-    super(props)
+
+  constructor() {
+    super()
     this.state = {
-      text: props.my_text,
-      rating: 1,
-      editing: true,
+      value: 1
     }
   }
 
@@ -20,7 +19,7 @@ class PreviousRoute extends React.Component {
     return (
       <ListGroup.Item>
         <Row>
-          <Col xs={9}>{this.state.text}</Col>
+          <Col xs={9}>{this.props.depPoint}  ->   {this.props.destPoint}</Col>
           <Col>
             <StarRatingComponent
               name="rate1"

@@ -14,14 +14,14 @@ class Route extends React.Component {
           </Col>
           <Col>
             <Link to={'routes/route-info/' + this.props.routeid}>
-              <Button variant="outline-success">Route Info</Button>
+              <Button variant="outline-success" className='right'>Route Info</Button>
             </Link>
           </Col>
         </Row>
         <Row>
           <Col xs={8}>Departure time: {this.props.depTime}</Col>
           <Col>
-            <Button variant="outline-danger">Delete</Button>
+            <Button variant="outline-danger" className='right'>Delete</Button>
           </Col>
         </Row>
       </ListGroup.Item>

@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Dropdown, DropdownButton } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
@@ -8,15 +8,15 @@ class RoutesList extends React.Component {
     console.log(rides)
     const dRidesArr = rides.map(item => {
       return (
-        <Dropdown.Item key={item.id}>
+        <ListGroup.Item key={item.id}>
           {item.depPoint} -> {item.destPoint} Time: {item.depTime}
-        </Dropdown.Item>
+        </ListGroup.Item>
       )
     })
     return (
-      <DropdownButton title={this.props.type} variant="outline-dark" style={{ margin: '5%' }}>
+      <ListGroup title={this.props.type} variant="outline-dark" className='pscrollable' style={{ 'margin-top': '2%' }}>
         {dRidesArr}
-      </DropdownButton>
+      </ListGroup>
     )
   }
 }

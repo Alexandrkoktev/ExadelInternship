@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Col, Form, ListGroup } from 'react-bootstrap'
+import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
 
@@ -8,19 +8,20 @@ class PassengerForm extends React.Component {
   render() {
     return (
       <ListGroup>
-        <h1>New route:</h1>
+        <h3>New route:</h3>
         <Form>
-          <Form.Group>
-            <Form.Label>From:</Form.Label>
-            <Form.Control type="text" />
+          <Form.Group as={Row}>
+
+            <Form.Label column sm='2'>From:</Form.Label>
+            <Col><Form.Control type="text" /></Col>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>To:</Form.Label>
-            <Form.Control type="text" />
+          <Form.Group as={Row}>
+            <Form.Label column sm='2'>To:</Form.Label>
+            <Col><Form.Control type="text" /></Col>
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Time:</Form.Label>
-            <DateSelector />
+          <Form.Group  as={Row}>
+            <Form.Label column sm='2'>Time:</Form.Label>
+            <Col><DateSelector /></Col>
           </Form.Group>
           <Button
             variant="dark"
