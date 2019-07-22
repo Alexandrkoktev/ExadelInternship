@@ -1,28 +1,38 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { ButtonGroup, Button } from 'react-bootstrap'
+import { ButtonGroup, Button, ButtonToolbar } from 'react-bootstrap'
 
 class AddRouteBTNs extends React.Component {
   render() {
     return (
       <>
         <div className="d-flex flex-column">
-          <ButtonGroup size="lg">
-            <Button
-              href="/home/new-route"
-              variant="light"
-              style={{ width: '50%', height: '80px' }}
+          <ButtonToolbar className="justify-content">
+            <ButtonGroup
+              size="m"
+              style={{ width: '40%', margin: '10px auto', align: 'center' }}
             >
-              Add new route as a driver
-            </Button>
-            <Button
-              href="/home/new-ride"
-              variant="light"
-              style={{ width: '50%' }}
+              <Button
+                href="/home/new-route"
+                variant="info"
+                style={{ width: '20%', padding: '10px' }}
+              >
+                Add new route as a driver
+              </Button>
+            </ButtonGroup>
+            <ButtonGroup
+              size="m"
+              style={{ width: '40%', margin: '10px auto', align: 'center' }}
             >
-              Add new route as a passenger
-            </Button>
-          </ButtonGroup>
+              <Button
+                href="/home/new-ride"
+                variant="info"
+                style={{ width: '20%', padding: '10px' }}
+              >
+                Add new route as a passenger
+              </Button>
+            </ButtonGroup>
+          </ButtonToolbar>
         </div>
       </>
     )

@@ -3,21 +3,32 @@ import React from 'react'
 import AddRouteBTNs from '../../components/home-components/AddRouteBTNs'
 // eslint-disable-next-line no-unused-vars
 import ClosestRoutesList from '../../components/home-components/ClosestRoutesList'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Home extends React.Component {
   componentDidMount() {
-    // from maptoDToP
-    // this.reaquestRides()
+    this.props.requestRides()
   }
 
   render() {
+    const {
+      homeRides: { passengerRides, driverRides },
+    } = this.props
+
     return (
       <>
         <AddRouteBTNs />
-        <ClosestRoutesList />
+        <ClosestRoutesList
+          passengerRides={passengerRides}
+          driverRides={driverRides}
+        />
       </>
     )
   }
 }
-// maptoSToP, maptoDToP
-export default Home
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

@@ -1,22 +1,16 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { Nav, Navbar } from 'react-bootstrap'
-// eslint-disable-next-line no-unused-vars
-
-// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import { connect } from 'react-redux'
-import Dropdown from 'react-bootstrap/Dropdown'
-import './heade.sass'
 import { logOut } from '../../commands/user'
+import './heade.sass'
 
 class Header extends React.Component {
   render() {
     const { userInfo, userLogOut } = this.props
-    const isLoggedIn = !!userInfo.email;
     return (
       <header>
-
         <Navbar
           collapseOnSelect
           expand="lg"
@@ -24,30 +18,33 @@ class Header extends React.Component {
           variant="dark"
           sticky="top"
         >
-          <Link to="/">
+          <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-          { isLoggedIn && <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"/>
             <Nav>
-              <Nav.Link href="#stats" onClick={() => alert('Stats')}>
-                Statistics
-              </Nav.Link>
-              <Nav.Link href="#notifications">Notifications</Nav.Link>
-              <Nav.Link href="/routes">Routes</Nav.Link>
-
-              <Dropdown>
-                <Dropdown.Toggle variant="dark" id="dropdown-button">
-                  {userInfo.firstName}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="/profile/">Profile</Dropdown.Item>
-                  <Dropdown.Item onClick={userLogOut}>LogOut</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              <Nav.Item>
+                <Link to="#stats" onClick={() => alert('Stats')}  class = "nav-link">
+                  Statistics
+                </Link>
+              </Nav.Item>
+              <Nav.Item >
+                <Link to="#notifications" class = "nav-link">Notifications</Link>
+              </Nav.Item>
+              <Nav.Item >
+                <Link to="/routes" class = "nav-link">Routes</Link>
+              </Nav.Item>
+              <NavDropdown title="user-name" id="collasible-nav-dropdown"  >
+                <NavDropdown.Item >
+                  <Link to="/profile">profile</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Divider/>
+                <NavDropdown.Item onClick={userLogOut}>logOut</NavDropdown.Item>
+              </NavDropdown>
             </Nav>
-          </Navbar.Collapse>}
+          </Navbar.Collapse>
         </Navbar>
       </header>
     )
@@ -56,7 +53,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.userInfo,
+  userinfo: state.userinfo,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -65,4 +62,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header)
