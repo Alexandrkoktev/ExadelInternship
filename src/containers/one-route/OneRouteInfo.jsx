@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button'
 import Map from '../../components/map/Map'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../../components/date/DateSelector'
-import './oneRouteInfo.scss'
+import './oneRouteInfo.sass'
 // eslint-disable-next-line no-unused-vars
 import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 // eslint-disable-next-line no-unused-vars
