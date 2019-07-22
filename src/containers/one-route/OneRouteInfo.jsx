@@ -11,26 +11,33 @@ import Button from 'react-bootstrap/Button'
 import Map from '../../components/map/Map'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../../components/date/DateSelector'
-import './oneRouteInfo.sass'
+import './oneRouteInfo.scss'
 // eslint-disable-next-line no-unused-vars
 import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 // eslint-disable-next-line no-unused-vars
 import EditDate from '../../components/edit-date/EditDate'
 // eslint-disable-next-line no-unused-vars
 import DeleteButton from '../../components/delete-button/DeleteButton'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/info-about-passengers/passengers'
 
 class OneRouteInfo extends React.Component {
+  componentDidMount() {
+    this.props.requestPassengers()
+  }
+
   render() {
+    const { passengers } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
               <Col sm="6">
-                <Map/>
+                <Map />
               </Col>
               <Col sm="6">
-                <ListOfPassengers/>
+                <ListOfPassengers passengers={passengers}/>
               </Col>
             </Row>
             <Row>
@@ -62,4 +69,7 @@ class OneRouteInfo extends React.Component {
   }
 }
 
-export default OneRouteInfo
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(OneRouteInfo)
