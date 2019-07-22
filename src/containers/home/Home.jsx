@@ -15,7 +15,6 @@ class Home extends React.Component {
     const {
       homeRides: { passengerRides, driverRides },
     } = this.props
-     console.log(this.props)
     return (
       <>
         <AddRouteBTNs />

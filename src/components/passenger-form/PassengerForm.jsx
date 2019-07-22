@@ -25,7 +25,7 @@ class PassengerForm extends React.Component {
           <Button
             variant="dark"
             type="submit"
-            onClick={() => alert('Applying')}
+            onClick={(event) => event.preventDefault()}
           >
             Apply
           </Button>
