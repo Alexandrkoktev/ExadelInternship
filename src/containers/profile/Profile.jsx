@@ -10,7 +10,7 @@ import Car from '../../components/list-components/Car'
 import UserInfo from '../../components/profile/UserInfo'
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
-import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/new-ride-comm/rides'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -27,13 +27,6 @@ class Profile extends React.Component {
     this.props.requestRides()
   }
 
-  createRoutesList = function (text) {
-    let list = text
-    list = list.map(function (text, index) {
-      return <Route my_text={text} routeid={index} buttontext="Delete" />
-    })
-    return list
-  }
   createCarsList = text => {
     let list = text
     list = list.map(text => {
@@ -52,9 +45,18 @@ class Profile extends React.Component {
   }
 
   render() {
-    const {
-      homeRides: { driverRides },
-    } = this.props
+    const { rides: { rides } = [] } = this.props
+    const dRidesArr = rides.map(item => {
+      return (
+          <Route
+            routeid={item.id}
+            key={item.id}
+            depPoint={item.depPoint}
+            destPoint={item.destPoint}
+            depTime={item.depTime}
+          />
+      )
+    })
     return (
       <>
         <UserInfo username="Van Ivan Minivan" stars={4.5} />
@@ -80,7 +82,7 @@ class Profile extends React.Component {
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
                 <ListGroup>
-                  {this.createRoutesList(driverRides)}
+                  {dRidesArr}
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
