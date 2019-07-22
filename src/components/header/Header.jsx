@@ -9,6 +9,7 @@ import './heade.sass'
 class Header extends React.Component {
   render() {
     const { userInfo, userLogOut } = this.props
+    const isLoggedIn = !!userInfo.email
     return (
       <header>
         <Navbar
@@ -22,7 +23,7 @@ class Header extends React.Component {
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-
+          {isLoggedIn && <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"/>
             <Nav>
               <Nav.Item>
@@ -36,7 +37,7 @@ class Header extends React.Component {
               <Nav.Item>
                 <Link to="/routes" class="nav-link">Routes</Link>
               </Nav.Item>
-              <NavDropdown title="dropdown" id="collasible-nav-dropdown">
+              <NavDropdown title={userInfo.firstName} id="collasible-nav-dropdown">
                 <NavDropdown.Item>
                   <Link to="/profile">profile</Link>
                 </NavDropdown.Item>
@@ -44,6 +45,7 @@ class Header extends React.Component {
                 <NavDropdown.Item onClick={userLogOut}>logOut</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+          </Navbar.Collapse>}
         </Navbar>
       </header>
     )
@@ -52,7 +54,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userinfo: state.userinfo,
+  userInfo: state.userInfo,
 })
 
 const mapDispatchToProps = dispatch => ({

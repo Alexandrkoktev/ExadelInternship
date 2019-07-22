@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   lastName: '',
-  firstName: 'Username',
+  firstName: 'UserName',
   role: '',
   email: '',
   loading: false,
