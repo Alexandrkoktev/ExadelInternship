@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button'
 import Map from '../../components/map/Map'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../../components/date/DateSelector'
-import './oneRouteInfo.scss'
+import './oneRouteInfo.sass'
 // eslint-disable-next-line no-unused-vars
 import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 // eslint-disable-next-line no-unused-vars
@@ -27,25 +27,29 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="6">
-                <Map />
+                <Map/>
               </Col>
               <Col sm="6">
-                <ListOfPassengers />
+                <ListOfPassengers/>
               </Col>
             </Row>
             <Row>
-              <Col sm="2">
-                <div className="date-selector-button">
-                  <DateSelector />
+              <div style={{ width: '35%' }}>
+                <div style={{float:"left"}}>
+                  <Col sm="4">
+                    <DateSelector/>
+                  </Col>
                 </div>
-              </Col>
-              <Col sm="2">
-                <EditDate />
-              </Col>
+                <div style={{float: "right"}}>
+                  <Col sm="1">
+                    <EditDate/>
+                  </Col>
+                </div>
+              </div>
             </Row>
             <Row>
               <Col sm="11">
-                <DeleteButton />
+                <DeleteButton/>
               </Col>
               <Col sm="1">
                 <Button variant="dark">Ok</Button>
