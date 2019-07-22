@@ -2,15 +2,9 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
 import StarRatings from 'react-star-ratings'
+import { connect } from 'react-redux'
 
 class UserInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      username: props.username,
-      stars: props.stars,
-    }
-  }
 
   render() {
     return (
@@ -21,12 +15,19 @@ class UserInfo extends React.Component {
           </Col>
           <Col>
             <div>
-              <StarRatings
-                rating={this.state.stars}
-                starDimension="40px"
-                starSpacing="15px"
-              />
-              <h3>{this.state.username}</h3>
+              <Row>
+                <StarRatings
+                  rating={4.5}
+                  starDimension="40px"
+                  starSpacing="15px"
+                /> <h3 style={{ margin: '1%' }}>as a Driver</h3></Row>
+              <Row>
+                <StarRatings
+                  rating={3.5}
+                  starDimension="40px"
+                  starSpacing="15px"
+                /> <h3 style={{ margin: '1%' }}>as a Passenger</h3></Row>
+              <h3>Person</h3>
             </div>
           </Col>
         </Row>
@@ -35,4 +36,8 @@ class UserInfo extends React.Component {
   }
 }
 
-export default UserInfo
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+})
+
+export default connect(mapStateToProps)(UserInfo)
