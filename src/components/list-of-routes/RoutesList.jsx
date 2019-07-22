@@ -4,11 +4,12 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
-    const { rides = [] } = this.props.rides
+   const { rides:{rides}=[] }=this.props
+    console.log(rides)
     const dRidesArr = rides.map(item => {
       return (
         <Dropdown.Item key={item.id}>
-          From: {item.depPoint} To: {item.destPoint} Time: {item.depTime}
+          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
         </Dropdown.Item>
       )
     })
@@ -16,7 +17,6 @@ class RoutesList extends React.Component {
       <DropdownButton title={this.props.type} variant="outline-dark">
         {dRidesArr}
       </DropdownButton>
-
     )
   }
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Form, ListGroup, Col, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
+// eslint-disable-next-line no-unused-vars
 import RoutesList from '../list-of-routes/RoutesList'
 
 class NewRouteInfo extends React.Component {
@@ -11,9 +12,6 @@ class NewRouteInfo extends React.Component {
       <ListGroup>
         <h3>New route:</h3>
         <Form>
-          <Form.Group as={Row}>
-            <RoutesList type="From Favourites" rides={[]} />
-          </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm="2">
               Type:

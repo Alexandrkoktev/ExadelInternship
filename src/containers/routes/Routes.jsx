@@ -1,16 +1,27 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-components/RoutesList'
-// eslint-disable-next-line no-unused-vars
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/home'
 
 class Routes extends React.Component {
+  componentDidMount() {
+    this.props.requestRides()
+  }
+
   render() {
-    return (
+    const {
+      homeRides: { passengerRides, driverRides },
+    } = this.props
+      return (
       <>
-        <RoutesList size={20} />
+        <RoutesList passengerRides={passengerRides} driverRides={driverRides} />
       </>
     )
   }
 }
 
-export default Routes
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Routes)

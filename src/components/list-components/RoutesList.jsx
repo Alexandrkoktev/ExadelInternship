@@ -1,17 +1,11 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { ListGroup, Tab, Nav } from 'react-bootstrap'
+import { ListGroup, Tab, Nav,  ListGroupItem } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
 import './style.sass'
 
 class RoutesList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      size: props.size,
-    }
-  }
 
   createList = (num, text) => {
     let list = []
@@ -22,6 +16,22 @@ class RoutesList extends React.Component {
   }
 
   render() {
+    const {driverRides=[]}=this.props
+    const {passengerRides=[]}=this.props
+    const listOfDriverRides=driverRides.map(item=>{
+      return (
+        <ListGroupItem key={item.id}>
+          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+        </ListGroupItem>
+      )
+    })
+    const listOfPassengerRides=passengerRides.map(item=>{
+      return (
+        <ListGroupItem key={item.id}>
+          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+        </ListGroupItem>
+      )
+    })
     return (
       <Tab.Container defaultActiveKey="driver">
         <Nav justify variant="tabs">
@@ -36,12 +46,12 @@ class RoutesList extends React.Component {
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
               <ListGroup>
-                {this.createList(this.state.size, 'Passenger')}
+                {listOfPassengerRides}
               </ListGroup>
             </Tab.Pane>
             <Tab.Pane eventKey="driver">
               <ListGroup>
-                {this.createList(this.state.size, 'Driver')}
+                {listOfDriverRides}
               </ListGroup>
             </Tab.Pane>
           </Tab.Content>
