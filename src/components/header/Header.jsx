@@ -22,29 +22,28 @@ class Header extends React.Component {
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-          <Navbar.Collapse id="responsive-navbar-nav">
+
             <Nav className="mr-auto"/>
             <Nav>
               <Nav.Item>
-                <Link to="#stats" onClick={() => alert('Stats')}  class = "nav-link">
+                <Link to="#stats" onClick={() => alert('Stats')} class="nav-link">
                   Statistics
                 </Link>
               </Nav.Item>
-              <Nav.Item >
-                <Link to="#notifications" class = "nav-link">Notifications</Link>
+              <Nav.Item>
+                <Link to="#notifications" class="nav-link">Notifications</Link>
               </Nav.Item>
-              <Nav.Item >
-                <Link to="/routes" class = "nav-link">Routes</Link>
+              <Nav.Item>
+                <Link to="/routes" class="nav-link">Routes</Link>
               </Nav.Item>
-              <NavDropdown title="user-name" id="collasible-nav-dropdown"  >
-                <NavDropdown.Item >
+              <NavDropdown title="dropdown" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
                   <Link to="/profile">profile</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider/>
                 <NavDropdown.Item onClick={userLogOut}>logOut</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-          </Navbar.Collapse>
         </Navbar>
       </header>
     )
