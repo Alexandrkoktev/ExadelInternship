@@ -21,8 +21,9 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={6}>
             <ListGroup>
-              <RoutesList type="From Favourites" rides={rides} />
+
               <NewRouteInfo />
+              <RoutesList type="From Favourites" rides={rides} />
             </ListGroup>
           </Col>
           <Col sm={6}>
