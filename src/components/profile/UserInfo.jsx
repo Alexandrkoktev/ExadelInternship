@@ -26,6 +26,7 @@ class UserInfo extends React.Component {
                 starDimension="40px"
                 starSpacing="15px"
               />
+              <h3>{this.state.username}</h3>
             </div>
           </Col>
         </Row>

@@ -3,6 +3,10 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { connect } from 'react-redux'
+
+// eslint-disable-next-line no-unused-vars
+import Dropdown from 'react-bootstrap/Dropdown'
+import './heade.sass'
 import { logOut } from '../../commands/user'
 import './heade.sass'
 
@@ -22,9 +26,11 @@ class Header extends React.Component {
           <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
+
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           {isLoggedIn && <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"/>
+
             <Nav>
               <Nav.Item>
                 <Link to="#stats" onClick={() => alert('Stats')} class="nav-link">
@@ -50,7 +56,6 @@ class Header extends React.Component {
       </header>
     )
   }
-
 }
 
 const mapStateToProps = state => ({
@@ -67,3 +72,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Header)
+

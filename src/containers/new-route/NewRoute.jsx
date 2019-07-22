@@ -1,21 +1,27 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Container, Row, Col, ListGroup } from 'react-bootstrap'
+import { Container, Row, Col, ListGroup, Form } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
 // eslint-disable-next-line no-unused-vars
 import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
 import Map from '../../components/map/Map'
-// eslint-disable-next-line no-unused-vars
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/new-ride-comm/rides'
+
 class NewRoute extends React.Component {
+  componentDidMount() {
+    this.props.requestRides()
+  }
   render() {
+    const { rides } = this.props
     return (
-      <Container style={{ marginLeft: '5rem' }}>
+      <Container>
         <Row>
           <Col sm={6}>
             <ListGroup>
-              <RoutesList type={'Favourite'} rides={[]}/>
+              <RoutesList type="From Favourites" rides={rides} />
               <NewRouteInfo />
             </ListGroup>
           </Col>
@@ -27,4 +33,7 @@ class NewRoute extends React.Component {
     )
   }
 }
-export default NewRoute
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewRoute)

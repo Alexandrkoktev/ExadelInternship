@@ -8,6 +8,9 @@ import Route from '../../components/list-components/Route'
 import Car from '../../components/list-components/Car'
 // eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
+import PreviousRoute from '../../components/list-components/PreviousRoute'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Profile extends React.Component {
   constructor(props) {
@@ -20,23 +23,38 @@ class Profile extends React.Component {
     }
   }
 
-  createRoutesList = function(num, text) {
-    let list = []
-    for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} key={i} />)
-    }
+  componentDidMount() {
+    this.props.requestRides()
+  }
+
+  createRoutesList = function (text) {
+    let list = text
+    list = list.map(function (text, index) {
+      return <Route my_text={text} routeid={index} buttontext="Delete" />
+    })
     return list
   }
-  createCarsList = (num, text) => {
+  createCarsList = text => {
+    let list = text
+    list = list.map(text => {
+      return <Car description={text} />
+    })
+    list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
+    return list
+  }
+
+  createPrevRoutesList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Car carid={i} description={text} key={i} />)
+      list.push(<PreviousRoute my_text={text} />)
     }
-    list.push(<ListGroup.Item key={num + 1}>Add new Car</ListGroup.Item>)
     return list
   }
 
   render() {
+    const {
+      homeRides: { driverRides },
+    } = this.props
     return (
       <>
         <UserInfo username="Van Ivan Minivan" stars={4.5} />
@@ -62,15 +80,15 @@ class Profile extends React.Component {
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
                 <ListGroup>
-                  {this.createRoutesList(10, 'Favorite Route')}
+                  {this.createRoutesList(driverRides)}
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
-                {this.createCarsList(10, 'Stolen Camaro')}
+                {this.createCarsList(['Stolen Camaro', 'Krasnaya Devyatka'])}
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>
-                  {this.createRoutesList(20, 'Prevous Route')}
+                  {this.createPrevRoutesList(20, 'Prevous Route')}
                 </ListGroup>
               </Tab.Pane>
             </Tab.Content>
@@ -81,4 +99,7 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile)

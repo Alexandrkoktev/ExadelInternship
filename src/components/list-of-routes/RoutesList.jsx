@@ -1,22 +1,22 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { ListGroup } from 'react-bootstrap'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
-    const { rides = [] } = this.props.rides
+   const { rides:{rides}=[] }=this.props
+    console.log(rides)
     const dRidesArr = rides.map(item => {
       return (
-        <ListGroup.Item key={item.id}>
-          From: {item.depPoint} To: {item.destPoint} Time: {item.depTime}
-        </ListGroup.Item>
+        <Dropdown.Item key={item.id}>
+          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+        </Dropdown.Item>
       )
     })
     return (
-      <ListGroup>
-        <h1>{this.props.type}:</h1>
+      <DropdownButton title={this.props.type} variant="outline-dark">
         {dRidesArr}
-      </ListGroup>
+      </DropdownButton>
     )
   }
 }

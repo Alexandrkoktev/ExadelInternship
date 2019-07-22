@@ -10,6 +10,7 @@ class ClosestRoutesList extends React.Component {
     const clientRides = passengerRides.map(item => (
       <Route
         routeid={item.id}
+        key={item.id}
         depPoint={item.depPoint}
         destPoint={item.destPoint}
         depTime={item.depTime}
@@ -19,6 +20,7 @@ class ClosestRoutesList extends React.Component {
     const driverrides = driverRides.map(item => (
       <Route
         routeid={item.id}
+        key={item.id}
         depPoint={item.depPoint}
         destPoint={item.destPoint}
         depTime={item.depTime}

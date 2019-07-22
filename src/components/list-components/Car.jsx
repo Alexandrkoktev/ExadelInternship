@@ -15,8 +15,12 @@ class Car extends React.Component {
         <Row>
           <Col xs={10}>{this.state.description}</Col>
           <Col>
-            <Button variant="outline-dark">Edit</Button>
-            <Button variant="outline-danger">Delete</Button>
+            <Button variant="outline-dark" className="right">
+              Edit
+            </Button>
+            <Button variant="outline-danger" className="right">
+              Delete
+            </Button>
           </Col>
         </Row>
       </ListGroup.Item>
