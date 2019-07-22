@@ -1,15 +1,21 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Tab, Nav, Button, ListGroup } from 'react-bootstrap'
 import './profile-style.sass'
+// eslint-disable-next-line no-unused-vars
 import Route from '../../components/list-components/Route'
+// eslint-disable-next-line no-unused-vars
 import Car from '../../components/list-components/Car'
+// eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
 import PreviousRoute from '../../components/list-components/PreviousRoute'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props)
-    const { stars, points, username } = props
+    let { stars, points, username } = props
     this.state = {
       stars: stars,
       points: points,
@@ -17,9 +23,13 @@ class Profile extends React.Component {
     }
   }
 
-  createRoutesList = function(text) {
+  componentDidMount() {
+    this.props.requestRides()
+  }
+
+  createRoutesList = function (text) {
     let list = text
-    list = list.map(function(text, index) {
+    list = list.map(function (text, index) {
       return <Route my_text={text} routeid={index} buttontext="Delete" />
     })
     return list
@@ -42,6 +52,9 @@ class Profile extends React.Component {
   }
 
   render() {
+    const {
+      homeRides: { driverRides },
+    } = this.props
     return (
       <>
         <UserInfo username="Van Ivan Minivan" stars={4.5} />
@@ -67,7 +80,7 @@ class Profile extends React.Component {
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
                 <ListGroup>
-                  {this.createRoutesList(['Favorite Route', 'Ugh', 'Me'])}
+                  {this.createRoutesList(driverRides)}
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
@@ -86,4 +99,7 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile)

@@ -1,5 +1,7 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup, Tab, Nav } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import Route from './Route'
 import './style.sass'
 
@@ -14,7 +16,7 @@ class RoutesList extends React.Component {
   createList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
-      list.push(<Route my_text={text} routeid={i} />)
+      list.push(<Route my_text={text} key={i} />)
     }
     return list
   }

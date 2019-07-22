@@ -14,13 +14,13 @@ import Content from './components/content/Content'
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <>
         <Header />
         <Container>
           <Content />
         </Container>
         <Footer />
-      </Router>
+      </>
     )
   }
 }

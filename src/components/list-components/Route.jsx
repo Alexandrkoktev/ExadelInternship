@@ -1,31 +1,27 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 
 class Route extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: props.my_text,
-      routeid: 'routes/route-info/' + props.routeid,
-      buttontext: props.buttontext,
-    }
-  }
-
   render() {
     return (
       <ListGroup.Item>
         <Row>
-          <Col sm={3}>{this.state.text}</Col>
+          <Col xs={8}>
+            {this.props.depPoint} -> {this.props.destPoint}
+          </Col>
           <Col>
-            <Link to={this.state.routeid}>
-              <Button variant="outline-dark" className="right">
-                Route Info
-              </Button>
+            <Link to={'routes/route-info/' + this.props.routeid}>
+              <Button variant="outline-success">Route Info</Button>
             </Link>
-            <Button variant="outline-danger" className="right">
-              {this.state.buttontext}
-            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={8}>Departure time: {this.props.depTime}</Col>
+          <Col>
+            <Button variant="outline-danger">Delete</Button>
           </Col>
         </Row>
       </ListGroup.Item>

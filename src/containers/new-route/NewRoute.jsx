@@ -23,9 +23,6 @@ class NewRoute extends React.Component {
       <Container>
         <Row>
           <Col sm={6}>
-            <div className="pscrollable">
-              {this.createList(20, 'All routes')}
-            </div>
             <ListGroup>
               <NewRouteInfo />
             </ListGroup>

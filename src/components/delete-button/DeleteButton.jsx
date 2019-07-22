@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import Button from 'react-bootstrap/Button'
 
 class DeleteButton extends React.Component {
@@ -6,15 +7,9 @@ class DeleteButton extends React.Component {
     const { click } = this.props
 
     return (
-      <div class="edit-date">
-        <Button
-          variant="light"
-          onClick={() => {
-            click('123')
-          }}
-        >
-          delete
-        </Button>
+
+      <div className="edit-date">
+        <Button variant="light">delete</Button>
       </div>
     )
   }

@@ -19,8 +19,8 @@ class Content extends React.Component {
       <Switch>
         <Route exact path="/" component={LogIn} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/home/new-ride" component={NewRide}/>
-        <Route exact path="/home/new-route" component={NewRoute}/>
+        <Route exact path="/home/new-ride" component={NewRide} />
+        <Route exact path="/home/new-route" component={NewRoute} />
         <Route exact path="/routes" component={Routes} />
         <Route
           exact
@@ -34,5 +34,4 @@ class Content extends React.Component {
     )
   }
 }
-
 export default Content

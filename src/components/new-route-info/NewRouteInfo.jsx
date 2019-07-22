@@ -12,7 +12,7 @@ class NewRouteInfo extends React.Component {
         <h3>New route:</h3>
         <Form>
           <Form.Group as={Row}>
-            <RoutesList type="From Favourites" />
+            <RoutesList type="From Favourites" rides={[]} />
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm="2">
@@ -42,12 +42,8 @@ class NewRouteInfo extends React.Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm="2">
-              Time:
-            </Form.Label>
-            <Col sm="4">
-              <DateSelector />
-            </Col>
+            <Form.Label column sm="2">Time:</Form.Label>
+            <Col><DateSelector /></Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Form.Label column sm="2">
@@ -68,7 +64,7 @@ class NewRouteInfo extends React.Component {
             </Col>
           </Form.Group>
         </Form>
-      </ListGroup>
+      </ListGroup >
     )
   }
 }

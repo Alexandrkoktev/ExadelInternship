@@ -4,25 +4,21 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
+    const { rides = [] } = this.props.rides
+    const dRidesArr = rides.map(item => {
+      return (
+        <Dropdown.Item key={item.id}>
+          From: {item.depPoint} To: {item.destPoint} Time: {item.depTime}
+        </Dropdown.Item>
+      )
+    })
     return (
       <DropdownButton title={this.props.type} variant="outline-dark">
-        <Dropdown.Item action onClick={() => alert('clicked')}>
-          1st route
-        </Dropdown.Item>
-        <Dropdown.Item action onClick={() => alert('clicked')}>
-          2nd route
-        </Dropdown.Item>
-        <Dropdown.Item action onClick={() => alert('clicked')}>
-          3rd route
-        </Dropdown.Item>
-        <Dropdown.Item action onClick={() => alert('clicked')}>
-          4th route
-        </Dropdown.Item>
-        <Dropdown.Item action onClick={() => alert('clicked')}>
-          5th route
-        </Dropdown.Item>
+        {dRidesArr}
       </DropdownButton>
+
     )
   }
 }
+
 export default RoutesList

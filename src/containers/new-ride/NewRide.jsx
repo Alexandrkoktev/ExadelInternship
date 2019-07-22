@@ -1,22 +1,31 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import PassengerForm from '../../components/passenger-form/PassengerForm'
 // eslint-disable-next-line no-unused-vars
 import Map from '../../components/map/Map'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
-// eslint-disable-next-line no-unused-vars
+import { connect } from 'react-redux'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/new-ride-comm/rides'
 
-class NewRoute extends React.Component {
+// eslint-disable-next-line no-unused-vars
+class NewRide extends React.Component {
+  componentDidMount() {
+    this.props.requestRides()
+  }
   render() {
+    const { rides } = this.props
     return (
       <Container style={{ marginLeft: '5rem' }}>
         <Row>
           <Col sm={6}>
             <PassengerForm />
-            <RoutesList type={'Suitable'} />
+            <RoutesList type={'Suitable'} rides={rides} />
           </Col>
           <Col sm={6}>
             <Map />
@@ -26,4 +35,8 @@ class NewRoute extends React.Component {
     )
   }
 }
-export default NewRoute
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewRide)
