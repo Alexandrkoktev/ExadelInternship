@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import PassengerForm from '../../components/passenger-form/PassengerForm'
 // eslint-disable-next-line no-unused-vars
@@ -24,8 +24,9 @@ class NewRide extends React.Component {
       <Container style={{ marginLeft: '5rem' }}>
         <Row>
           <Col sm={6}>
-            <PassengerForm />
-            <RoutesList type={'Suitable'} rides={rides} />
+            <ListGroup>
+              <PassengerForm />
+              <RoutesList type={'Suitable'} rides={rides} /></ListGroup>
           </Col>
           <Col sm={6}>
             <Map />

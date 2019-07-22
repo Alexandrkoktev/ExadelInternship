@@ -10,30 +10,14 @@ import Car from '../../components/list-components/Car'
 import UserInfo from '../../components/profile/UserInfo'
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
-import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/new-ride-comm/rides'
 
 class Profile extends React.Component {
-  constructor(props) {
-    super(props)
-    let { stars, points, username } = props
-    this.state = {
-      stars: stars,
-      points: points,
-      username: username,
-    }
-  }
 
   componentDidMount() {
     this.props.requestRides()
   }
 
-  createRoutesList = function (text) {
-    let list = text
-    list = list.map(function (text, index) {
-      return <Route my_text={text} routeid={index} buttontext="Delete" />
-    })
-    return list
-  }
   createCarsList = text => {
     let list = text
     list = list.map(text => {
@@ -43,21 +27,27 @@ class Profile extends React.Component {
     return list
   }
 
-  createPrevRoutesList = (num, text) => {
-    let list = []
-    for (let i = 0; i < num; i++) {
-      list.push(<PreviousRoute my_text={text} />)
-    }
-    return list
-  }
-
   render() {
-    const {
-      homeRides: { driverRides },
-    } = this.props
+    const { rides: { rides } = [] } = this.props
+    const dRidesArr = rides.map(item => {
+      return (
+        <Route
+          routeid={item.id}
+          key={item.id}
+          depPoint={item.depPoint}
+          destPoint={item.destPoint}
+          depTime={item.depTime}
+        />
+      )
+    })
+    const prevRides = rides.map(item => {
+      return (
+        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} />
+      )
+    })
     return (
       <>
-        <UserInfo username="Van Ivan Minivan" stars={4.5} />
+        <UserInfo />
         <Tab.Container defaultActiveKey="favroutes">
           <Nav className="justify-content-center">
             <Nav.Item>
@@ -80,7 +70,7 @@ class Profile extends React.Component {
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
                 <ListGroup>
-                  {this.createRoutesList(driverRides)}
+                  {dRidesArr}
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
@@ -88,7 +78,7 @@ class Profile extends React.Component {
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>
-                  {this.createPrevRoutesList(20, 'Prevous Route')}
+                  {prevRides}
                 </ListGroup>
               </Tab.Pane>
             </Tab.Content>
