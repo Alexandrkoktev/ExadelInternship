@@ -20,6 +20,10 @@ import EditDate from '../../components/edit-date/EditDate'
 import DeleteButton from '../../components/delete-button/DeleteButton'
 
 class OneRouteInfo extends React.Component {
+  sayHi = text => {
+    alert('Hi!' + text)
+  }
+
   render() {
     return (
       <div className="one-route-info">
@@ -45,7 +49,7 @@ class OneRouteInfo extends React.Component {
             </Row>
             <Row>
               <Col sm="11">
-                <DeleteButton />
+                <DeleteButton click={this.sayHi} />
               </Col>
               <Col sm="1">
                 <Button variant="dark">Ok</Button>
