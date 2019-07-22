@@ -13,15 +13,6 @@ import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/new-ride-comm/rides'
 
 class Profile extends React.Component {
-  constructor(props) {
-    super(props)
-    let { stars, points, username } = props
-    this.state = {
-      stars: stars,
-      points: points,
-      username: username,
-    }
-  }
 
   componentDidMount() {
     this.props.requestRides()
@@ -48,18 +39,18 @@ class Profile extends React.Component {
     const { rides: { rides } = [] } = this.props
     const dRidesArr = rides.map(item => {
       return (
-          <Route
-            routeid={item.id}
-            key={item.id}
-            depPoint={item.depPoint}
-            destPoint={item.destPoint}
-            depTime={item.depTime}
-          />
+        <Route
+          routeid={item.id}
+          key={item.id}
+          depPoint={item.depPoint}
+          destPoint={item.destPoint}
+          depTime={item.depTime}
+        />
       )
     })
     return (
       <>
-        <UserInfo username="Van Ivan Minivan" stars={4.5} />
+        <UserInfo />
         <Tab.Container defaultActiveKey="favroutes">
           <Nav className="justify-content-center">
             <Nav.Item>

@@ -4,7 +4,7 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
-   const { rides:{rides}=[] }=this.props
+    const { rides: { rides } = [] } = this.props
     console.log(rides)
     const dRidesArr = rides.map(item => {
       return (
@@ -14,7 +14,7 @@ class RoutesList extends React.Component {
       )
     })
     return (
-      <DropdownButton title={this.props.type} variant="outline-dark">
+      <DropdownButton title={this.props.type} variant="outline-dark" style={{ margin: '5%' }}>
         {dRidesArr}
       </DropdownButton>
     )
