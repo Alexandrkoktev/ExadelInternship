@@ -5,16 +5,15 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 class ListOfPassengers extends React.Component {
   render() {
-    return (
-      <ListGroup>
-        <ListGroup.Item link="#">One</ListGroup.Item>
-        <ListGroup.Item link="#">Two</ListGroup.Item>
-        <ListGroup.Item link="#">Three</ListGroup.Item>
-        <ListGroup.Item link="#">Four</ListGroup.Item>
-        <ListGroup.Item link="#">Five</ListGroup.Item>
-        <ListGroup.Item link="#">Six</ListGroup.Item>
-      </ListGroup>
-    )
+   const { passengers:{passengers} = [] } =this.props
+    const passengerArr = passengers.map(item => {
+      return (
+        <ListGroup.Item key={item.id}>
+          Name: {item.name}, Phone Number: {item.number}
+        </ListGroup.Item>
+      )
+    })
+     return <ListGroup>{passengerArr}</ListGroup>
   }
 }
 
