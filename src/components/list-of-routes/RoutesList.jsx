@@ -5,7 +5,6 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 class RoutesList extends React.Component {
   render() {
    const { rides:{rides}=[] }=this.props
-    console.log(rides)
     const dRidesArr = rides.map(item => {
       return (
         <Dropdown.Item key={item.id}>

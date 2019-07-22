@@ -1,14 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Nav, Navbar } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { connect } from 'react-redux'
-
-// eslint-disable-next-line no-unused-vars
-import Dropdown from 'react-bootstrap/Dropdown'
 import './heade.sass'
 import { logOut } from '../../commands/user'
-import './heade.sass'
 
 class Header extends React.Component {
   render() {
@@ -33,15 +32,15 @@ class Header extends React.Component {
 
             <Nav>
               <Nav.Item>
-                <Link to="#stats" onClick={() => alert('Stats')} class="nav-link">
+                <Link to="#stats" onClick={() => alert('Stats')} className="nav-link">
                   Statistics
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="#notifications" class="nav-link">Notifications</Link>
+                <Link to="#notifications" className="nav-link">Notifications</Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="/routes" class="nav-link">Routes</Link>
+                <Link to="/routes" className="nav-link">Routes</Link>
               </Nav.Item>
               <NavDropdown title={userInfo.firstName} id="collasible-nav-dropdown">
                 <NavDropdown.Item>
