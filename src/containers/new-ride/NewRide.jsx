@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import PassengerForm from '../../components/passenger-form/PassengerForm'
 // eslint-disable-next-line no-unused-vars
-import Map from '../../components/map/Map'
+import Maps from '../../components/map/Maps'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
 import { connect } from 'react-redux'
@@ -23,13 +23,13 @@ class NewRide extends React.Component {
     return (
       <Container style={{ marginLeft: '5rem' }}>
         <Row>
-          <Col sm={6}>
+          <Col sm={4}>
             <ListGroup>
               <PassengerForm />
               <RoutesList type={'Suitable'} rides={rides} /></ListGroup>
           </Col>
           <Col sm={6}>
-            <Map />
+            <Maps />
           </Col>
         </Row>
       </Container>

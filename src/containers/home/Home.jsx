@@ -12,9 +12,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const {
-      homeRides: { passengerRides, driverRides },
-    } = this.props
+    const { passengerRides, driverRides } = this.props
     return (
       <>
         <AddRouteBTNs />
