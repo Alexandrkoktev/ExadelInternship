@@ -1,52 +1,68 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
-
-// eslint-disable-next-line no-unused-vars
 import { Button, Card, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
+import Alert from 'react-bootstrap/Alert'
+import './logIn.sass'
+
 
 class LogIn extends React.Component {
   constructor() {
     super()
     this.state = {
       username: '',
+      password: '',
     }
   }
 
-  handleChange = event => {
+  handleChangeForLogIn = event => {
     const value = event.target.value
     this.setState({ username: value })
   }
 
+  handleChangeForPassword = event => {
+    const value = event.target.value
+    this.setState({ password: value })
+  }
+
   render() {
-    const { setUser } = this.props
+    const { setUser, error, isError } = this.props
     return (
-      <div className={'content'}>
+      <div>
+        {isError && <Alert key={1} variant='danger'  className={'alertForError'}>
+          {error}
+        </Alert>}
         <Card style={{ width: '18rem', margin: '5rem auto' }}>
+
           <Card.Body>
+
             <Form>
               <Form.Group>
                 <Form.Label>Login</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="login"
                   value={this.state.username}
-                  onChange={this.handleChange}
+                  onChange={this.handleChangeForLogIn}
                   placeholder="Enter login"
                 />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="password"
+                  alue={this.state.password}
+                  onChange={this.handleChangeForPassword}
+                  placeholder="Password"/>
               </Form.Group>
+
               <Form.Group>
-                <Form.Check type="checkbox" label="Check me out" />
+                <Form.Check type="checkbox" label="Check me out"/>
               </Form.Group>
               <Button
                 variant="dark"
                 type="submit"
                 onClick={event => {
-                  setUser(this.state.username)
+                  setUser(this.state.username, this.state.password)
                   event.preventDefault()
                 }}
               >
@@ -60,7 +76,8 @@ class LogIn extends React.Component {
   }
 }
 
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(LogIn)

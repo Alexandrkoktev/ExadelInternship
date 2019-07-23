@@ -6,10 +6,8 @@ import {
 } from '../actions/user'
 
 const initialState = {
-  lastName: '',
-  firstName: 'UserName',
+  login: '',
   role: '',
-  email: '',
   loading: false,
   error: '',
 }
@@ -22,21 +20,20 @@ function reducer(state = initialState, action) {
         loading: true,
       }
     case GET_USER_DATA_SUCCESS:
-      const { lastName, firstName, role, email } = action.payload
+      const { login, role } = action.payload
       return {
         ...state,
         loading: false,
-        lastName,
-        firstName,
-        role,
-        email,
+        error: '',
+        login,
+        role
       }
     case GET_USER_DATA_ERROR:
-      const { error } = action
+      const { error: { message } } = action
       return {
         ...state,
         loading: false,
-        error,
+        error: message
       }
     case RESET_USER_DATA:
       return { ...initialState }

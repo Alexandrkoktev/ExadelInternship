@@ -6,7 +6,7 @@ import RoutesList from '../../components/list-of-routes/RoutesList'
 // eslint-disable-next-line no-unused-vars
 import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
-import Map from '../../components/map/Map'
+import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/new-ride-comm/rides'
 
@@ -26,7 +26,7 @@ class NewRoute extends React.Component {
             </ListGroup>
           </Col>
           <Col sm={6}>
-            <Map />
+            <Maps />
           </Col>
         </Row>
       </Container>
