@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 // eslint-disable-next-line no-unused-vars
 import Button from 'react-bootstrap/Button'
 // eslint-disable-next-line no-unused-vars
-import Map from '../../components/map/Map'
+import Maps from '../../components/map/Maps'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../../components/date/DateSelector'
 import './oneRouteInfo.sass'
@@ -34,7 +34,7 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="6">
-                <Map />
+                <Maps />
               </Col>
               <Col sm="6">
                 <ListOfPassengers passengers={passengers}/>
