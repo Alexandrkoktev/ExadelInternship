@@ -4,8 +4,7 @@ import { ListGroup } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
-    const { rides: { rides } = [] } = this.props
-    console.log(rides)
+    const { rides } = this.props
     const dRidesArr = rides.map(item => {
       return (
         <ListGroup.Item key={item.id}>
@@ -14,7 +13,7 @@ class RoutesList extends React.Component {
       )
     })
     return (
-      <ListGroup title={this.props.type} variant="outline-dark" className='pscrollable' style={{ 'margin-top': '2%' }}>
+      <ListGroup title={this.props.type} variant="outline-dark" className='pscrollable' style={{ 'marginTop': '2%' }}>
         {dRidesArr}
       </ListGroup>
     )

@@ -6,10 +6,8 @@ import {
 import { fakeHomeRides } from './fakeHomeRides'
 
 export const mapStateToProps = state => ({
-  homeRides: state.home.homeRides,
-  /*
-  passengerRides: state.home.passengerRides,
-  driverRides: state.home.passengerRides */
+  passengerRides: state.home.homeRides.passengerRides,
+  driverRides: state.home.homeRides.passengerRides
 })
 
 export const mapDispatchToProps = dispatch => ({
