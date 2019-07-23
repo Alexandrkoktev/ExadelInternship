@@ -23,7 +23,7 @@ class NewRide extends React.Component {
     return (
       <Container style={{ marginLeft: '5rem' }}>
         <Row>
-          <Col sm={6}>
+          <Col sm={4}>
             <ListGroup>
               <PassengerForm />
               <RoutesList type={'Suitable'} rides={rides} /></ListGroup>
