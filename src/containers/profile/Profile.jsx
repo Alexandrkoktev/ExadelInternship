@@ -5,9 +5,9 @@ import './profile-style.sass'
 // eslint-disable-next-line no-unused-vars
 import Route from '../../components/list-components/Route'
 // eslint-disable-next-line no-unused-vars
-import Car from '../../components/list-components/Car'
 // eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
+import CarsList from '../../components/profile/CarsList'
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/new-ride-comm/rides'
@@ -16,15 +16,6 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.props.requestRides()
-  }
-
-  createCarsList = text => {
-    let list = text
-    list = list.map(text => {
-      return <Car description={text} />
-    })
-    list.push(<ListGroup.Item>Add new Car</ListGroup.Item>)
-    return list
   }
 
   render() {
@@ -74,7 +65,7 @@ class Profile extends React.Component {
                 </ListGroup>
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
-                {this.createCarsList(['Stolen Camaro', 'Krasnaya Devyatka'])}
+                <CarsList />
               </Tab.Pane>
               <Tab.Pane eventKey="lastroutes">
                 <ListGroup>
