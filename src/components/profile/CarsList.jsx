@@ -11,7 +11,6 @@ class CarsList extends React.Component {
 
     render() {
         const { cars: { cars } = [] } = this.props
-        console.log(cars)
         const carsArr = cars.map(item => {
             return (<ListGroup.Item >
                 Model: {item.brand} {item.model},
