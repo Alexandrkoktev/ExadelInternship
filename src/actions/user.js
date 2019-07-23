@@ -3,6 +3,7 @@ export const GET_USER_DATA = 'GET_USER_DATA'
 export const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS'
 export const GET_USER_DATA_ERROR = 'GET_USER_DATA_ERROR'
 export const RESET_USER_DATA = 'RESET_USER_DATA'
+export const RESTORE_USER = 'RESTORE_USER'
 
 // action handlers
 export function getUserStarting() {
@@ -26,8 +27,13 @@ export function getUserError(error) {
 }
 
 export function resetUserData() {
-  localStorage.clear()
   return {
     type: RESET_USER_DATA,
+  }
+}
+
+export function restoreUser() {
+  return {
+    type: RESTORE_USER,
   }
 }

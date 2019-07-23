@@ -5,25 +5,39 @@ import {
   resetUserData,
 } from '../actions/user'
 import { push } from 'connected-react-router'
-import { fakeUser } from './fakeUser'
-
+import client from './axios.js';
 
 export const getUser = (email, password) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-      dispatch(getUserStarting())
-      const userInfo = await fakeUser(email, password)
-      dispatch(getUserDone(userInfo))
+      dispatch(getUserStarting());
+      const form = new FormData();
+      form.append('j_username', email);
+      form.append('j_password', password);
+      await client({ url: '/login', method: 'post', data: form, });
+      const { data } = await client({ url: '/main', method: 'get' });
+      dispatch(getUserDone({ username: data.name, role: data.role }))
       dispatch(push('/home'))
     } catch (error) {
       dispatch(getUserError(error))
+    }
+  }
+}
 
+export const restoreUser = () => {
+  return async function (dispatch) {
+    try {
+      dispatch(getUserStarting());
+      const { data } = await client({ url: '/main', method: 'get' });
+      dispatch(getUserDone({ username: data.name, role: data.role }));
+    } catch (error) {
+      dispatch(push('/'));
     }
   }
 }
 
 export const logOut = () => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(resetUserData())
     dispatch(push('/'))
   }
