@@ -8,6 +8,7 @@ import Route from '../../components/list-components/Route'
 import Car from '../../components/list-components/Car'
 // eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
+// eslint-disable-next-line no-unused-vars
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/new-ride-comm/rides'
@@ -28,7 +29,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { rides: { rides } = [] } = this.props
+    const { rides= [] } = this.props
     const dRidesArr = rides.map(item => {
       return (
         <Route
