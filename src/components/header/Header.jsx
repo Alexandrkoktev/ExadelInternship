@@ -12,7 +12,7 @@ import { logOut } from '../../commands/user'
 class Header extends React.Component {
   render() {
     const { userInfo, userLogOut } = this.props
-    const isLoggedIn = !!userInfo.login
+    const isLoggedIn = !!userInfo.username
     return (
       <header>
         <Navbar
@@ -42,7 +42,7 @@ class Header extends React.Component {
                 <Link to="/routes" className="nav-link">Routes</Link>
               </Nav.Item>
 
-              <NavDropdown title={userInfo.login} id="collasible-nav-dropdown">
+              <NavDropdown title={userInfo.username} id="collasible-nav-dropdown">
 
                 <NavDropdown.Item>
                   <Link to="/profile">profile</Link>

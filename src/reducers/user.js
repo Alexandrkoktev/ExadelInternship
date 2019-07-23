@@ -6,7 +6,7 @@ import {
 } from '../actions/user'
 
 const initialState = {
-  login: '',
+  username: '',
   role: '',
   loading: false,
   error: '',
@@ -20,12 +20,12 @@ function reducer(state = initialState, action) {
         loading: true,
       }
     case GET_USER_DATA_SUCCESS:
-      const { login, role } = action.payload
+      const { username, role } = action.payload
       return {
         ...state,
         loading: false,
         error: '',
-        login,
+        username,
         role
       }
     case GET_USER_DATA_ERROR:
