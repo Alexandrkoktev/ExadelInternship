@@ -18,6 +18,11 @@ const fakeUserData = {
     'password': 'qwerty',
     'role': 'user',
     'login': 'Dmitry',
+  },
+  'Ilya':{
+    'password': 'qwerty',
+    'role': 'user',
+    'login': 'Ilya'
   }
 }
 

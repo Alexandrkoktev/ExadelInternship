@@ -11,7 +11,6 @@ import { fakeUser } from './fakeUser'
 export const getUser = (email, password) => {
   return async function(dispatch) {
     try {
-      console.log({ email, password })
       dispatch(getUserStarting())
       const userInfo = await fakeUser(email, password)
       dispatch(getUserDone(userInfo))
