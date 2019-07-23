@@ -6,13 +6,13 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
 class CarsList extends React.Component {
 
     componentDidMount() {
-        this.props.requestCars()
+        this.props.requestCars();
     }
 
     render() {
-        const { cars: { cars } = [] } = this.props
+        const { cars = [] } = this.props;
         const carsArr = cars.map(item => {
-            return (<ListGroup.Item >
+            return (<ListGroup.Item key={item.id} >
                 Model: {item.brand} {item.model},
                 Color: {item.color},
                 Plate Number: {item.plate}
@@ -26,4 +26,4 @@ class CarsList extends React.Component {
     }
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(CarsList)
+export default connect(mapStateToProps, mapDispatchToProps)(CarsList)

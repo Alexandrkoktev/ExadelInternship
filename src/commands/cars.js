@@ -6,7 +6,7 @@ import {
 import { fakeCars } from './fakeCars'
 
 export const mapStateToProps = state => ({
-    cars: state.cars
+    cars: state.cars.cars
 })
 
 export const mapDispatchToProps = dispatch => ({
