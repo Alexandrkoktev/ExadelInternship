@@ -21,6 +21,7 @@ class CarsList extends React.Component {
         return (
             < ListGroup >
                 {carsArr}
+                <ListGroup.Item>Add Car</ListGroup.Item>
             </ListGroup >
         )
     }
