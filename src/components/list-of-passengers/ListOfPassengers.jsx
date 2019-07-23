@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 class ListOfPassengers extends React.Component {
   render() {
-   const { passengers:{passengers} = [] } =this.props
+   const { passengers = [] } =this.props
     const passengerArr = passengers.map(item => {
       return (
         <ListGroup.Item key={item.id}>

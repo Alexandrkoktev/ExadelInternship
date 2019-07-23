@@ -42,7 +42,7 @@ class Header extends React.Component {
               <Nav.Item>
                 <Link to="/routes" className="nav-link">Routes</Link>
               </Nav.Item>
-              <NavDropdown title={userInfo.firstName} id="collasible-nav-dropdown">
+              <NavDropdown title={userInfo.firstName} id="collapsible-nav-dropdown">
                 <NavDropdown.Item>
                   <Link to="/profile">profile</Link>
                 </NavDropdown.Item>
