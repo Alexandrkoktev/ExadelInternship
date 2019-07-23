@@ -42,7 +42,7 @@ class RoutesList extends React.Component {
             <Nav.Link eventKey="driver">Driver</Nav.Link>
           </Nav.Item>
         </Nav>
-        <div className="scrollable">
+        <div className="scrollable" >
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
               <ListGroup>
