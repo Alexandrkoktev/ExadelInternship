@@ -18,19 +18,17 @@ class RoutesList extends React.Component {
   render() {
     const {driverRides=[]}=this.props
     const {passengerRides=[]}=this.props
-    console.log(driverRides)
-    console.log(passengerRides)
     const listOfDriverRides=driverRides.map(item=>{
       return (
         <ListGroupItem key={item.id}>
-          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+          {item.startPointName} -> {item.finishPointName} Time: {new Date(item.timeAndDate).toLocaleDateString()},{new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })
     const listOfPassengerRides=passengerRides.map(item=>{
       return (
         <ListGroupItem key={item.id}>
-          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+          {item.startPointName} -> {item.finishPointName} Time: {new Date(item.timeAndDate).toLocaleDateString()},{new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })

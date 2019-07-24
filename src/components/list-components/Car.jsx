@@ -14,13 +14,15 @@ class Car extends React.Component {
 
   render() {
     const { id, color, brand, model, plate } = this.props
+    const { carInfo } = this.props
     return (
       <>
         <ListGroup.Item key={id}>
           <Row>
             <Col xs={6}>
-              {color} {brand} {model},
-              {plate}
+              {/* {color} {brand} {model},
+              {plate} */}
+              {carInfo}
             </Col>
             <Col>
               <Button variant="outline-dark" className="right" onClick={() => { this.setState({ show: true }) }}>

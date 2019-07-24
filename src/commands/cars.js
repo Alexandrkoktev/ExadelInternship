@@ -3,7 +3,7 @@ import {
     getCarsError,
     getCarsStarting
 } from '../actions/cars'
-import { fakeCars } from './fakeCars'
+import client from 'axios'
 
 export const mapStateToProps = state => ({
     cars: state.cars.cars
@@ -17,8 +17,8 @@ export const getCars = () => {
     return async function (dispatch) {
         try {
             dispatch(getCarsStarting())
-            const carsInfo = await fakeCars()
-            dispatch(getCarsDone(carsInfo))
+            const { data } = await client({ url: '/api/profile/cars', method: 'get' })
+            dispatch(getCarsDone(data))
         } catch (e) {
             dispatch(getCarsError(e))
         }

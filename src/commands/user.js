@@ -28,7 +28,7 @@ export const restoreUser = () => {
   return async function (dispatch) {
     try {
       dispatch(getUserStarting())
-      const { data } = await client({ url: '/api/home', method: 'get' })
+      const { data } = await client({ url: '/api/header', method: 'get' })
       dispatch(getUserDone({ username: data.name, role: data.role }))
     } catch (error) {
       dispatch(push('/login'))
