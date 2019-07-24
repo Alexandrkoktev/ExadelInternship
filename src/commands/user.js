@@ -15,7 +15,7 @@ export const getUser = (email, password) => {
       form.append('j_username', email)
       form.append('j_password', password)
       await client({ url: '/api/login', method: 'post', data: form })
-      const { data } = await client({ url: '/api/home', method: 'get' })
+      const { data } = await client({ url: '/api/header', method: 'get' })
       dispatch(getUserDone({ username: data.name, role: data.role }))
       dispatch(push('/home'))
     } catch (error) {
