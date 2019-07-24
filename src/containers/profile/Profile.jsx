@@ -1,7 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { Tab, Nav, Button, ListGroup } from 'react-bootstrap'
-import './profile-style.sass'
+import './profile.sass'
 // eslint-disable-next-line no-unused-vars
 import Route from '../../components/list-components/Route'
 // eslint-disable-next-line no-unused-vars
