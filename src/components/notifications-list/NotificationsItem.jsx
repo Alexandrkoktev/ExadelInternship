@@ -8,12 +8,12 @@ export default class NotificationsItem extends React.Component {
     super(props)
     this.state = {
       text: props.text,
-      routeId: 'routes/route-info/' + props.routeid,
+      routeId: 'routes/route-info/' + props.key,
     }
   }
   render() {
     return (
-      <ListGroup.Item>
+      <ListGroup.Item key={Math.random()}>
         <Row>
           <Col xs={8}>{this.state.text}</Col>
           <Col>

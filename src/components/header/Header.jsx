@@ -36,7 +36,7 @@ class Header extends React.Component {
                 </Link>
               </Nav.Item>
               <Nav.Item>
-                <Link to="#notifications" className="nav-link">Notifications</Link>
+                <Link to="/notifications" className="nav-link">Notifications</Link>
               </Nav.Item>
               <Nav.Item>
                 <Link to="/routes" className="nav-link">Routes</Link>
