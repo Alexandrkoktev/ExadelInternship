@@ -19,7 +19,7 @@ class Route extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={8}>Departure time: {this.props.depTime}</Col>
+          <Col xs={8}>Departure time: {this.props.depTime}, {this.props.depDate}</Col>
           <Col>
             <Button variant="outline-danger" className='right'>Delete</Button>
           </Col>

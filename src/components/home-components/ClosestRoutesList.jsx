@@ -11,9 +11,10 @@ class ClosestRoutesList extends React.Component {
       <Route
         routeid={item.id}
         key={item.id}
-        depPoint={item.depPoint}
-        destPoint={item.destPoint}
-        depTime={item.depTime}
+        depPoint={item.startPointName}
+        destPoint={item.finishPointName}
+        depDate={new Date(item.timeAndDate).toDateString()}
+        depTime={new Date(item.timeAndDate).toLocaleTimeString()}
       />
     ))
 
@@ -21,9 +22,10 @@ class ClosestRoutesList extends React.Component {
       <Route
         routeid={item.id}
         key={item.id}
-        depPoint={item.depPoint}
-        destPoint={item.destPoint}
-        depTime={item.depTime}
+        depPoint={item.startPointName}
+        destPoint={item.finishPointName}
+        depDate={new Date(item.timeAndDate).toDateString()}
+        depTime={new Date(item.timeAndDate).toLocaleTimeString()}
       />
     ))
 
