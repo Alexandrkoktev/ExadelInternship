@@ -28,7 +28,7 @@ class UserInfo extends React.Component {
                   starDimension="40px"
                   starSpacing="15px"
                 /> <h3 style={{ margin: '1%' }}>as a Passenger</h3></Row>
-              <h3>{userInfo.firstName}</h3>
+              <h3>{userInfo.username}</h3>
             </div>
           </Col>
         </Row>
