@@ -14,6 +14,7 @@ class NewRoute extends React.Component {
   componentDidMount() {
     this.props.requestRides()
   }
+
   render() {
     const { rides } = this.props
     return (
@@ -26,7 +27,7 @@ class NewRoute extends React.Component {
             </ListGroup>
           </Col>
           <Col sm={6}>
-            <Maps />
+            <Maps needRouteEditor={true} />
           </Col>
         </Row>
       </Container>

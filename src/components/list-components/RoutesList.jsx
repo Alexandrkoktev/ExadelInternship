@@ -18,6 +18,8 @@ class RoutesList extends React.Component {
   render() {
     const {driverRides=[]}=this.props
     const {passengerRides=[]}=this.props
+    console.log(driverRides)
+    console.log(passengerRides)
     const listOfDriverRides=driverRides.map(item=>{
       return (
         <ListGroupItem key={item.id}>

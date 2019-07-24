@@ -54,6 +54,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-standard": "^4.0.0",
-    "prettier": "1.18.2"
+    "prettier": "1.18.2",
+    "react-infinite-scroll-component": "^4.5.2"
   }
 }

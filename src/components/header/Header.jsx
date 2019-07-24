@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { connect } from 'react-redux'
 import './heade.sass'
-import { logOut } from '../../commands/user'
+import {mapDispatchToProps, mapStateToProps} from '../../commands/authorizationCheck'
 
 class Header extends React.Component {
   render() {
@@ -58,15 +58,6 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-})
-
-const mapDispatchToProps = dispatch => ({
-  userLogOut() {
-    dispatch(logOut())
-  },
-})
 
 export default connect(
   mapStateToProps,
