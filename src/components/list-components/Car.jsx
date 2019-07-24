@@ -13,14 +13,14 @@ class Car extends React.Component {
   hide = () => { this.setState({ show: false }) }
 
   render() {
-    const { car } = this.props
+    const { id, color, brand, model, plate } = this.props
     return (
       <>
-        <ListGroup.Item key={car.id}>
+        <ListGroup.Item key={id}>
           <Row>
-            <Col xs={10}>
-              {car.color} {car.brand} {car.model},
-              {car.plate}
+            <Col xs={6}>
+              {color} {brand} {model},
+              {plate}
             </Col>
             <Col>
               <Button variant="outline-dark" className="right" onClick={() => { this.setState({ show: true }) }}>
@@ -32,7 +32,8 @@ class Car extends React.Component {
             </Col>
           </Row>
         </ListGroup.Item>
-        <CarInfo name="Edit Car Info" show={this.state.show} hide={this.hide.bind(this)} car={car} />
+        <CarInfo name="Edit Car Info" show={this.state.show} hide={this.hide.bind(this)} id={id} color={color} brand={brand}
+          model={model} plate={plate} />
       </>
     )
   }

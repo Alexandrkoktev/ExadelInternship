@@ -5,10 +5,10 @@ class CarInfo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            brand: '',
-            model: '',
-            color: '',
-            plate: ''
+            brand: props.brand || '',
+            model: props.model || '',
+            color: props.color || '',
+            plate: props.plate || ''
         }
     }
 
