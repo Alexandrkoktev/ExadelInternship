@@ -26,7 +26,8 @@ class NewRide extends React.Component {
           <Col sm={4}>
             <ListGroup>
               <PassengerForm />
-              <RoutesList type={'Suitable'} rides={rides} /></ListGroup>
+              <RoutesList type={'Suitable'} rides={rides} />
+            </ListGroup>
           </Col>
           <Col sm={6}>
             <Maps />

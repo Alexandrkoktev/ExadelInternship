@@ -6,6 +6,7 @@ import {
 import client from './axios'
 
 export const mapStateToProps = state => ({
+  userInfo: state.userInfo,
   passengerRides: state.home.homeRides.passengerRides,
   driverRides: state.home.homeRides.driverRides,
 })
@@ -19,7 +20,9 @@ export const getHomeRides = () => {
   return async function(dispatch) {
     try {
       dispatch(getHomeRidesStarting())
-      const { data: { activeRoutes, bookings } } = await client({ url: '/api/home', method: 'get' })
+      const {
+        data: { activeRoutes, bookings },
+      } = await client({ url: '/api/home', method: 'get' })
       const homeRides = { driverRides: activeRoutes, passengerRides: bookings }
       dispatch(getHomeRidesDone(homeRides))
     } catch (e) {

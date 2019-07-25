@@ -6,9 +6,10 @@ import NotificationsItem from './NotificationsItem'
 
 class NotificationsList extends React.Component {
   render() {
-    const {notifications} =this.props
-    const notificationArr=notifications.map((item) =>{ return(
-      <NotificationsItem text={item.information} routeId={item.id} />)})
+    const { notifications } = this.props
+    const notificationArr = notifications.map(item => {
+      return <NotificationsItem text={item.information} routeId={item.id} />
+    })
     return <ListGroup>{notificationArr}</ListGroup>
   }
 }

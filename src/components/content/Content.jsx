@@ -22,7 +22,7 @@ class Content extends React.Component {
         <Route exact path="/home/new-ride" component={NewRide} />
         <Route exact path="/home/new-route" component={NewRoute} />
         <Route exact path="/routes" component={Routes} />
-        <Route exact path="/notifications" component={Notifications}/>
+        <Route exact path="/notifications" component={Notifications} />
         <Route
           exact
           path="/routes/route-info/:routeid"

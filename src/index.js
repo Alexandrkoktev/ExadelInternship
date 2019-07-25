@@ -11,7 +11,6 @@ import { ConnectedRouter } from 'connected-react-router'
 // eslint-disable-next-line no-unused-vars
 import { store, history } from './store/store'
 
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

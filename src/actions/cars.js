@@ -6,21 +6,21 @@ export const GET_CARS_DATA_ERROR = 'GET_CARS_DATA_ERROR'
 // action handlers
 
 export function getCarsStarting() {
-    return {
-        type: GET_CARS_DATA,
-    }
+  return {
+    type: GET_CARS_DATA,
+  }
 }
 
 export function getCarsDone(cars) {
-    return {
-        type: GET_CARS_DATA_SUCCESS,
-        payload: cars
-    }
+  return {
+    type: GET_CARS_DATA_SUCCESS,
+    payload: cars,
+  }
 }
 
 export function getCarsError(error) {
-    return {
-        type: GET_CARS_DATA_ERROR,
-        error,
-    }
+  return {
+    type: GET_CARS_DATA_ERROR,
+    error,
+  }
 }
