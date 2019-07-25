@@ -12,7 +12,7 @@ import Home from '../../containers/home/Home'
 import NewRoute from '../../containers/new-route/NewRoute'
 import OneRouteInfo from '../../containers/one-route/OneRouteInfo'
 import NewRide from '../../containers/new-ride/NewRide'
-
+import Notifications from '../../containers/notifications/Notifications'
 class Content extends React.Component {
   render() {
     return (
@@ -22,6 +22,7 @@ class Content extends React.Component {
         <Route exact path="/home/new-ride" component={NewRide} />
         <Route exact path="/home/new-route" component={NewRoute} />
         <Route exact path="/routes" component={Routes} />
+        <Route exact path="/notifications" component={Notifications}/>
         <Route
           exact
           path="/routes/route-info/:routeid"
