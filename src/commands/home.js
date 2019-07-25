@@ -6,6 +6,7 @@ import {
 import client from './axios'
 
 export const mapStateToProps = state => ({
+  userInfo: state.userInfo,
   passengerRides: state.home.homeRides.passengerRides,
   driverRides: state.home.homeRides.driverRides,
 })

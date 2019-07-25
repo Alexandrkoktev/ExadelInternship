@@ -3,10 +3,13 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from '../list-components/Route'
+// eslint-disable-next-line no-unused-vars
+import Spinner from '../spinner/spinner'
 
 class ClosestRoutesList extends React.Component {
   render() {
     const { passengerRides = [], driverRides = [] } = this.props
+    const { isLoading } = this.props
     const clientRides = passengerRides.map(item => (
       <Route
         routeid={item.id}
@@ -29,7 +32,9 @@ class ClosestRoutesList extends React.Component {
       />
     ))
 
-    return (
+    return isLoading ? (
+      <Spinner />
+    ) : (
       <>
         <div style={{ display: 'inline-block', width: '50%' }}>
           <ListGroup>{driverrides}</ListGroup>
