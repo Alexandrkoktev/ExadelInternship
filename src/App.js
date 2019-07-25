@@ -14,7 +14,7 @@ import { store } from './store/store'
 import { restoreUser } from './commands/user'
 import { connect } from 'react-redux'
 
-store.dispatch(restoreUser())
+ store.dispatch(restoreUser())
 
 class App extends React.Component {
   render() {

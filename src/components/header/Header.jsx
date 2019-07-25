@@ -58,8 +58,8 @@ class Header extends React.Component {
                   title={userInfo.username}
                   id="collasible-nav-dropdown"
                 >
-                  <NavDropdown.Item>
-                    <Link to="/profile">profile</Link>
+                  <NavDropdown.Item href="/profile">
+                   profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={userLogOut}>
