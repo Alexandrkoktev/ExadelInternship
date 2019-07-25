@@ -18,6 +18,8 @@ class RoutesList extends React.Component {
   render() {
     const {driverRides=[]}=this.props
     const {passengerRides=[]}=this.props
+    console.log(driverRides)
+    console.log(passengerRides)
     const listOfDriverRides=driverRides.map(item=>{
       return (
         <ListGroupItem key={item.id}>
@@ -42,7 +44,7 @@ class RoutesList extends React.Component {
             <Nav.Link eventKey="driver">Driver</Nav.Link>
           </Nav.Item>
         </Nav>
-        <div className="scrollable">
+        <div className="scrollable" >
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
               <ListGroup>

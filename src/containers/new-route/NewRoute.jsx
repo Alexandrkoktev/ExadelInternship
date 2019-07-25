@@ -20,9 +20,8 @@ class NewRoute extends React.Component {
     return (
       <Container>
         <Row>
-          <Col sm={6}>
+          <Col sm={4}>
             <ListGroup>
-
               <NewRouteInfo />
               <RoutesList type="From Favourites" rides={rides} />
             </ListGroup>

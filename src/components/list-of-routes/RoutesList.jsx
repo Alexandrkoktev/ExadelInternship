@@ -4,8 +4,7 @@ import { ListGroup } from 'react-bootstrap'
 
 class RoutesList extends React.Component {
   render() {
-    const { rides: { rides } = [] } = this.props
-
+    const { rides } = this.props
     const dRidesArr = rides.map(item => {
       return (
         <ListGroup.Item key={item.id}>

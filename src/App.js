@@ -10,9 +10,19 @@ import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 // eslint-disable-next-line no-unused-vars
 import Content from './components/content/Content'
+import { store } from './store/store'
+import { restoreUser } from './commands/user';
+import { connect } from 'react-redux';
+
+store.dispatch(restoreUser())
 
 class App extends React.Component {
+
   render() {
+    const { loading } = this.props;
+    if (loading) {
+      return <div>Loading...</div>
+    }
     return (
       <>
         <Header />
@@ -24,4 +34,9 @@ class App extends React.Component {
     )
   }
 }
-export default App
+
+const map = (state) => ({
+  isLoggedIn: !!state.userInfo.loading
+})
+
+export default connect(map)(App)
