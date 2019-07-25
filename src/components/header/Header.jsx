@@ -14,10 +14,10 @@ class Header extends React.Component {
     const { userInfo, userLogOut } = this.props
     const isLoggedIn = !!userInfo.username
     let isAdministrator = false
-    debugger
-    if(userInfo.role === 'ADMINISTRATOR'){
+    if(userInfo.role === 'ROLE_ADMINISTRATOR'){
       isAdministrator = true
     }
+    console.log("userInfo.role  = " + userInfo.role)
     return (
       <header>
         <Navbar

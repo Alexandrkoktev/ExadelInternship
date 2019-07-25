@@ -1,6 +1,5 @@
 import React from 'react'
 import LogIn from '../../containers/login/LogIn'
-// eslint-disable-next-line no-unused-vars
 import { Switch, Route } from 'react-router-dom'
 import Routes from '../../containers/routes/Routes'
 import Profile from '../../containers/profile/Profile'
@@ -12,6 +11,7 @@ import Notifications from '../../containers/notifications/Notifications'
 import { connect } from 'react-redux'
 import Statistics from '../../containers/statistics/Statistics'
 import { Redirect } from 'react-router'
+import {mapStateToProps} from '../../commands/content'
 
 class Content extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class Content extends React.Component {
     let isAdministrator = false
     const isLoggedIn = !!userInfo.username
 
-    if (userInfo.role === 'ADMINISTRATOR') {
+    if (userInfo.role === 'ROLE_ADMINISTRATOR') {
       isAdministrator = true
     }
 
@@ -55,15 +55,11 @@ class Content extends React.Component {
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/new-ride" component={NewRide}/>
         <PrivateRouteForAdmin exact path="/statistics" component={Statistics}/>
-        <Route render={() => <h1>Page not found</h1>}/>
+        <Route render={() => <h1>Page not found</h1>}/>}
       </Switch>
     )
   }
 }
-
-export const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-})
 
 export default connect(
   mapStateToProps,

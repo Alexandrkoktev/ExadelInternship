@@ -14,10 +14,11 @@ import { store } from './store/store'
 import { restoreUser } from './commands/user';
 import { connect } from 'react-redux';
 
-store.dispatch(restoreUser())
 
 class App extends React.Component {
-
+  componentWillMount() {
+    store.dispatch(restoreUser())
+  }
   render() {
     const { loading } = this.props;
     if (loading) {

@@ -4,7 +4,7 @@ class Statistics extends React.Component {
   render() {
     return (
       <div>
-        Hi, You are administrator
+        Hi, you are administrator
       </div>
     )
   }
