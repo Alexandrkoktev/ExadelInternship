@@ -13,6 +13,11 @@ class Header extends React.Component {
   render() {
     const { userInfo, userLogOut } = this.props
     const isLoggedIn = !!userInfo.username
+    let isAdministrator = false
+    debugger
+    if(userInfo.role === 'ADMINISTRATOR'){
+      isAdministrator = true
+    }
     return (
       <header>
         <Navbar
@@ -31,9 +36,9 @@ class Header extends React.Component {
             <Nav className="mr-auto"/>
             <Nav>
               <Nav.Item>
-                <Link to="#stats" onClick={() => alert('Stats')} className="nav-link">
+                {isAdministrator && <Link to="/statistics"  className="nav-link">
                   Statistics
-                </Link>
+                </Link>}
               </Nav.Item>
               <Nav.Item>
                 <Link to="/notifications" className="nav-link">Notifications</Link>
