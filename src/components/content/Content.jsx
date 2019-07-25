@@ -11,51 +11,58 @@ import Notifications from '../../containers/notifications/Notifications'
 import { connect } from 'react-redux'
 import Statistics from '../../containers/statistics/Statistics'
 import { Redirect } from 'react-router'
-import {mapStateToProps} from '../../commands/content'
+import { mapStateToProps } from '../../commands/content'
 
 class Content extends React.Component {
-  render() {
+
+  guestUser() {
+    const { userInfo } = this.props
+    if (!userInfo.checked) {
+      return <Route exact path="/login" component={LogIn}/>
+    }
+  }
+
+  userRoutes() {
+    const { userInfo } = this.props
+    const isLoggedIn = Boolean(userInfo.username)
+    if (!isLoggedIn) {
+      return <Route exact path="/login" component={LogIn}/>
+    }
+    return [
+      <Route exact path="/home" component={Home}/>,
+      <Route exact path="/home/new-ride" component={NewRide}/>,
+      <Route exact path="/home/new-route" component={NewRoute}/>,
+      <Route exact path="/routes" component={Routes}/>,
+      <Route exact path="/notifications" component={Notifications}/>,
+      <Route
+        exact
+        path="/routes/route-info/:routeid"
+        component={OneRouteInfo}
+      />,
+      <Route exact path="/profile" component={Profile}/>,
+      <Route exact path="/new-ride" component={NewRide}/>,
+      <Route render={() => <Redirect to='/home'/>}/>,
+    ]
+  }
+
+  adminRoutes() {
     const { userInfo } = this.props
     let isAdministrator = false
-    const isLoggedIn = !!userInfo.username
-
     if (userInfo.role === 'ROLE_ADMINISTRATOR') {
       isAdministrator = true
     }
+    if (isAdministrator) {
+      return <Route exact path="/statistics" component={Statistics}/>
+    }
+    return this.userRoutes()
+  }
 
-    const PrivateRouteForAdmin = ({ component: Component, ...rest }) => (
-      <Route {...rest} render={(props) => (
-        isAdministrator === true
-          ? <Component {...props} />
-          : <Redirect to='/home'/>
-      )}/>
-    )
-
-    const PrivateRouteForLogIn = ({ component: Component, ...rest }) => (
-      <Route {...rest} render={(props) => (
-        isLoggedIn === false
-          ? <Component {...props} />
-          : <Redirect to='/home'/>
-      )}/>
-    )
-
+  render() {
     return (
       <Switch>
-        <PrivateRouteForLogIn exact path="/login" component={LogIn}/>
-        <Route exact path="/home" component={Home}/>
-        <Route exact path="/home/new-ride" component={NewRide}/>
-        <Route exact path="/home/new-route" component={NewRoute}/>
-        <Route exact path="/routes" component={Routes}/>
-        <Route exact path="/notifications" component={Notifications}/>
-        <Route
-          exact
-          path="/routes/route-info/:routeid"
-          component={OneRouteInfo}
-        />
-        <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/new-ride" component={NewRide}/>
-        <PrivateRouteForAdmin exact path="/statistics" component={Statistics}/>
-        <Route render={() => <h1>Page not found</h1>}/>}
+        {this.guestUser()}
+        {this.adminRoutes()}
+        {this.userRoutes()}
       </Switch>
     )
   }
@@ -64,3 +71,4 @@ class Content extends React.Component {
 export default connect(
   mapStateToProps,
 )(Content)
+

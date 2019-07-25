@@ -9,6 +9,7 @@ const initialState = {
   username: '',
   role: '',
   loading: false,
+  checked: false,
   error: '',
 }
 
@@ -18,12 +19,14 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
+        checked: true,
       }
     case GET_USER_DATA_SUCCESS:
       const { username, role } = action.payload
       return {
         ...state,
         loading: false,
+        checked: true,
         error: '',
         username,
         role
@@ -33,6 +36,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        checked: false,
         error: message
       }
     case RESET_USER_DATA:

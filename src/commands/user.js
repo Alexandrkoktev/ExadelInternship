@@ -40,6 +40,7 @@ export const logOut = () => {
   return async function(dispatch) {
     await client({ url: '/api/logout', method: 'get' })
     dispatch(resetUserData())
+    debugger
     dispatch(push('/login'))
   }
 }
