@@ -19,7 +19,9 @@ export const getHomeRides = () => {
   return async function(dispatch) {
     try {
       dispatch(getHomeRidesStarting())
-      const { data: { activeRoutes, bookings } } = await client({ url: '/api/home', method: 'get' })
+      const {
+        data: { activeRoutes, bookings },
+      } = await client({ url: '/api/home', method: 'get' })
       const homeRides = { driverRides: activeRoutes, passengerRides: bookings }
       dispatch(getHomeRidesDone(homeRides))
     } catch (e) {

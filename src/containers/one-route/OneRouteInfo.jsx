@@ -19,7 +19,10 @@ import EditDate from '../../components/edit-date/EditDate'
 // eslint-disable-next-line no-unused-vars
 import DeleteButton from '../../components/delete-button/DeleteButton'
 import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from '../../commands/info-about-passengers/passengers'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/info-about-passengers/passengers'
 
 class OneRouteInfo extends React.Component {
   componentDidMount() {
@@ -37,26 +40,26 @@ class OneRouteInfo extends React.Component {
                 <Maps />
               </Col>
               <Col sm="6">
-                <ListOfPassengers passengers={passengers}/>
+                <ListOfPassengers passengers={passengers} />
               </Col>
             </Row>
             <Row>
               <div style={{ width: '35%' }}>
-                <div style={{float:"left"}}>
+                <div style={{ float: 'left' }}>
                   <Col sm="4">
-                    <DateSelector/>
+                    <DateSelector />
                   </Col>
                 </div>
-                <div style={{float: "right"}}>
+                <div style={{ float: 'right' }}>
                   <Col sm="1">
-                    <EditDate/>
+                    <EditDate />
                   </Col>
                 </div>
               </div>
             </Row>
             <Row>
               <Col sm="11">
-                <DeleteButton/>
+                <DeleteButton />
               </Col>
               <Col sm="1">
                 <Button variant="dark">Ok</Button>
@@ -71,5 +74,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(OneRouteInfo)

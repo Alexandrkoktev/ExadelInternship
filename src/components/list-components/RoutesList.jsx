@@ -4,23 +4,25 @@ import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
 
-
 class RoutesList extends React.Component {
-
   render() {
     const { driverRides = [] } = this.props
     const { passengerRides = [] } = this.props
     const listOfDriverRides = driverRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} -> {item.finishPointName} Time: {new Date(item.timeAndDate).toLocaleDateString()},{new Date(item.timeAndDate).toLocaleTimeString()}
+          {item.startPointName} -> {item.finishPointName} Time:{' '}
+          {new Date(item.timeAndDate).toLocaleDateString()},
+          {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })
     const listOfPassengerRides = passengerRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} -> {item.finishPointName} Time: {new Date(item.timeAndDate).toLocaleDateString()},{new Date(item.timeAndDate).toLocaleTimeString()}
+          {item.startPointName} -> {item.finishPointName} Time:{' '}
+          {new Date(item.timeAndDate).toLocaleDateString()},
+          {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })
@@ -37,14 +39,10 @@ class RoutesList extends React.Component {
         <div className="scrollable">
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
-              <ListGroup>
-                {listOfPassengerRides}
-              </ListGroup>
+              <ListGroup>{listOfPassengerRides}</ListGroup>
             </Tab.Pane>
             <Tab.Pane eventKey="driver">
-              <ListGroup>
-                {listOfDriverRides}
-              </ListGroup>
+              <ListGroup>{listOfDriverRides}</ListGroup>
             </Tab.Pane>
           </Tab.Content>
         </div>

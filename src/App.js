@@ -11,15 +11,14 @@ import Header from './components/header/Header'
 // eslint-disable-next-line no-unused-vars
 import Content from './components/content/Content'
 import { store } from './store/store'
-import { restoreUser } from './commands/user';
-import { connect } from 'react-redux';
+import { restoreUser } from './commands/user'
+import { connect } from 'react-redux'
 
 store.dispatch(restoreUser())
 
 class App extends React.Component {
-
   render() {
-    const { loading } = this.props;
+    const { loading } = this.props
     if (loading) {
       return <div>Loading...</div>
     }
@@ -35,8 +34,8 @@ class App extends React.Component {
   }
 }
 
-const map = (state) => ({
-  isLoggedIn: !!state.userInfo.loading
+const map = state => ({
+  isLoggedIn: !!state.userInfo.loading,
 })
 
 export default connect(map)(App)

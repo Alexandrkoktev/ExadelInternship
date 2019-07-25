@@ -5,9 +5,8 @@ import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 
 class UserInfo extends React.Component {
-
   render() {
-    const {userInfo} = this.props
+    const { userInfo } = this.props
     return (
       <div>
         <Row>
@@ -21,13 +20,17 @@ class UserInfo extends React.Component {
                   rating={4.5}
                   starDimension="40px"
                   starSpacing="15px"
-                /> <h3 style={{ margin: '1%' }}>as a Driver</h3></Row>
+                />{' '}
+                <h3 style={{ margin: '1%' }}>as a Driver</h3>
+              </Row>
               <Row>
                 <StarRatings
                   rating={3.5}
                   starDimension="40px"
                   starSpacing="15px"
-                /> <h3 style={{ margin: '1%' }}>as a Passenger</h3></Row>
+                />{' '}
+                <h3 style={{ margin: '1%' }}>as a Passenger</h3>
+              </Row>
               <h3>{userInfo.username}</h3>
             </div>
           </Col>

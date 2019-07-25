@@ -15,7 +15,7 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case GET_NOTIFICATIONS_SUCCESS:
-      const notifications  = action.payload
+      const notifications = action.payload
       return {
         ...state,
         notifications,
