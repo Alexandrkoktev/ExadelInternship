@@ -1,6 +1,5 @@
 import { logOut } from './user'
 
-
 export const mapStateToProps = state => ({
   userInfo: state.userInfo,
 })
@@ -8,5 +7,5 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   userLogOut() {
     dispatch(logOut())
-  }
+  },
 })

@@ -7,7 +7,10 @@ import { Link } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { connect } from 'react-redux'
 import './heade.sass'
-import {mapDispatchToProps, mapStateToProps} from '../../commands/authorizationCheck'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/authorizationCheck'
 
 class Header extends React.Component {
   render() {
@@ -30,7 +33,6 @@ class Header extends React.Component {
           <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
-
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           {isLoggedIn && <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"/>
@@ -61,9 +63,7 @@ class Header extends React.Component {
   }
 }
 
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Header)
-

@@ -11,16 +11,16 @@ import Header from './components/header/Header'
 // eslint-disable-next-line no-unused-vars
 import Content from './components/content/Content'
 import { store } from './store/store'
-import { restoreUser } from './commands/user';
-import { connect } from 'react-redux';
-
+import { restoreUser } from './commands/user'
+import { connect } from 'react-redux'
 
 class App extends React.Component {
   componentWillMount() {
     store.dispatch(restoreUser())
   }
+
   render() {
-    const { loading } = this.props;
+    const { loading } = this.props
     if (loading) {
       return <div>Loading...</div>
     }

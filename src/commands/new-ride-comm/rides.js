@@ -3,11 +3,9 @@ import {
   getRidesError,
   getRidesStarting,
 } from '../../actions/rides'
-import { fakeRides } from './fakeRides'
+import client from '../axios'
 
-export const mapStateToProps = state => (
-   state.rides
-)
+export const mapStateToProps = state => state.rides
 
 export const mapDispatchToProps = dispatch => ({
   requestRides: () => dispatch(getRides()),
@@ -17,8 +15,8 @@ export const getRides = () => {
   return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
-      const ridesInfo = await fakeRides()
-      dispatch(getRidesDone(ridesInfo))
+      const {data}=await client({ url: '/api/profile/favouriteroutes', method: 'get' })
+      dispatch(getRidesDone(data))
     } catch (e) {
       dispatch(getRidesError(e))
     }

@@ -8,7 +8,7 @@ export default class NotificationsItem extends React.Component {
     super(props)
     this.state = {
       text: props.text,
-      routeId: 'routes/route-info/' + props.key,
+      routeId: 'routes/route-info/' + props.routeId,
     }
   }
   render() {

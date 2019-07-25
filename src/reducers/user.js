@@ -11,6 +11,7 @@ const initialState = {
   loading: false,
   checked: false,
   error: '',
+  photoUrl: '',
 }
 
 function reducer(state = initialState, action) {
@@ -22,17 +23,20 @@ function reducer(state = initialState, action) {
         checked: true,
       }
     case GET_USER_DATA_SUCCESS:
-      const { username, role } = action.payload
+      const { username, role, photoUrl } = action.payload
       return {
         ...state,
         loading: false,
         checked: true,
         error: '',
         username,
-        role
+        role,
+        photoUrl,
       }
     case GET_USER_DATA_ERROR:
-      const { error: { message } } = action
+      const {
+        error: { message },
+      } = action
       return {
         ...state,
         loading: false,

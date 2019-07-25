@@ -19,9 +19,9 @@ class Maps extends React.Component {
         <Map
           className="maps-wrapper"
           defaultState={{
-            center: [53.90, 27.56],
+            center: [53.9, 27.56],
             zoom: 11,
-            controls: ['zoomControl', 'fullscreenControl']
+            controls: ['zoomControl', 'fullscreenControl'],
           }}
         >
           {this.props.needRouteEditor && <RouteEditor />}
