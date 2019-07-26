@@ -3,11 +3,13 @@ import React from 'react'
 import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
+import Spinner from 'react-bootstrap/Spinner'
 
 class RoutesList extends React.Component {
   render() {
     const { driverRides = [] } = this.props
     const { passengerRides = [] } = this.props
+    const { isLoading } = this.props
     const listOfDriverRides = driverRides.map(item => {
       return (
         <ListGroupItem key={item.id}>

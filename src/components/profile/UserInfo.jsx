@@ -5,6 +5,7 @@ import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../commands/user'
 import './style.sass'
+import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
   render() {
