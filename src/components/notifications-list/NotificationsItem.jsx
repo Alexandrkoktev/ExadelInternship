@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button, Col, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import '../list-components/style.sass'
 
 export default class NotificationsItem extends React.Component {
   constructor(props) {
@@ -17,10 +18,10 @@ export default class NotificationsItem extends React.Component {
         <Row>
           <Col xs={8}>{this.state.text}</Col>
           <Col>
+            <Button variant="outline-danger" className='right'>Decline</Button>
             <Link to={this.state.routeId}>
-              <Button variant="outline-dark">Route Info</Button>
+              <Button variant="outline-dark" className='right'>Route Info</Button>
             </Link>
-            <Button variant="outline-danger">Decline</Button>
           </Col>
         </Row>
       </ListGroup.Item>
