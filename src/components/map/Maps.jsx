@@ -12,13 +12,9 @@ class Maps extends React.Component {
   }
 
   buttonClick = () => {
-    console.log('button clicked')
-    console.log(this.map.geoObjects.each(i => console.log(i)))
-    // console.log(this.map.RouteEditor.getRoute());  // не рабочее
   }
 
   onApiAvailable = ymaps => {
-    // console.log('API loaded.');
     this.ymaps = ymaps
     const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
       '<div>Test</div>'
@@ -74,9 +70,7 @@ class Maps extends React.Component {
             {this.props.needRouteEditor && <RouteEditor />}
           </Map>
         </YMaps>
-        <button onClick={this.buttonClick}>
-          I'm not just another button. I'm special.
-        </button>
+
       </>
     )
   }
