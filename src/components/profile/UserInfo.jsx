@@ -1,9 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
+// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../commands/user'
+// eslint-disable-next-line no-unused-vars
+import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
   render() {
@@ -12,16 +16,13 @@ class UserInfo extends React.Component {
       <div>
         <Row>
           <Col xs={3}>
-            <img
-              src={
-                typeof userInfo.photoUrl === 'undefined'
-                  ? user
-                  : userInfo.photoUrl
-              }
-              alt="user"
-              width="150"
-              height="200"
-            />
+            <Image src={
+              typeof userInfo.photoUrl === 'undefined'
+                ? user
+                : userInfo.photoUrl
+            } roundedCircle
+                   width="160"
+                   height="160"/>
           </Col>
           <Col>
             <div>

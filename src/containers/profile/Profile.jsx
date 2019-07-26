@@ -60,10 +60,9 @@ class Profile extends React.Component {
               </Nav.Link>
             </Nav.Item>
           </Nav>
-          <div className="pscrollable">
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
-                {dRidesArr.length===0?<h1>No favourites yet</h1>:<ListGroup>{dRidesArr}</ListGroup>}
+                {dRidesArr.length===0?<div className='noStuff'>No favourites yet</div>:<ListGroup>{dRidesArr}</ListGroup>}
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
                 <CarsList />
@@ -72,7 +71,6 @@ class Profile extends React.Component {
                 <ListGroup>{prevRides}</ListGroup>
               </Tab.Pane>
             </Tab.Content>
-          </div>
         </Tab.Container>
       </>
     )
