@@ -19,7 +19,7 @@ class PreviousRoute extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col xs={9}>
-            {this.props.depPoint} -> {this.props.destPoint}
+            {this.props.depPoint} <span className="oi oi-arrow-right" /> {this.props.destPoint}
           </Col>
           <Col>
             <StarRatingComponent
