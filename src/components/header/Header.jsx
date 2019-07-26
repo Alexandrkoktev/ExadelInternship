@@ -16,11 +16,7 @@ class Header extends React.Component {
   render() {
     const { userInfo, userLogOut } = this.props
     const isLoggedIn = !!userInfo.username
-    let isAdministrator = false
-    if(userInfo.role === 'ROLE_ADMINISTRATOR'){
-      isAdministrator = true
-    }
-    console.log("userInfo.role  = " + userInfo.role)
+    const isAdministrator = userInfo.role === 'ROLE_ADMINISTRATOR'
     return (
       <header>
         <Navbar
