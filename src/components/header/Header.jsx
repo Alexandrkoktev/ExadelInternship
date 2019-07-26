@@ -29,10 +29,10 @@ class Header extends React.Component {
           <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           {isLoggedIn && (
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto" />
+              <Nav className="mr-auto"/>
               <Nav>
                 <Nav.Item>
                   {isAdministrator && (
@@ -51,19 +51,13 @@ class Header extends React.Component {
                     Routes
                   </Link>
                 </Nav.Item>
-                <NavDropdown
-                  title={userInfo.username}
-                  id="collapsible-nav-dropdown"
-                  drop="left down"
-                >
-                  <NavDropdown.Item>
-                    <Link to="/profile">profile</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={userLogOut}>
-                    logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Item>
+                  <Link to="/profile" className="nav-link" >{userInfo.username}</Link>
+                </Nav.Item>
+                <Nav.Item  className="nav-link">
+                  <span className="oi oi-account-logout"onClick={userLogOut} />
+                </Nav.Item>
+
               </Nav>
             </Navbar.Collapse>
           )}
@@ -75,5 +69,5 @@ class Header extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Header)
