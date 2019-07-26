@@ -15,7 +15,7 @@ import {
 import client from './axios'
 
 export const getCars = () => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(getCarsStarting())
       const { data } = await client({ url: '/api/profile/cars', method: 'get' })
@@ -27,7 +27,7 @@ export const getCars = () => {
 }
 
 export const sendCar = (id, data) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(putCarStarting())
       await client({
@@ -43,7 +43,7 @@ export const sendCar = (id, data) => {
 }
 
 export const deleteCar = id => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(deleteCarStarting())
       await client({ url: '/api/profile/cars/'.concat(id), method: 'delete' })
@@ -55,7 +55,7 @@ export const deleteCar = id => {
 }
 
 export const addCar = data => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(postCarStarting())
       await client({

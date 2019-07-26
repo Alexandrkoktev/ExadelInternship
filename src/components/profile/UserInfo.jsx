@@ -12,8 +12,17 @@ class UserInfo extends React.Component {
     return (
       <div>
         <Row>
-          <Col md="auto">
-            <img src={user} alt="user" />
+          <Col xs={3}>
+            <img
+              src={
+                typeof userInfo.photoUrl === 'undefined'
+                  ? user
+                  : userInfo.photoUrl
+              }
+              alt="user"
+              width="150"
+              height="200"
+            />
           </Col>
           <Col md="auto">
             <div>

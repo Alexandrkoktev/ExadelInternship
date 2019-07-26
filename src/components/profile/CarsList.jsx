@@ -17,10 +17,6 @@ class CarsList extends React.Component {
     this.props.requestCars()
   }
 
-  componentDidUpdate() {
-    this.setState()
-  }
-
   hide = () => {
     this.setState({ show: false })
   }

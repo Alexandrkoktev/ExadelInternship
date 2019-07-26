@@ -6,6 +6,7 @@ import {
 import client from './axios'
 
 export const mapStateToProps = state => ({
+  userInfo: state.userInfo,
   passengerRides: state.home.homeRides.passengerRides,
   driverRides: state.home.homeRides.driverRides,
 })
@@ -15,7 +16,6 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export const getHomeRides = () => {
-  // redux-thunk
   return async function(dispatch) {
     try {
       dispatch(getHomeRidesStarting())

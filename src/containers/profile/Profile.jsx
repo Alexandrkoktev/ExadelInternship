@@ -7,8 +7,9 @@ import Route from '../../components/list-components/Route'
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
-
+// eslint-disable-next-line no-unused-vars
 import CarsList from '../../components/profile/CarsList'
+// eslint-disable-next-line no-unused-vars
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
 import {
@@ -28,15 +29,14 @@ class Profile extends React.Component {
         <Route
           routeid={item.id}
           key={item.id}
-          depPoint={item.depPoint}
-          destPoint={item.destPoint}
-          depTime={item.depTime}
+          depPoint={item.startPointName}
+          destPoint={item.endPointName}
         />
       )
     })
     const prevRides = rides.map(item => {
       return (
-        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} />
+        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} key={item.id} />
       )
     })
     return (
@@ -63,7 +63,7 @@ class Profile extends React.Component {
           <div className="pscrollable">
             <Tab.Content>
               <Tab.Pane eventKey="favroutes">
-                <ListGroup>{dRidesArr}</ListGroup>
+                {dRidesArr.length === 0 ? <h1>No favourites yet</h1> : <ListGroup>{dRidesArr}</ListGroup>}
               </Tab.Pane>
               <Tab.Pane eventKey="cars">
                 <CarsList />
