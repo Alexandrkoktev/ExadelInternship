@@ -10,7 +10,6 @@ import NewRide from '../../containers/new-ride/NewRide'
 import Notifications from '../../containers/notifications/Notifications'
 import { connect } from 'react-redux'
 import Statistics from '../../containers/statistics/Statistics'
-import { Redirect } from 'react-router'
 import { mapStateToProps } from '../../commands/content'
 
 class Content extends React.Component {
