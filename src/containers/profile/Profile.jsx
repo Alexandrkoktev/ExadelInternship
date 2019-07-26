@@ -37,9 +37,9 @@ class Profile extends React.Component {
     const prevRides = rides.map(item => {
       return (
         <PreviousRoute
-          depPoint={item.depPoint}
-          destPoint={item.destPoint}
-          key={item.id}
+          depPoint={item.startPointName}
+          destPoint={item.endPointName}
+          key={item.activeRouteId}
         />
       )
     })

@@ -8,7 +8,7 @@ class RoutesList extends React.Component {
     const dRidesArr = rides.map(item => {
       return (
         <ListGroup.Item key={item.id}>
-          {item.depPoint} -> {item.destPoint} Time: {item.depTime}
+          {item.startPointName} <span className="oi oi-arrow-right" /> {item.endPointName} Time: {item.depTime}
         </ListGroup.Item>
       )
     })

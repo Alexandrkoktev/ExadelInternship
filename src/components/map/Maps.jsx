@@ -74,9 +74,6 @@ class Maps extends React.Component {
             {this.props.needRouteEditor && <RouteEditor />}
           </Map>
         </YMaps>
-        <button onClick={this.buttonClick}>
-          I'm not just another button. I'm special.
-        </button>
       </>
     )
   }
