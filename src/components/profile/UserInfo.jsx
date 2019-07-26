@@ -1,6 +1,5 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import user from '../../img/user.jpg'
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../commands/user'
@@ -12,16 +11,7 @@ class UserInfo extends React.Component {
       <div>
         <Row>
           <Col xs={3}>
-            <img
-              src={
-                typeof userInfo.photoUrl === 'undefined'
-                  ? user
-                  : userInfo.photoUrl
-              }
-              alt="user"
-              width="150"
-              height="200"
-            />
+
           </Col>
           <Col>
             <div>
