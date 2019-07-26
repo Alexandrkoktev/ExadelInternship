@@ -27,7 +27,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <Container>
+        <Container className="top-marg">
           <Content />
         </Container>
         <Footer />

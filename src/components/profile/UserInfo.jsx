@@ -1,13 +1,10 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
-// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../commands/user'
-// eslint-disable-next-line no-unused-vars
-import Image from 'react-bootstrap/Image'
+import './style.sass'
 
 class UserInfo extends React.Component {
   render() {
@@ -27,25 +24,25 @@ class UserInfo extends React.Component {
               height="160"
             />
           </Col>
-          <Col>
+          <Col md="auto">
             <div>
+              <h3>{userInfo.username}</h3>
               <Row>
                 <StarRatings
                   rating={4.5}
-                  starDimension="40px"
-                  starSpacing="15px"
+                  starDimension="21px"
+                  starSpacing="5px"
                 />{' '}
-                <h3 style={{ margin: '1%' }}>as a Driver</h3>
+                <h4 className="left-marg">as a Driver</h4>
               </Row>
               <Row>
                 <StarRatings
                   rating={3.5}
-                  starDimension="40px"
-                  starSpacing="15px"
+                  starDimension="21px"
+                  starSpacing="5px"
                 />{' '}
-                <h3 style={{ margin: '1%' }}>as a Passenger</h3>
+                <h4 className="left-marg">as a Passenger</h4>
               </Row>
-              <h3>{userInfo.username}</h3>
             </div>
           </Col>
         </Row>

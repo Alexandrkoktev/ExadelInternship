@@ -18,10 +18,10 @@ class Notifications extends React.Component {
     return notifications.length === 0 ? (
       <div className="noStuff">No notifications yet </div>
     ) : (
-      <div className="notificationList">
-        <NotificationsList notifications={notifications} />
-      </div>
-    )
+        <div className="notificationList">
+          <NotificationsList notifications={notifications} />
+        </div>
+      )
   }
 }
 
