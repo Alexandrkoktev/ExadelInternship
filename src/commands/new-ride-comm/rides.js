@@ -5,9 +5,7 @@ import {
 } from '../../actions/rides'
 import { fakeRides } from './fakeRides'
 
-export const mapStateToProps = state => (
-   state.rides
-)
+export const mapStateToProps = state => state.rides
 
 export const mapDispatchToProps = dispatch => ({
   requestRides: () => dispatch(getRides()),

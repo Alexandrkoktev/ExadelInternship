@@ -6,37 +6,66 @@ import Car from '../list-components/Car'
 import CarInfo from './CarInfo'
 
 class CarsList extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            show: false
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      show: false,
     }
+  }
 
-    componentDidMount() {
-        this.props.requestCars();
-    }
+  componentDidMount() {
+    this.props.requestCars()
+  }
 
-    hide = () => { this.setState({ show: false }) }
+  componentDidUpdate() {
+    this.setState()
+  }
 
-    render() {
-        const { cars = [] } = this.props;
-        const carsArr = cars.map(item => {
-            return (<Car id={item.id}
-                brand={item.brand} model={item.model} color={item.color} plate={item.plate}
-                carInfo={item.carInformation} />)
-        })
-        return (
-            <>
-                < ListGroup >
-                    {carsArr}
-                    <ListGroup.Item onClick={() => { this.setState({ show: true }) }}>Add Car</ListGroup.Item>
-                </ListGroup >
-                <CarInfo name="Add New Car" show={this.state.show} hide={this.hide.bind(this)} />
-            </>
-        )
-    }
+  hide = () => {
+    this.setState({ show: false })
+  }
+
+  render() {
+    const { cars = [] } = this.props
+    const carsArr = cars.map(item => {
+      const info = item.carInformation
+      let data = info.split(' ')
+      data[2] = data[2].slice(0, -1)
+      data[3] = data[3].concat(' ' + data[4])
+      const [color, brand, model, plate] = data
+      return (
+        <Car
+          id={item.id}
+          brand={brand}
+          model={model}
+          color={color}
+          plate={plate}
+        />
+      )
+    })
+    return (
+      <>
+        <ListGroup>
+          {carsArr}
+          <ListGroup.Item
+            onClick={() => {
+              this.setState({ show: true })
+            }}
+          >
+            Add Car
+          </ListGroup.Item>
+        </ListGroup>
+        <CarInfo
+          new={true}
+          show={this.state.show}
+          hide={this.hide.bind(this)}
+        />
+      </>
+    )
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarsList)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CarsList)

@@ -8,7 +8,10 @@ import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 // eslint-disable-next-line no-unused-vars
 import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from '../../commands/new-ride-comm/rides'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/new-ride-comm/rides'
 
 class NewRoute extends React.Component {
   componentDidMount() {

@@ -13,7 +13,7 @@ class Routes extends React.Component {
     const { passengerRides, driverRides } = this.props
     return (
       <>
-        <RoutesList passengerRides={passengerRides} driverRides={driverRides}/>
+        <RoutesList passengerRides={passengerRides} driverRides={driverRides} />
       </>
     )
   }
@@ -21,5 +21,5 @@ class Routes extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Routes)

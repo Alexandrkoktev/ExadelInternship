@@ -8,7 +8,7 @@ import { push } from 'connected-react-router'
 import client from './axios.js'
 
 export const getUser = (email, password) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getUserStarting())
       const form = new FormData()
@@ -25,7 +25,7 @@ export const getUser = (email, password) => {
 }
 
 export const restoreUser = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getUserStarting())
       const { data } = await client({ url: '/api/header', method: 'get' })
@@ -37,7 +37,7 @@ export const restoreUser = () => {
 }
 
 export const logOut = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     await client({ url: '/api/logout', method: 'get' })
     dispatch(resetUserData())
     dispatch(push('/login'))
