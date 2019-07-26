@@ -11,7 +11,10 @@ class RoutesList extends React.Component {
     const listOfDriverRides = driverRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} -> {item.finishPointName} Time:{' '}
+          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+          {item.finishPointName}
+          <br />
+          <span className="oi oi-clock" />
           {new Date(item.timeAndDate).toLocaleDateString()},
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
@@ -20,34 +23,39 @@ class RoutesList extends React.Component {
     const listOfPassengerRides = passengerRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} -> {item.finishPointName} Time:{' '}
+          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+          {item.finishPointName}
+          <br />
+          <span className="oi oi-clock" />
           {new Date(item.timeAndDate).toLocaleDateString()},
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })
-    return (
-      <Tab.Container defaultActiveKey="driver">
-        <Nav justify variant="tabs">
-          <Nav.Item>
-            <Nav.Link eventKey="passenger">Passenger</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="driver">Driver</Nav.Link>
-          </Nav.Item>
-        </Nav>
-        <div className="scrollable">
-          <Tab.Content>
-            <Tab.Pane eventKey="passenger">
-              <ListGroup>{listOfPassengerRides}</ListGroup>
-            </Tab.Pane>
-            <Tab.Pane eventKey="driver">
-              <ListGroup>{listOfDriverRides}</ListGroup>
-            </Tab.Pane>
-          </Tab.Content>
-        </div>
-      </Tab.Container>
-    )
+    return isLoading ? (
+      <Spinner />
+    ) : (
+        <Tab.Container defaultActiveKey="driver">
+          <Nav justify variant="tabs">
+            <Nav.Item>
+              <Nav.Link eventKey="passenger">Passenger</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="driver">Driver</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <div className="scrollable">
+            <Tab.Content>
+              <Tab.Pane eventKey="passenger">
+                <ListGroup>{listOfPassengerRides}</ListGroup>
+              </Tab.Pane>
+              <Tab.Pane eventKey="driver">
+                <ListGroup>{listOfDriverRides}</ListGroup>
+              </Tab.Pane>
+            </Tab.Content>
+          </div>
+        </Tab.Container>
+      )
   }
 }
 

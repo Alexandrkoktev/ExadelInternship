@@ -36,7 +36,11 @@ class Profile extends React.Component {
     })
     const prevRides = rides.map(item => {
       return (
-        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} key={item.id} />
+        <PreviousRoute
+          depPoint={item.depPoint}
+          destPoint={item.destPoint}
+          key={item.id}
+        />
       )
     })
     return (
@@ -60,19 +64,21 @@ class Profile extends React.Component {
               </Nav.Link>
             </Nav.Item>
           </Nav>
-          <div className="pscrollable">
-            <Tab.Content>
-              <Tab.Pane eventKey="favroutes">
-                {dRidesArr.length === 0 ? <h1>No favourites yet</h1> : <ListGroup>{dRidesArr}</ListGroup>}
-              </Tab.Pane>
-              <Tab.Pane eventKey="cars">
-                <CarsList />
-              </Tab.Pane>
-              <Tab.Pane eventKey="lastroutes">
-                <ListGroup>{prevRides}</ListGroup>
-              </Tab.Pane>
-            </Tab.Content>
-          </div>
+          <Tab.Content>
+            <Tab.Pane eventKey="favroutes">
+              {dRidesArr.length === 0 ? (
+                <div className="noStuff">No favourites yet</div>
+              ) : (
+                  <ListGroup>{dRidesArr}</ListGroup>
+                )}
+            </Tab.Pane>
+            <Tab.Pane eventKey="cars">
+              <CarsList />
+            </Tab.Pane>
+            <Tab.Pane eventKey="lastroutes">
+              <ListGroup>{prevRides}</ListGroup>
+            </Tab.Pane>
+          </Tab.Content>
         </Tab.Container>
       </>
     )

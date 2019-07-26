@@ -13,7 +13,6 @@ import Statistics from '../../containers/statistics/Statistics'
 import { mapStateToProps } from '../../commands/content'
 
 class Content extends React.Component {
-
   guestUser() {
     const { userInfo } = this.props
     if (!userInfo.checked) {
@@ -40,7 +39,7 @@ class Content extends React.Component {
       />,
       <Route exact path="/profile" component={Profile} />,
       <Route exact path="/new-ride" component={NewRide} />,
-      <Route render={() => <h1>Page not found</h1>} />
+      <Route render={() => <h1>Page not found</h1>} />,
     ]
   }
 
@@ -64,7 +63,4 @@ class Content extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-)(Content)
-
+export default connect(mapStateToProps)(Content)

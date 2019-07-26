@@ -36,8 +36,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: !!state.userInfo.loading
+const mapStateToProps = state => ({
+  isLoggedIn: !!state.userInfo.loading,
 })
 
 export default connect(mapStateToProps)(App)

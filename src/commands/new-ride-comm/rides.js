@@ -15,7 +15,10 @@ export const getRides = () => {
   return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
-      const {data}=await client({ url: '/api/profile/favouriteroutes', method: 'get' })
+      const { data } = await client({
+        url: '/api/profile/favouriteroutes',
+        method: 'get',
+      })
       dispatch(getRidesDone(data))
     } catch (e) {
       dispatch(getRidesError(e))

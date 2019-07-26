@@ -41,7 +41,7 @@ function reducer(state = initialState, action) {
         ...state,
         loading: false,
         checked: false,
-        error: message
+        error: message,
       }
     case RESET_USER_DATA:
       return { ...initialState }
