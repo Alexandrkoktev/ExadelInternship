@@ -29,39 +29,41 @@ class Header extends React.Component {
           <Link to="/home">
             <Navbar.Brand>CarPool</Navbar.Brand>
           </Link>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           {isLoggedIn && (
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto"/>
-              <Nav>
-                <Nav.Item>
-                  {isAdministrator && (
-                    <Link to="/statistics" className="nav-link">
-                      Statistics
+            <>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mr-auto"/>
+                <Nav>
+                  <Nav.Item>
+                    {isAdministrator && (
+                      <Link to="/statistics" className="nav-link">
+                        Statistics
+                      </Link>
+                    )}
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link to="/notifications" className="nav-link">
+                      Notifications
                     </Link>
-                  )}
-                </Nav.Item>
-                <Nav.Item>
-                  <Link to="/notifications" className="nav-link">
-                    Notifications
-                  </Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Link to="/routes" className="nav-link">
-                    Routes
-                  </Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Link to="/profile" className="nav-link" >{userInfo.username}</Link>
-                </Nav.Item>
-                <Nav.Item  className="nav-link">
-                  <span className="oi oi-account-logout"onClick={userLogOut} />
-                </Nav.Item>
-
-              </Nav>
-            </Navbar.Collapse>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link to="/routes" className="nav-link">
+                      Routes
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link to="/profile" className="nav-link">{userInfo.username}</Link>
+                  </Nav.Item>
+                  <Nav.Item className="nav-link">
+                    <span className="oi oi-account-logout" onClick={userLogOut}/>
+                  </Nav.Item>
+                </Nav>
+              </Navbar.Collapse>
+            </>
           )}
         </Navbar>
+
       </header>
     )
   }
