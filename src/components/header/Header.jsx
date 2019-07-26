@@ -53,7 +53,7 @@ class Header extends React.Component {
                   <Link to="/profile">profile</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider/>
-                <NavDropdown.Item onClick={userLogOut}>logOut</NavDropdown.Item>
+                <NavDropdown.Item onClick={userLogOut}>logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>}

@@ -41,16 +41,13 @@ class Content extends React.Component {
       />,
       <Route exact path="/profile" component={Profile}/>,
       <Route exact path="/new-ride" component={NewRide}/>,
-      <Route render={() => <Redirect to='/home'/>}/>,
+      <Route render={() => <h1>Page not found</h1> }/>
     ]
   }
 
   adminRoutes() {
     const { userInfo } = this.props
-    let isAdministrator = false
-    if (userInfo.role === 'ROLE_ADMINISTRATOR') {
-      isAdministrator = true
-    }
+    const isAdministrator = userInfo.role === 'ROLE_ADMINISTRATOR'
     if (isAdministrator) {
       return <Route exact path="/statistics" component={Statistics}/>
     }
