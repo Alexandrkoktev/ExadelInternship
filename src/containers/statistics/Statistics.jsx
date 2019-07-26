@@ -2,6 +2,7 @@ import React from 'react'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Table from 'react-bootstrap/Table'
 import FormControl from 'react-bootstrap/es/FormControl'
+import UserStats from '../../components/statistics/UserStats'
 
 class Statistics extends React.Component {
   render() {
@@ -21,12 +22,8 @@ class Statistics extends React.Component {
           size='sm'
           style={{ marginTop: '2.5%', maxWidth: '100%' }}
         >
-
           <thead>
           <tr>
-            <th>
-              <span style={{ margin: '' }}>id</span>
-            </th>
             <th>
               <span>name </span>
               <span className="oi oi-caret-bottom" style={{ fontSize: '13px', marginLeft: 'auto' }}/>
@@ -65,78 +62,7 @@ class Statistics extends React.Component {
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>1</td>
-            <td>
-              Mark
-            </td>
-            <td>
-              5
-            </td>
-            <td>
-              4
-            </td>
-            <td>17</td>
-            <td>5</td>
-            <td>8</td>
-            <td>6</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>
-              4
-            </td>
-            <td>
-              5
-            </td>
-            <td>20</td>
-            <td>4</td>
-            <td>7</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Alex</td>
-            <td>
-              3
-            </td>
-            <td>
-              3
-            </td>
-            <td>11</td>
-            <td>2</td>
-            <td>5</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Dmitry</td>
-            <td>
-              4
-            </td>
-            <td>
-              4
-            </td>
-            <td>8</td>
-            <td>2</td>
-            <td>3</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Max</td>
-            <td>
-              4
-            </td>
-            <td>
-              5
-            </td>
-            <td>22</td>
-            <td>7</td>
-            <td>6</td>
-            <td>9</td>
-          </tr>
+          <UserStats/>
           </tbody>
         </Table>
       </>
