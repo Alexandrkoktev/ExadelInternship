@@ -18,7 +18,9 @@ class CarsList extends React.Component {
   }
 
   hide = () => {
+    this.props.requestCars()
     this.setState({ show: false })
+
   }
 
   render() {
@@ -36,6 +38,7 @@ class CarsList extends React.Component {
           model={model}
           color={color}
           plate={plate}
+          hide={this.hide.bind(this)}
         />
       )
     })

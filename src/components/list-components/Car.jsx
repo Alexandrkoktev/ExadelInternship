@@ -14,12 +14,14 @@ class Car extends React.Component {
   }
 
   hide = () => {
+    this.props.hide()
     this.setState({ show: false })
     this.render()
   }
 
   delete = () => {
     this.props.deleteCar(this.props.id)
+    this.props.hide()
   }
 
   render() {
