@@ -16,13 +16,16 @@ class UserInfo extends React.Component {
       <div>
         <Row>
           <Col xs={3}>
-            <Image src={
-              typeof userInfo.photoUrl === 'undefined'
-                ? user
-                : userInfo.photoUrl
-            } roundedCircle
-                   width="160"
-                   height="160"/>
+            <Image
+              src={
+                typeof userInfo.photoUrl === 'undefined'
+                  ? user
+                  : userInfo.photoUrl
+              }
+              roundedCircle
+              width="160"
+              height="160"
+            />
           </Col>
           <Col>
             <div>

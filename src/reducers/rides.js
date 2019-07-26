@@ -15,7 +15,7 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case GET_RIDES_DATA_SUCCESS:
-      const  rides  = action.payload
+      const rides = action.payload
       return {
         ...state,
         rides,

@@ -25,9 +25,7 @@ export const dCars = [
 ]
 
 export const fakeCars = () => {
-
   return delay({
     cars: dCars,
   })
 }
-

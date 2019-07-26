@@ -14,11 +14,11 @@ class RoutesList extends React.Component {
     const listOfDriverRides = driverRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} <span className="oi oi-arrow-right"/> {item.finishPointName}
-          <br/>
-          <span
-            className="oi oi-clock"/>
-           {new Date(item.timeAndDate).toLocaleDateString()},
+          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+          {item.finishPointName}
+          <br />
+          <span className="oi oi-clock" />
+          {new Date(item.timeAndDate).toLocaleDateString()},
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
@@ -26,17 +26,17 @@ class RoutesList extends React.Component {
     const listOfPassengerRides = passengerRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
-          {item.startPointName} <span className="oi oi-arrow-right"/> {item.finishPointName}
-          <br/>
-          <span
-            className="oi oi-clock"/>
+          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+          {item.finishPointName}
+          <br />
+          <span className="oi oi-clock" />
           {new Date(item.timeAndDate).toLocaleDateString()},
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
     })
     return isLoading ? (
-      <Spinner/>
+      <Spinner />
     ) : (
       <Tab.Container defaultActiveKey="driver">
         <Nav justify variant="tabs">

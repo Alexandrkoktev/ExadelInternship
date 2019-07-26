@@ -10,7 +10,8 @@ class Route extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col xs={8}>
-            {this.props.depPoint} <span className="oi oi-arrow-right"/> {this.props.destPoint}
+            {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
+            {this.props.destPoint}
           </Col>
           <Col>
             <Link to={'routes/route-info/' + this.props.routeid}>
@@ -22,8 +23,8 @@ class Route extends React.Component {
         </Row>
         <Row>
           <Col xs={8}>
-             <span
-               className="oi oi-clock"/> {this.props.depTime}, {this.props.depDate}
+            <span className="oi oi-clock" /> {this.props.depTime},{' '}
+            {this.props.depDate}
           </Col>
           <Col>
             <Button variant="outline-danger" className="right">

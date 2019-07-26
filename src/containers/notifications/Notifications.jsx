@@ -7,6 +7,7 @@ import {
 } from '../../commands/notifications'
 import { connect } from 'react-redux'
 import './notifications.sass'
+
 class Notifications extends React.Component {
   componentDidMount() {
     this.props.requestNotifications()
@@ -14,7 +15,13 @@ class Notifications extends React.Component {
 
   render() {
     const { notifications } = this.props
-    return<div className='notificationList'> <NotificationsList notifications={notifications}/></div>
+    return notifications.length === 0 ? (
+      <div className="noStuff">No notifications yet </div>
+    ) : (
+      <div className="notificationList">
+        <NotificationsList notifications={notifications} />
+      </div>
+    )
   }
 }
 
