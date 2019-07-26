@@ -13,11 +13,10 @@ import Statistics from '../../containers/statistics/Statistics'
 import { mapStateToProps } from '../../commands/content'
 
 class Content extends React.Component {
-
   guestUser() {
     const { userInfo } = this.props
     if (!userInfo.checked) {
-      return <Route exact path="/login" component={LogIn}/>
+      return <Route exact path="/login" component={LogIn} />
     }
   }
 
@@ -25,22 +24,22 @@ class Content extends React.Component {
     const { userInfo } = this.props
     const isLoggedIn = Boolean(userInfo.username)
     if (!isLoggedIn) {
-      return <Route exact path="/login" component={LogIn}/>
+      return <Route exact path="/login" component={LogIn} />
     }
     return [
-      <Route exact path="/home" component={Home}/>,
-      <Route exact path="/home/new-ride" component={NewRide}/>,
-      <Route exact path="/home/new-route" component={NewRoute}/>,
-      <Route exact path="/routes" component={Routes}/>,
-      <Route exact path="/notifications" component={Notifications}/>,
+      <Route exact path="/home" component={Home} />,
+      <Route exact path="/home/new-ride" component={NewRide} />,
+      <Route exact path="/home/new-route" component={NewRoute} />,
+      <Route exact path="/routes" component={Routes} />,
+      <Route exact path="/notifications" component={Notifications} />,
       <Route
         exact
         path="/routes/route-info/:routeid"
         component={OneRouteInfo}
       />,
-      <Route exact path="/profile" component={Profile}/>,
-      <Route exact path="/new-ride" component={NewRide}/>,
-      <Route render={() => <h1>Page not found</h1> }/>
+      <Route exact path="/profile" component={Profile} />,
+      <Route exact path="/new-ride" component={NewRide} />,
+      <Route render={() => <h1>Page not found</h1>} />,
     ]
   }
 
@@ -48,7 +47,7 @@ class Content extends React.Component {
     const { userInfo } = this.props
     const isAdministrator = userInfo.role === 'ROLE_ADMINISTRATOR'
     if (isAdministrator) {
-      return <Route exact path="/statistics" component={Statistics}/>
+      return <Route exact path="/statistics" component={Statistics} />
     }
     return this.userRoutes()
   }
@@ -64,7 +63,4 @@ class Content extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-)(Content)
-
+export default connect(mapStateToProps)(Content)

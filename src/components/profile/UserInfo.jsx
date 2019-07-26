@@ -1,8 +1,11 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
+import user from '../../img/user.jpg'
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps } from '../../commands/user'
+import './style.sass'
+import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
   render() {
@@ -11,27 +14,36 @@ class UserInfo extends React.Component {
       <div>
         <Row>
           <Col xs={3}>
-
+            <Image
+              src={
+                typeof userInfo.photoUrl === 'undefined'
+                  ? user
+                  : userInfo.photoUrl
+              }
+              roundedCircle
+              width="160"
+              height="160"
+            />
           </Col>
-          <Col>
+          <Col md="auto">
             <div>
+              <h3>{userInfo.username}</h3>
               <Row>
                 <StarRatings
                   rating={4.5}
-                  starDimension="40px"
-                  starSpacing="15px"
+                  starDimension="21px"
+                  starSpacing="5px"
                 />{' '}
-                <h3 style={{ margin: '1%' }}>as a Driver</h3>
+                <h4 className="left-marg">as a Driver</h4>
               </Row>
               <Row>
                 <StarRatings
                   rating={3.5}
-                  starDimension="40px"
-                  starSpacing="15px"
+                  starDimension="21px"
+                  starSpacing="5px"
                 />{' '}
-                <h3 style={{ margin: '1%' }}>as a Passenger</h3>
+                <h4 className="left-marg">as a Passenger</h4>
               </Row>
-              <h3>{userInfo.username}</h3>
             </div>
           </Col>
         </Row>
