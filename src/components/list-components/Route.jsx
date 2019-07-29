@@ -16,7 +16,7 @@ class Route extends React.Component {
           </Col>
           <Col>
             <Link to={'routes/route-info/' + this.props.routeid}>
-              <Button variant="outline-success" className="right">
+              <Button variant="outline-info" className="right">
                 Route Info
               </Button>
             </Link>
@@ -28,7 +28,7 @@ class Route extends React.Component {
             {this.props.depDate}
           </Col>
           <Col>
-            <Button variant="outline-danger" className="right">
+            <Button variant="outline-danger" className="right" >
               Delete
             </Button>
           </Col>
