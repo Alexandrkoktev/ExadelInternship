@@ -16,7 +16,7 @@ class Route extends React.Component {
           </Col>
           <Col>
             <Link to={'routes/route-info/' + this.props.routeid}>
-              <Button variant="outline-success" className="right">
+              <Button variant="outline-info" className="right">
                 Route Info
               </Button>
             </Link>

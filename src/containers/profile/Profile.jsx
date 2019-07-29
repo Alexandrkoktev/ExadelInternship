@@ -37,9 +37,9 @@ class Profile extends React.Component {
     const prevRides = rides.map(item => {
       return (
         <PreviousRoute
-          depPoint={item.depPoint}
-          destPoint={item.destPoint}
-          key={item.id}
+          depPoint={item.startPointName}
+          destPoint={item.endPointName}
+          key={item.activeRouteId}
         />
       )
     })
@@ -69,8 +69,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                  <ListGroup>{dRidesArr}</ListGroup>
-                )}
+                <ListGroup>{dRidesArr}</ListGroup>
+              )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />

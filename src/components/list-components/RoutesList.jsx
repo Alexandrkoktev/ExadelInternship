@@ -37,27 +37,27 @@ class RoutesList extends React.Component {
     return isLoading ? (
       <Spinner />
     ) : (
-        <Tab.Container defaultActiveKey="driver">
-          <Nav justify variant="tabs">
-            <Nav.Item>
-              <Nav.Link eventKey="passenger">Passenger</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="driver">Driver</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <div className="scrollable">
-            <Tab.Content>
-              <Tab.Pane eventKey="passenger">
-                <ListGroup>{listOfPassengerRides}</ListGroup>
-              </Tab.Pane>
-              <Tab.Pane eventKey="driver">
-                <ListGroup>{listOfDriverRides}</ListGroup>
-              </Tab.Pane>
-            </Tab.Content>
-          </div>
-        </Tab.Container>
-      )
+      <Tab.Container defaultActiveKey="driver">
+        <Nav justify variant="tabs">
+          <Nav.Item>
+            <Nav.Link eventKey="passenger">Passenger</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="driver">Driver</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <div className="scrollable">
+          <Tab.Content>
+            <Tab.Pane eventKey="passenger">
+              <ListGroup>{listOfPassengerRides}</ListGroup>
+            </Tab.Pane>
+            <Tab.Pane eventKey="driver">
+              <ListGroup>{listOfDriverRides}</ListGroup>
+            </Tab.Pane>
+          </Tab.Content>
+        </div>
+      </Tab.Container>
+    )
   }
 }
 
