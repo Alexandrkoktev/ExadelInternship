@@ -12,6 +12,9 @@ const initialState = {
   checked: false,
   error: '',
   photoUrl: '',
+  phoneNumber: '',
+  ratingDriver: 0,
+  ratingPassenger: 0
 }
 
 function reducer(state = initialState, action) {
@@ -23,7 +26,8 @@ function reducer(state = initialState, action) {
         checked: true,
       }
     case GET_USER_DATA_SUCCESS:
-      const { username, role, photoUrl } = action.payload
+      const { username, role, photoUrl, ratingDriver, ratingPassenger, phoneNumber } = action.payload
+      console.log(action.payload)
       return {
         ...state,
         loading: false,
@@ -32,6 +36,9 @@ function reducer(state = initialState, action) {
         username,
         role,
         photoUrl,
+        ratingDriver,
+        ratingPassenger,
+        phoneNumber
       }
     case GET_USER_DATA_ERROR:
       const {
