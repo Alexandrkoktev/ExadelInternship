@@ -1,9 +1,7 @@
-// types
 export const GET_NOTIFICATIONS = '[HOME] GET_NOTIFICATIONS'
 export const GET_NOTIFICATIONS_SUCCESS = 'GET_NOTIFICATIONS_SUCCESS'
 export const GET_NOTIFICATIONS_ERROR = 'GET_NOTIFICATIONS_ERROR'
 
-// action handlers
 export function getNotificationsStarting() {
   return {
     type: GET_NOTIFICATIONS,
