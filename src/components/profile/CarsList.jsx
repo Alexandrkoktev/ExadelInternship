@@ -38,6 +38,7 @@ class CarsList extends React.Component {
           color={color}
           plate={plate}
           hide={this.hide.bind(this)}
+          key={item.id}
         />
       )
     })

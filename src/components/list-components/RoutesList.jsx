@@ -3,6 +3,7 @@ import React from 'react'
 import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
+// eslint-disable-next-line no-unused-vars
 import Spinner from 'react-bootstrap/Spinner'
 
 class RoutesList extends React.Component {
@@ -16,8 +17,8 @@ class RoutesList extends React.Component {
           {item.startPointName} <span className="oi oi-arrow-right" />{' '}
           {item.finishPointName}
           <br />
-          <span className="oi oi-clock" />
-          {new Date(item.timeAndDate).toLocaleDateString()},
+          <span className="oi oi-clock" />{' '}
+          {new Date(item.timeAndDate).toLocaleDateString()},{' '}
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )
@@ -28,8 +29,8 @@ class RoutesList extends React.Component {
           {item.startPointName} <span className="oi oi-arrow-right" />{' '}
           {item.finishPointName}
           <br />
-          <span className="oi oi-clock" />
-          {new Date(item.timeAndDate).toLocaleDateString()},
+          <span className="oi oi-clock" />{' '}
+          {new Date(item.timeAndDate).toLocaleDateString()},{' '}
           {new Date(item.timeAndDate).toLocaleTimeString()}
         </ListGroupItem>
       )

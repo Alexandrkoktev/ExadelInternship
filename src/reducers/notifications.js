@@ -2,6 +2,9 @@ import {
   GET_NOTIFICATIONS,
   GET_NOTIFICATIONS_SUCCESS,
   GET_NOTIFICATIONS_ERROR,
+  DELETE_NOTIFICATION,
+  DELETE_NOTIFICATION_SUCCESS,
+  DELETE_NOTIFICATION_ERROR,
 } from '../actions/notifications'
 
 const initialState = {
@@ -26,6 +29,24 @@ function reducer(state = initialState, action) {
         ...state,
         error,
       }
+    case DELETE_NOTIFICATION:
+      return {
+        ...state,
+        loading: true,
+      }
+    case DELETE_NOTIFICATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
+    case DELETE_NOTIFICATION_ERROR: {
+      const { error } = action
+      return {
+        ...state,
+        loading: false,
+        error,
+      }
+    }
     default:
       return state
   }
