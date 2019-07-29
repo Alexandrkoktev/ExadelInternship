@@ -38,87 +38,87 @@ class Statistics extends React.Component {
           style={{ marginTop: '2.5%', maxWidth: '100%' }}
         >
           <thead>
-          <tr>
-            <th>
-              <span>name </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span>driver rating </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span> passenger rating </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span>distance </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span>amount of passengers </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span>amount of bookings </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-            <th>
-              <span>amount of routes </span>
-              <span
-                className="oi oi-caret-bottom"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-              <span
-                className="oi oi-caret-top"
-                style={{ fontSize: '13px', marginLeft: 'auto' }}
-              />
-            </th>
-          </tr>
+            <tr>
+              <th>
+                <span>name </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span>driver rating </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span> passenger rating </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span>distance </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span>amount of passengers </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span>amount of bookings </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+              <th>
+                <span>amount of routes </span>
+                <span
+                  className="oi oi-caret-bottom"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+                <span
+                  className="oi oi-caret-top"
+                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                />
+              </th>
+            </tr>
           </thead>
-          <ListOfUsersStatistics statistics={statistics}/>
+          <ListOfUsersStatistics statistics={statistics} />
         </Table>
       </>
     )
@@ -127,5 +127,5 @@ class Statistics extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Statistics)

@@ -10,7 +10,7 @@ class UserStats extends React.Component {
       distance: props.distance,
       amountOfPassengers: props.amountOfPassengers,
       amountOfBookings: props.amountOfBookings,
-      amountOfRoutes: props.amountOfRoutes
+      amountOfRoutes: props.amountOfRoutes,
     }
   }
 
