@@ -11,8 +11,7 @@ class Maps extends React.Component {
     this.route = null
   }
 
-  buttonClick = () => {
-  }
+  buttonClick = () => {}
 
   onApiAvailable = ymaps => {
     this.ymaps = ymaps
@@ -70,7 +69,6 @@ class Maps extends React.Component {
             {this.props.needRouteEditor && <RouteEditor />}
           </Map>
         </YMaps>
-
       </>
     )
   }

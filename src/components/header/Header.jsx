@@ -26,16 +26,20 @@ class Header extends React.Component {
           variant="dark"
           sticky="top"
         >
-          {!isLoggedIn && <>
-            <Navbar.Brand>CarPool</Navbar.Brand>
-          </>}
+          {!isLoggedIn && (
+            <>
+              <Navbar.Brand>CarPool</Navbar.Brand>
+            </>
+          )}
           {isLoggedIn && (
             <>
-              <Link to="/home"> <Navbar.Brand>CarPool</Navbar.Brand>
+              <Link to="/home">
+                {' '}
+                <Navbar.Brand>CarPool</Navbar.Brand>
               </Link>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto"/>
+                <Nav className="mr-auto" />
                 <Nav>
                   <Nav.Item>
                     {isAdministrator && (
@@ -55,17 +59,21 @@ class Header extends React.Component {
                     </Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Link to="/profile" className="nav-link">{userInfo.username}</Link>
+                    <Link to="/profile" className="nav-link">
+                      {userInfo.username}
+                    </Link>
                   </Nav.Item>
                   <Nav.Item className="nav-link">
-                    <span className="oi oi-account-logout" onClick={userLogOut}/>
+                    <span
+                      className="oi oi-account-logout"
+                      onClick={userLogOut}
+                    />
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
             </>
           )}
         </Navbar>
-
       </header>
     )
   }
@@ -73,5 +81,5 @@ class Header extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Header)

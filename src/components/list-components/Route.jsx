@@ -28,7 +28,7 @@ class Route extends React.Component {
             {this.props.depDate}
           </Col>
           <Col>
-            <Button variant="outline-danger" className="right" >
+            <Button variant="outline-danger" className="right">
               Delete
             </Button>
           </Col>

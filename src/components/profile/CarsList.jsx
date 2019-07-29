@@ -20,7 +20,6 @@ class CarsList extends React.Component {
   hide = () => {
     this.props.requestCars()
     this.setState({ show: false })
-
   }
 
   render() {
