@@ -25,13 +25,13 @@ class Car extends React.Component {
   }
 
   render() {
-    const { id, color, brand, model, plate } = this.props
+    const { id, info } = this.props
     return (
       <>
         <ListGroup.Item key={id}>
           <Row>
             <Col xs={6}>
-              {color} {brand} {model}, {plate}
+              {info}
             </Col>
             <Col>
               <Button
@@ -54,14 +54,11 @@ class Car extends React.Component {
           </Row>
         </ListGroup.Item>
         <CarInfo
-          name="Edit Car Info"
+          new={false}
           show={this.state.show}
           hide={this.hide.bind(this)}
           id={id}
-          brand={brand}
-          model={model}
-          color={color}
-          plate={plate}
+          info={info}
         />
       </>
     )

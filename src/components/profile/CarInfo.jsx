@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap'
+import { Modal, Form, Button, Alert } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
 
@@ -7,92 +7,45 @@ class CarInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      brand: props.brand || '',
-      model: props.model || '',
-      color: props.color || '',
-      plate: props.plate || '',
+      info: props.info || '',
+      isError: false,
+      error: ''
     }
   }
 
   click = () => {
     const { id } = this.props
-    const { color, brand, model, plate } = this.state
-    let data = [[color, brand, model].join(' '), plate].join(', ')
-    this.props.editCar(id, data)
+    const { info } = this.state
+    this.props.editCar(id, info)
     this.props.hide()
   }
 
-  brandChange = event => {
+  textChange = event => {
     const value = event.target.value
-    this.setState({ brand: value })
-  }
-  modelChange = event => {
-    const value = event.target.value
-    this.setState({ model: value })
-  }
-  colorChange = event => {
-    const value = event.target.value
-    this.setState({ color: value })
-  }
-  plateChange = event => {
-    const value = event.target.value
-    this.setState({ plate: value })
+    if (value.length < 185)
+      this.setState({ info: value, isError: false })
+    else
+      this.setState({ isError: true, error: 'Your description is too long!' })
   }
 
   render() {
     const { hide } = this.props
+    const { isError, error } = this.state
     const title = this.props.new ? 'Add New Car' : 'Edit Car'
     return (
       <Modal show={this.props.show} centered onHide={hide}>
+        {isError && (
+          <Alert key={1} variant="danger" className='wide'>
+            {error}
+          </Alert>
+        )}
         <Modal.Header>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">
-                Brand
-              </Form.Label>
-              <Col>
-                <Form.Control
-                  type="text"
-                  value={this.state.brand}
-                  onChange={this.brandChange}
-                />
-              </Col>
-              <Form.Label column sm="2">
-                Model
-              </Form.Label>
-              <Col>
-                <Form.Control
-                  type="text"
-                  value={this.state.model}
-                  onChange={this.modelChange}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">
-                Color
-              </Form.Label>
-              <Col>
-                <Form.Control
-                  type="text"
-                  value={this.state.color}
-                  onChange={this.colorChange}
-                />
-              </Col>
-              <Form.Label column sm="2">
-                Plate
-              </Form.Label>
-              <Col>
-                <Form.Control
-                  type="text"
-                  value={this.state.plate}
-                  onChange={this.plateChange}
-                />
-              </Col>
-            </Form.Group>
+            <Form.Label>Your Car's Descrption</Form.Label>
+            <Form.Control as='textarea' rows='4' value={this.state.info} onChange={this.textChange} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
