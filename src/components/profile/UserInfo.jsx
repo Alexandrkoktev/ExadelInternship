@@ -27,23 +27,26 @@ class UserInfo extends React.Component {
           </Col>
           <Col md="auto">
             <div>
-              <h3>{userInfo.username}</h3>
-              <Row>
-                <StarRatings
-                  rating={4.5}
-                  starDimension="21px"
-                  starSpacing="5px"
-                />{' '}
-                <h4 className="left-marg">as a Driver</h4>
-              </Row>
-              <Row>
-                <StarRatings
-                  rating={3.5}
-                  starDimension="21px"
-                  starSpacing="5px"
-                />{' '}
-                <h4 className="left-marg">as a Passenger</h4>
-              </Row>
+              <div className='info'>
+                <h4>{userInfo.username}</h4>
+                <Row>
+                  <StarRatings
+                    rating={4.5}
+                    starDimension="21px"
+                    starSpacing="5px"
+                    className='left-marg'
+                  />{' '}
+                  <h4 className="left-marg">as a Driver</h4>
+                </Row>
+                <Row>
+                  <StarRatings
+                    rating={3.5}
+                    starDimension="21px"
+                    starSpacing="5px"
+                  />{' '}
+                  <h4 className="left-marg">as a Passenger</h4>
+                </Row>
+              </div>
             </div>
           </Col>
         </Row>

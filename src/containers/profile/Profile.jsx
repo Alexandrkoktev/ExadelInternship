@@ -46,21 +46,21 @@ class Profile extends React.Component {
     return (
       <>
         <UserInfo />
-        <Tab.Container defaultActiveKey="favroutes">
-          <Nav className="justify-content-center">
-            <Nav.Item>
-              <Nav.Link eventKey="favroutes">
-                <Button variant="outline-dark">My Favorite Routes</Button>
+        <Tab.Container defaultActiveKey="history">
+          <Nav fill variant='tabs' >
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="history" className='text'>
+                My History
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="cars">
-                <Button variant="outline-dark">My Cars</Button>
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="favroutes" className='text'>
+                My Favorite Routes
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="lastroutes">
-                <Button variant="outline-dark">My Last Routes</Button>
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="cars" className='text'>
+                My Cars
               </Nav.Link>
             </Nav.Item>
           </Nav>
@@ -69,8 +69,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                <ListGroup>{dRidesArr}</ListGroup>
-              )}
+                  <ListGroup>{dRidesArr}</ListGroup>
+                )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />
