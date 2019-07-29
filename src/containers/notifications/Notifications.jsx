@@ -1,5 +1,4 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import NotificationsList from '../../components/notifications-list/NotificationsList'
 import {
   mapDispatchToProps,
@@ -15,6 +14,7 @@ class Notifications extends React.Component {
 
   render() {
     const { notifications } = this.props
+    debugger
     return notifications.length === 0 ? (
       <div className="noStuff">No notifications yet </div>
     ) : (
