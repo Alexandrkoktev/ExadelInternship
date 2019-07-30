@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import {
   mapStateToProps,
   mapDispatchToProps,
-} from '../../commands/new-ride-comm/rides'
+} from '../../commands/rides'
 
 class Profile extends React.Component {
   componentDidMount() {

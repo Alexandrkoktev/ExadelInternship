@@ -27,7 +27,6 @@ function reducer(state = initialState, action) {
       }
     case GET_USER_DATA_SUCCESS:
       const { username, role, photoUrl, ratingDriver, ratingPassenger, phoneNumber } = action.payload
-      console.log(action.payload)
       return {
         ...state,
         loading: false,

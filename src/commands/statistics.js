@@ -13,7 +13,6 @@ export const getStatistics = () => {
         url: '/api/statistic',
         method: 'get',
       })
-      console.log(data)
       dispatch(geStatisticsDone(data))
     } catch (error) {
       dispatch(getStatisticsError(error))

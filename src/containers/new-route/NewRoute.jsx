@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
-} from '../../commands/new-ride-comm/rides'
+} from '../../commands/rides'
 
 class NewRoute extends React.Component {
   componentDidMount() {
