@@ -10,20 +10,8 @@ class FavouriteRoute extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col xs={8}>
-            {this.props.name.toUpperCase()}:
-            <br />
-            {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
-            {this.props.destPoint}
-          </Col>
-          <Col>
-            <Link to={'routes/route-info/' + this.props.routeid}>
-              <Button variant="outline-info" className="right">
-                Route Info
-              </Button>
-            </Link>
-            <Button variant="outline-danger" className="right">
-              Delete
-            </Button>
+            {this.props.name.toUpperCase()}: {this.props.depPoint}{' '}
+            <span className="oi oi-arrow-right" /> {this.props.destPoint}
           </Col>
         </Row>
       </ListGroup.Item>

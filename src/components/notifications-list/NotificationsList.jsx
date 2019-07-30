@@ -5,18 +5,15 @@ import { ListGroup } from 'react-bootstrap'
 import NotificationsItem from './NotificationsItem'
 import '../../containers/notifications/notifications.sass'
 class NotificationsList extends React.Component {
-  handleAction(item) {
-    item.checked = false
-  }
   render() {
-    const { notifications } = this.props
+    const { notifications, handleDelete } = this.props
     const notificationArr = notifications.map(item => {
       return (
         <NotificationsItem
           text={item.information}
-          routeId={item.activeRouteId}
-          key={item.activeRouteId}
-          handleAction={() => this.handleAction(item)}
+          routeId={item.id}
+          key={item.id}
+          handleDelete={handleDelete}
         />
       )
     })

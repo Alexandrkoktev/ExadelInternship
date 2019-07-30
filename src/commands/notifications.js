@@ -34,7 +34,13 @@ export const deleteNotification = id => {
   return async function(dispatch) {
     try {
       dispatch(deleteNotificationStarting())
-      await client({ url: '/api/notifications/'.concat(id), method: 'delete' })
+      const data = JSON.stringify(id)
+      await client({
+        url: '/api/notification',
+        method: 'delete',
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
+      })
       dispatch(deleteNotificationDone())
     } catch (e) {
       dispatch(deleteNotificationError(e))

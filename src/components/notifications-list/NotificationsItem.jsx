@@ -38,7 +38,13 @@ class NotificationsItem extends React.Component {
             </a>
           </Col>
           <Col>
-            <span className="oi oi-x" onClick={this.delete} />
+            <span
+              className="oi oi-x"
+              onClick={() => {
+                this.delete()
+                this.props.handleDelete()
+              }}
+            />
           </Col>
         </Row>
       </ListGroup.Item>
