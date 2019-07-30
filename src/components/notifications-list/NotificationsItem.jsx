@@ -31,13 +31,13 @@ class NotificationsItem extends React.Component {
       >
         <Row>
           {' '}
-          <Col xs={11}>
+          <Col xs = "10" md = "11">
             {' '}
             <a href={this.state.routeId} className="black">
               {this.state.text}
             </a>
           </Col>
-          <Col>
+          <Col xs = "2" md = "1">
             <span
               className="oi oi-x"
               onClick={() => {
