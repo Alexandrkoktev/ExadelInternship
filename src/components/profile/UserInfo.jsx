@@ -1,10 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
+// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 import './style.sass'
+// eslint-disable-next-line no-unused-vars
 import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
