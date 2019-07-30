@@ -11,9 +11,14 @@ class Routes extends React.Component {
 
   render() {
     const { passengerRides, driverRides } = this.props
+    const isLoading = this.props.userInfo.loading
     return (
       <>
-        <RoutesList passengerRides={passengerRides} driverRides={driverRides} />
+        <RoutesList
+          passengerRides={passengerRides}
+          driverRides={driverRides}
+          isLoading={isLoading}
+        />
       </>
     )
   }

@@ -1,8 +1,14 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
+// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
+import './style.sass'
+// eslint-disable-next-line no-unused-vars
+import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
   render() {
@@ -11,28 +17,41 @@ class UserInfo extends React.Component {
       <div>
         <Row>
           <Col xs={3}>
-            <img src={user} alt="user" />
+            <Image
+              src={
+                typeof userInfo.photoUrl === 'undefined'
+                  ? user
+                  : userInfo.photoUrl
+              }
+              roundedCircle
+              width="160"
+              height="160"
+            />
           </Col>
-          <Col>
-            <div>
-              <Row>
-                <StarRatings
-                  rating={4.5}
-                  starDimension="40px"
-                  starSpacing="15px"
-                />{' '}
-                <h3 style={{ margin: '1%' }}>as a Driver</h3>
-              </Row>
-              <Row>
-                <StarRatings
-                  rating={3.5}
-                  starDimension="40px"
-                  starSpacing="15px"
-                />{' '}
-                <h3 style={{ margin: '1%' }}>as a Passenger</h3>
-              </Row>
-              <h3>{userInfo.username}</h3>
-            </div>
+
+          <Col md="auto">
+            <Row>
+              <h4>{userInfo.username}</h4>
+            </Row><Row>
+              <h4>{userInfo.phoneNumber}</h4>
+            </Row>
+            <Row>
+              <StarRatings
+                rating={userInfo.ratingDriver}
+                starDimension="21px"
+                starSpacing="5px"
+                className='left-marg'
+              />{' '}
+              <h4 className="left-marg">as a Driver</h4>
+            </Row>
+            <Row>
+              <StarRatings
+                rating={userInfo.ratingPassenger}
+                starDimension="21px"
+                starSpacing="5px"
+              />{' '}
+              <h4 className="left-marg">as a Passenger</h4>
+            </Row>
           </Col>
         </Row>
       </div>
@@ -40,8 +59,4 @@ class UserInfo extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-})
-
-export default connect(mapStateToProps)(UserInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

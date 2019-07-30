@@ -7,14 +7,15 @@ import Route from '../../components/list-components/Route'
 // eslint-disable-next-line no-unused-vars
 // eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
-
+// eslint-disable-next-line no-unused-vars
 import CarsList from '../../components/profile/CarsList'
+// eslint-disable-next-line no-unused-vars
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
 import {
   mapStateToProps,
   mapDispatchToProps,
-} from '../../commands/new-ride-comm/rides'
+} from '../../commands/rides'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -28,51 +29,56 @@ class Profile extends React.Component {
         <Route
           routeid={item.id}
           key={item.id}
-          depPoint={item.depPoint}
-          destPoint={item.destPoint}
-          depTime={item.depTime}
+          depPoint={item.startPointName}
+          destPoint={item.endPointName}
         />
       )
     })
     const prevRides = rides.map(item => {
       return (
-        <PreviousRoute depPoint={item.depPoint} destPoint={item.destPoint} />
+        <PreviousRoute
+          depPoint={item.startPointName}
+          destPoint={item.endPointName}
+          key={item.activeRouteId}
+        />
       )
     })
     return (
       <>
         <UserInfo />
-        <Tab.Container defaultActiveKey="favroutes">
-          <Nav className="justify-content-center">
-            <Nav.Item>
-              <Nav.Link eventKey="favroutes">
-                <Button variant="outline-dark">My Favorite Routes</Button>
+        <Tab.Container defaultActiveKey="history">
+          <Nav fill variant='tabs' >
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="history" className='text'>
+                My History
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="cars">
-                <Button variant="outline-dark">My Cars</Button>
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="favroutes" className='text'>
+                My Favorite Routes
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="lastroutes">
-                <Button variant="outline-dark">My Last Routes</Button>
+            <Nav.Item className='tabs'>
+              <Nav.Link eventKey="cars" className='text'>
+                My Cars
               </Nav.Link>
             </Nav.Item>
           </Nav>
-          <div className="pscrollable">
-            <Tab.Content>
-              <Tab.Pane eventKey="favroutes">
-                <ListGroup>{dRidesArr}</ListGroup>
-              </Tab.Pane>
-              <Tab.Pane eventKey="cars">
-                <CarsList />
-              </Tab.Pane>
-              <Tab.Pane eventKey="lastroutes">
-                <ListGroup>{prevRides}</ListGroup>
-              </Tab.Pane>
-            </Tab.Content>
-          </div>
+          <Tab.Content>
+            <Tab.Pane eventKey="favroutes">
+              {dRidesArr.length === 0 ? (
+                <div className="noStuff">No favourites yet</div>
+              ) : (
+                  <ListGroup>{dRidesArr}</ListGroup>
+                )}
+            </Tab.Pane>
+            <Tab.Pane eventKey="cars">
+              <CarsList />
+            </Tab.Pane>
+            <Tab.Pane eventKey="lastroutes">
+              <ListGroup>{prevRides}</ListGroup>
+            </Tab.Pane>
+          </Tab.Content>
         </Tab.Container>
       </>
     )

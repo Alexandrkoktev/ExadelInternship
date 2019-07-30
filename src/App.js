@@ -14,9 +14,11 @@ import { store } from './store/store'
 import { restoreUser } from './commands/user'
 import { connect } from 'react-redux'
 
-store.dispatch(restoreUser())
-
 class App extends React.Component {
+  componentWillMount() {
+    store.dispatch(restoreUser())
+  }
+
   render() {
     const { loading } = this.props
     if (loading) {
@@ -25,7 +27,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <Container>
+        <Container className="top-marg">
           <Content />
         </Container>
         <Footer />
@@ -34,8 +36,8 @@ class App extends React.Component {
   }
 }
 
-const map = state => ({
+const mapStateToProps = state => ({
   isLoggedIn: !!state.userInfo.loading,
 })
 
-export default connect(map)(App)
+export default connect(mapStateToProps)(App)

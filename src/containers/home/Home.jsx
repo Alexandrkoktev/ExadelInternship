@@ -13,12 +13,14 @@ class Home extends React.Component {
 
   render() {
     const { passengerRides, driverRides } = this.props
+    const isLoading = this.props.userInfo.loading
     return (
       <>
         <AddRouteBTNs />
         <ClosestRoutesList
           passengerRides={passengerRides}
           driverRides={driverRides}
+          isLoading={isLoading}
         />
       </>
     )

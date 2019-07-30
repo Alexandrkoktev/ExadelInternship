@@ -1,9 +1,31 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import NotificationsList from '../../components/notifications-list/NotificationsList'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/notifications'
+import { connect } from 'react-redux'
+import './notifications.sass'
+
 class Notifications extends React.Component {
+  componentDidMount() {
+    this.props.requestNotifications()
+  }
+
   render() {
-    return <NotificationsList />
+    const { notifications } = this.props
+    debugger
+    return notifications.length === 0 ? (
+      <div className="noStuff">No notifications yet </div>
+    ) : (
+      <div className="notificationList">
+        <NotificationsList notifications={notifications} />
+      </div>
+    )
   }
 }
-export default Notifications
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Notifications)

@@ -1,26 +1,26 @@
 import {
-  GET_RIDES_DATA,
-  GET_RIDES_DATA_SUCCESS,
-  GET_RIDES_DATA_ERROR,
-} from '../actions/rides'
+  GET_STATISTICS,
+  GET_STATISTICS_SUCCESS,
+  GET_STATISTICS_ERROR,
+} from '../actions/statistics'
 
 const initialState = {
-  rides: [],
+  statistics: [],
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_RIDES_DATA:
+    case GET_STATISTICS:
       return {
         ...state,
       }
-    case GET_RIDES_DATA_SUCCESS:
-      const rides = action.payload
+    case GET_STATISTICS_SUCCESS:
+      const statistics = action.payload
       return {
         ...state,
-        rides,
+        statistics,
       }
-    case GET_RIDES_DATA_ERROR:
+    case GET_STATISTICS_ERROR:
       const { error } = action
       return {
         ...state,

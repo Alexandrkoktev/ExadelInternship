@@ -1,7 +1,9 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Button, Card, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
+// eslint-disable-next-line no-unused-vars
 import Alert from 'react-bootstrap/Alert'
 import './logIn.sass'
 

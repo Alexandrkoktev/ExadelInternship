@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
-} from '../../commands/new-ride-comm/rides'
+} from '../../commands/rides'
 
 // eslint-disable-next-line no-unused-vars
 class NewRide extends React.Component {

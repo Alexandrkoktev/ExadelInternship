@@ -8,6 +8,7 @@ class Maps extends React.Component {
     super()
     this.map = null
     this.ymaps = null
+    this.route = null
   }
 
   getAddress(coordinates) {
@@ -77,15 +78,15 @@ class Maps extends React.Component {
     }
     /*
     const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
-      "<div>Test</div>"
-    );
+      '<div>Test</div>'
+    )
     ymaps
       .route(
         [
           [53.92769, 27.68307],
-          { type: "viaPoint", point: "Логойский тракт, 15/1" },
-          "ул. Веры Хоружей",
-          { type: "wayPoint", point: "ст. м. Автозаводская" }
+          { type: 'viaPoint', point: 'Логойский тракт, 15/1' },
+          'ул. Веры Хоружей',
+          { type: 'wayPoint', point: 'ст. м. Автозаводская' },
         ],
         { balloonContentBodyLayout }
       )
@@ -93,23 +94,21 @@ class Maps extends React.Component {
         route.getPaths().options.set({
           // в балуне выводим только информацию о времени движения с учетом пробок
           // можно выставить настройки графики маршруту
-          strokeColor: "0000ffff",
-          opacity: 0.9
-        });
+          strokeColor: '0000ffff',
+          opacity: 0.9,
+        })
 
-        this.route = route;
+        this.route = route;   // !!!!
 
         // добавляем маршрут на карту
-        this.map.geoObjects.add(route);
-        // console.log(this.route.getViaPoints());
-      });
-  */
+        this.map.geoObjects.add(route)
+      })
+    */
   }
 
   render() {
     return (
       <YMaps
-        debug
         query={{
           apikey: 'bc323490-dd90-4c2a-a14b-52d16caaa720', // api-ключ Метельского Дмитрия ( +375(44)539-29-07 )
           // Если появилась ошибка 429 Too Many Requests(количество запросов превысило 25000),
@@ -124,7 +123,7 @@ class Maps extends React.Component {
           }}
           onLoad={ymaps => this.onApiAvailable(ymaps)}
           className="maps-wrapper"
-          state={{
+          defaultState={{
             center: [53.9, 27.56],
             zoom: 11,
             controls: ['zoomControl', 'fullscreenControl'],

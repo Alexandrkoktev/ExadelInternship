@@ -1,26 +1,26 @@
 import {
-  GET_RIDES_DATA,
-  GET_RIDES_DATA_SUCCESS,
-  GET_RIDES_DATA_ERROR,
-} from '../actions/rides'
+  GET_NOTIFICATIONS,
+  GET_NOTIFICATIONS_SUCCESS,
+  GET_NOTIFICATIONS_ERROR,
+} from '../actions/notifications'
 
 const initialState = {
-  rides: [],
+  notifications: [],
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_RIDES_DATA:
+    case GET_NOTIFICATIONS:
       return {
         ...state,
       }
-    case GET_RIDES_DATA_SUCCESS:
-      const rides = action.payload
+    case GET_NOTIFICATIONS_SUCCESS:
+      const notifications = action.payload
       return {
         ...state,
-        rides,
+        notifications,
       }
-    case GET_RIDES_DATA_ERROR:
+    case GET_NOTIFICATIONS_ERROR:
       const { error } = action
       return {
         ...state,

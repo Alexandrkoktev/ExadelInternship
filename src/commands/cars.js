@@ -1,5 +1,74 @@
-import { getCarsDone, getCarsError, getCarsStarting } from '../actions/cars'
-import { fakeCars } from './fakeCars'
+import {
+  getCarsDone,
+  getCarsError,
+  getCarsStarting,
+  putCarDone,
+  putCarError,
+  putCarStarting,
+  postCarDone,
+  postCarError,
+  postCarStarting,
+  deleteCarDone,
+  deleteCarError,
+  deleteCarStarting,
+} from '../actions/cars'
+import client from './axios'
+
+export const getCars = () => {
+  return async function(dispatch) {
+    try {
+      dispatch(getCarsStarting())
+      const { data } = await client({ url: '/api/profile/cars', method: 'get' })
+      dispatch(getCarsDone(data))
+    } catch (e) {
+      dispatch(getCarsError(e))
+    }
+  }
+}
+
+export const sendCar = (id, data) => {
+  return async function(dispatch) {
+    try {
+      dispatch(putCarStarting())
+      await client({
+        url: '/api/profile/cars/'.concat(id),
+        method: 'put',
+        data: { id, carInformation: data },
+      })
+      dispatch(putCarDone())
+    } catch (e) {
+      dispatch(putCarError(e))
+    }
+  }
+}
+
+export const deleteCar = id => {
+  return async function(dispatch) {
+    try {
+      dispatch(deleteCarStarting())
+      await client({ url: '/api/profile/cars/'.concat(id), method: 'delete' })
+      dispatch(deleteCarDone())
+    } catch (e) {
+      dispatch(deleteCarError(e))
+    }
+  }
+}
+
+export const addCar = data => {
+  return async function(dispatch) {
+    try {
+      dispatch(postCarStarting())
+      await client({
+        url: '/api/profile/cars/',
+        method: 'post',
+        data: { carInformation: data },
+      })
+      dispatch(postCarDone())
+    } catch (e) {
+      dispatch(postCarError(e))
+    }
+  }
+}
 
 export const mapStateToProps = state => ({
   cars: state.cars.cars,
@@ -7,16 +76,6 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   requestCars: () => dispatch(getCars()),
+  editCar: (id, data) => dispatch(sendCar(id, data)),
+  deleteCar: id => dispatch(deleteCar(id)),
 })
-
-export const getCars = () => {
-  return async function(dispatch) {
-    try {
-      dispatch(getCarsStarting())
-      const carsInfo = await fakeCars()
-      dispatch(getCarsDone(carsInfo))
-    } catch (e) {
-      dispatch(getCarsError(e))
-    }
-  }
-}
