@@ -5,7 +5,6 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 import Alert from 'react-bootstrap/Alert'
 import './logIn.sass'
 
-
 class LogIn extends React.Component {
   constructor() {
     super()
@@ -29,13 +28,13 @@ class LogIn extends React.Component {
     const { setUser, error, isError } = this.props
     return (
       <div>
-        {isError && <Alert key={1} variant='danger'  className={'alertForError'}>
-          {error}
-        </Alert>}
+        {isError && (
+          <Alert key={1} variant="danger" className={'alertForError'}>
+            {error}
+          </Alert>
+        )}
         <Card style={{ width: '18rem', margin: '5rem auto' }}>
-
           <Card.Body>
-
             <Form>
               <Form.Group>
                 <Form.Label>Login</Form.Label>
@@ -52,11 +51,12 @@ class LogIn extends React.Component {
                   type="password"
                   alue={this.state.password}
                   onChange={this.handleChangeForPassword}
-                  placeholder="Password"/>
+                  placeholder="Password"
+                />
               </Form.Group>
 
               <Form.Group>
-                <Form.Check type="checkbox" label="Check me out"/>
+                <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
               <Button
                 variant="dark"
@@ -76,8 +76,7 @@ class LogIn extends React.Component {
   }
 }
 
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(LogIn)

@@ -1,12 +1,11 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { ListGroup, Tab, Nav,  ListGroupItem } from 'react-bootstrap'
+import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
 import './style.sass'
 
 class RoutesList extends React.Component {
-
   createList = (num, text) => {
     let list = []
     for (let i = 0; i < num; i++) {
@@ -16,18 +15,18 @@ class RoutesList extends React.Component {
   }
 
   render() {
-    const {driverRides=[]}=this.props
-    const {passengerRides=[]}=this.props
+    const { driverRides = [] } = this.props
+    const { passengerRides = [] } = this.props
     console.log(driverRides)
     console.log(passengerRides)
-    const listOfDriverRides=driverRides.map(item=>{
+    const listOfDriverRides = driverRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
           {item.depPoint} -> {item.destPoint} Time: {item.depTime}
         </ListGroupItem>
       )
     })
-    const listOfPassengerRides=passengerRides.map(item=>{
+    const listOfPassengerRides = passengerRides.map(item => {
       return (
         <ListGroupItem key={item.id}>
           {item.depPoint} -> {item.destPoint} Time: {item.depTime}
@@ -44,17 +43,13 @@ class RoutesList extends React.Component {
             <Nav.Link eventKey="driver">Driver</Nav.Link>
           </Nav.Item>
         </Nav>
-        <div className="scrollable" >
+        <div className="scrollable">
           <Tab.Content>
             <Tab.Pane eventKey="passenger">
-              <ListGroup>
-                {listOfPassengerRides}
-              </ListGroup>
+              <ListGroup>{listOfPassengerRides}</ListGroup>
             </Tab.Pane>
             <Tab.Pane eventKey="driver">
-              <ListGroup>
-                {listOfDriverRides}
-              </ListGroup>
+              <ListGroup>{listOfDriverRides}</ListGroup>
             </Tab.Pane>
           </Tab.Content>
         </div>

@@ -13,7 +13,12 @@ class RoutesList extends React.Component {
       )
     })
     return (
-      <ListGroup title={this.props.type} variant="outline-dark" className='pscrollable' style={{ 'marginTop': '2%' }}>
+      <ListGroup
+        title={this.props.type}
+        variant="outline-dark"
+        className="pscrollable"
+        style={{ marginTop: '2%' }}
+      >
         {dRidesArr}
       </ListGroup>
     )

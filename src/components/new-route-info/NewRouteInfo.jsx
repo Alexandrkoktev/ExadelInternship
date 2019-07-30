@@ -9,15 +9,17 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
 
 class NewRouteInfo extends React.Component {
   componentDidMount() {
-    this.props.requestCars();
+    this.props.requestCars()
   }
 
   render() {
-    const { cars = [] } = this.props;
+    const { cars = [] } = this.props
     const carsArr = cars.map(item => {
-      return (<option key={item.id} >
-        {item.brand} {item.model}, {item.plate}
-      </option>)
+      return (
+        <option key={item.id}>
+          {item.brand} {item.model}, {item.plate}
+        </option>
+      )
     })
     return (
       <Container>
@@ -51,16 +53,20 @@ class NewRouteInfo extends React.Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm="2">Time:</Form.Label>
-            <Col><DateSelector /></Col>
+            <Form.Label column sm="2">
+              Time:
+            </Form.Label>
+            <Col>
+              <DateSelector />
+            </Col>
           </Form.Group>
 
           <Form.Group as={Row} controlId="formGridState">
-            <Form.Label column sm="2">Car</Form.Label>
+            <Form.Label column sm="2">
+              Car
+            </Form.Label>
             <Col>
-              <Form.Control as="select">
-                {carsArr}
-              </Form.Control>
+              <Form.Control as="select">{carsArr}</Form.Control>
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -85,8 +91,11 @@ class NewRouteInfo extends React.Component {
             </Col>
           </Form.Group>
         </Form>
-      </Container >
+      </Container>
     )
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(NewRouteInfo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewRouteInfo)
