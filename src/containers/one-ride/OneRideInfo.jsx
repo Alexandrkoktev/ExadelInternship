@@ -12,13 +12,13 @@ import {
 } from '../../commands/info-about-passengers/passengers'
 
 
-class OneRouteInfo extends React.Component {
+class OneRideInfo extends React.Component {
   componentDidMount() {
     this.props.requestPassengers()
   }
 
   render() {
-    const { passengers } = this.props
+    const { driver } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
@@ -27,7 +27,7 @@ class OneRouteInfo extends React.Component {
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
                 <div style={{ height: 'auto', maxHeight: '262px' }} className="scrollable">
-                  <ListOfPassengers passengers={passengers}/>
+                  <ListOfPassengers passengers={driver}/>
                 </div>
               </Col>
               <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
@@ -55,4 +55,4 @@ class OneRouteInfo extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(OneRouteInfo)
+)(OneRideInfo)

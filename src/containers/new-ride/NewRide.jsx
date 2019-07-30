@@ -8,10 +8,7 @@ import Maps from '../../components/map/Maps'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
 import { connect } from 'react-redux'
-import {
-  mapDispatchToProps,
-  mapStateToProps,
-} from '../../commands/rides'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/rides'
 
 // eslint-disable-next-line no-unused-vars
 class NewRide extends React.Component {
@@ -21,7 +18,7 @@ class NewRide extends React.Component {
   render() {
     const { rides } = this.props
     return (
-      <Container style={{ marginLeft: '5rem' }}>
+      <Container>
         <Row>
           <Col sm={4}>
             <ListGroup>
@@ -29,7 +26,7 @@ class NewRide extends React.Component {
               <RoutesList type={'Suitable'} rides={rides} />
             </ListGroup>
           </Col>
-          <Col sm={6}>
+          <Col sm={8}>
             <Maps />
           </Col>
         </Row>

@@ -9,7 +9,7 @@ class CarInfo extends React.Component {
     this.state = {
       info: props.info || '',
       isError: false,
-      error: ''
+      error: '',
     }
   }
 
@@ -22,8 +22,7 @@ class CarInfo extends React.Component {
 
   textChange = event => {
     const value = event.target.value
-    if (value.length < 185)
-      this.setState({ info: value, isError: false })
+    if (value.length < 185) this.setState({ info: value, isError: false })
     else
       this.setState({ isError: true, error: 'Your description is too long!' })
   }
@@ -35,7 +34,7 @@ class CarInfo extends React.Component {
     return (
       <Modal show={this.props.show} centered onHide={hide}>
         {isError && (
-          <Alert key={1} variant="danger" className='wide'>
+          <Alert key={1} variant="danger" className="wide">
             {error}
           </Alert>
         )}
@@ -45,7 +44,12 @@ class CarInfo extends React.Component {
         <Modal.Body>
           <Form>
             <Form.Label>Your Car's Descrption</Form.Label>
-            <Form.Control as='textarea' rows='4' value={this.state.info} onChange={this.textChange} />
+            <Form.Control
+              as="textarea"
+              rows="4"
+              value={this.state.info}
+              onChange={this.textChange}
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>

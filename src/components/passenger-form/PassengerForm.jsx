@@ -38,6 +38,7 @@ class PassengerForm extends React.Component {
             variant="dark"
             type="submit"
             onClick={event => event.preventDefault()}
+
           >
             Apply
           </Button>

@@ -29,7 +29,8 @@ class UserInfo extends React.Component {
           <Col md="auto">
             <Row>
               <h4>{userInfo.username}</h4>
-            </Row><Row>
+            </Row>
+            <Row>
               <h4>{userInfo.phoneNumber}</h4>
             </Row>
             <Row>
@@ -37,7 +38,7 @@ class UserInfo extends React.Component {
                 rating={userInfo.ratingDriver}
                 starDimension="21px"
                 starSpacing="5px"
-                className='left-marg'
+                className="left-marg"
               />{' '}
               <h4 className="left-marg">as a Driver</h4>
             </Row>
@@ -56,4 +57,7 @@ class UserInfo extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserInfo)

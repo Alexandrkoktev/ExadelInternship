@@ -9,10 +9,8 @@ class DateSelector extends Component {
 
   render() {
     return (
-      <div className="date-selector">
-        <div className="test">
-          <DateTimePicker onChange={this.onChange} value={this.state.date} />
-        </div>
+      <div className="date-selector" >
+          <DateTimePicker readonly="readonly" value={this.state.date} />
       </div>
     )
   }
