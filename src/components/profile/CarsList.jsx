@@ -26,17 +26,10 @@ class CarsList extends React.Component {
     const { cars = [] } = this.props
     const carsArr = cars.map(item => {
       const info = item.carInformation
-      let data = info.split(' ')
-      data[2] = data[2].slice(0, -1)
-      data[3] = data[3].concat(' ' + data[4])
-      const [color, brand, model, plate] = data
       return (
         <Car
           id={item.id}
-          brand={brand}
-          model={model}
-          color={color}
-          plate={plate}
+          info={info}
           hide={this.hide.bind(this)}
           key={item.id}
         />

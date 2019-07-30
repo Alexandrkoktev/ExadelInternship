@@ -7,6 +7,8 @@ import passengers from '../reducers/passengers'
 import cars from '../reducers/cars'
 import notifications from '../reducers/notifications'
 import activeRides from '../reducers/activeRides'
+import statistics from '../reducers/statistics'
+
 
 const rootReducer = history =>
   combineReducers({
@@ -17,6 +19,7 @@ const rootReducer = history =>
     home,
     passengers,
     cars,
+    statistics,
     router: connectRouter(history),
   })
 export default rootReducer

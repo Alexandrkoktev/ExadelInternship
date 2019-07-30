@@ -1,10 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
+// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
-import { mapStateToProps } from '../../commands/user'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 import './style.sass'
+// eslint-disable-next-line no-unused-vars
 import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
@@ -25,6 +28,7 @@ class UserInfo extends React.Component {
               height="160"
             />
           </Col>
+
           <Col md="auto">
             <div>
               <h3 className="textOverflow">{userInfo.username}</h3>
@@ -45,6 +49,7 @@ class UserInfo extends React.Component {
                 <h4 className="left-marg">as a Passenger</h4>
               </Row>
             </div>
+
           </Col>
         </Row>
       </div>
@@ -52,4 +57,4 @@ class UserInfo extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(UserInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
