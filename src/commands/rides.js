@@ -1,8 +1,4 @@
-import {
-  getRidesDone,
-  getRidesError,
-  getRidesStarting,
-} from '../actions/rides'
+import { getRidesDone, getRidesError, getRidesStarting } from '../actions/rides'
 import client from './axios'
 
 export const mapStateToProps = state => state.rides

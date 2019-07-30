@@ -30,9 +30,7 @@ class Car extends React.Component {
       <>
         <ListGroup.Item key={id}>
           <Row>
-            <Col xs={6}>
-              {info}
-            </Col>
+            <Col xs={6}>{info}</Col>
             <Col>
               <Button
                 variant="outline-dark"

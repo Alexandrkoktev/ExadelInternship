@@ -12,14 +12,9 @@ import CarsList from '../../components/profile/CarsList'
 // eslint-disable-next-line no-unused-vars
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
-import {
-  mapStateToProps,
-  mapDispatchToProps,
-
-} from '../../commands/new-ride-comm/rides'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
 // eslint-disable-next-line no-unused-vars
 import FavouriteRoute from '../../components/favourite-routes/FavouriteRoute'
-
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -52,19 +47,19 @@ class Profile extends React.Component {
       <>
         <UserInfo />
         <Tab.Container defaultActiveKey="history">
-          <Nav fill variant='tabs' >
-            <Nav.Item className='tabs'>
-              <Nav.Link eventKey="history" className='text'>
+          <Nav fill variant="tabs">
+            <Nav.Item className="tabs">
+              <Nav.Link eventKey="history" className="text">
                 My History
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className='tabs'>
-              <Nav.Link eventKey="favroutes" className='text'>
+            <Nav.Item className="tabs">
+              <Nav.Link eventKey="favroutes" className="text">
                 My Favorite Routes
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className='tabs'>
-              <Nav.Link eventKey="cars" className='text'>
+            <Nav.Item className="tabs">
+              <Nav.Link eventKey="cars" className="text">
                 My Cars
               </Nav.Link>
             </Nav.Item>
@@ -74,8 +69,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                  <ListGroup>{dRidesArr}</ListGroup>
-                )}
+                <ListGroup>{dRidesArr}</ListGroup>
+              )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />

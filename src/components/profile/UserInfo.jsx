@@ -49,7 +49,6 @@ class UserInfo extends React.Component {
                 <h4 className="left-marg">as a Passenger</h4>
               </Row>
             </div>
-
           </Col>
         </Row>
       </div>
@@ -57,4 +56,7 @@ class UserInfo extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserInfo)

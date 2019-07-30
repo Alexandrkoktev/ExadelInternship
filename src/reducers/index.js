@@ -9,7 +9,6 @@ import notifications from '../reducers/notifications'
 import activeRides from '../reducers/activeRides'
 import statistics from '../reducers/statistics'
 
-
 const rootReducer = history =>
   combineReducers({
     activeRides,
