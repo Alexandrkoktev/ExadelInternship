@@ -1,10 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Button, Col, ListGroup, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import '../list-components/style.sass'
+import '../../containers/notifications/notifications.sass'
+import { connect } from 'react-redux'
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from '../../commands/notifications'
 
-export default class NotificationsItem extends React.Component {
+class NotificationsItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,23 +18,41 @@ export default class NotificationsItem extends React.Component {
       routeId: 'routes/route-info/' + props.routeId,
     }
   }
+  delete = () => {
+    this.props.deleteNotification(this.props.routeId)
+  }
+
   render() {
     return (
-      <ListGroup.Item key={Math.random()}>
+      <ListGroup.Item
+        key={this.props.routeId}
+        className="itemOfNotificationList"
+        /* onMouseEnter={this.props.handleAction} */
+      >
         <Row>
-          <Col xs={8}>{this.state.text}</Col>
+          {' '}
+          <Col xs={11}>
+            {' '}
+            <a href={this.state.routeId} className="black">
+              {this.state.text}
+            </a>
+          </Col>
           <Col>
-            <Button variant="outline-danger" className="right">
-              Decline
-            </Button>
-            <Link to={this.state.routeId}>
-              <Button variant="outline-dark" className="right">
-                Route Info
-              </Button>
-            </Link>
+            <span
+              className="oi oi-x"
+              onClick={() => {
+                this.delete()
+                this.props.handleDelete()
+              }}
+            />
           </Col>
         </Row>
       </ListGroup.Item>
     )
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationsItem)

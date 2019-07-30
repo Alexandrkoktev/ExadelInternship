@@ -11,7 +11,9 @@ class Notifications extends React.Component {
   componentDidMount() {
     this.props.requestNotifications()
   }
-
+  handleDelete = () => {
+    this.props.requestNotifications()
+  }
   render() {
     const { notifications } = this.props
     debugger
@@ -19,7 +21,10 @@ class Notifications extends React.Component {
       <div className="noStuff">No notifications yet </div>
     ) : (
       <div className="notificationList">
-        <NotificationsList notifications={notifications} />
+        <NotificationsList
+          notifications={notifications}
+          handleDelete={this.handleDelete.bind(this)}
+        />
       </div>
     )
   }

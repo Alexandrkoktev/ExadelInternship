@@ -1,7 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { ListGroup } from 'react-bootstrap'
-
+import { formatDate } from '../../util'
 class RoutesList extends React.Component {
   render() {
     const { rides } = this.props
@@ -9,7 +9,8 @@ class RoutesList extends React.Component {
       return (
         <ListGroup.Item key={item.id}>
           {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-          {item.endPointName} Time: {item.depTime}
+          {item.finishPointName}
+          <br /> Time: {formatDate(new Date(item.timeAndDate))}
         </ListGroup.Item>
       )
     })
@@ -18,7 +19,7 @@ class RoutesList extends React.Component {
         title={this.props.type}
         variant="outline-dark"
         className="pscrollable"
-        style={{ marginTop: '2%' }}
+        style={{ marginTop: '2%', marginBottom: '2%' }}
       >
         {dRidesArr}
       </ListGroup>

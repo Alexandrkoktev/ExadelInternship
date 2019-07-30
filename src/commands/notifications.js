@@ -1,28 +1,33 @@
 import {
+  deleteNotificationDone,
+  deleteNotificationError,
+  deleteNotificationStarting,
   getNotificationsDone,
   getNotificationsError,
   getNotificationsStarting,
 } from '../actions/notifications'
 import client from './axios'
 
-export const getNotifications = () => {
-  // redux-thunk
+export const deleteNotification = id => {
   return async function(dispatch) {
     try {
-      dispatch(getNotificationsStarting())
-      const { data } = await client({
-        url: '/api/notifications',
-        method: 'get',
+      dispatch(deleteNotificationStarting())
+      const data = JSON.stringify(id)
+      await client({
+        url: '/api/notification',
+        method: 'delete',
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
       })
-      dispatch(getNotificationsDone(data))
+      dispatch(deleteNotificationDone())
     } catch (e) {
-      dispatch(getNotificationsError(e))
+      dispatch(deleteNotificationError(e))
     }
   }
 }
-
 export const mapStateToProps = state => state.notifications
 
 export const mapDispatchToProps = dispatch => ({
   requestNotifications: () => dispatch(getNotifications()),
+  deleteNotification: id => dispatch(deleteNotification(id)),
 })
