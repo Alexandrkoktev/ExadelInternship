@@ -1,6 +1,7 @@
 import React from 'react'
-import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
+import { ListGroup, Tab, Nav } from 'react-bootstrap'
 import Spinner from 'react-bootstrap/Spinner'
+import Route from './Route'
 import '../../containers/profile/profile.sass'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
@@ -15,27 +16,28 @@ class RoutesList extends React.Component {
 
   active = item => {
     return (
-      <ListGroupItem key={item.id}>
-        {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-        {item.finishPointName}
-        <br />
-        <span className="oi oi-clock" />
-        {new Date(item.timeAndDate).toLocaleDateString()},
-        {new Date(item.timeAndDate).toLocaleTimeString()}
-      </ListGroupItem>
+      <Route
+        depPoint={item.startPointName}
+        destPoint={item.finishPointName}
+        depTime={item.timeAndDate}
+        badge=" Upcoming"
+        routeid={item.id}
+        key={item.id}
+      />
     )
   }
 
   history = item => {
     return (
-      <ListGroup.Item key={item.id} className="history">
-        {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-        {item.finishPointName}
-        <br />
-        <span className="oi oi-clock" />
-        {new Date(item.timeAndDate).toLocaleDateString()},
-        {new Date(item.timeAndDate).toLocaleTimeString()}
-      </ListGroup.Item>
+      <Route
+        depPoint={item.startPointName}
+        destPoint={item.finishPointName}
+        depTime={item.timeAndDate}
+        badge="Finished"
+        styling="history"
+        routeid={item.id}
+        key={item.id}
+      />
     )
   }
 
