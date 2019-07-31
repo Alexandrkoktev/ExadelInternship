@@ -1,20 +1,23 @@
 import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import NotificationsItem from './NotificationsItem'
-
+import '../../containers/notifications/notifications.sass'
 class NotificationsList extends React.Component {
   render() {
-    const { notifications } = this.props
+    const { notifications, handleDelete } = this.props
     const notificationArr = notifications.map(item => {
       return (
         <NotificationsItem
           text={item.information}
-          routeId={item.activeRouteId}
-          key={item.activeRouteId}
+          routeId={item.id}
+          key={item.id}
+          handleDelete={handleDelete}
         />
       )
     })
-    return <ListGroup>{notificationArr}</ListGroup>
+    return (
+      <ListGroup calssname="listForNotifications">{notificationArr}</ListGroup>
+    )
   }
 }
 export default NotificationsList

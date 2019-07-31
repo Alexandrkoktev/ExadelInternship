@@ -11,15 +11,19 @@ class Notifications extends React.Component {
   componentDidMount() {
     this.props.requestNotifications()
   }
-
+  handleDelete = () => {
+    this.props.requestNotifications()
+  }
   render() {
     const { notifications } = this.props
-    debugger
     return notifications.length === 0 ? (
       <div className="noStuff">No notifications yet </div>
     ) : (
       <div className="notificationList">
-        <NotificationsList notifications={notifications} />
+        <NotificationsList
+          notifications={notifications}
+          handleDelete={this.handleDelete.bind(this)}
+        />
       </div>
     )
   }

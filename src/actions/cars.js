@@ -1,4 +1,4 @@
-//types
+// types
 export const GET_CARS_DATA = 'GET_CARS_DATA'
 export const GET_CARS_DATA_SUCCESS = 'GET_CARS_DATA_SUCCESS'
 export const GET_CARS_DATA_ERROR = 'GET_CARS_DATA_ERROR'
@@ -13,7 +13,7 @@ export const DELETE_CARS_DATA_SUCCESS = 'DELETE_CARS_DATA_SUCCESS'
 export const DELETE_CARS_DATA_ERROR = 'DELETE_CARS_DATA_ERROR'
 
 // action handlers
-//get
+// get
 export function getCarsStarting() {
   return {
     type: GET_CARS_DATA,
@@ -33,7 +33,7 @@ export function getCarsError(error) {
     error,
   }
 }
-//put
+// put
 export function putCarStarting() {
   return {
     type: PUT_CARS_DATA,
@@ -52,7 +52,7 @@ export function putCarError(error) {
     error,
   }
 }
-//delete
+// delete
 export function deleteCarStarting() {
   return {
     type: DELETE_CARS_DATA,
@@ -71,7 +71,7 @@ export function deleteCarError(error) {
     error,
   }
 }
-//post
+// post
 export function postCarStarting() {
   return {
     type: POST_CARS_DATA,

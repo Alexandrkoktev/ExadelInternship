@@ -13,6 +13,8 @@ import CarsList from '../../components/profile/CarsList'
 import PreviousRoute from '../../components/list-components/PreviousRoute'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
+// eslint-disable-next-line no-unused-vars
+import FavouriteRoute from '../../components/favourite-routes/FavouriteRoute'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -23,11 +25,12 @@ class Profile extends React.Component {
     const { rides = [] } = this.props
     const dRidesArr = rides.map(item => {
       return (
-        <Route
-          routeid={item.id}
+        <FavouriteRoute
+          routeid={item.routeId}
           key={item.id}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
+          name={item.name}
         />
       )
     })
@@ -36,7 +39,7 @@ class Profile extends React.Component {
         <PreviousRoute
           depPoint={item.startPointName}
           destPoint={item.endPointName}
-          key={item.activeRouteId}
+          key={item.id}
         />
       )
     })

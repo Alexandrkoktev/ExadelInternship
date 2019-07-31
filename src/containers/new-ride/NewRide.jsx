@@ -8,25 +8,25 @@ import Maps from '../../components/map/Maps'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
 import { connect } from 'react-redux'
-import { mapDispatchToProps, mapStateToProps } from '../../commands/rides'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/activeRides'
 
 // eslint-disable-next-line no-unused-vars
 class NewRide extends React.Component {
   componentDidMount() {
-    this.props.requestRides()
+    this.props.getRides()
   }
   render() {
-    const { rides } = this.props
+    const { activeRides = [] } = this.props
     return (
       <Container>
         <Row>
-          <Col sm={4}>
+          <Col sm={5}>
             <ListGroup>
               <PassengerForm />
-              <RoutesList type={'Suitable'} rides={rides} />
             </ListGroup>
+            <RoutesList rides={activeRides} />
           </Col>
-          <Col sm={8}>
+          <Col sm={7}>
             <Maps />
           </Col>
         </Row>
