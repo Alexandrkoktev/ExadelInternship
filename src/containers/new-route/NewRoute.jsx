@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Container, Row, Col, ListGroup, Form } from 'react-bootstrap'
+import { Button, Container, Row, Col, ListGroup } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import RoutesList from '../../components/list-of-routes/RoutesList'
 // eslint-disable-next-line no-unused-vars
@@ -12,10 +12,12 @@ import {
   mapDispatchToProps,
   mapStateToProps,
 } from '../../commands/rides'
+import client from '../../commands/axios'
 
 class NewRoute extends React.Component {
   componentDidMount() {
     this.props.requestRides()
+    this.mapComponent = React.createRef();
   }
 
   render() {
@@ -28,9 +30,34 @@ class NewRoute extends React.Component {
               <NewRouteInfo />
               <RoutesList type="From Favourites" rides={rides} />
             </ListGroup>
+            <Button
+                className="right"
+                variant="dark"
+                type="submit"
+                onClick={async (event) => {
+                  event.preventDefault();
+                  const route =  await this.mapComponent.current.getRouteInfo();
+                  await client({
+                    url: '/api/addRoute/',
+                    method: 'post',
+                    data: {
+                      timeAndDate: new Date(2020, 0, 1).toJSON(),
+                      maxSeats: 4,
+                      carId: 1,
+                      favourite: false,
+                      favouriteRouteId: 0,
+                      routeURL: 0,
+                      ...route,
+                    },
+                  })
+                  // event.preventDefault();
+                }}
+              >
+                Create route
+              </Button>
           </Col>
           <Col sm={6}>
-            <Maps needRouteEditor={true} />
+            <Maps needRouteEditor={true} ref={this.mapComponent}/>
           </Col>
         </Row>
       </Container>

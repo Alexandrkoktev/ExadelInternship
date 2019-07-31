@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Form, Container, Col, Row } from 'react-bootstrap'
+import { Form, Container, Col, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
 // eslint-disable-next-line no-unused-vars
@@ -75,19 +75,6 @@ class NewRouteInfo extends React.Component {
             </Form.Label>
             <Col sm="3">
               <Form.Control type="text" />
-            </Col>
-            <Col>
-              <Button
-                className="right"
-                variant="dark"
-                type="submit"
-                onClick={event => {
-                  alert('Created')
-                  event.preventDefault()
-                }}
-              >
-                Create route
-              </Button>
             </Col>
           </Form.Group>
         </Form>
