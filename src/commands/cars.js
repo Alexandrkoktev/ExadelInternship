@@ -14,11 +14,27 @@ import {
 } from '../actions/cars'
 import client from './axios'
 
-export const getCars = () => {
+export const getProfileCars = () => {
   return async function(dispatch) {
     try {
       dispatch(getCarsStarting())
       const { data } = await client({ url: '/api/profile/cars', method: 'get' })
+      dispatch(getCarsDone(data))
+    } catch (e) {
+      dispatch(getCarsError(e))
+    }
+  }
+}
+
+export const getNewRouteCars = () => {
+  return async function(dispatch) {
+    try {
+      dispatch(getCarsStarting())
+      const { data } = await client({
+        url: '/api/newroute/cars',
+        method: 'get',
+      })
+      console.log(data)
       dispatch(getCarsDone(data))
     } catch (e) {
       dispatch(getCarsError(e))
@@ -61,7 +77,8 @@ export const addCar = data => {
       await client({
         url: '/api/profile/cars/',
         method: 'post',
-        data: { carInformation: data },
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
       })
       dispatch(postCarDone())
     } catch (e) {
@@ -75,7 +92,9 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  requestCars: () => dispatch(getCars()),
+  requestCars: () => dispatch(getProfileCars()),
+  getCars: () => dispatch(getNewRouteCars()),
   editCar: (id, data) => dispatch(sendCar(id, data)),
+  addCar: data => dispatch(addCar(data)),
   deleteCar: id => dispatch(deleteCar(id)),
 })

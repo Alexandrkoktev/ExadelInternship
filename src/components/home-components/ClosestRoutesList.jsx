@@ -1,10 +1,12 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Col, Row, Button, ButtonToolbar } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import Route from '../list-components/Route'
 // eslint-disable-next-line no-unused-vars
 import Spinner from '../spinner/spinner'
+import { Link } from 'react-router-dom'
+import './style.sass'
 
 class ClosestRoutesList extends React.Component {
   render() {
@@ -33,14 +35,28 @@ class ClosestRoutesList extends React.Component {
     return isLoading ? (
       <Spinner />
     ) : (
-      <>
-        <div style={{ display: 'inline-block', width: '50%' }}>
+      <Row>
+        <Col>
+          <ButtonToolbar className="center">
+            <Link to="/home/new-route" className="sep">
+              <Button variant="info" className="sep">
+                Add new route as a driver
+              </Button>
+            </Link>{' '}
+          </ButtonToolbar>
           <ListGroup>{driverrides}</ListGroup>
-        </div>
-        <div style={{ display: 'inline-block', width: '50%' }}>
+        </Col>
+        <Col>
+          <ButtonToolbar className="center">
+            <Link to="/home/new-ride" className="sep">
+              <Button variant="info" className="sep">
+                Add new route as a passenger
+              </Button>
+            </Link>
+          </ButtonToolbar>
           <ListGroup>{clientRides}</ListGroup>
-        </div>
-      </>
+        </Col>
+      </Row>
     )
   }
 }

@@ -1,45 +1,62 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { ListGroup, Tab, Nav, ListGroupItem } from 'react-bootstrap'
-// eslint-disable-next-line no-unused-vars
-import Route from './Route'
-// eslint-disable-next-line no-unused-vars
 import Spinner from 'react-bootstrap/Spinner'
 import '../../containers/profile/profile.sass'
+import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
 
 class RoutesList extends React.Component {
+  componentDidMount() {
+    this.props.getActiveRoutes()
+    this.props.getActiveBookings()
+    this.props.getRoutesHistory()
+    this.props.getBookingsHistory()
+  }
+
+  active = item => {
+    return (
+      <ListGroupItem key={item.id}>
+        {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+        {item.finishPointName}
+        <br />
+        <span className="oi oi-clock" />
+        {new Date(item.timeAndDate).toLocaleDateString()},
+        {new Date(item.timeAndDate).toLocaleTimeString()}
+      </ListGroupItem>
+    )
+  }
+
+  history = item => {
+    return (
+      <ListGroup.Item key={item.id} className="history">
+        {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+        {item.finishPointName}
+        <br />
+        <span className="oi oi-clock" />
+        {new Date(item.timeAndDate).toLocaleDateString()},
+        {new Date(item.timeAndDate).toLocaleTimeString()}
+      </ListGroup.Item>
+    )
+  }
+
   render() {
-    const { driverRides = [] } = this.props
-    const { passengerRides = [] } = this.props
+    const {
+      activeRoutes = [],
+      activeBookings = [],
+      routesHistory = [],
+      bookingHistory,
+    } = this.props
     const { isLoading } = this.props
-    const listOfDriverRides = driverRides.map(item => {
-      return (
-        <ListGroupItem key={item.id}>
-          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-          {item.finishPointName}
-          <br />
-          <span className="oi oi-clock" />{' '}
-          {new Date(item.timeAndDate).toLocaleDateString()},{' '}
-          {new Date(item.timeAndDate).toLocaleTimeString()}
-        </ListGroupItem>
-      )
-    })
-    const listOfPassengerRides = passengerRides.map(item => {
-      return (
-        <ListGroupItem key={item.id}>
-          {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-          {item.finishPointName}
-          <br />
-          <span className="oi oi-clock" />{' '}
-          {new Date(item.timeAndDate).toLocaleDateString()},{' '}
-          {new Date(item.timeAndDate).toLocaleTimeString()}
-        </ListGroupItem>
-      )
-    })
+    const listOfDriverRides = activeRoutes
+      .map(this.active)
+      .concat(routesHistory.map(this.history))
+    const listOfPassengerRides = activeBookings
+      .map(this.active)
+      .concat(bookingHistory.map(this.history))
     return isLoading ? (
       <Spinner />
     ) : (
-      <Tab.Container defaultActiveKey="driver">
+      <Tab.Container defaultActiveKey="passenger">
         <Nav justify variant="tabs">
           <Nav.Item className="tabs">
             <Nav.Link eventKey="passenger" className="text">
@@ -67,4 +84,7 @@ class RoutesList extends React.Component {
   }
 }
 
-export default RoutesList
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RoutesList)

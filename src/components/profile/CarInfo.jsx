@@ -16,8 +16,11 @@ class CarInfo extends React.Component {
   click = () => {
     const { id } = this.props
     const { info } = this.state
-    this.props.editCar(id, info)
-    this.props.hide()
+    if (this.props.new) {
+      this.props.addCar(info)
+    } else {
+      this.props.editCar(id, info)
+    }
   }
 
   textChange = event => {
@@ -25,6 +28,11 @@ class CarInfo extends React.Component {
     if (value.length < 185) this.setState({ info: value, isError: false })
     else
       this.setState({ isError: true, error: 'Your description is too long!' })
+  }
+
+  hide = () => {
+    this.props.hide()
+    this.setState({ info: '' })
   }
 
   render() {
@@ -55,9 +63,6 @@ class CarInfo extends React.Component {
         <Modal.Footer>
           <Button variant="dark" onClick={this.click}>
             Save
-          </Button>
-          <Button variant="outline-dark" onClick={hide}>
-            Close
           </Button>
         </Modal.Footer>
       </Modal>

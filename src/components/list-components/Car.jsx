@@ -33,7 +33,7 @@ class Car extends React.Component {
             <Col xs={6}>{info}</Col>
             <Col>
               <Button
-                variant="outline-dark"
+                variant="outline-info"
                 className="right"
                 onClick={() => {
                   this.setState({ show: true })
@@ -44,7 +44,7 @@ class Car extends React.Component {
               <Button
                 variant="outline-danger"
                 className="right"
-                onClick={this.delete}
+                onClick={this.delete.bind(this)}
               >
                 Delete
               </Button>
