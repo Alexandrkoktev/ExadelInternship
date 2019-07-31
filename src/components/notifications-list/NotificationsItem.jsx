@@ -16,37 +16,63 @@ class NotificationsItem extends React.Component {
     this.state = {
       text: props.text,
       routeId: 'routes/route-info/' + props.routeId,
+      rideId: 'routes/ride-info/' + this.props.rideId,
+      driver: props.driver,
     }
   }
+
   delete = () => {
     this.props.deleteNotification(this.props.routeId)
   }
 
   render() {
+    const { driver } = this.props
     return (
       <ListGroup.Item
         key={this.props.routeId}
         className="itemOfNotificationList"
         /* onMouseEnter={this.props.handleAction} */
       >
-        <Row>
-          {' '}
-          <Col xs = "10" md = "11">
+        {!driver && (
+          <Row>
             {' '}
-            <a href={this.state.routeId} className="black">
-              {this.state.text}
-            </a>
-          </Col>
-          <Col xs = "2" md = "1">
-            <span
-              className="oi oi-x"
-              onClick={() => {
-                this.delete()
-                this.props.handleDelete()
-              }}
-            />
-          </Col>
-        </Row>
+            <Col xs="10" md="11">
+              {' '}
+              <a href={this.state.routeId} className="black">
+                {this.state.text}
+              </a>
+            </Col>
+            <Col xs="2" md="1">
+              <span
+                className="oi oi-x"
+                onClick={() => {
+                  this.delete()
+                  this.props.handleDelete()
+                }}
+              />
+            </Col>
+          </Row>
+        )}
+        {driver && (
+          <Row>
+            {' '}
+            <Col xs="10" md="11">
+              {' '}
+              <a href={this.state.rideId} className="black">
+                {this.state.text}
+              </a>
+            </Col>
+            <Col xs="2" md="1">
+              <span
+                className="oi oi-x"
+                onClick={() => {
+                  this.delete()
+                  this.props.handleDelete()
+                }}
+              />
+            </Col>
+          </Row>
+        )}
       </ListGroup.Item>
     )
   }

@@ -11,7 +11,6 @@ import {
   mapStateToProps,
 } from '../../commands/info-about-passengers/passengers'
 
-
 class OneRouteInfo extends React.Component {
   componentDidMount() {
     this.props.requestPassengers()
@@ -24,25 +23,32 @@ class OneRouteInfo extends React.Component {
         <div className="block">
           <Container>
             <Row>
+              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
+                <Maps />
+              </Col>
+
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
-                <div style={{ height: 'auto', maxHeight: '262px' }} className="scrollable">
-                  <ListOfPassengers passengers={passengers}/>
+                <div
+                  style={{ height: 'auto', maxHeight: '262px' }}
+                  className="scrollable"
+                >
+                  <ListOfPassengers passengers={passengers} />
                 </div>
               </Col>
-              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
-                <Maps/>
-              </Col>
             </Row>
-            <Row style = {{marginLeft: '1%'}}>
+            <Row style={{ marginLeft: '1%' }}>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-pencil" style={{ fontSize: '25px' }}/>
+                <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-envelope-closed" style={{ fontSize: '25px' }}/>
+                <span
+                  className="oi oi-envelope-closed"
+                  style={{ fontSize: '25px' }}
+                />
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }}/>
+                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
               </Col>
             </Row>
           </Container>
@@ -54,5 +60,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(OneRouteInfo)

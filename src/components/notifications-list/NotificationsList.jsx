@@ -2,6 +2,7 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import NotificationsItem from './NotificationsItem'
 import '../../containers/notifications/notifications.sass'
+
 class NotificationsList extends React.Component {
   render() {
     const { notifications, handleDelete } = this.props
@@ -10,8 +11,10 @@ class NotificationsList extends React.Component {
         <NotificationsItem
           text={item.information}
           routeId={item.id}
+          rideId={item.id}
           key={item.id}
           handleDelete={handleDelete}
+          driver={item.driver}
         />
       )
     })
@@ -20,4 +23,5 @@ class NotificationsList extends React.Component {
     )
   }
 }
+
 export default NotificationsList

@@ -41,7 +41,6 @@ export const passengersArr = [
     name: 'Semen',
     number: '80295553535',
   },
-
 ]
 export const fakePassengers = () => {
   return delay({

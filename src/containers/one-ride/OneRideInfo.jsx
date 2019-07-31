@@ -3,14 +3,12 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Maps from '../../components/map/Maps'
-import './oneRouteInfo.sass'
-import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
 } from '../../commands/info-about-passengers/passengers'
-
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -24,25 +22,29 @@ class OneRideInfo extends React.Component {
         <div className="block">
           <Container>
             <Row>
+              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
+                <Maps />
+              </Col>
               <Col sm="5">
-                <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
-                <div style={{ height: 'auto', maxHeight: '262px' }} className="scrollable">
-                  <ListOfPassengers passengers={driver}/>
+                <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
+                <div
+                  style={{ height: 'auto', maxHeight: '262px' }}
+                  className="scrollable"
+                >
+                  <ListGroupItem>{driver}</ListGroupItem>
                 </div>
               </Col>
-              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
-                <Maps/>
-              </Col>
             </Row>
-            <Row style = {{marginLeft: '1%'}}>
+
+            <Row style={{ marginLeft: '1%' }}>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-pencil" style={{ fontSize: '25px' }}/>
+                <span
+                  className="oi oi-envelope-closed"
+                  style={{ fontSize: '25px' }}
+                />
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-envelope-closed" style={{ fontSize: '25px' }}/>
-              </Col>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }}/>
+                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
               </Col>
             </Row>
           </Container>
@@ -54,5 +56,5 @@ class OneRideInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(OneRideInfo)
