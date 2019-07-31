@@ -2,11 +2,11 @@ export const GET_RIDES_DATA = 'GET_RIDES_DATA'
 export const GET_RIDES_DATA_SUCCESS = 'GET_RIDES_DATA_SUCCESS'
 export const GET_FAVOURITES_DATA_SUCCESS = 'GET_FAVOURITES_DATA_SUCCESS'
 export const GET_ACTIVE_ROUTES_DATA_SUCCESS = 'GET_ACTIVE_ROUTES_DATA_SUCCESS'
-export const GET_ACTIVE_BOOKINGS_DATA_SUCCESS = 'GET_ACTIVE_BOOKINGS_DATA_SUCCESS'
+export const GET_ACTIVE_BOOKINGS_DATA_SUCCESS =
+  'GET_ACTIVE_BOOKINGS_DATA_SUCCESS'
 export const GET_RIDES_DATA_ERROR = 'GET_RIDES_DATA_ERROR'
 export const GET_ROUTES_HISTORY_SUCCESS = 'GET_ROUTES_HISTORY_SUCCESS'
 export const GET_BOOKINGS_HISTORY_SUCCESS = 'GET_BOOKINGS_HISTORY_SUCCESS'
-
 
 // action handlers
 export function getRidesStarting() {
@@ -49,7 +49,6 @@ export function getRoutesHistoryDone(userData) {
     payload: userData,
   }
 }
-
 
 export function getBookingsHistoryDone(userData) {
   return {

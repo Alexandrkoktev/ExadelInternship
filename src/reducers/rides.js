@@ -6,7 +6,7 @@ import {
   GET_ACTIVE_BOOKINGS_DATA_SUCCESS,
   GET_RIDES_DATA_ERROR,
   GET_ROUTES_HISTORY_SUCCESS,
-  GET_BOOKINGS_HISTORY_SUCCESS
+  GET_BOOKINGS_HISTORY_SUCCESS,
 } from '../actions/rides'
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
   activeRoutes: [],
   activeBookings: [],
   routesHistory: [],
-  bookingHistory: []
+  bookingHistory: [],
 }
 
 function reducer(state = initialState, action) {
@@ -40,25 +40,25 @@ function reducer(state = initialState, action) {
       const activeRoutes = action.payload
       return {
         ...state,
-        activeRoutes
+        activeRoutes,
       }
     case GET_ACTIVE_BOOKINGS_DATA_SUCCESS:
       const activeBookings = action.payload
       return {
         ...state,
-        activeBookings
+        activeBookings,
       }
     case GET_ROUTES_HISTORY_SUCCESS:
       const routesHistory = action.payload
       return {
         ...state,
-        routesHistory
+        routesHistory,
       }
     case GET_BOOKINGS_HISTORY_SUCCESS:
       const bookingHistory = action.payload
       return {
         ...state,
-        bookingHistory
+        bookingHistory,
       }
     case GET_RIDES_DATA_ERROR:
       const { error } = action

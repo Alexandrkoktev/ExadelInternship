@@ -18,8 +18,7 @@ class CarInfo extends React.Component {
     const { info } = this.state
     if (this.props.new) {
       this.props.addCar(info)
-    }
-    else {
+    } else {
       this.props.editCar(id, info)
     }
   }

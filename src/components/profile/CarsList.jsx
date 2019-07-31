@@ -40,11 +40,15 @@ class CarsList extends React.Component {
         <ListGroup>
           {carsArr}
           <>
-            <Button variant='outline-info' onClick={() => {
-              this.setState({ show: true })
-            }}
-              className='butt'>
-              Add Car</Button>
+            <Button
+              variant="outline-info"
+              onClick={() => {
+                this.setState({ show: true })
+              }}
+              className="butt"
+            >
+              Add Car
+            </Button>
           </>
         </ListGroup>
         <CarInfo

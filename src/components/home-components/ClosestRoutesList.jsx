@@ -35,28 +35,29 @@ class ClosestRoutesList extends React.Component {
     return isLoading ? (
       <Spinner />
     ) : (
-        <Row>
-
-          <Col><ButtonToolbar className="center">
+      <Row>
+        <Col>
+          <ButtonToolbar className="center">
             <Link to="/home/new-route" className="sep">
               <Button variant="info" className="sep">
                 Add new route as a driver
-            </Button>
-            </Link> </ButtonToolbar>
-            <ListGroup>{driverrides}</ListGroup>
-          </Col>
-          <Col ><ButtonToolbar className="center">
+              </Button>
+            </Link>{' '}
+          </ButtonToolbar>
+          <ListGroup>{driverrides}</ListGroup>
+        </Col>
+        <Col>
+          <ButtonToolbar className="center">
             <Link to="/home/new-ride" className="sep">
               <Button variant="info" className="sep">
                 Add new route as a passenger
-            </Button>
+              </Button>
             </Link>
           </ButtonToolbar>
-            <ListGroup>{clientRides}</ListGroup>
-          </Col>
-
-        </Row>
-      )
+          <ListGroup>{clientRides}</ListGroup>
+        </Col>
+      </Row>
+    )
   }
 }
 

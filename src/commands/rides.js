@@ -10,10 +10,8 @@ import {
 } from '../actions/rides'
 import client from './axios'
 
-
-
 export const getRides = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -28,7 +26,7 @@ export const getRides = () => {
 }
 
 const getFavourites = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -43,7 +41,7 @@ const getFavourites = () => {
 }
 
 const getActiveRoutes = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -58,7 +56,7 @@ const getActiveRoutes = () => {
 }
 
 const getActiveBookings = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -73,7 +71,7 @@ const getActiveBookings = () => {
 }
 
 const getRoutesHistory = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -88,7 +86,7 @@ const getRoutesHistory = () => {
 }
 
 const getBookingsHistory = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -108,7 +106,7 @@ export const mapStateToProps = state => ({
   activeRoutes: state.activeRoutes.activeRoutes,
   activeBookings: state.activeBookings.activeBookings,
   routesHistory: state.routesHistory.routesHistory,
-  bookingHistory: state.bookingHistory.bookingHistory
+  bookingHistory: state.bookingHistory.bookingHistory,
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -117,5 +115,5 @@ export const mapDispatchToProps = dispatch => ({
   getActiveRoutes: () => dispatch(getActiveRoutes()),
   getActiveBookings: () => dispatch(getActiveBookings()),
   getRoutesHistory: () => dispatch(getRoutesHistory()),
-  getBookingsHistory: () => dispatch(getBookingsHistory())
+  getBookingsHistory: () => dispatch(getBookingsHistory()),
 })
