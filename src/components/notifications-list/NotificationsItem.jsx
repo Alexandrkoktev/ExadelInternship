@@ -28,19 +28,18 @@ class NotificationsItem extends React.Component {
   handleClick=(event) =>{
     let click=event.target
     if(click.className==="oi oi-x"){
-      this.delete()
-      this.props.handleDelete()
+
     }else{
-      store.dispatch(push(this.state.routeId))
+
     }
   }
   render() {
     return (
+      <div onClick={()=>store.dispatch(push(this.state.routeId))}>
       <ListGroup.Item
         key={this.props.routeId}
         className="itemOfNotificationList"
         /* onMouseEnter={this.props.handleAction} */
-        onClick={(event)=> this.handleClick(event)}
       >
         <Row>
           <Col xs="10" md="11">
@@ -49,11 +48,15 @@ class NotificationsItem extends React.Component {
           <Col xs="2" md="1">
             <span
               className="oi oi-x"
+              onClick={(event)=>{
+                event.stopPropagation()
+                this.delete()
+                setTimeout(this.props.handleDelete,1000)}}
             />
           </Col>
         </Row>
       </ListGroup.Item>
-
+      </div>
     )
   }
 }

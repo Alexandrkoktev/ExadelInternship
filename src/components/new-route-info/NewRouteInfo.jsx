@@ -17,7 +17,7 @@ class NewRouteInfo extends React.Component {
     const carsArr = cars.map(item => {
       return <option key={item.id}>{item.carInformation}</option>
     })
-    debugger
+
     return (
       <Container>
         <h3>New route:</h3>
