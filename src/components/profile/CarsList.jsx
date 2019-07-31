@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
 import Car from '../list-components/Car'
@@ -38,13 +38,13 @@ class CarsList extends React.Component {
       <>
         <ListGroup>
           {carsArr}
-          <ListGroup.Item
-            onClick={() => {
+          <>
+            <Button variant='outline-info' onClick={() => {
               this.setState({ show: true })
             }}
-          >
-            Add Car
-          </ListGroup.Item>
+              className='butt'>
+              Add Car</Button>
+          </>
         </ListGroup>
         <CarInfo
           new={true}

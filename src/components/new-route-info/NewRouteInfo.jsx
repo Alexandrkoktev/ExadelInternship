@@ -17,10 +17,11 @@ class NewRouteInfo extends React.Component {
     const carsArr = cars.map(item => {
       return (
         <option key={item.id}>
-          {item.brand} {item.model}, {item.plate}
+          {item.carInformation}
         </option>
       )
     })
+    debugger
     return (
       <Container>
         <h3>New route:</h3>

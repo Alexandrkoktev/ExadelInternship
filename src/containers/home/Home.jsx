@@ -16,7 +16,6 @@ class Home extends React.Component {
     const isLoading = this.props.userInfo.loading
     return (
       <>
-        <AddRouteBTNs />
         <ClosestRoutesList
           passengerRides={passengerRides}
           driverRides={driverRides}
