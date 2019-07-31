@@ -31,6 +31,7 @@ class CarsList extends React.Component {
           id={item.id}
           info={info}
           hide={this.hide.bind(this)}
+          key={item.id}
         />
       )
     })

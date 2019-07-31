@@ -8,10 +8,9 @@ import Route from '../../components/list-components/Route'
 import UserInfo from '../../components/profile/UserInfo'
 import CarsList from '../../components/profile/CarsList'
 import { connect } from 'react-redux'
-import {
-  mapStateToProps,
-  mapDispatchToProps,
-} from '../../commands/rides'
+import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
+// eslint-disable-next-line no-unused-vars
+import FavouriteRoute from '../../components/favourite-routes/FavouriteRoute'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -22,11 +21,12 @@ class Profile extends React.Component {
     const { favourites = [] } = this.props
     const dRidesArr = favourites.map(item => {
       return (
-        <Route
-          routeid={item.id}
+        <FavouriteRoute
+          routeid={item.routeId}
           key={item.id}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
+          name={item.name}
         />
       )
     })
@@ -40,8 +40,8 @@ class Profile extends React.Component {
                 My Favorite Routes
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className='tabs'>
-              <Nav.Link eventKey="cars" className='text'>
+            <Nav.Item className="tabs">
+              <Nav.Link eventKey="cars" className="text">
                 My Cars
               </Nav.Link>
             </Nav.Item>

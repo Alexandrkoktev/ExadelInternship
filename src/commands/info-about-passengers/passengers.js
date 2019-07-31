@@ -11,7 +11,6 @@ export const mapDispatchToProps = dispatch => ({
   requestPassengers: () => dispatch(getPassengers()),
 })
 export const getPassengers = () => {
-  // redux-thunk
   return async function(dispatch) {
     try {
       dispatch(getPassengerStarting())

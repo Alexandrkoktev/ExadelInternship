@@ -31,15 +31,15 @@ class RoutesList extends React.Component {
   }
 
   history = item => {
-    return(
-    <ListGroup.Item key={item.id} className='history'>
-      {item.startPointName} <span className="oi oi-arrow-right" />{' '}
-      {item.finishPointName}
-      <br />
-      <span className="oi oi-clock" />
-      {new Date(item.timeAndDate).toLocaleDateString()},
+    return (
+      <ListGroup.Item key={item.id} className='history'>
+        {item.startPointName} <span className="oi oi-arrow-right" />{' '}
+        {item.finishPointName}
+        <br />
+        <span className="oi oi-clock" />
+        {new Date(item.timeAndDate).toLocaleDateString()},
         {new Date(item.timeAndDate).toLocaleTimeString()}
-    </ListGroup.Item>)
+      </ListGroup.Item>)
   }
 
   render() {

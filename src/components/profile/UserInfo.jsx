@@ -1,10 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
+// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 import './style.sass'
+// eslint-disable-next-line no-unused-vars
 import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
@@ -27,28 +30,25 @@ class UserInfo extends React.Component {
           </Col>
 
           <Col md="auto">
-            <Row>
-              <h4>{userInfo.username}</h4>
-            </Row><Row>
-              <h4>{userInfo.phoneNumber}</h4>
-            </Row>
-            <Row>
-              <StarRatings
-                rating={userInfo.ratingDriver}
-                starDimension="21px"
-                starSpacing="5px"
-                className='left-marg'
-              />{' '}
-              <h4 className="left-marg">as a Driver</h4>
-            </Row>
-            <Row>
-              <StarRatings
-                rating={userInfo.ratingPassenger}
-                starDimension="21px"
-                starSpacing="5px"
-              />{' '}
-              <h4 className="left-marg">as a Passenger</h4>
-            </Row>
+            <div>
+              <h3 className="textOverflow">{userInfo.username}</h3>
+              <Row>
+                <StarRatings
+                  rating={4.5}
+                  starDimension="21px"
+                  starSpacing="5px"
+                />{' '}
+                <h4 className="left-marg">as a Driver</h4>
+              </Row>
+              <Row>
+                <StarRatings
+                  rating={3.5}
+                  starDimension="21px"
+                  starSpacing="5px"
+                />{' '}
+                <h4 className="left-marg">as a Passenger</h4>
+              </Row>
+            </div>
           </Col>
         </Row>
       </div>
@@ -56,4 +56,7 @@ class UserInfo extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserInfo)

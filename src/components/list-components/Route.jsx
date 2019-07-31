@@ -4,6 +4,7 @@ import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 import './style.sass'
+import { formatDate } from '../../util'
 
 class Route extends React.Component {
   render() {
@@ -24,8 +25,8 @@ class Route extends React.Component {
         </Row>
         <Row>
           <Col xs={8}>
-            <span className="oi oi-clock" /> {this.props.depTime},{' '}
-            {this.props.depDate}
+            <span className="oi oi-clock" />{' '}
+            {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
             <Button variant="outline-danger" className="right">
