@@ -8,7 +8,7 @@ import { push } from 'connected-react-router'
 import client from './axios.js'
 
 export const getUser = (email, password) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getUserStarting())
       const form = new FormData()
@@ -16,10 +16,18 @@ export const getUser = (email, password) => {
       form.append('j_password', password)
       await client({ url: '/api/login', method: 'post', data: form })
       const { data } = await client({ url: '/api/header', method: 'get' })
-      const { data: { photoUrl } } = await client({ url: '/api/profile', method: 'get' })
-      const { data: { ratingDriver } } = await client({ url: '/api/profile', method: 'get' })
-      const { data: { ratingPassenger } } = await client({ url: '/api/profile', method: 'get' })
-      const { data: { phoneNumber } } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { photoUrl },
+      } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { ratingDriver },
+      } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { ratingPassenger },
+      } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { phoneNumber },
+      } = await client({ url: '/api/profile', method: 'get' })
       dispatch(
         getUserDone({
           username: data.name,
@@ -27,7 +35,7 @@ export const getUser = (email, password) => {
           photoUrl: photoUrl,
           ratingDriver: ratingDriver,
           ratingPassenger: ratingPassenger,
-          phoneNumber: phoneNumber
+          phoneNumber: phoneNumber,
         })
       )
       dispatch(push('/home'))
@@ -38,14 +46,22 @@ export const getUser = (email, password) => {
 }
 
 export const restoreUser = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getUserStarting())
       const { data } = await client({ url: '/api/header', method: 'get' })
-      const { data: { photoUrl } } = await client({ url: '/api/profile', method: 'get' })
-      const { data: { ratingDriver } } = await client({ url: 'api/profile', method: 'get' })
-      const { data: { ratingPassenger } } = await client({ url: 'api/profile', method: 'get' })
-      const { data: { phoneNumber } } = await client({ url: 'api/profile', method: 'get' })
+      const {
+        data: { photoUrl },
+      } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { ratingDriver },
+      } = await client({ url: 'api/profile', method: 'get' })
+      const {
+        data: { ratingPassenger },
+      } = await client({ url: 'api/profile', method: 'get' })
+      const {
+        data: { phoneNumber },
+      } = await client({ url: 'api/profile', method: 'get' })
       dispatch(
         getUserDone({
           username: data.name,
@@ -53,7 +69,7 @@ export const restoreUser = () => {
           photoUrl: photoUrl,
           ratingDriver: ratingDriver,
           ratingPassenger: ratingPassenger,
-          phoneNumber: phoneNumber
+          phoneNumber: phoneNumber,
         })
       )
     } catch (error) {
@@ -63,7 +79,7 @@ export const restoreUser = () => {
 }
 
 export const logOut = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     await client({ url: '/api/logout', method: 'get' })
     dispatch(resetUserData())
     dispatch(push('/login'))

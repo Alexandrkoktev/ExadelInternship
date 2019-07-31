@@ -9,23 +9,30 @@ class CarInfo extends React.Component {
     this.state = {
       info: props.info || '',
       isError: false,
-      error: ''
+      error: '',
     }
   }
 
   click = () => {
     const { id } = this.props
     const { info } = this.state
-    this.props.editCar(id, info)
-    this.props.hide()
+    if (this.props.new) {
+      this.props.addCar(info)
+    } else {
+      this.props.editCar(id, info)
+    }
   }
 
   textChange = event => {
     const value = event.target.value
-    if (value.length < 185)
-      this.setState({ info: value, isError: false })
+    if (value.length < 185) this.setState({ info: value, isError: false })
     else
       this.setState({ isError: true, error: 'Your description is too long!' })
+  }
+
+  hide = () => {
+    this.props.hide()
+    this.setState({ info: '' })
   }
 
   render() {
@@ -35,7 +42,7 @@ class CarInfo extends React.Component {
     return (
       <Modal show={this.props.show} centered onHide={hide}>
         {isError && (
-          <Alert key={1} variant="danger" className='wide'>
+          <Alert key={1} variant="danger" className="wide">
             {error}
           </Alert>
         )}
@@ -45,15 +52,17 @@ class CarInfo extends React.Component {
         <Modal.Body>
           <Form>
             <Form.Label>Your Car's Descrption</Form.Label>
-            <Form.Control as='textarea' rows='4' value={this.state.info} onChange={this.textChange} />
+            <Form.Control
+              as="textarea"
+              rows="4"
+              value={this.state.info}
+              onChange={this.textChange}
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="dark" onClick={this.click}>
             Save
-          </Button>
-          <Button variant="outline-dark" onClick={hide}>
-            Close
           </Button>
         </Modal.Footer>
       </Modal>
