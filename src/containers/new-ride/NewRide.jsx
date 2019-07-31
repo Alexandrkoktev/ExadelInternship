@@ -15,19 +15,24 @@ class NewRide extends React.Component {
   componentDidMount() {
     this.props.getRides()
   }
+
   render() {
     const { activeRides = [] } = this.props
     return (
       <Container>
         <Row>
           <Col sm={5}>
-            <ListGroup>
-              <PassengerForm />
-            </ListGroup>
-            <RoutesList rides={activeRides} />
+            <Row>
+              <ListGroup>
+                <PassengerForm/>
+              </ListGroup>
+            </Row>
+            <Row>
+              <RoutesList rides={activeRides}/>
+            </Row>
           </Col>
           <Col sm={7}>
-            <Maps />
+            <Maps/>
           </Col>
         </Row>
       </Container>
@@ -37,5 +42,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewRide)
