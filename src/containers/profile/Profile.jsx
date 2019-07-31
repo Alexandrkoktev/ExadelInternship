@@ -34,9 +34,9 @@ class Profile extends React.Component {
       <>
         <UserInfo />
         <Tab.Container defaultActiveKey="favroutes">
-          <Nav fill variant='tabs' >
-            <Nav.Item className='tabs'>
-              <Nav.Link eventKey="favroutes" className='text'>
+          <Nav fill variant="tabs">
+            <Nav.Item className="tabs">
+              <Nav.Link eventKey="favroutes" className="text">
                 My Favorite Routes
               </Nav.Link>
             </Nav.Item>
@@ -51,8 +51,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                  <ListGroup>{dRidesArr}</ListGroup>
-                )}
+                <ListGroup>{dRidesArr}</ListGroup>
+              )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />

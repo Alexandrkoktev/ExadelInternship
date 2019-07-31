@@ -15,11 +15,7 @@ class NewRouteInfo extends React.Component {
   render() {
     const { cars = [] } = this.props
     const carsArr = cars.map(item => {
-      return (
-        <option key={item.id}>
-          {item.carInformation}
-        </option>
-      )
+      return <option key={item.id}>{item.carInformation}</option>
     })
     debugger
     return (
