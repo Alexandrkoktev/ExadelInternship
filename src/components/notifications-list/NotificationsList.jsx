@@ -9,7 +9,8 @@ class NotificationsList extends React.Component {
       return (
         <NotificationsItem
           text={item.information}
-          routeId={item.id}
+          id={item.id}
+          routeId={item.routeOrBookingId}
           key={item.id}
           handleDelete={handleDelete}
         />
