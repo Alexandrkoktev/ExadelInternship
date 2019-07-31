@@ -29,7 +29,6 @@ class OneRideInfo extends React.Component {
                 <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div
                   style={{ height: 'auto', maxHeight: '262px' }}
-                  className="scrollable"
                 >
                   <ListGroupItem>{driver}</ListGroupItem>
                 </div>

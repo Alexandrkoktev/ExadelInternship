@@ -15,14 +15,14 @@ class NotificationsItem extends React.Component {
     super(props)
     this.state = {
       text: props.text,
-      routeId: 'routes/route-info/' + props.routeId,
-      rideId: 'routes/ride-info/' + this.props.rideId,
+      routeId: 'routes/route-info/' + this.props.routeId,
+      rideId: 'routes/ride-info/' + this.props.routeId,
       driver: props.driver,
     }
   }
 
   delete = () => {
-    this.props.deleteNotification(this.props.routeId)
+    this.props.deleteNotification(this.props.rideId)
   }
 
   render() {
