@@ -8,6 +8,7 @@ import { formatDate } from '../../util'
 
 class Route extends React.Component {
   render() {
+    const {passenger} = this.props
     return (
       <ListGroup.Item>
         <Row>
@@ -16,11 +17,16 @@ class Route extends React.Component {
             {this.props.destPoint}
           </Col>
           <Col>
-            <Link to={'routes/route-info/' + this.props.routeid}>
+            {passenger && ( <Link to={'routes/route-info/' + this.props.routeid}>
               <Button variant="outline-info" className="right">
                 Route Info
               </Button>
-            </Link>
+            </Link>)}
+            {!passenger && ( <Link to={'routes/ride-info/' + this.props.rideid}>
+              <Button variant="outline-info" className="right">
+                Route Info
+              </Button>
+            </Link>)}
           </Col>
         </Row>
         <Row>
