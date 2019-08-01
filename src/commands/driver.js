@@ -5,7 +5,7 @@ import {
 } from '../actions/driver'
 import client from './axios'
 
-export const getDriver = (id) => {
+export const getDriver = id => {
   return async function(dispatch) {
     try {
       dispatch(getDriverStarting())
@@ -23,5 +23,5 @@ export const getDriver = (id) => {
 export const mapStateToProps = state => state.driver
 
 export const mapDispatchToProps = dispatch => ({
-  requestDriver: (id) => dispatch(getDriver(id)),
+  requestDriver: id => dispatch(getDriver(id)),
 })

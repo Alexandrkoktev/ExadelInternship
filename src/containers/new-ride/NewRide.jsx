@@ -24,15 +24,15 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm/>
+                <PassengerForm />
               </ListGroup>
             </Row>
             <Row>
-              <RoutesList rides={activeRides}/>
+              <RoutesList rides={activeRides} />
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps/>
+            <Maps />
           </Col>
         </Row>
       </Container>
@@ -42,5 +42,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRide)

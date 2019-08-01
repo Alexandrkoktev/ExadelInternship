@@ -27,10 +27,9 @@ class NotificationsItem extends React.Component {
   delete = () => {
     this.props.deleteNotification(this.props.id)
   }
-  handleClick = (event) => {
+  handleClick = event => {
     let click = event.target
   }
-
 
   isDriver(driver) {
     if (driver) {
@@ -45,14 +44,14 @@ class NotificationsItem extends React.Component {
                 {this.state.text}
               </Col>
               <Col xs="2" md="1">
-            <span
-              className="oi oi-x"
-              onClick={(event) => {
-                event.stopPropagation()
-                this.delete()
-                setTimeout(this.props.handleDelete, 1000)
-              }}
-            />
+                <span
+                  className="oi oi-x"
+                  onClick={event => {
+                    event.stopPropagation()
+                    this.delete()
+                    setTimeout(this.props.handleDelete, 1000)
+                  }}
+                />
               </Col>
             </Row>
           </ListGroup.Item>
@@ -74,14 +73,14 @@ class NotificationsItem extends React.Component {
                 {this.state.text}
               </Col>
               <Col xs="2" md="1">
-            <span
-              className="oi oi-x"
-              onClick={(event) => {
-                event.stopPropagation()
-                this.delete()
-                setTimeout(this.props.handleDelete, 1000)
-              }}
-            />
+                <span
+                  className="oi oi-x"
+                  onClick={event => {
+                    event.stopPropagation()
+                    this.delete()
+                    setTimeout(this.props.handleDelete, 1000)
+                  }}
+                />
               </Col>
             </Row>
           </ListGroup.Item>
@@ -97,12 +96,11 @@ class NotificationsItem extends React.Component {
         {this.isDriver(driver)}
         {this.isPassenger(driver)}
       </>
-
     )
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NotificationsItem)

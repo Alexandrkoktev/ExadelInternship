@@ -15,7 +15,7 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case GET_PASSENGERS_DATA_SUCCESS:
-      const  passengers  = action.payload
+      const passengers = action.payload
       return {
         ...state,
         passengers,

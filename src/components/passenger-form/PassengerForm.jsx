@@ -8,19 +8,19 @@ class PassengerForm extends React.Component {
   render() {
     return (
       <>
-        <Row >
-          <h3 style={{marginLeft:"10%"}}>New route:</h3>
+        <Row>
+          <h3 style={{ marginLeft: '10%' }}>New route:</h3>
         </Row>
         <Row>
-          <Form style ={{marginLeft:"17.5%"}}>
+          <Form style={{ marginLeft: '17.5%' }}>
             <Form.Group as={Row}>
               <Form.Control type="text" placeholder="From:" />
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Control type="text" placeholder="To:"/>
+              <Form.Control type="text" placeholder="To:" />
             </Form.Group>
             <Form.Group as={Row}>
-              <DateSelector/>
+              <DateSelector />
             </Form.Group>
             <Row>
               <Button

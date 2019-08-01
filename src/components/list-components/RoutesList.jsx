@@ -8,7 +8,6 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
 
 class RoutesList extends React.Component {
   componentDidMount() {
-
     this.props.getActiveRoutes()
     this.props.getActiveBookings()
     this.props.getRoutesHistory()
@@ -55,13 +54,13 @@ class RoutesList extends React.Component {
     } = this.props
     const { isLoading } = this.props
     const listOfDriverRides = activeRoutes
-      .map((x) => this.active(x, true))
-      .concat(routesHistory.map((y) => this.history(y, true)))
+      .map(x => this.active(x, true))
+      .concat(routesHistory.map(y => this.history(y, true)))
     const listOfPassengerRides = activeBookings
-      .map((x) => this.active(x, false))
-      .concat(bookingHistory.map((y) => this.history(y, false)))
+      .map(x => this.active(x, false))
+      .concat(bookingHistory.map(y => this.history(y, false)))
     return isLoading ? (
-      <Spinner/>
+      <Spinner />
     ) : (
       <Tab.Container defaultActiveKey="passenger">
         <Nav justify variant="tabs">
@@ -93,5 +92,5 @@ class RoutesList extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(RoutesList)

@@ -8,7 +8,6 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Home extends React.Component {
   componentDidMount() {
-
     this.props.requestRides()
   }
 
@@ -21,7 +20,6 @@ class Home extends React.Component {
           passengerRides={passengerRides}
           driverRides={driverRides}
           isLoading={isLoading}
-
         />
       </>
     )
