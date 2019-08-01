@@ -8,7 +8,6 @@ import {
 } from '../actions/notifications'
 import client from './axios'
 export const getNotifications = () => {
-  // redux-thunk
   return async function(dispatch) {
     try {
       dispatch(getNotificationsStarting())

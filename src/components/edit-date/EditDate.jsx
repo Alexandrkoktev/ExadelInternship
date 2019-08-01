@@ -6,9 +6,7 @@ class EditDate extends React.Component {
   render() {
     return (
       <div className="edit-date">
-        <Button variant="light">
-          <span className="oi oi-wrench" />
-        </Button>
+        <Button variant="light"></Button>
       </div>
     )
   }

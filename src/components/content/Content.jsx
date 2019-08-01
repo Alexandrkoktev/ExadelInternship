@@ -11,6 +11,7 @@ import Notifications from '../../containers/notifications/Notifications'
 import { connect } from 'react-redux'
 import Statistics from '../../containers/statistics/Statistics'
 import { mapStateToProps } from '../../commands/content'
+import OneRideInfo from '../../containers/one-ride/OneRideInfo'
 
 class Content extends React.Component {
   guestUser() {
@@ -51,6 +52,12 @@ class Content extends React.Component {
         exact
         path="/routes/route-info/:routeid"
         component={OneRouteInfo}
+        key={Math.random()}
+      />,
+      <Route
+        exact
+        path="/routes/ride-info/:rideid"
+        component={OneRideInfo}
         key={Math.random()}
       />,
       <Route exact path="/profile" component={Profile} key={Math.random()} />,

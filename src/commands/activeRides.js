@@ -11,7 +11,6 @@ export const mapDispatchToProps = dispatch => ({
   getRides: () => dispatch(getRides()),
 })
 export const getRides = () => {
-  // redux-thunk
   return async function(dispatch) {
     try {
       dispatch(getActiveRidesStarting())
