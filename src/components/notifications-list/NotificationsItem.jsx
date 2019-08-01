@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Button, Col, ListGroup, Row } from 'react-bootstrap'
 import '../list-components/style.sass'
 import '../../containers/notifications/notifications.sass'
@@ -99,5 +101,5 @@ class NotificationsItem extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NotificationsItem)
