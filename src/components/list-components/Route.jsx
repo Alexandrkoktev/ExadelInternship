@@ -8,7 +8,7 @@ import { formatDate } from '../../util'
 
 class Route extends React.Component {
   render() {
-    const {passenger, badge = '', styling = '', routeid } = this.props
+    const { badge = '', styling = '', routeid,rideid, passenger } = this.props
     return (
       <ListGroup.Item className={styling}>
         <Row>
@@ -20,24 +20,16 @@ class Route extends React.Component {
             {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
-            {passenger && ( <Link to={'routes/route-info/' + this.props.routeid}>
+            {passenger && ( <Link to={'routes/route-info/' + routeid}>
               <Button variant="outline-info" className="right">
                 Route Info
               </Button>
             </Link>)}
-            {!passenger && ( <Link to={'routes/ride-info/' + this.props.rideid}>
+            {!passenger && ( <Link to={'routes/ride-info/' + rideid}>
               <Button variant="outline-info" className="right">
                 Route Info
               </Button>
             </Link>)}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={8}>
-            <span className="oi oi-clock" />{' '}
-            {formatDate(new Date(this.props.depTime))}
-          </Col>
-          <Col>
             <Button variant="outline-danger" className="right">
               Delete
             </Button>
