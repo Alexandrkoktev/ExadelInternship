@@ -10,7 +10,7 @@ export const getPassengers = (id) => {
     try {
       dispatch(getPassengerStarting())
       const  {data} = await client({
-        url: '/api/activeRoute//${id}',
+        url: `/api/activeRoute/${id}`,
         method: 'get',
       })
       dispatch(getPassengerDone(data))
