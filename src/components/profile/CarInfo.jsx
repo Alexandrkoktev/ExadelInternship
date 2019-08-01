@@ -21,6 +21,7 @@ class CarInfo extends React.Component {
     } else {
       this.props.editCar(id, info)
     }
+    this.hide()
   }
 
   textChange = event => {
