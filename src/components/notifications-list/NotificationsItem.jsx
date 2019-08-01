@@ -33,6 +33,7 @@ class NotificationsItem extends React.Component {
 
   isDriver(driver) {
     if (driver) {
+      // debugger
       return (
         <div onClick={() => store.dispatch(push(this.state.routeId))}>
           <ListGroup.Item
@@ -62,6 +63,7 @@ class NotificationsItem extends React.Component {
 
   isPassenger(driver) {
     if (!driver) {
+      //debugger
       return (
         <div onClick={() => store.dispatch(push(this.state.rideId))}>
           <ListGroup.Item
@@ -91,15 +93,17 @@ class NotificationsItem extends React.Component {
 
   render() {
     const { driver } = this.props
-    return ([
-        this.isDriver(driver),
-        this.isDriver(driver),
-      ]
+    return (
+      <>
+        {this.isDriver(driver)}
+        {this.isPassenger(driver)}
+      </>
+
     )
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NotificationsItem)
