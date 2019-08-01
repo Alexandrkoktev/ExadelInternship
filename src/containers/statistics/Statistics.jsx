@@ -5,7 +5,6 @@ import ListOfUsersStatistics from '../../components/statistics/ListOfUsersStatis
 import Table from 'react-bootstrap/Table'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/statistics'
 import { connect } from 'react-redux'
-import Row from 'react-bootstrap/Row'
 
 class Statistics extends React.Component {
   componentDidMount() {
@@ -16,11 +15,11 @@ class Statistics extends React.Component {
     const { statistics } = this.props
 
     return (
-      <Row>
+      <>
         <InputGroup
           size="sm"
           className="mb-3"
-          style={{ marginTop: '3%', maxWidth: '30%' }}
+          style={{ marginTop: '3%',width: '30%' }}
         >
           <FormControl
             aria-label="Small"
@@ -28,7 +27,9 @@ class Statistics extends React.Component {
             aria-describedby="inputGroup-sizing-sm"
           />
           <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Search</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-sm">
+              <span className="oi oi-magnifying-glass"onClick={(event) => {event.preventDefault()}}/>
+            </InputGroup.Text>
           </InputGroup.Prepend>
         </InputGroup>
         <div className="table-responsive-sm">
@@ -37,7 +38,7 @@ class Statistics extends React.Component {
           bordered
           hover
           size="sm"
-          style={{margin: '2%'}}
+          style={{margin: 'auto'}}
         >
           <thead>
           <tr>
@@ -123,12 +124,12 @@ class Statistics extends React.Component {
           <ListOfUsersStatistics statistics={statistics}/>
         </Table>
         </div>
-      </Row>
+      </>
     )
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Statistics)
