@@ -10,7 +10,7 @@ export const getDriver = (id) => {
     try {
       dispatch(getDriverStarting())
       const { data } = await client({
-        url: '/api/booking/'.concat(id),
+        url: '/api/booking/${id}',
         method: 'get',
       })
       dispatch(getDriverDone(data))

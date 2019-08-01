@@ -21,12 +21,12 @@ class Route extends React.Component {
             {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
-            {passenger && ( <Link to={'routes/route-info/' + routeid}>
+            {passenger && ( <Link to={'routes/route-info/'.concat(routeid)}>
               <Button variant="outline-info" className="right">
                 Route Info
               </Button>
             </Link>)}
-            {!passenger && ( <Link to={'routes/ride-info/' + rideid}>
+            {!passenger && ( <Link to={'routes/ride-info/'.concat(rideid)}>
               <Button variant="outline-info" className="right">
                 Route Info
               </Button>
