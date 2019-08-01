@@ -7,12 +7,13 @@ import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
-} from '../../commands/info-about-passengers/passengers'
+} from '../../commands/driver'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
-    this.props.requestPassengers()
+    const id = this.props.match.params.rideid
+    this.props.requestDriver(id)
   }
 
   render() {
@@ -23,7 +24,7 @@ class OneRideInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
-                <Maps />
+                <Maps/>
               </Col>
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
@@ -43,7 +44,7 @@ class OneRideInfo extends React.Component {
                 />
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
+                <span className="oi oi-trash" style={{ fontSize: '25px' }}/>
               </Col>
             </Row>
           </Container>
@@ -55,5 +56,5 @@ class OneRideInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OneRideInfo)

@@ -2,15 +2,18 @@ import {
   getDriverDone,
   getDriverError,
   getDriverStarting,
-} from '../../actions/driver'
-import { fakeDriver } from './fakeDriver'
+} from '../actions/driver'
+import client from './axios'
 
-export const getDriver = () => {
+export const getDriver = (id) => {
   return async function(dispatch) {
     try {
       dispatch(getDriverStarting())
-      const driverInfo = await fakeDriver()
-      dispatch(getDriverDone(driverInfo))
+      const { data } = await client({
+        url: '/api/booking/'.concat(id),
+        method: 'get',
+      })
+      dispatch(getDriverDone(data))
     } catch (e) {
       dispatch(getDriverError(e))
     }
@@ -20,5 +23,5 @@ export const getDriver = () => {
 export const mapStateToProps = state => state.driver
 
 export const mapDispatchToProps = dispatch => ({
-  requestDriver: () => dispatch(getDriver()),
+  requestDriver: (id) => dispatch(getDriver(id)),
 })

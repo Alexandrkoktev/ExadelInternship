@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
-} from '../../commands/info-about-passengers/passengers'
+} from '../../commands/passengers'
 
 class OneRouteInfo extends React.Component {
   componentDidMount() {

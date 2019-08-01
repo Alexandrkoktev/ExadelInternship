@@ -19,7 +19,7 @@ class NotificationsItem extends React.Component {
     this.state = {
       text: props.text,
       routeId: 'routes/route-info/' + props.routeId,
-      rideId: 'routes/ride-info/' + props.rideId,
+      rideId: 'routes/ride-info/' + props.routeId,
       driver: props.driver,
     }
   }
@@ -31,9 +31,9 @@ class NotificationsItem extends React.Component {
     let click = event.target
   }
 
+
   isDriver(driver) {
     if (driver) {
-      // debugger
       return (
         <div onClick={() => store.dispatch(push(this.state.routeId))}>
           <ListGroup.Item
@@ -63,11 +63,10 @@ class NotificationsItem extends React.Component {
 
   isPassenger(driver) {
     if (!driver) {
-      //debugger
       return (
         <div onClick={() => store.dispatch(push(this.state.rideId))}>
           <ListGroup.Item
-            key={this.props.routeId}
+            key={this.props.rideId}
             className="itemOfNotificationList"
           >
             <Row>
