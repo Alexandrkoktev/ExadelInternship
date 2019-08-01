@@ -5,6 +5,8 @@ import { ListGroup, Row, Col, Button, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './style.sass'
 import { formatDate } from '../../util'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/home'
 
 class Route extends React.Component {
   render() {
@@ -25,7 +27,7 @@ class Route extends React.Component {
                 Route Info
               </Button>
             </Link>
-            <Button variant="outline-danger" className="right">
+            <Button variant="outline-danger" className="right" onClick={this.props.deleteRoute}>
               Delete
             </Button>
           </Col>
@@ -35,4 +37,4 @@ class Route extends React.Component {
   }
 }
 
-export default Route
+export default connect(mapStateToProps, mapDispatchToProps)(Route)

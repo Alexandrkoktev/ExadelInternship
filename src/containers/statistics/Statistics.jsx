@@ -5,6 +5,7 @@ import ListOfUsersStatistics from '../../components/statistics/ListOfUsersStatis
 import Table from 'react-bootstrap/Table'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/statistics'
 import { connect } from 'react-redux'
+import './statistics.sass'
 
 class Statistics extends React.Component {
   componentDidMount() {
@@ -13,13 +14,12 @@ class Statistics extends React.Component {
 
   render() {
     const { statistics } = this.props
-
+    //30 10 10 20 10 10 10
     return (
       <>
         <InputGroup
           size="sm"
-          className="mb-3"
-          style={{ marginTop: '3%', maxWidth: '30%' }}
+          className="mb-3 search"
         >
           <FormControl
             aria-label="Small"
@@ -39,82 +39,75 @@ class Statistics extends React.Component {
         >
           <thead>
             <tr>
-              <th>
+              <th className='titles name'>
                 <span>name </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles amount'>
                 <span>driver rating </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles amount'>
                 <span> passenger rating </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles distance'>
                 <span>distance </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles amount'>
                 <span>amount of passengers </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles amount'>
                 <span>amount of bookings </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
-              <th>
+              <th className='titles amount'>
                 <span>amount of routes </span>
-                <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
-                <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
-                />
+                <span className='wrap'>
+                  <span
+                    className="oi oi-caret-bottom arrows"
+                  />
+                  <span
+                    className="oi oi-caret-top arrows"
+                  /></span>
               </th>
             </tr>
           </thead>
