@@ -13,7 +13,6 @@ import {
 
 class OneRouteInfo extends React.Component {
   componentDidMount() {
-    debugger
     const id = this.props.match.params.routeid
     this.props.requestPassengers(id)
 

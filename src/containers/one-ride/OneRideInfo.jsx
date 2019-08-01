@@ -12,7 +12,6 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
-    debugger
     const id = this.props.match.params.rideid
     this.props.requestDriver(id)
   }

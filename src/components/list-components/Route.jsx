@@ -8,7 +8,6 @@ import { formatDate } from '../../util'
 
 class Route extends React.Component {
   render() {
-    debugger
     const { badge = '', styling = '', routeid, rideid, passenger } = this.props
     return (
       <ListGroup.Item className={styling}>

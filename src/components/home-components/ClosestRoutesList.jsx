@@ -11,7 +11,6 @@ import './style.sass'
 class ClosestRoutesList extends React.Component {
 
   render() {
-   // debugger
     const { passengerRides = [], driverRides = [] } = this.props
     const { isLoading } = this.props
     const passengerides = passengerRides.map(item => (

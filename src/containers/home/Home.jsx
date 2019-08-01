@@ -13,7 +13,6 @@ class Home extends React.Component {
   }
 
   render() {
-    //debugger
     const { passengerRides, driverRides } = this.props
     console.log(passengerRides)
     const isLoading = this.props.userInfo.loading
