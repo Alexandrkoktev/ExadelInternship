@@ -17,6 +17,7 @@ class Statistics extends React.Component {
   }
 
   render() {
+    debugger
     const { statistics } = this.props
     return (
       <>

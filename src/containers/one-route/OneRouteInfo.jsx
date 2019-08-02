@@ -24,7 +24,6 @@ class OneRouteInfo extends React.Component {
               <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
                 <Maps />
               </Col>
-
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
                 <div

@@ -14,7 +14,8 @@ class OneRideInfo extends React.Component {
   }
 
   render() {
-    const { driver } = this.props
+    debugger
+    const { driverName, phoneNumber } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
@@ -26,7 +27,7 @@ class OneRideInfo extends React.Component {
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
-                  <ListGroupItem>{driver}</ListGroupItem>
+                  <ListGroupItem>{driverName}</ListGroupItem>
                 </div>
               </Col>
             </Row>

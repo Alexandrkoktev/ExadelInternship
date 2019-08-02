@@ -1,31 +1,52 @@
 import {
-  GET_DRIVER_DATA,
-  GET_DRIVER_DATA_SUCCESS,
-  GET_DRIVER_DATA_ERROR,
+  GET_DRIVER_NAME_DATA,
+  GET_DRIVER_NAME_DATA_SUCCESS,
+  GET_DRIVER_NAME_DATA_ERROR,
+  GET_PHONE_NUMBER_DATA,
+  GET_PHONE_NUMBER_DATA_SUCCESS,
+  GET_PHONE_NUMBER_DATA_ERROR,
 } from '../actions/driver'
 
 const initialState = {
-  passengers: [],
+  driverName: "",
+  phoneNumber: "",
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_DRIVER_DATA:
+    case GET_DRIVER_NAME_DATA:
       return {
         ...state,
       }
-    case GET_DRIVER_DATA_SUCCESS:
-      const { passengers } = action.payload
+    case GET_DRIVER_NAME_DATA_SUCCESS:
+      const {driverName} = action.payload
       return {
         ...state,
-        passengers,
+        driverName,
       }
-    case GET_DRIVER_DATA_ERROR:
+    case GET_DRIVER_NAME_DATA_ERROR:
       const { error } = action
       return {
         ...state,
         error,
       }
+    case GET_PHONE_NUMBER_DATA:
+      return {
+        ...state,
+      }
+    case GET_PHONE_NUMBER_DATA_SUCCESS:
+      const {phoneNumber}  = action.payload
+      return {
+        ...state,
+        phoneNumber,
+      }
+    case GET_PHONE_NUMBER_DATA_ERROR: {
+      const { error } = action
+      return {
+        ...state,
+        error,
+      }
+    }
     default:
       return state
   }

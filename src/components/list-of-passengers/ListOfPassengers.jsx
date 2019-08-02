@@ -9,7 +9,7 @@ class ListOfPassengers extends React.Component {
     const passengerArr = passengers.map(item => {
       return (
         <ListGroup.Item key={item.id}>
-          Name: {item.name}, Phone Number: {item.number}
+          Name: {item.name}, Phone Number: {item.phoneNumber}
         </ListGroup.Item>
       )
     })
