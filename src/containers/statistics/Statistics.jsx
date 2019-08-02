@@ -14,7 +14,6 @@ class Statistics extends React.Component {
 
   render() {
     const { statistics } = this.props
-    //30 10 10 20 10 10 10
     return (
       <>
         <InputGroup

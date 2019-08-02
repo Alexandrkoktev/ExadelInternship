@@ -20,7 +20,7 @@ class UserStats extends React.Component {
         <tr>
           <td>{this.state.name}</td>
           <td>{this.state.ratingDriver.toFixed(1)}</td>
-          <td>{this.state.ratingPassenger}</td>
+          <td>{this.state.ratingPassenger.toFixed(1)}</td>
           <td>{this.state.distance.toFixed(2)}</td>
           <td>{this.state.amountOfPassengers}</td>
           <td>{this.state.amountOfBookings}</td>
