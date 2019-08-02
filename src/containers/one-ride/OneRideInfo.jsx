@@ -14,7 +14,9 @@ class OneRideInfo extends React.Component {
   }
 
   render() {
+    debugger
     const { driverName, phoneNumber } = this.props
+    console.log(this.props)
     return (
       <div className="one-route-info">
         <div className="block">

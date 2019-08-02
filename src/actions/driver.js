@@ -12,6 +12,7 @@ export function getDriverNameStarting() {
 }
 
 export function getDriverNameDone(userData) {
+
   return {
     type: GET_DRIVER_NAME_DATA_SUCCESS,
     payload: userData,

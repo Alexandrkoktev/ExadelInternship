@@ -27,8 +27,8 @@ export const getDriver = id => {
 }
 
 export const mapStateToProps = state => ({
-    driverName: state.driverName,
-    phoneNumber: state.phoneNumber
+    driverName: state.driver.driverName,
+    phoneNumber: state.driver.phoneNumber
   }
 )
 

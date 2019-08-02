@@ -19,10 +19,11 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case GET_DRIVER_NAME_DATA_SUCCESS:
-      const {driverName} = action.payload
+      const {driverName,phoneNumber} = action.payload
       return {
         ...state,
         driverName,
+        phoneNumber,
       }
     case GET_DRIVER_NAME_DATA_ERROR:
       const { error } = action
@@ -30,23 +31,6 @@ function reducer(state = initialState, action) {
         ...state,
         error,
       }
-    case GET_PHONE_NUMBER_DATA:
-      return {
-        ...state,
-      }
-    case GET_PHONE_NUMBER_DATA_SUCCESS:
-      const {phoneNumber}  = action.payload
-      return {
-        ...state,
-        phoneNumber,
-      }
-    case GET_PHONE_NUMBER_DATA_ERROR: {
-      const { error } = action
-      return {
-        ...state,
-        error,
-      }
-    }
     default:
       return state
   }
