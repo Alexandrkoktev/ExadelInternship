@@ -5,15 +5,17 @@ class DateSelector extends Component {
     date: new Date(),
   }
 
-  onChange = date => this.setState({ date })
+  onChange = date => {
+    this.setState({ date })
+    this.props.onChange(date)
+  }
 
   render() {
     return (
       <div className="date-selector">
-        <DateTimePicker readonly="readonly" value={this.state.date} />
+        <DateTimePicker onChange={this.onChange} value={this.state.date} />
       </div>
     )
   }
 }
-
 export default DateSelector
