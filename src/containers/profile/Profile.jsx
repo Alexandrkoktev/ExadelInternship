@@ -1,10 +1,14 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { Tab, Nav, ListGroup } from 'react-bootstrap'
 import './profile.sass'
+// eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
+// eslint-disable-next-line no-unused-vars
 import CarsList from '../../components/profile/CarsList'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
+// eslint-disable-next-line no-unused-vars
 import FavouriteRoute from '../../components/favourite-routes/FavouriteRoute'
 
 class Profile extends React.Component {
@@ -46,8 +50,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                  <ListGroup>{dRidesArr}</ListGroup>
-                )}
+                <ListGroup>{dRidesArr}</ListGroup>
+              )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />

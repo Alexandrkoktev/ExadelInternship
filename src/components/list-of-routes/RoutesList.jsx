@@ -5,9 +5,15 @@ import { formatDate } from '../../util'
 class RoutesList extends React.Component {
   render() {
     const { rides } = this.props
+    const { getRide } = this.props
     const dRidesArr = rides.map(item => {
       return (
-        <ListGroup.Item key={item.id}>
+        <ListGroup.Item
+          key={item.id}
+          onClick={() => {
+            getRide(item.id)
+          }}
+        >
           {item.startPointName} <span className="oi oi-arrow-right" />{' '}
           {item.finishPointName}
           <br /> Time: {formatDate(new Date(item.timeAndDate))}

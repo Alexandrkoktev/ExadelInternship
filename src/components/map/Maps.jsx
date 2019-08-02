@@ -11,6 +11,43 @@ class Maps extends React.Component {
     this.route = null
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (
+      this.map &&
+      nextProps.showing &&
+      !!Object.keys(nextProps.showing).length
+    ) {
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      this.ymaps
+        .route(
+          [
+            nextProps.showing.startPoint,
+            ...nextProps.showing.viaPoints.map(point => {
+              return { type: 'viaPoint', point: point }
+            }),
+            nextProps.showing.finishPoint,
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            // в балуне выводим только информацию о времени движения с учетом пробок
+            // можно выставить настройки графики маршруту
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+
+          this.map.geoObjects.remove(this.route)
+          this.route = route
+
+          // добавляем маршрут на карту
+          this.map.geoObjects.add(route)
+        })
+    }
+  }
+
   getAddress(coordinates) {
     return this.ymaps.geocode(coordinates).then(resp => {
       const nearest = resp.geoObjects.get(0)
@@ -91,34 +128,34 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       this.routeEditor = this.map.controls.add('routeEditor')
     }
-    /*
-    const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
-      '<div>Test</div>'
-    )
-    ymaps
-      .route(
-        [
-          [53.92769, 27.68307],
-          { type: 'viaPoint', point: 'Логойский тракт, 15/1' },
-          'ул. Веры Хоружей',
-          { type: 'wayPoint', point: 'ст. м. Автозаводская' },
-        ],
-        { balloonContentBodyLayout }
-      )
-      .then(route => {
-        route.getPaths().options.set({
-          // в балуне выводим только информацию о времени движения с учетом пробок
-          // можно выставить настройки графики маршруту
-          strokeColor: '0000ffff',
-          opacity: 0.9,
-        })
+    // тут прорисовка для просмотра информации о маршруте
+    // if (this.props && this.props.showing) {
+    //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
+    //     '<div>Test</div>'
+    //   )
+    //   ymaps
+    //     .route(
+    //       [
+    //         this.props.showing.startPoint,
+    //         ...this.props.showing.viaPoints.map((point)=>{return {type:'viaPoint', point: point}}),
+    //         this.props.showing.finishPoint
+    //       ],
+    //       { balloonContentBodyLayout }
+    //     )
+    //     .then(route => {
+    //       route.getPaths().options.set({
+    //         // в балуне выводим только информацию о времени движения с учетом пробок
+    //         // можно выставить настройки графики маршруту
+    //         strokeColor: '0000ffff',
+    //         opacity: 0.9,
+    //       })
 
-        this.route = route;   // !!!!
+    //       // this.route = route;   // !!!!
 
-        // добавляем маршрут на карту
-        this.map.geoObjects.add(route)
-      })
-    */
+    //       // добавляем маршрут на карту
+    //       this.map.geoObjects.add(route)
+    //     })
+    // }
   }
 
   render() {
