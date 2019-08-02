@@ -11,7 +11,7 @@ class RoutesList extends React.Component {
     const dRidesArr = rides.map(item => {
       return (
         this.props.favourites?
-          <FavouriteRoute key={item.id} name={item.name} depPoint={item.startPointName} destPoint={item.endPointName}/>
+          <FavouriteRoute key={item.routeId} name={item.name} depPoint={item.startPointName} destPoint={item.endPointName}/>
           :
         <ListGroup.Item key={item.id}
                         onClick={() => {

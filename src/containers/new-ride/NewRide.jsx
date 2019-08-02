@@ -42,7 +42,6 @@ class NewRide extends React.Component {
               </ListGroup>
             </Row>
             <Row>
-              <h1> Active Rides:</h1>
               <RoutesList
                 rides={activeRides}
                 getRide={this.choose.bind(this)}
@@ -50,9 +49,7 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps needPlacemarks={true} showing={this.state.chosenRide} />
-          <Col sm={7} style={ {height:"358px"}}>
-            <Maps showing={this.state.chosenRide} />
+            <Maps onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
           </Col>
         </Row>
       </Container>
