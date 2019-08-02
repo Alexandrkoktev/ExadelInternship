@@ -49,7 +49,7 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps showing={this.state.chosenRide} />
+            <Maps needPlacemarks={true} showing={this.state.chosenRide} />
           </Col>
         </Row>
       </Container>
