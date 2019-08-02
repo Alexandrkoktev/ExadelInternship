@@ -60,7 +60,7 @@ class RoutesList extends React.Component {
       .map(x => this.active(x, false))
       .concat(bookingHistory.map(y => this.history(y, false)))
     return isLoading ? (
-      <Spinner />
+      <Spinner/>
     ) : (
       <Tab.Container defaultActiveKey="passenger">
         <Nav justify variant="tabs">
@@ -92,5 +92,5 @@ class RoutesList extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(RoutesList)

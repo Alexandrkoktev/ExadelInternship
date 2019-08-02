@@ -13,6 +13,7 @@ export const getPassengers = id => {
         url: `/api/activeRoute/${id}`,
         method: 'get',
       })
+      debugger
       dispatch(getPassengerDone(data))
     } catch (e) {
       dispatch(getPassengerError(e))

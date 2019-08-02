@@ -9,10 +9,12 @@ export const getDriver = id => {
   return async function(dispatch) {
     try {
       dispatch(getDriverStarting())
+      debugger
       const { data } = await client({
         url: `/api/booking/${id}`,
         method: 'get',
       })
+      debugger
       dispatch(getDriverDone(data))
     } catch (e) {
       dispatch(getDriverError(e))

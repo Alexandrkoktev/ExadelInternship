@@ -21,7 +21,7 @@ class Route extends React.Component {
           </Col>
           <Col>
             {passenger && (
-              <Link to={`routes/route-info/'${routeid}`}>
+              <Link to={`routes/route-info/${routeid}`}>
                 <Button variant="outline-info" className="right">
                   Route Info
                 </Button>

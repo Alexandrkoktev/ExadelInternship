@@ -15,6 +15,7 @@ class OneRouteInfo extends React.Component {
   }
 
   render() {
+    debugger
     const { passengers: { bookings } = [] } = this.props
     return (
       <div className="one-route-info">
@@ -22,22 +23,21 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
-                <Maps />
+                <Maps/>
               </Col>
-
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
                 <div
                   style={{ height: 'auto', maxHeight: '262px' }}
                   className="scrollable"
                 >
-                  <ListOfPassengers passengers={bookings} />
+                  <ListOfPassengers passengers={bookings}/>
                 </div>
               </Col>
             </Row>
             <Row style={{ marginLeft: '1%' }}>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
+                <span className="oi oi-pencil" style={{ fontSize: '25px' }}/>
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                 <span
@@ -46,7 +46,7 @@ class OneRouteInfo extends React.Component {
                 />
               </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
+                <span className="oi oi-trash" style={{ fontSize: '25px' }}/>
               </Col>
             </Row>
           </Container>
@@ -58,5 +58,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OneRouteInfo)
