@@ -1,8 +1,11 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
+// eslint-disable-next-line no-unused-vars
 import Car from '../list-components/Car'
+// eslint-disable-next-line no-unused-vars
 import CarInfo from './CarInfo'
 
 class CarsList extends React.Component {
