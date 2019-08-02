@@ -34,7 +34,6 @@ export const getNewRouteCars = () => {
         url: '/api/newroute/cars',
         method: 'get',
       })
-      console.log(data)
       dispatch(getCarsDone(data))
     } catch (e) {
       dispatch(getCarsError(e))

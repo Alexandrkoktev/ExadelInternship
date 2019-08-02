@@ -9,9 +9,7 @@ import { Link } from 'react-router-dom'
 import './style.sass'
 
 class ClosestRoutesList extends React.Component {
-
   render() {
-   // debugger
     const { passengerRides = [], driverRides = [] } = this.props
     const { isLoading } = this.props
     const passengerides = passengerRides.map(item => (
@@ -28,7 +26,7 @@ class ClosestRoutesList extends React.Component {
     const driverrides = driverRides.map(item => (
       <Route
         routeid={item.id}
-        passenger = {true}
+        passenger={true}
         key={item.id}
         depPoint={item.startPointName}
         destPoint={item.finishPointName}

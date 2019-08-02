@@ -97,5 +97,5 @@ class RoutesList extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(RoutesList)

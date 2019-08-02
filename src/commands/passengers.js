@@ -5,12 +5,12 @@ import {
 } from '../actions/passengers'
 import client from './axios'
 
-export const getPassengers = (id) => {
+export const getPassengers = id => {
   return async function(dispatch) {
     try {
       dispatch(getPassengerStarting())
-      const  {data} = await client({
-        url: '/api/activeRoute//${id}',
+      const { data } = await client({
+        url: `/api/activeRoute/${id}`,
         method: 'get',
       })
       dispatch(getPassengerDone(data))
@@ -23,5 +23,5 @@ export const getPassengers = (id) => {
 export const mapStateToProps = state => state.passengers
 
 export const mapDispatchToProps = dispatch => ({
-  requestPassengers: (id) => dispatch(getPassengers(id)),
+  requestPassengers: id => dispatch(getPassengers(id)),
 })

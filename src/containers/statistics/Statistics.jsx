@@ -27,16 +27,18 @@ class Statistics extends React.Component {
             aria-describedby="inputGroup-sizing-sm"
           />
           <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">Search</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-sm">
+              <span
+                className="oi oi-magnifying-glass"
+                onClick={event => {
+                  event.preventDefault()
+                }}
+              />
+            </InputGroup.Text>
           </InputGroup.Prepend>
         </InputGroup>
-        <Table
-          striped
-          bordered
-          hover
-          size="sm"
-          style={{ marginTop: '2.5%', maxWidth: '100%' }}
-        >
+        <div className="table-responsive-sm">
+        <Table striped bordered hover size="sm" style={{ margin: 'auto' }}>
           <thead>
             <tr>
               <th className='titles name'>
@@ -112,7 +114,8 @@ class Statistics extends React.Component {
             </tr>
           </thead>
           <ListOfUsersStatistics statistics={statistics} />
-        </Table>
+          </Table>
+        </div>
       </>
     )
   }

@@ -8,14 +8,11 @@ import { mapStateToProps, mapDispatchToProps } from '../../commands/home'
 
 class Home extends React.Component {
   componentDidMount() {
-
     this.props.requestRides()
   }
 
   render() {
-    //debugger
     const { passengerRides, driverRides } = this.props
-    console.log(passengerRides)
     const isLoading = this.props.userInfo.loading
     return (
       <>
@@ -23,7 +20,6 @@ class Home extends React.Component {
           passengerRides={passengerRides}
           driverRides={driverRides}
           isLoading={isLoading}
-
         />
       </>
     )
