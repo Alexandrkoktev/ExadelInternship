@@ -38,9 +38,9 @@ class NewRide extends React.Component {
           <Col sm={5}>
                 <PassengerForm/>
             <h1> Active Rides:</h1>
-                <RoutesList rides={activeRides} favourites={false}/>
+                <RoutesList rides={activeRides} favourites={false} getRide={this.choose.bind(this)}/>
           </Col>
-          <Col sm={7}>
+          <Col sm={7} style={ {height:"358px"}}>
             <Maps showing={this.state.chosenRide} />
           </Col>
         </Row>

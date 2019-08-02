@@ -13,7 +13,7 @@ class DateSelector extends Component {
   render() {
     return (
       <div className="date-selector">
-        <DateTimePicker readonly="readonly" value={this.state.date} />
+        <DateTimePicker onChange={this.onChange} value={this.state.date} />
       </div>
     )
   }
