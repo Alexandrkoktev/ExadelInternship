@@ -3,24 +3,22 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Maps from '../../components/map/Maps'
-import './oneRouteInfo.sass'
-import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 import { connect } from 'react-redux'
 import {
   mapDispatchToProps,
   mapStateToProps,
-} from '../../commands/passengers'
+} from '../../commands/driver'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
-class OneRouteInfo extends React.Component {
+class OneRideInfo extends React.Component {
   componentDidMount() {
     debugger
-    const id = this.props.match.params.routeid
-    this.props.requestPassengers(id)
-
+    const id = this.props.match.params.rideid
+    this.props.requestDriver(id)
   }
 
   render() {
-    const { passengers:{bookings}=[] } = this.props
+    const { driver } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
@@ -29,21 +27,17 @@ class OneRouteInfo extends React.Component {
               <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
                 <Maps/>
               </Col>
-
               <Col sm="5">
-                <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
+                <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div
                   style={{ height: 'auto', maxHeight: '262px' }}
-                  className="scrollable"
                 >
-                  <ListOfPassengers passengers={bookings}/>
+                  <ListGroupItem>{driver}</ListGroupItem>
                 </div>
               </Col>
             </Row>
+
             <Row style={{ marginLeft: '1%' }}>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-pencil" style={{ fontSize: '25px' }}/>
-              </Col>
               <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                 <span
                   className="oi oi-envelope-closed"
@@ -64,4 +58,4 @@ class OneRouteInfo extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(OneRouteInfo)
+)(OneRideInfo)

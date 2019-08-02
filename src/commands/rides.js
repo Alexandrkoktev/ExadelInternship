@@ -110,7 +110,25 @@ const deleteRoute = (id) => {
       await client({
         url: '/api/deleteRoute',
         method: 'delete',
-        data: { id }
+        data: JSON.stringify(id),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      dispatch(deleteRideDone())
+    } catch (e) {
+      dispatch(deleteRideError(e))
+    }
+  }
+}
+
+const deleteBooking = (id) => {
+  return async function (dispatch) {
+    try {
+      dispatch(deleteRideStarting())
+      await client({
+        url: '/api/booking',
+        method: 'delete',
+        data: JSON.stringify(id),
+        headers: { 'Content-Type': 'application/json' }
       })
       dispatch(deleteRideDone())
     } catch (e) {
@@ -135,5 +153,6 @@ export const mapDispatchToProps = dispatch => ({
   getActiveBookings: () => dispatch(getActiveBookings()),
   getRoutesHistory: () => dispatch(getRoutesHistory()),
   getBookingsHistory: () => dispatch(getBookingsHistory()),
-  deleteRoute: (id) => dispatch(deleteRoute(id))
+  deleteRoute: (id) => dispatch(deleteRoute(id)),
+  deleteBooking: (id) => dispatch(deleteBooking(id))
 })

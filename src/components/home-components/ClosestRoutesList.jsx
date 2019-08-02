@@ -9,12 +9,15 @@ import { Link } from 'react-router-dom'
 import './style.sass'
 
 class ClosestRoutesList extends React.Component {
+
   render() {
+   // debugger
     const { passengerRides = [], driverRides = [] } = this.props
     const { isLoading } = this.props
-    const clientRides = passengerRides.map(item => (
+    const passengerides = passengerRides.map(item => (
       <Route
-        routeid={item.id}
+        rideid={item.id}
+        passenger={false}
         key={item.id}
         depPoint={item.startPointName}
         destPoint={item.finishPointName}
@@ -25,6 +28,7 @@ class ClosestRoutesList extends React.Component {
     const driverrides = driverRides.map(item => (
       <Route
         routeid={item.id}
+        passenger = {true}
         key={item.id}
         depPoint={item.startPointName}
         destPoint={item.finishPointName}
@@ -54,7 +58,7 @@ class ClosestRoutesList extends React.Component {
               </Button>
             </Link>
           </ButtonToolbar>
-          <ListGroup>{clientRides}</ListGroup>
+          <ListGroup>{passengerides}</ListGroup>
         </Col>
       </Row>
     )
