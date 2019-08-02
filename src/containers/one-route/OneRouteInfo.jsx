@@ -44,13 +44,13 @@ class OneRouteInfo extends React.Component {
               </Col>
             </Row>
             <Row>
-              <div style={{ width: '35%' }}>
-                <div style={{ float: 'left' }}>
+              <div className='widthStyle'>
+                <div className='floatLeftStyle'>
                   <Col sm="4">
                     <DateSelector />
                   </Col>
                 </div>
-                <div style={{ float: 'right' }}>
+                <div className='floatRightStyle'>
                   <Col sm="1">
                     <EditDate />
                   </Col>

@@ -22,14 +22,9 @@ class NewRide extends React.Component {
       <Container>
         <Row>
           <Col sm={5}>
-            <Row>
-              <ListGroup>
                 <PassengerForm/>
-              </ListGroup>
-            </Row>
-            <Row>
-              <RoutesList rides={activeRides}/>
-            </Row>
+            <h1> Active Rides:</h1>
+                <RoutesList rides={activeRides} favourites={false}/>
           </Col>
           <Col sm={7}>
             <Maps/>

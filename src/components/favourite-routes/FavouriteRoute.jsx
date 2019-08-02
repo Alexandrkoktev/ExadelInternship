@@ -10,7 +10,7 @@ class FavouriteRoute extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col xs={8}>
-            {this.props.name.toUpperCase()}: {this.props.depPoint}{' '}
+            {this.props.name.toUpperCase()}: {this.props.depPoint}
             <span className="oi oi-arrow-right" /> {this.props.destPoint}
           </Col>
         </Row>

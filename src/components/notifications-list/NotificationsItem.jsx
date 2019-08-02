@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Col, ListGroup, Row } from 'react-bootstrap'
+import { Badge, Button, Col, ListGroup, Row } from 'react-bootstrap'
 import '../list-components/style.sass'
 import '../../containers/notifications/notifications.sass'
 import { connect } from 'react-redux'
@@ -43,7 +43,7 @@ class NotificationsItem extends React.Component {
       >
         <Row>
           <Col xs="10" md="11">
-              {this.state.text}
+              {this.state.text}<Badge variant="info">{" "}{this.props.driver ? "Driver":"Passenger"}</Badge>
           </Col>
           <Col xs="2" md="1">
             <span

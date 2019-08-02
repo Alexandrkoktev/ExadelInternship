@@ -7,6 +7,9 @@ import {
   getBookingsHistoryDone,
   getRidesError,
   getRidesStarting,
+  createRouteStarting,
+  createRouteDone,
+  createRouteError,
 } from '../actions/rides'
 import client from './axios'
 
@@ -99,7 +102,30 @@ const getBookingsHistory = () => {
     }
   }
 }
-
+export const createRoute = (data,info) => {
+  return async function(dispatch) {
+    try {
+      dispatch(createRouteStarting())
+      const route=await data;
+      await client({
+        url: '/api/addRoute/',
+        method: 'post',
+        data: {
+          timeAndDate: info.time.toJSON(),
+          maxSeats: info.seats,
+          carId: info.carId,
+          favourite: false,
+          favouriteRouteId: 0,
+          routeURL: 0,
+          ...route,
+        },
+      })
+      dispatch(createRouteDone())
+    } catch (e) {
+      dispatch(createRouteError(e))
+    }
+  }
+}
 export const mapStateToProps = state => ({
   rides: state.rides.rides,
   favourites: state.favourites.favourites,
@@ -116,4 +142,5 @@ export const mapDispatchToProps = dispatch => ({
   getActiveBookings: () => dispatch(getActiveBookings()),
   getRoutesHistory: () => dispatch(getRoutesHistory()),
   getBookingsHistory: () => dispatch(getBookingsHistory()),
+  createRoute: (data,info)=> dispatch(createRoute(data,info)),
 })

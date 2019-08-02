@@ -27,35 +27,35 @@ class Content extends React.Component {
       return <Route exact path="/login" component={LogIn} />
     }
     return [
-      <Route exact path="/home" component={Home} key={Math.random()} />,
+      <Route exact path="/home" component={Home} key={1} />,
       <Route
         exact
         path="/home/new-ride"
         component={NewRide}
-        key={Math.random()}
+        key={2}
       />,
       <Route
         exact
         path="/home/new-route"
         component={NewRoute}
-        key={Math.random()}
+        key={3}
       />,
-      <Route exact path="/routes" component={Routes} key={Math.random()} />,
+      <Route exact path="/routes" component={Routes}  key={4} />,
       <Route
         exact
         path="/notifications"
         component={Notifications}
-        key={Math.random()}
+        key={5}
       />,
       <Route
         exact
         path="/routes/route-info/:routeid"
         component={OneRouteInfo}
-        key={Math.random()}
+        key={6}
       />,
-      <Route exact path="/profile" component={Profile} key={Math.random()} />,
-      <Route exact path="/new-ride" component={NewRide} key={Math.random()} />,
-      <Route render={() => <h1>Page not found</h1>} key={Math.random()} />,
+      <Route exact path="/profile" component={Profile}  key={7} />,
+      <Route exact path="/new-ride" component={NewRide}  key={8} />,
+      <Route render={() => <h1>Page not found</h1>}  key={9} />,
     ]
   }
 

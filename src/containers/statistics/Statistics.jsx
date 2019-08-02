@@ -1,7 +1,11 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import InputGroup from 'react-bootstrap/InputGroup'
+// eslint-disable-next-line no-unused-vars
 import FormControl from 'react-bootstrap/es/FormControl'
+// eslint-disable-next-line no-unused-vars
 import ListOfUsersStatistics from '../../components/statistics/ListOfUsersStatistics'
+// eslint-disable-next-line no-unused-vars
 import Table from 'react-bootstrap/Table'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/statistics'
 import { connect } from 'react-redux'
@@ -18,8 +22,7 @@ class Statistics extends React.Component {
       <>
         <InputGroup
           size="sm"
-          className="mb-3"
-          style={{ marginTop: '3%', maxWidth: '30%' }}
+          className="mb-3 forInputGroup"
         >
           <FormControl
             aria-label="Small"
@@ -35,85 +38,71 @@ class Statistics extends React.Component {
           bordered
           hover
           size="sm"
-          style={{ marginTop: '2.5%', maxWidth: '100%' }}
+          className='forTable'
         >
           <thead>
             <tr>
               <th>
                 <span>name </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span>driver rating </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span> passenger rating </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span>distance </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span>amount of passengers </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span>amount of bookings </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
               <th>
                 <span>amount of routes </span>
                 <span
-                  className="oi oi-caret-bottom"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-bottom icon"
                 />
                 <span
-                  className="oi oi-caret-top"
-                  style={{ fontSize: '13px', marginLeft: 'auto' }}
+                  className="oi oi-caret-top icon"
                 />
               </th>
             </tr>

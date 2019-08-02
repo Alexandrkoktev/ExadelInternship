@@ -9,10 +9,10 @@ class PassengerForm extends React.Component {
     return (
       <>
         <Row >
-          <h3 style={{marginLeft:"10%"}}>New route:</h3>
+          <h3 className='styleForHead'>New route:</h3>
         </Row>
         <Row>
-          <Form style ={{marginLeft:"17.5%"}}>
+          <Form className='styleForForm'>
             <Form.Group as={Row}>
               <Form.Control type="text" placeholder="From:" />
             </Form.Group>

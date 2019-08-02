@@ -5,7 +5,10 @@ class DateSelector extends Component {
     date: new Date(),
   }
 
-  onChange = date => this.setState({ date })
+  onChange = date => {
+    this.setState({ date })
+    this.props.onChange(date)
+  }
 
   render() {
     return (
@@ -17,5 +20,4 @@ class DateSelector extends Component {
     )
   }
 }
-
 export default DateSelector
