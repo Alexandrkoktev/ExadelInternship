@@ -19,50 +19,47 @@ import EditDate from '../../components/edit-date/EditDate'
 // eslint-disable-next-line no-unused-vars
 import DeleteButton from '../../components/delete-button/DeleteButton'
 import { connect } from 'react-redux'
-import {
-  mapDispatchToProps,
-  mapStateToProps,
-} from '../../commands/info-about-passengers/passengers'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/passengers'
 
 class OneRouteInfo extends React.Component {
   componentDidMount() {
-    this.props.requestPassengers()
+    const id = this.props.match.params.routeid
+    this.props.requestPassengers(id)
   }
 
   render() {
-    const { passengers } = this.props
+    const { passengers: { bookings } = [] } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
-              <Col sm="6">
+              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
                 <Maps />
               </Col>
-              <Col sm="6">
-                <ListOfPassengers passengers={passengers} />
+
+              <Col sm="5">
+                <h5 style={{ marginLeft: '4.4%' }}>List of passengers:</h5>
+                <div
+                  style={{ height: 'auto', maxHeight: '262px' }}
+                  className="scrollable"
+                >
+                  <ListOfPassengers passengers={bookings} />
+                </div>
               </Col>
             </Row>
-            <Row>
-              <div className='widthStyle'>
-                <div className='floatLeftStyle'>
-                  <Col sm="4">
-                    <DateSelector />
-                  </Col>
-                </div>
-                <div className='floatRightStyle'>
-                  <Col sm="1">
-                    <EditDate />
-                  </Col>
-                </div>
-              </div>
-            </Row>
-            <Row>
-              <Col sm="11">
-                <DeleteButton />
+            <Row style={{ marginLeft: '1%' }}>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
               </Col>
-              <Col sm="1">
-                <Button variant="dark">Ok</Button>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span
+                  className="oi oi-envelope-closed"
+                  style={{ fontSize: '25px' }}
+                />
+              </Col>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
               </Col>
             </Row>
           </Container>

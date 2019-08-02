@@ -17,10 +17,10 @@ class PassengerForm extends React.Component {
               <Form.Control type="text" placeholder="From:" />
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Control type="text" placeholder="To:"/>
+              <Form.Control type="text" placeholder="To:" />
             </Form.Group>
             <Form.Group as={Row}>
-              <DateSelector/>
+              <DateSelector />
             </Form.Group>
             <Row>
               <Button

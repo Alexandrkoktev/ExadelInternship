@@ -11,6 +11,7 @@ import Notifications from '../../containers/notifications/Notifications'
 import { connect } from 'react-redux'
 import Statistics from '../../containers/statistics/Statistics'
 import { mapStateToProps } from '../../commands/content'
+import OneRideInfo from '../../containers/one-ride/OneRideInfo'
 
 class Content extends React.Component {
   guestUser() {
@@ -52,6 +53,12 @@ class Content extends React.Component {
         path="/routes/route-info/:routeid"
         component={OneRouteInfo}
         key={6}
+      />,
+      <Route
+        exact
+        path="/routes/ride-info/:rideid"
+        component={OneRideInfo}
+        key={10}
       />,
       <Route exact path="/profile" component={Profile}  key={7} />,
       <Route exact path="/new-ride" component={NewRide}  key={8} />,

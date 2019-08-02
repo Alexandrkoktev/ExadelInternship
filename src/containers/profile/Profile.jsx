@@ -3,9 +3,8 @@ import React from 'react'
 import { Tab, Nav, ListGroup } from 'react-bootstrap'
 import './profile.sass'
 // eslint-disable-next-line no-unused-vars
-import Route from '../../components/list-components/Route'
-// eslint-disable-next-line no-unused-vars
 import UserInfo from '../../components/profile/UserInfo'
+// eslint-disable-next-line no-unused-vars
 import CarsList from '../../components/profile/CarsList'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'

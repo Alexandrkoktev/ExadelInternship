@@ -10,6 +10,9 @@ import {
   createRouteStarting,
   createRouteDone,
   createRouteError,
+  deleteRideStarting,
+  deleteRideDone,
+  deleteRideError,
 } from '../actions/rides'
 import client from './axios'
 
@@ -126,6 +129,41 @@ export const createRoute = (data,info) => {
     }
   }
 }
+
+const deleteRoute = id => {
+  return async function(dispatch) {
+    try {
+      dispatch(deleteRideStarting())
+      await client({
+        url: '/api/deleteRoute',
+        method: 'delete',
+        data: JSON.stringify(id),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      dispatch(deleteRideDone())
+    } catch (e) {
+      dispatch(deleteRideError(e))
+    }
+  }
+}
+
+const deleteBooking = id => {
+  return async function(dispatch) {
+    try {
+      dispatch(deleteRideStarting())
+      await client({
+        url: '/api/booking',
+        method: 'delete',
+        data: JSON.stringify(id),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      dispatch(deleteRideDone())
+    } catch (e) {
+      dispatch(deleteRideError(e))
+    }
+  }
+}
+
 export const mapStateToProps = state => ({
   rides: state.rides.rides,
   favourites: state.favourites.favourites,
@@ -143,4 +181,6 @@ export const mapDispatchToProps = dispatch => ({
   getRoutesHistory: () => dispatch(getRoutesHistory()),
   getBookingsHistory: () => dispatch(getBookingsHistory()),
   createRoute: (data,info)=> dispatch(createRoute(data,info)),
+  deleteRoute: id => dispatch(deleteRoute(id)),
+  deleteBooking: id => dispatch(deleteBooking(id)),
 })

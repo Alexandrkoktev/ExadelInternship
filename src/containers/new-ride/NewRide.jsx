@@ -10,10 +10,24 @@ import RoutesList from '../../components/list-of-routes/RoutesList'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/activeRides'
 
-// eslint-disable-next-line no-unused-vars
 class NewRide extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      chosenRide: {},
+    }
+  }
+
   componentDidMount() {
     this.props.getRides()
+  }
+
+  choose = async id => {
+    if (id !== '') {
+      await this.props.getRide(id)
+      const current = this.props.currentRide
+      this.setState({ chosenRide: current })
+    }
   }
 
   render() {
@@ -27,7 +41,7 @@ class NewRide extends React.Component {
                 <RoutesList rides={activeRides} favourites={false}/>
           </Col>
           <Col sm={7}>
-            <Maps/>
+            <Maps showing={this.state.chosenRide} />
           </Col>
         </Row>
       </Container>

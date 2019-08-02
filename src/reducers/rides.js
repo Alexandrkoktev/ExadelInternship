@@ -7,6 +7,9 @@ import {
   GET_RIDES_DATA_ERROR,
   GET_ROUTES_HISTORY_SUCCESS,
   GET_BOOKINGS_HISTORY_SUCCESS,
+  DELETE_RIDE,
+  DELETE_RIDE_SUCCESS,
+  DELETE_RIDE_ERROR,
 } from '../actions/rides'
 
 const initialState = {
@@ -66,6 +69,21 @@ function reducer(state = initialState, action) {
         ...state,
         error,
       }
+    case DELETE_RIDE:
+      return {
+        ...state,
+      }
+    case DELETE_RIDE_SUCCESS:
+      return {
+        ...state,
+      }
+    case DELETE_RIDE_ERROR: {
+      const { error } = action
+      return {
+        ...state,
+        error,
+      }
+    }
     default:
       return state
   }

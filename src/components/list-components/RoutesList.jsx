@@ -1,6 +1,9 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { ListGroup, Tab, Nav } from 'react-bootstrap'
+// eslint-disable-next-line no-unused-vars
 import Spinner from 'react-bootstrap/Spinner'
+// eslint-disable-next-line no-unused-vars
 import Route from './Route'
 import '../../containers/profile/profile.sass'
 import { connect } from 'react-redux'
@@ -14,20 +17,28 @@ class RoutesList extends React.Component {
     this.props.getBookingsHistory()
   }
 
-  active = item => {
+  refresh = () => {
+    this.props.getActiveRoutes()
+    this.props.getActiveBookings()
+  }
+
+  active = (item, passenger, del) => {
     return (
       <Route
         depPoint={item.startPointName}
         destPoint={item.finishPointName}
         depTime={item.timeAndDate}
         badge=" Upcoming"
-        routeid={item.id}
+        id={item.id}
         key={item.id}
+        passenger={passenger}
+        del={del}
+        onDel={this.refresh.bind(this)}
       />
     )
   }
 
-  history = item => {
+  history = (item, passenger) => {
     return (
       <Route
         depPoint={item.startPointName}
@@ -35,8 +46,9 @@ class RoutesList extends React.Component {
         depTime={item.timeAndDate}
         badge="Finished"
         styling="history"
-        routeid={item.id}
+        id={item.id}
         key={item.id}
+        passenger={passenger}
       />
     )
   }
@@ -48,13 +60,13 @@ class RoutesList extends React.Component {
       routesHistory = [],
       bookingHistory,
     } = this.props
-    const { isLoading } = this.props
+    const { isLoading, deleteBooking, deleteRoute } = this.props
     const listOfDriverRides = activeRoutes
-      .map(this.active)
-      .concat(routesHistory.map(this.history))
+      .map(x => this.active(x, true, deleteRoute))
+      .concat(routesHistory.map(y => this.history(y, true)))
     const listOfPassengerRides = activeBookings
-      .map(this.active)
-      .concat(bookingHistory.map(this.history))
+      .map(x => this.active(x, false, deleteBooking))
+      .concat(bookingHistory.map(y => this.history(y, false)))
     return isLoading ? (
       <Spinner />
     ) : (

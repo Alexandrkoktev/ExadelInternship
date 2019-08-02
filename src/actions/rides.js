@@ -10,6 +10,9 @@ export const GET_BOOKINGS_HISTORY_SUCCESS = 'GET_BOOKINGS_HISTORY_SUCCESS'
 export const CREATE_ROUTE_DATA = 'CREATE_ROUTE_DATA'
 export const CREATE_ROUTE_DATA_SUCCESS = 'CREATE_ROUTE_DATA_SUCCESS'
 export const CREATE_ROUTE_DATA_ERROR = 'CREATE_ROUTE_DATA_ERROR'
+export const DELETE_RIDE = 'DELETE_RIDE'
+export const DELETE_RIDE_SUCCESS = 'DELETE_RIDE_SUCCESS'
+export const DELETE_RIDE_ERROR = 'DELETE_RIDE_ERROR'
 
 // action handlers
 export function getRidesStarting() {
@@ -79,6 +82,25 @@ export function createRouteDone(){
 export function createRouteError(error){
   return{
     type: CREATE_ROUTE_DATA,
+    error,
+  }
+}
+
+export function deleteRideStarting() {
+  return {
+    type: DELETE_RIDE,
+  }
+}
+
+export function deleteRideDone() {
+  return {
+    type: DELETE_RIDE_SUCCESS,
+  }
+}
+
+export function deleteRideError(error) {
+  return {
+    type: DELETE_RIDE_ERROR,
     error,
   }
 }
