@@ -20,30 +20,41 @@ class Route extends React.Component {
       <ListGroup.Item className={styling}>
         <Row>
           <Col xs={8}>
-                        {this.props.depPoint} <span className="oi oi-arrow-right"/>{' '}
+            {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
             {this.props.destPoint} <Badge variant="info">{badge}</Badge>
-            <br/>
-            <span className="oi oi-clock"/>{' '}
+            <br />
+            <span className="oi oi-clock" />{' '}
             {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
-            {passenger && (<Link to={'routes/route-info/'.concat(id)}>
-              <Button variant="outline-info" className="right">
-                Route Info
-              </Button>
-            </Link>)}
-            {!passenger && (<Link to={'routes/ride-info/'.concat(id)}>
-              <Button variant="outline-info" className="right">
-                Route Info
-              </Button>
-            </Link>)}
-            {doDelete ?
-              <Button variant="outline-danger" className="right" onClick={() => {
-                del(id)
-                deleted()
-              }}>
+            {passenger && (
+              <Link to={'routes/route-info/'.concat(id)}>
+                <Button variant="outline-info" className="right">
+                  Route Info
+                </Button>
+              </Link>
+            )}
+            {!passenger && (
+              <Link to={'routes/ride-info/'.concat(id)}>
+                <Button variant="outline-info" className="right">
+                  Route Info
+                </Button>
+              </Link>
+            )}
+            {doDelete ? (
+              <Button
+                variant="outline-danger"
+                className="right"
+                onClick={() => {
+                  del(id)
+                  deleted()
+                }}
+              >
                 Delete
-              </Button> : <></>}
+              </Button>
+            ) : (
+              <></>
+            )}
           </Col>
         </Row>
       </ListGroup.Item>
@@ -51,4 +62,7 @@ class Route extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Route)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Route)

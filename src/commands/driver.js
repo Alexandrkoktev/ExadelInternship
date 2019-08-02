@@ -1,26 +1,37 @@
 import {
-  getDriverDone,
-  getDriverError,
-  getDriverStarting,
+  getDriverNameDone,
+  getDriverNameStarting,
+  getDriverNameError,
+  getPhoneNumberDone,
+  getPhoneNumberStarting,
+  getPhoneNumberError,
 } from '../actions/driver'
 import client from './axios'
 
 export const getDriver = id => {
   return async function(dispatch) {
     try {
-      dispatch(getDriverStarting())
+      debugger
+      dispatch(getDriverNameStarting())
+      dispatch(getPhoneNumberStarting())
       const { data } = await client({
         url: `/api/booking/${id}`,
         method: 'get',
       })
-      dispatch(getDriverDone(data))
+      dispatch(getDriverNameDone(data))
+      dispatch(getPhoneNumberDone(data))
     } catch (e) {
-      dispatch(getDriverError(e))
+      dispatch(getDriverNameError(e))
+      dispatch(getPhoneNumberError(e))
     }
   }
 }
 
-export const mapStateToProps = state => state.driver
+export const mapStateToProps = state => ({
+    driverName: state.driverName,
+    phoneNumber: state.phoneNumber
+  }
+)
 
 export const mapDispatchToProps = dispatch => ({
   requestDriver: id => dispatch(getDriver(id)),
