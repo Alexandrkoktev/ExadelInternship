@@ -32,6 +32,7 @@ class UserInfo extends React.Component {
           <Col md="auto">
             <div>
               <h3 className="textOverflow">{userInfo.username}</h3>
+              <h5 className="textOverflow">{userInfo.phoneNumber}</h5>
               <Row>
                 <StarRatings
                   rating={4.5}

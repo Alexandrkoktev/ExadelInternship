@@ -21,7 +21,8 @@ class CarsList extends React.Component {
   }
 
   hide = () => {
-    this.props.requestCars()
+    const { requestCars } = this.props
+    setTimeout(requestCars, 1000)
     this.setState({ show: false })
   }
 

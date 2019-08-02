@@ -37,10 +37,14 @@ class NewRide extends React.Component {
       <Container>
         <Row>
           <Col sm={5}>
-            <ListGroup>
-              <PassengerForm />
-            </ListGroup>
-            <RoutesList rides={activeRides} getRide={this.choose.bind(this)} />
+            <Row>
+              <ListGroup>
+                <PassengerForm />
+              </ListGroup>
+            </Row>
+            <Row>
+              <RoutesList rides={activeRides} getRide={this.choose.bind(this)} />
+            </Row>
           </Col>
           <Col sm={7}>
             <Maps showing={this.state.chosenRide} />

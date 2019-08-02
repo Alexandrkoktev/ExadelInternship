@@ -20,7 +20,7 @@ class RoutesList extends React.Component {
         title={this.props.type}
         variant="outline-dark"
         className="pscrollable"
-        style={{ marginTop: '2%', marginBottom: '2%' }}
+        style={{ marginTop: '2%', marginBottom: '', marginRight: '' }}
       >
         {dRidesArr}
       </ListGroup>

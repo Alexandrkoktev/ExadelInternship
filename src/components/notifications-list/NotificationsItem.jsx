@@ -9,10 +9,9 @@ import {
   mapDispatchToProps,
   mapStateToProps,
 } from '../../commands/notifications'
-// eslint-disable-next-line no-unused-vars
-import { Link } from 'react-router-dom'
-import { push } from "connected-react-router"
-import {store} from '../../store/store'
+
+import { push } from 'connected-react-router'
+import { store } from '../../store/store'
 
 class NotificationsItem extends React.Component {
   constructor(props) {
@@ -20,40 +19,83 @@ class NotificationsItem extends React.Component {
     this.state = {
       text: props.text,
       routeId: 'routes/route-info/' + props.routeId,
+      rideId: 'routes/ride-info/' + props.routeId,
+      driver: props.driver,
     }
   }
+
   delete = () => {
     this.props.deleteNotification(this.props.id)
   }
-  handleClick=(event) =>{
-    let click=event.target
-    if(click.className==="oi oi-x"){
-      this.delete()
-      this.props.handleDelete()
-    }else{
-      store.dispatch(push(this.state.routeId))
+  handleClick = event => {
+    let click = event.target
+  }
+
+  isDriver(driver) {
+    if (driver) {
+      return (
+        <div onClick={() => store.dispatch(push(this.state.routeId))}>
+          <ListGroup.Item
+            key={this.props.routeId}
+            className="itemOfNotificationList"
+          >
+            <Row>
+              <Col xs="10" md="11">
+                {this.state.text}
+              </Col>
+              <Col xs="2" md="1">
+                <span
+                  className="oi oi-x"
+                  onClick={event => {
+                    event.stopPropagation()
+                    this.delete()
+                    setTimeout(this.props.handleDelete, 1000)
+                  }}
+                />
+              </Col>
+            </Row>
+          </ListGroup.Item>
+        </div>
+      )
     }
   }
-  render() {
-    return (
-      <ListGroup.Item
-        key={this.props.routeId}
-        className="itemOfNotificationList"
-        /* onMouseEnter={this.props.handleAction} */
-        onClick={(event)=> this.handleClick(event)}
-      >
-        <Row>
-          <Col xs="10" md="11">
-              {this.state.text}
-          </Col>
-          <Col xs="2" md="1">
-            <span
-              className="oi oi-x"
-            />
-          </Col>
-        </Row>
-      </ListGroup.Item>
 
+  isPassenger(driver) {
+    if (!driver) {
+      return (
+        <div onClick={() => store.dispatch(push(this.state.rideId))}>
+          <ListGroup.Item
+            key={this.props.rideId}
+            className="itemOfNotificationList"
+          >
+            <Row>
+              <Col xs="10" md="11">
+                {this.state.text}
+              </Col>
+              <Col xs="2" md="1">
+                <span
+                  className="oi oi-x"
+                  onClick={event => {
+                    event.stopPropagation()
+                    this.delete()
+                    setTimeout(this.props.handleDelete, 1000)
+                  }}
+                />
+              </Col>
+            </Row>
+          </ListGroup.Item>
+        </div>
+      )
+    }
+  }
+
+  render() {
+    const { driver } = this.props
+    return (
+      <>
+        {this.isDriver(driver)}
+        {this.isPassenger(driver)}
+      </>
     )
   }
 }

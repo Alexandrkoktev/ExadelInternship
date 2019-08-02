@@ -51,18 +51,18 @@ class Maps extends React.Component {
   }
 
   getRouteInfo = async () => {
-    if(!this.map) {
-      alert('There\'s no map, my Lord.');
-      return;
+    if (!this.map) {
+      alert("There's no map, my Lord.")
+      return
     }
 
     const points = [] // Точки маршрута "от манёвра до манёвра"
 
     const route = this.map.controls.get('routeEditor').getRoute()
-    
-    if(!route) {
-      alert('There\'s no route, my Lord.');
-      return;
+
+    if (!route) {
+      alert("There's no route, my Lord.")
+      return
     }
 
     const routeDistance = route.getLength()
@@ -73,13 +73,13 @@ class Maps extends React.Component {
       .toArray()
       .map(point => point.geometry.getCoordinates())
 
-    const paths = route.getPaths(); // участки маршрута между wayPoint-ми
+    const paths = route.getPaths() // участки маршрута между wayPoint-ми
 
-    const nPaths = paths.getLength();
-    
-    if(nPaths === 0) {
-      alert('There\'s no route, my Lord.');
-      return;
+    const nPaths = paths.getLength()
+
+    if (nPaths === 0) {
+      alert("There's no route, my Lord.")
+      return
     }
 
     for (let i = 0; i < nPaths - 1; ++i) {
