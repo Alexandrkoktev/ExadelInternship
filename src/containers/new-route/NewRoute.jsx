@@ -53,7 +53,7 @@ class NewRoute extends React.Component {
               Create route
             </Button>
           </Col>
-          <Col sm={6}>
+          <Col sm={6} style={{height: "350px"}}>
             <Maps needRouteEditor={true} ref={this.mapComponent} />
           </Col>
         </Row>

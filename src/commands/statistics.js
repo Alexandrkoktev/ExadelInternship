@@ -9,7 +9,6 @@ export const getStatistics = () => {
   return async function(dispatch) {
     try {
       dispatch(getStatisticsStarting())
-      debugger
       const { data } = await client({
         url: '/api/statistic',
         method: 'get',

@@ -11,7 +11,6 @@ import client from './axios'
 export const getDriver = id => {
   return async function(dispatch) {
     try {
-      debugger
       dispatch(getDriverNameStarting())
       dispatch(getPhoneNumberStarting())
       const { data } = await client({
