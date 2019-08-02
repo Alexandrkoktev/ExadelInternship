@@ -5,18 +5,25 @@ import { ListGroup, Row, Col, Button, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './style.sass'
 import { formatDate } from '../../util'
+import { connect } from 'react-redux'
+import { mapDispatchToProps, mapStateToProps } from '../../commands/home'
 
 class Route extends React.Component {
   render() {
-    const { badge = '', styling = '', routeid, rideid, passenger } = this.props
+    const { badge = '', styling = '', id, passenger } = this.props
+    const { del, onDel } = this.props
+    const deleted = () => {
+      setTimeout(onDel, 1000)
+    }
+    const doDelete = del !== undefined
     return (
       <ListGroup.Item className={styling}>
         <Row>
           <Col xs={8}>
-            {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
+                        {this.props.depPoint} <span className="oi oi-arrow-right"/>{' '}
             {this.props.destPoint} <Badge variant="info">{badge}</Badge>
-            <br />
-            <span className="oi oi-clock" />{' '}
+            <br/>
+            <span className="oi oi-clock"/>{' '}
             {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
@@ -36,7 +43,7 @@ class Route extends React.Component {
                 deleted()
               }}>
                 Delete
-            </Button> : <></>}
+              </Button> : <></>}
           </Col>
         </Row>
       </ListGroup.Item>
@@ -44,4 +51,4 @@ class Route extends React.Component {
   }
 }
 
-export default Route
+export default connect(mapStateToProps, mapDispatchToProps)(Route)

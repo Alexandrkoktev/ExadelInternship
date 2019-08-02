@@ -15,7 +15,6 @@ class OneRouteInfo extends React.Component {
   }
 
   render() {
-    debugger
     const { passengers: { bookings } = [] } = this.props
     return (
       <div className="one-route-info">
