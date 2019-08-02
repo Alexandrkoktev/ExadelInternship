@@ -20,23 +20,23 @@ class Route extends React.Component {
             {formatDate(new Date(this.props.depTime))}
           </Col>
           <Col>
-            {passenger && (
-              <Link to={`routes/route-info/${routeid}`}>
-                <Button variant="outline-info" className="right">
-                  Route Info
-                </Button>
-              </Link>
-            )}
-            {!passenger && (
-              <Link to={`routes/ride-info/${rideid}`}>
-                <Button variant="outline-info" className="right">
-                  Route Info
-                </Button>
-              </Link>
-            )}
-            <Button variant="outline-danger" className="right">
-              Delete
-            </Button>
+            {passenger && (<Link to={'routes/route-info/'.concat(id)}>
+              <Button variant="outline-info" className="right">
+                Route Info
+              </Button>
+            </Link>)}
+            {!passenger && (<Link to={'routes/ride-info/'.concat(id)}>
+              <Button variant="outline-info" className="right">
+                Route Info
+              </Button>
+            </Link>)}
+            {doDelete ?
+              <Button variant="outline-danger" className="right" onClick={() => {
+                del(id)
+                deleted()
+              }}>
+                Delete
+            </Button> : <></>}
           </Col>
         </Row>
       </ListGroup.Item>
