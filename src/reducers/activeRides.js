@@ -40,7 +40,7 @@ function reducer(state = initialState, action) {
         ...state,
         currentRide,
       }
-    case GET_RIDE_DATA_ERROR:{
+    case GET_RIDE_DATA_ERROR: {
       const { error } = action
       return {
         ...state,

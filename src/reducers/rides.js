@@ -9,7 +9,7 @@ import {
   GET_BOOKINGS_HISTORY_SUCCESS,
   DELETE_RIDE,
   DELETE_RIDE_SUCCESS,
-  DELETE_RIDE_ERROR
+  DELETE_RIDE_ERROR,
 } from '../actions/rides'
 
 const initialState = {
@@ -71,11 +71,11 @@ function reducer(state = initialState, action) {
       }
     case DELETE_RIDE:
       return {
-        ...state
+        ...state,
       }
     case DELETE_RIDE_SUCCESS:
       return {
-        ...state
+        ...state,
       }
     case DELETE_RIDE_ERROR: {
       const { error } = action

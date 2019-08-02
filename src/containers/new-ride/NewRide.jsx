@@ -11,11 +11,10 @@ import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/activeRides'
 
 class NewRide extends React.Component {
-
-  constructor(){
+  constructor() {
     super()
-    this.state={
-      chosenRide: {}
+    this.state = {
+      chosenRide: {},
     }
   }
 
@@ -23,11 +22,11 @@ class NewRide extends React.Component {
     this.props.getRides()
   }
 
-  choose = async (id) => {
-    if(id !== '') {
+  choose = async id => {
+    if (id !== '') {
       await this.props.getRide(id)
       const current = this.props.currentRide
-      this.setState({chosenRide: current})
+      this.setState({ chosenRide: current })
     }
   }
 
@@ -43,7 +42,10 @@ class NewRide extends React.Component {
               </ListGroup>
             </Row>
             <Row>
-              <RoutesList rides={activeRides} getRide={this.choose.bind(this)} />
+              <RoutesList
+                rides={activeRides}
+                getRide={this.choose.bind(this)}
+              />
             </Row>
           </Col>
           <Col sm={7}>

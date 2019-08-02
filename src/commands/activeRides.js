@@ -4,18 +4,18 @@ import {
   getActiveRidesStarting,
   getRideDone,
   getRideStarting,
-  getRideError
+  getRideError,
 } from '../actions/activeRides'
 import client from './axios'
 
 export const mapStateToProps = state => ({
   activeRides: state.activeRides.activeRides,
-  currentRide: state.currentRide.currentRide
+  currentRide: state.currentRide.currentRide,
 })
 
 export const mapDispatchToProps = dispatch => ({
   getRides: () => dispatch(getRides()),
-  getRide: (id) => dispatch(getRideInfo(id))
+  getRide: id => dispatch(getRideInfo(id)),
 })
 
 export const getRides = () => {
@@ -35,16 +35,16 @@ export const getRides = () => {
   }
 }
 
-export const getRideInfo = (id) => {
+export const getRideInfo = id => {
   return async function(dispatch) {
-    try{
+    try {
       dispatch(getRideStarting())
       const { data } = await client({
         url: '/api/route/'.concat(id),
         method: 'get',
       })
       dispatch(getRideDone(data))
-    } catch(e){
+    } catch (e) {
       dispatch(getRideError(e))
     }
   }

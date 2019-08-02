@@ -11,8 +11,12 @@ class Maps extends React.Component {
     this.route = null
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    if (this.map && nextProps.showing && !!Object.keys(nextProps.showing).length) {
+  componentWillReceiveProps = nextProps => {
+    if (
+      this.map &&
+      nextProps.showing &&
+      !!Object.keys(nextProps.showing).length
+    ) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -20,22 +24,24 @@ class Maps extends React.Component {
         .route(
           [
             nextProps.showing.startPoint,
-            ...nextProps.showing.viaPoints.map((point)=>{return {type:'viaPoint', point: point}}),
-            nextProps.showing.finishPoint
+            ...nextProps.showing.viaPoints.map(point => {
+              return { type: 'viaPoint', point: point }
+            }),
+            nextProps.showing.finishPoint,
           ],
           { balloonContentBodyLayout }
         )
-        .then((route) => {
+        .then(route => {
           route.getPaths().options.set({
             // в балуне выводим только информацию о времени движения с учетом пробок
             // можно выставить настройки графики маршруту
             strokeColor: '0000ffff',
             opacity: 0.9,
           })
-  
-          this.map.geoObjects.remove(this.route);
-          this.route = route;
-  
+
+          this.map.geoObjects.remove(this.route)
+          this.route = route
+
           // добавляем маршрут на карту
           this.map.geoObjects.add(route)
         })
@@ -122,7 +128,7 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       this.routeEditor = this.map.controls.add('routeEditor')
     }
-// тут прорисовка для просмотра информации о маршруте
+    // тут прорисовка для просмотра информации о маршруте
     // if (this.props && this.props.showing) {
     //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
     //     '<div>Test</div>'
@@ -143,9 +149,9 @@ class Maps extends React.Component {
     //         strokeColor: '0000ffff',
     //         opacity: 0.9,
     //       })
-  
+
     //       // this.route = route;   // !!!!
-  
+
     //       // добавляем маршрут на карту
     //       this.map.geoObjects.add(route)
     //     })

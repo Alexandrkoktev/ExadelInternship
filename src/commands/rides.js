@@ -9,12 +9,12 @@ import {
   getRidesStarting,
   deleteRideStarting,
   deleteRideDone,
-  deleteRideError
+  deleteRideError,
 } from '../actions/rides'
 import client from './axios'
 
 export const getRides = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -29,7 +29,7 @@ export const getRides = () => {
 }
 
 const getFavourites = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -44,7 +44,7 @@ const getFavourites = () => {
 }
 
 const getActiveRoutes = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -59,7 +59,7 @@ const getActiveRoutes = () => {
 }
 
 const getActiveBookings = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -74,7 +74,7 @@ const getActiveBookings = () => {
 }
 
 const getRoutesHistory = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -89,7 +89,7 @@ const getRoutesHistory = () => {
 }
 
 const getBookingsHistory = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRidesStarting())
       const { data } = await client({
@@ -103,15 +103,15 @@ const getBookingsHistory = () => {
   }
 }
 
-const deleteRoute = (id) => {
-  return async function (dispatch) {
+const deleteRoute = id => {
+  return async function(dispatch) {
     try {
       dispatch(deleteRideStarting())
       await client({
         url: '/api/deleteRoute',
         method: 'delete',
         data: JSON.stringify(id),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       })
       dispatch(deleteRideDone())
     } catch (e) {
@@ -120,15 +120,15 @@ const deleteRoute = (id) => {
   }
 }
 
-const deleteBooking = (id) => {
-  return async function (dispatch) {
+const deleteBooking = id => {
+  return async function(dispatch) {
     try {
       dispatch(deleteRideStarting())
       await client({
         url: '/api/booking',
         method: 'delete',
         data: JSON.stringify(id),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       })
       dispatch(deleteRideDone())
     } catch (e) {
@@ -153,6 +153,6 @@ export const mapDispatchToProps = dispatch => ({
   getActiveBookings: () => dispatch(getActiveBookings()),
   getRoutesHistory: () => dispatch(getRoutesHistory()),
   getBookingsHistory: () => dispatch(getBookingsHistory()),
-  deleteRoute: (id) => dispatch(deleteRoute(id)),
-  deleteBooking: (id) => dispatch(deleteBooking(id))
+  deleteRoute: id => dispatch(deleteRoute(id)),
+  deleteBooking: id => dispatch(deleteBooking(id)),
 })
