@@ -9,6 +9,66 @@ class Maps extends React.Component {
     this.map = null
     this.ymaps = null
     this.route = null
+    this.pointA = null
+    this.pointB = null
+    this.isA = true
+  }
+
+  createPlacemark(coords) {
+    return new this.ymaps.Placemark(coords, {
+        iconCaption: 'поиск...'
+    }, {
+        preset: 'islands#violetDotIconWithCaption',
+        draggable: true
+    });
+  }
+
+  addPlacemark = async (e) => {
+    const coords = e.get('coords');
+    if(this.isA) {
+      if(this.pointA) {
+        this.pointA.geometry.setCoordinates(coords);
+        this.pointA.properties.set({
+          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
+        });
+      }
+      else {
+        this.pointA = this.createPlacemark(coords);
+        this.map.geoObjects.add(this.pointA);
+        this.pointA.properties.set({
+          iconCaption: 'точка А',
+          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
+        })
+        this.pointA.events.add('dragend', async function () {
+          this.pointA.properties.set({
+            balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
+          });
+      }.bind(this));
+      }
+      this.isA = false;
+    }
+    else {
+      if(this.pointB) {
+        this.pointB.geometry.setCoordinates(coords);
+        this.pointB.properties.set({
+          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
+        });
+      }
+      else {
+        this.pointB = this.createPlacemark(coords);
+        this.map.geoObjects.add(this.pointB);
+        this.pointB.properties.set({
+          iconCaption: 'точка B',
+          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
+        })
+        this.pointB.events.add('dragend', async function () {
+          this.pointB.properties.set({
+            balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
+          });
+      }.bind(this));
+      }
+      this.isA = true;
+    }
   }
 
   componentWillReceiveProps = nextProps => {
@@ -42,8 +102,7 @@ class Maps extends React.Component {
           this.map.geoObjects.remove(this.route)
           this.route = route
 
-          // добавляем маршрут на карту
-          this.map.geoObjects.add(route)
+          this.map.geoObjects.add(this.route)
         })
     }
   }
@@ -126,6 +185,10 @@ class Maps extends React.Component {
 
     if (this.map && this.props.needRouteEditor) {
       this.routeEditor = this.map.controls.add('routeEditor')
+    }
+
+    if (this.map && this.props.needPlacemarks) {
+      this.map.events.add('click', this.addPlacemark);
     }
     // тут прорисовка для просмотра информации о маршруте
     // if (this.props && this.props.showing) {
