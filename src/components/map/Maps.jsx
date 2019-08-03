@@ -102,7 +102,7 @@ class Maps extends React.Component {
       !deepEqual(this.props.showing, nextProps.showing)
     if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>'
+        '<div>Test</div>',
       )
       this.ymaps
         .route(
@@ -113,7 +113,7 @@ class Maps extends React.Component {
             }),
             nextProps.showing.finishPoint,
           ],
-          { balloonContentBodyLayout }
+          { balloonContentBodyLayout },
         )
         .then(route => {
           route.getPaths().options.set({
@@ -128,7 +128,6 @@ class Maps extends React.Component {
 
           this.map.geoObjects.remove(this.route)
           this.route = route
-
           this.map.geoObjects.add(this.route)
         })
     }
@@ -144,16 +143,16 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert("There's no map, my Lord.")
+      alert('There\'s no map, my Lord.')
       return
     }
 
-    const points = [] // Точки маршрута "от манёвра до манёвра"
+    const points = []
 
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert("There's no route, my Lord.")
+      alert('There\'s no route, my Lord.')
       return
     }
 
@@ -165,12 +164,11 @@ class Maps extends React.Component {
       .toArray()
       .map(point => point.geometry.getCoordinates())
 
-    const paths = route.getPaths() // участки маршрута между wayPoint-ми
-
+    const paths = route.getPaths()
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert("There's no route, my Lord.")
+      alert('There\'s no route, my Lord.')
       return
     }
 
@@ -183,7 +181,7 @@ class Maps extends React.Component {
         })
     }
 
-    const segments = paths.get(nPaths - 1).getSegments() // участки конкретного Path-а от манёвра до манёвра
+    const segments = paths.get(nPaths - 1).getSegments()
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
@@ -195,7 +193,7 @@ class Maps extends React.Component {
       this.getAddress(points[0]),
       this.getAddress(points[points.length - 1]),
     ])
-
+    this.props.handleChange({ from: startPointString, to: finishPointString })
     return {
       startPoint: points[0],
       finishPoint: points[points.length - 1],
@@ -300,7 +298,7 @@ class Maps extends React.Component {
             zoom: 11,
             controls: ['zoomControl', 'fullscreenControl'],
           }}
-        ></Map>
+        />
       </YMaps>
     )
   }
