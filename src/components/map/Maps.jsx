@@ -19,64 +19,87 @@ class Maps extends React.Component {
   }
 
   createPlacemark(coords) {
-    return new this.ymaps.Placemark(coords, {
-        iconCaption: 'поиск...'
-    }, {
+    return new this.ymaps.Placemark(
+      coords,
+      {
+        iconCaption: 'поиск...',
+      },
+      {
         preset: 'islands#blueDotIconWithCaption',
-        draggable: true
-    });
+        draggable: true,
+      }
+    )
   }
 
-  addPlacemark = async (e) => {
-    const coords = e.get('coords');
-    if(this.isA) {
-      if(this.pointA) {
-        this.pointA.geometry.setCoordinates(coords);
+  addPlacemark = async e => {
+    const coords = e.get('coords')
+    if (this.isA) {
+      if (this.pointA) {
+        this.pointA.geometry.setCoordinates(coords)
         this.pointA.properties.set({
-          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
-        });
-      }
-      else {
-        this.pointA = this.createPlacemark(coords);
-        this.map.geoObjects.add(this.pointA);
+          balloonContent: await this.getAddress(
+            this.pointA.geometry.getCoordinates()
+          ),
+        })
+      } else {
+        this.pointA = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointA)
         this.pointA.properties.set({
           iconCaption: 'точка А',
-          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
+          balloonContent: await this.getAddress(
+            this.pointA.geometry.getCoordinates()
+          ),
         })
-        this.pointA.events.add('dragend', async function () {
-          this.pointA.properties.set({
-            balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
-          });
-      }.bind(this));
+        this.pointA.events.add(
+          'dragend',
+          async function() {
+            this.pointA.properties.set({
+              balloonContent: await this.getAddress(
+                this.pointA.geometry.getCoordinates()
+              ),
+            })
+          }.bind(this)
+        )
       }
-      this.isA = false;
-    }
-    else {
-      if(this.pointB) {
-        this.pointB.geometry.setCoordinates(coords);
+      this.isA = false
+    } else {
+      if (this.pointB) {
+        this.pointB.geometry.setCoordinates(coords)
         this.pointB.properties.set({
-          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
-        });
-      }
-      else {
-        this.pointB = this.createPlacemark(coords);
-        this.map.geoObjects.add(this.pointB);
+          balloonContent: await this.getAddress(
+            this.pointB.geometry.getCoordinates()
+          ),
+        })
+      } else {
+        this.pointB = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointB)
         this.pointB.properties.set({
           iconCaption: 'точка B',
-          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
+          balloonContent: await this.getAddress(
+            this.pointB.geometry.getCoordinates()
+          ),
         })
-        this.pointB.events.add('dragend', async function () {
-          this.pointB.properties.set({
-            balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
-          });
-      }.bind(this));
+        this.pointB.events.add(
+          'dragend',
+          async function() {
+            this.pointB.properties.set({
+              balloonContent: await this.getAddress(
+                this.pointB.geometry.getCoordinates()
+              ),
+            })
+          }.bind(this)
+        )
       }
-      this.isA = true;
+      this.isA = true
     }
   }
 
   componentWillReceiveProps = nextProps => {
-    const shouldUpdateMap = this.map && nextProps.showing && !!Object.keys(nextProps.showing).length && !deepEqual(this.props.showing, nextProps.showing)
+    const shouldUpdateMap =
+      this.map &&
+      nextProps.showing &&
+      !!Object.keys(nextProps.showing).length &&
+      !deepEqual(this.props.showing, nextProps.showing)
     if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
@@ -100,7 +123,7 @@ class Maps extends React.Component {
             opacity: 0.9,
           })
           route.options.set({
-            mapStateAutoApply: true
+            mapStateAutoApply: true,
           })
 
           this.map.geoObjects.remove(this.route)
@@ -187,14 +210,28 @@ class Maps extends React.Component {
 
   getEndPoints = async () => {
     this.route = this.map.controls.get('routeEditor').getRoute()
-    if(this.route) {
+    if (this.route) {
       const wayPoints = this.route.getWayPoints().toArray()
-      if(wayPoints.length === 2) {
-        const handler = async () => (console.log(await Promise.all(this.route.getWayPoints().toArray().map((point) => this.getAddress(point.geometry.getCoordinates())))))
-        
+      if (wayPoints.length === 2) {
+        const handler = async () =>
+          console.log(
+            await Promise.all(
+              this.route
+                .getWayPoints()
+                .toArray()
+                .map(point => this.getAddress(point.geometry.getCoordinates()))
+            )
+          )
+
         this.route.events.add('geometrychange', debounce(handler, 200))
-        
-        console.log(await Promise.all(wayPoints.map((point) => this.getAddress(point.geometry.getCoordinates()))))
+
+        console.log(
+          await Promise.all(
+            wayPoints.map(point =>
+              this.getAddress(point.geometry.getCoordinates())
+            )
+          )
+        )
       }
     }
   }
@@ -208,7 +245,7 @@ class Maps extends React.Component {
     }
 
     if (this.map && this.props.needPlacemarks) {
-      this.map.events.add('click', this.addPlacemark);
+      this.map.events.add('click', this.addPlacemark)
     }
 
     // тут прорисовка для просмотра информации о маршруте
