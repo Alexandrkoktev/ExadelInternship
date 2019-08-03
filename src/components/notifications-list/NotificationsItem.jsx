@@ -28,7 +28,7 @@ class NotificationsItem extends React.Component {
     this.props.deleteNotification(this.props.id)
   }
   handleClick = event => {
-    let click = event.target
+    // let click = event.target
   }
 
   isDriver(driver) {

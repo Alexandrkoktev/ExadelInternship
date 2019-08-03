@@ -2,6 +2,10 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { YMaps, Map } from 'react-yandex-maps'
 import './map.sass'
+// eslint-disable-next-line import/no-duplicates
+import { debounce } from '../../util'
+// eslint-disable-next-line import/no-duplicates
+import { deepEqual } from '../../util'
 
 class Maps extends React.Component {
   constructor() {
@@ -18,7 +22,7 @@ class Maps extends React.Component {
     return new this.ymaps.Placemark(coords, {
         iconCaption: 'поиск...'
     }, {
-        preset: 'islands#violetDotIconWithCaption',
+        preset: 'islands#blueDotIconWithCaption',
         draggable: true
     });
   }
@@ -72,11 +76,8 @@ class Maps extends React.Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    if (
-      this.map &&
-      nextProps.showing &&
-      !!Object.keys(nextProps.showing).length
-    ) {
+    const shouldUpdateMap = this.map && nextProps.showing && !!Object.keys(nextProps.showing).length && !deepEqual(this.props.showing, nextProps.showing)
+    if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -97,6 +98,9 @@ class Maps extends React.Component {
             // можно выставить настройки графики маршруту
             strokeColor: '0000ffff',
             opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true
           })
 
           this.map.geoObjects.remove(this.route)
@@ -181,16 +185,32 @@ class Maps extends React.Component {
     }
   }
 
+  getEndPoints = async () => {
+    this.route = this.map.controls.get('routeEditor').getRoute()
+    if(this.route) {
+      const wayPoints = this.route.getWayPoints().toArray()
+      if(wayPoints.length === 2) {
+        const handler = async () => (console.log(await Promise.all(this.route.getWayPoints().toArray().map((point) => this.getAddress(point.geometry.getCoordinates())))))
+        
+        this.route.events.add('geometrychange', debounce(handler, 200))
+        
+        console.log(await Promise.all(wayPoints.map((point) => this.getAddress(point.geometry.getCoordinates()))))
+      }
+    }
+  }
+
   onApiAvailable = ymaps => {
     this.ymaps = ymaps
 
     if (this.map && this.props.needRouteEditor) {
-      this.routeEditor = this.map.controls.add('routeEditor')
+      const routeEditor = this.map.controls.add('routeEditor')
+      routeEditor.events.add('deselect', this.getEndPoints)
     }
 
     if (this.map && this.props.needPlacemarks) {
       this.map.events.add('click', this.addPlacemark);
     }
+
     // тут прорисовка для просмотра информации о маршруте
     // if (this.props && this.props.showing) {
     //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
