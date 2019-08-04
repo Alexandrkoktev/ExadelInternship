@@ -88,5 +88,5 @@ class NewRoute extends React.Component {
 }
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRoute)
