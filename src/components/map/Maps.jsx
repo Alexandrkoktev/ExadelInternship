@@ -2,6 +2,10 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { YMaps, Map } from 'react-yandex-maps'
 import './map.sass'
+// eslint-disable-next-line import/no-duplicates
+import { debounce } from '../../util'
+// eslint-disable-next-line import/no-duplicates
+import { deepEqual } from '../../util'
 
 class Maps extends React.Component {
   constructor() {
@@ -15,70 +19,90 @@ class Maps extends React.Component {
   }
 
   createPlacemark(coords) {
-    return new this.ymaps.Placemark(coords, {
-        iconCaption: 'поиск...'
-    }, {
-        preset: 'islands#violetDotIconWithCaption',
-        draggable: true
-    });
+    return new this.ymaps.Placemark(
+      coords,
+      {
+        iconCaption: 'поиск...',
+      },
+      {
+        preset: 'islands#blueDotIconWithCaption',
+        draggable: true,
+      }
+    )
   }
 
-  addPlacemark = async (e) => {
-    const coords = e.get('coords');
-    if(this.isA) {
-      if(this.pointA) {
-        this.pointA.geometry.setCoordinates(coords);
+  addPlacemark = async e => {
+    const coords = e.get('coords')
+    if (this.isA) {
+      if (this.pointA) {
+        this.pointA.geometry.setCoordinates(coords)
         this.pointA.properties.set({
-          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
-        });
-      }
-      else {
-        this.pointA = this.createPlacemark(coords);
-        this.map.geoObjects.add(this.pointA);
+          balloonContent: await this.getAddress(
+            this.pointA.geometry.getCoordinates()
+          ),
+        })
+      } else {
+        this.pointA = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointA)
         this.pointA.properties.set({
           iconCaption: 'точка А',
-          balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
+          balloonContent: await this.getAddress(
+            this.pointA.geometry.getCoordinates()
+          ),
         })
-        this.pointA.events.add('dragend', async function () {
-          this.pointA.properties.set({
-            balloonContent: await this.getAddress(this.pointA.geometry.getCoordinates())
-          });
-      }.bind(this));
+        this.pointA.events.add(
+          'dragend',
+          async function() {
+            this.pointA.properties.set({
+              balloonContent: await this.getAddress(
+                this.pointA.geometry.getCoordinates()
+              ),
+            })
+          }.bind(this)
+        )
       }
-      this.isA = false;
-    }
-    else {
-      if(this.pointB) {
-        this.pointB.geometry.setCoordinates(coords);
+      this.isA = false
+    } else {
+      if (this.pointB) {
+        this.pointB.geometry.setCoordinates(coords)
         this.pointB.properties.set({
-          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
-        });
-      }
-      else {
-        this.pointB = this.createPlacemark(coords);
-        this.map.geoObjects.add(this.pointB);
+          balloonContent: await this.getAddress(
+            this.pointB.geometry.getCoordinates()
+          ),
+        })
+      } else {
+        this.pointB = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointB)
         this.pointB.properties.set({
           iconCaption: 'точка B',
-          balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
+          balloonContent: await this.getAddress(
+            this.pointB.geometry.getCoordinates()
+          ),
         })
-        this.pointB.events.add('dragend', async function () {
-          this.pointB.properties.set({
-            balloonContent: await this.getAddress(this.pointB.geometry.getCoordinates())
-          });
-      }.bind(this));
+        this.pointB.events.add(
+          'dragend',
+          async function() {
+            this.pointB.properties.set({
+              balloonContent: await this.getAddress(
+                this.pointB.geometry.getCoordinates()
+              ),
+            })
+          }.bind(this)
+        )
       }
-      this.isA = true;
+      this.isA = true
     }
   }
 
   componentWillReceiveProps = nextProps => {
-    if (
+    const shouldUpdateMap =
       this.map &&
       nextProps.showing &&
-      !!Object.keys(nextProps.showing).length
-    ) {
+      !!Object.keys(nextProps.showing).length &&
+      !deepEqual(this.props.showing, nextProps.showing)
+    if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>'
+        '<div>Test</div>',
       )
       this.ymaps
         .route(
@@ -89,7 +113,7 @@ class Maps extends React.Component {
             }),
             nextProps.showing.finishPoint,
           ],
-          { balloonContentBodyLayout }
+          { balloonContentBodyLayout },
         )
         .then(route => {
           route.getPaths().options.set({
@@ -98,10 +122,12 @@ class Maps extends React.Component {
             strokeColor: '0000ffff',
             opacity: 0.9,
           })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
 
           this.map.geoObjects.remove(this.route)
           this.route = route
-
           this.map.geoObjects.add(this.route)
         })
     }
@@ -117,16 +143,16 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert("There's no map, my Lord.")
+      alert('There\'s no map, my Lord.')
       return
     }
 
-    const points = [] // Точки маршрута "от манёвра до манёвра"
+    const points = []
 
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert("There's no route, my Lord.")
+      alert('There\'s no route, my Lord.')
       return
     }
 
@@ -138,12 +164,11 @@ class Maps extends React.Component {
       .toArray()
       .map(point => point.geometry.getCoordinates())
 
-    const paths = route.getPaths() // участки маршрута между wayPoint-ми
-
+    const paths = route.getPaths()
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert("There's no route, my Lord.")
+      alert('There\'s no route, my Lord.')
       return
     }
 
@@ -156,7 +181,7 @@ class Maps extends React.Component {
         })
     }
 
-    const segments = paths.get(nPaths - 1).getSegments() // участки конкретного Path-а от манёвра до манёвра
+    const segments = paths.get(nPaths - 1).getSegments()
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
@@ -181,16 +206,44 @@ class Maps extends React.Component {
     }
   }
 
+  getEndPoints = async () => {
+    this.route = this.map.controls.get('routeEditor').getRoute()
+    if (this.route) {
+      const wayPoints = this.route.getWayPoints().toArray()
+      if (wayPoints.length === 2) {
+        const handler = async () =>
+          this.props.handleChange(
+            await Promise.all(
+              this.route
+                .getWayPoints()
+                .toArray()
+                .map(point => this.getAddress(point.geometry.getCoordinates()))
+            )
+          )
+        this.route.events.add('geometrychange', debounce(handler, 200))
+        this.props.handleChange(
+          await Promise.all(
+            wayPoints.map(point =>
+              this.getAddress(point.geometry.getCoordinates())
+            )
+          )
+        )
+      }
+    }
+  }
+
   onApiAvailable = ymaps => {
     this.ymaps = ymaps
 
     if (this.map && this.props.needRouteEditor) {
-      this.routeEditor = this.map.controls.add('routeEditor')
+      const routeEditor = this.map.controls.add('routeEditor')
+      routeEditor.events.add('deselect', this.getEndPoints)
     }
 
     if (this.map && this.props.needPlacemarks) {
-      this.map.events.add('click', this.addPlacemark);
+      this.map.events.add('click', this.addPlacemark)
     }
+
     // тут прорисовка для просмотра информации о маршруте
     // if (this.props && this.props.showing) {
     //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
@@ -243,7 +296,7 @@ class Maps extends React.Component {
             zoom: 11,
             controls: ['zoomControl', 'fullscreenControl'],
           }}
-        ></Map>
+        />
       </YMaps>
     )
   }
