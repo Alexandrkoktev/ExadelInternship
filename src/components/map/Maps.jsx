@@ -193,7 +193,7 @@ class Maps extends React.Component {
       this.getAddress(points[0]),
       this.getAddress(points[points.length - 1]),
     ])
-    this.props.handleChange({ from: startPointString, to: finishPointString })
+
     return {
       startPoint: points[0],
       finishPoint: points[points.length - 1],
@@ -212,7 +212,7 @@ class Maps extends React.Component {
       const wayPoints = this.route.getWayPoints().toArray()
       if (wayPoints.length === 2) {
         const handler = async () =>
-          console.log(
+          this.props.handleChange(
             await Promise.all(
               this.route
                 .getWayPoints()
@@ -220,10 +220,8 @@ class Maps extends React.Component {
                 .map(point => this.getAddress(point.geometry.getCoordinates()))
             )
           )
-
         this.route.events.add('geometrychange', debounce(handler, 200))
-
-        console.log(
+        this.props.handleChange(
           await Promise.all(
             wayPoints.map(point =>
               this.getAddress(point.geometry.getCoordinates())

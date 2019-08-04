@@ -21,6 +21,7 @@ class NewRoute extends React.Component {
       carId: '',
       seats: '',
       time: '',
+      changed: false,
     }
   }
 
@@ -49,8 +50,9 @@ class NewRoute extends React.Component {
   }
   handleChange = (data) => {
     this.setState({
-      from: data.from,
-      to: data.to,
+      from: data[0],
+      to: data[1],
+      changed: !this.state.changed
     })
   }
 
@@ -61,7 +63,7 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={4}>
             <ListGroup>
-              <NewRouteInfo from={this.state.from} to={this.state.to} key={this.state.from} onSeats={this.onSeatsChange}
+              <NewRouteInfo from={this.state.from} to={this.state.to} key={this.state.changed} onSeats={this.onSeatsChange}
                             onTime={this.onTimeChange} onCar={this.onCarChange}/>
               <RoutesList rides={rides} favourites={true}/>
             </ListGroup>

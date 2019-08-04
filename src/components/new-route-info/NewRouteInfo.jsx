@@ -39,17 +39,6 @@ class NewRouteInfo extends React.Component {
         <Form>
           <Form.Group as={Row}>
             <Form.Label column sm="2">
-              Type:
-            </Form.Label>
-            <Col sm="5">
-              <Form.Control as={'select'}>
-                <option>Regular</option>
-                <option>Disposable</option>
-              </Form.Control>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">
               From:
             </Form.Label>
             <Col>
@@ -75,7 +64,7 @@ class NewRouteInfo extends React.Component {
 
           <Form.Group as={Row} controlId="formGridState">
             <Form.Label column sm="2">
-              Car
+              Car:
             </Form.Label>
             <Col>
               <Form.Control as="select" defaulvalue={this.state.carId} onChange={this.changeCar}>{carsArr}
@@ -86,7 +75,7 @@ class NewRouteInfo extends React.Component {
             <Form.Label column sm="2">
               Seats:
             </Form.Label>
-            <Col sm="3">
+            <Col >
               <Form.Control type="text" onChange={this.props.onSeats}/>
             </Col>
           </Form.Group>
