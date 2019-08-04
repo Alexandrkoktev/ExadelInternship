@@ -48,8 +48,8 @@ class NewRide extends React.Component {
               />
             </Row>
           </Col>
-          <Col sm={7} style={{ height: '350px' }}>
-            <Maps needPlacemarks={true} showing={this.state.chosenRide} />
+          <Col sm={7}>
+            <Maps onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
           </Col>
         </Row>
       </Container>
