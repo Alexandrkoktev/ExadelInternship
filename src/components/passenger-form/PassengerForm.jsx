@@ -22,15 +22,6 @@ class PassengerForm extends React.Component {
             <Form.Group as={Row}>
               <DateSelector />
             </Form.Group>
-            <Row>
-              <Button
-                variant="dark"
-                type="submit"
-                onClick={event => event.preventDefault()}
-              >
-                Apply
-              </Button>
-            </Row>
           </Form>
         </Row>
       </>

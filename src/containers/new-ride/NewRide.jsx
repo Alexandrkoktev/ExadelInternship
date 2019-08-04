@@ -42,10 +42,28 @@ class NewRide extends React.Component {
               </ListGroup>
             </Row>
             <Row>
+              <Button
+                variant="dark"
+                type="submit"
+                onClick={event => event.preventDefault()}
+              >
+              Search
+              </Button>
+            </Row>
+            <Row>
               <RoutesList
                 rides={activeRides}
                 getRide={this.choose.bind(this)}
               />
+            </Row>
+            <Row>
+              <Button
+                variant="dark"
+                type="submit"
+                onClick={event => event.preventDefault()}
+              >
+              Confirm
+              </Button>
             </Row>
           </Col>
           <Col sm={7}>
