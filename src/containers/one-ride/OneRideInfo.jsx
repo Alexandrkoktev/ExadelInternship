@@ -28,7 +28,9 @@ class OneRideInfo extends React.Component {
               <Col sm="5">
                 <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
-                  <ListGroupItem>{driverName}</ListGroupItem>
+                  <ListGroupItem>
+                    Name: {driverName}, Phone number: {phoneNumber}
+                  </ListGroupItem>
                 </div>
               </Col>
             </Row>

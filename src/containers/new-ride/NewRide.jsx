@@ -48,7 +48,7 @@ class NewRide extends React.Component {
               />
             </Row>
           </Col>
-          <Col sm={7} style = {{height: "350px"}}>
+          <Col sm={7} style={{ height: '350px' }}>
             <Maps needPlacemarks={true} showing={this.state.chosenRide} />
           </Col>
         </Row>

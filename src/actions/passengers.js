@@ -11,7 +11,8 @@ export function getPassengerStarting() {
 export function getPassengerDone(driverName, phoneNumber) {
   return {
     type: GET_PASSENGERS_DATA_SUCCESS,
-    payload: driverName, phoneNumber,
+    payload: driverName,
+    phoneNumber,
   }
 }
 
