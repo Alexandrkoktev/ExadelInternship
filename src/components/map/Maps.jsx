@@ -307,35 +307,62 @@ class Maps extends React.Component {
         float: 'left',
       })
     }
-
-    // тут прорисовка для просмотра информации о маршруте
-    // if (this.props && this.props.showing) {
-    //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
-    //     '<div>Test</div>'
-    //   )
-    //   ymaps
-    //     .route(
-    //       [
-    //         this.props.showing.startPoint,
-    //         ...this.props.showing.viaPoints.map((point)=>{return {type:'viaPoint', point: point}}),
-    //         this.props.showing.finishPoint
-    //       ],
-    //       { balloonContentBodyLayout }
-    //     )
-    //     .then(route => {
-    //       route.getPaths().options.set({
-    //         // в балуне выводим только информацию о времени движения с учетом пробок
-    //         // можно выставить настройки графики маршруту
-    //         strokeColor: '0000ffff',
-    //         opacity: 0.9,
-    //       })
-
-    //       // this.route = route;   // !!!!
-
-    //       // добавляем маршрут на карту
-    //       this.map.geoObjects.add(route)
-    //     })
-    // }
+// информация о маршруте пассажира
+    if (this.props && this.props.passengerInfo) {
+      const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      ymaps
+        .route(
+          [
+            this.props.passengerInfo.startPoint,
+            ...this.props.passengerInfo.viaPoints.map(point => {
+              return {type:'viaPoint', point: point}
+            }),
+            this.props.passengerInfo.finishPoint
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route;
+          this.map.geoObjects.add(route)
+        })
+    }
+// информация о маршруте водителя
+    if (this.props && this.props.driverInfo) {
+      const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      ymaps
+        .route(
+          [
+            this.props.driverInfo.startPoint,
+            ...this.props.driverInfo.viaPoints.map(point => {
+              return {type:'viaPoint', point: point}
+            }),
+            this.props.driverInfo.finishPoint
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route;
+          this.map.geoObjects.add(route)
+        })
+    }
   }
 
   render() {
