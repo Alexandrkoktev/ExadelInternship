@@ -38,7 +38,8 @@ class NotificationsItem extends React.Component {
           >
             <Row>
               <Col xs="10" md="11">
-                {this.state.text}<Badge variant="info">Driver</Badge>
+                {this.state.text}
+                <Badge variant="info">Driver</Badge>
               </Col>
               <Col xs="2" md="1">
                 <span
@@ -67,7 +68,8 @@ class NotificationsItem extends React.Component {
           >
             <Row>
               <Col xs="10" md="11">
-                {this.state.text}<Badge variant="info">Passenger</Badge>
+                {this.state.text}
+                <Badge variant="info">Passenger</Badge>
               </Col>
               <Col xs="2" md="1">
                 <span

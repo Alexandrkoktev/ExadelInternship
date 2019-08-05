@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -14,23 +14,47 @@ class OneRideInfo extends React.Component {
   }
 
   render() {
-    debugger
-    const { driverName, phoneNumber } = this.props
-    console.log(this.props)
+    const {
+      driverName,
+      phoneNumber,
+      freeSeats,
+      maxSeats,
+      startPointName,
+      finishPointName,
+      carInformation,
+    } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
-              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
+              <Col sm="7">
                 <Maps />
               </Col>
               <Col sm="5">
-                <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
-                  <ListGroupItem>
-                    Name: {driverName}, Phone number: {phoneNumber}
-                  </ListGroupItem>
+                  <ListGroup>
+                    <h5 className="title-list">Driver: </h5>
+                    <ListGroup.Item className="list-item-style">
+                      <b>Name:</b> {driverName},
+                      <br />
+                      <b>Phone number:</b> {phoneNumber}
+                    </ListGroup.Item>
+                    <h5 className="title-list">Car information: </h5>
+                    <ListGroup.Item className="list-item-style">
+                      <b>Info: </b> {carInformation},
+                      <br />
+                      <b>Seats: </b>
+                      {freeSeats}/{maxSeats}
+                    </ListGroup.Item>
+                    <h5 className="title-list">
+                      From <span className="oi oi-arrow-right" /> To:{' '}
+                    </h5>
+                    <ListGroup.Item className="list-item-style">
+                      {startPointName} <span className="oi oi-arrow-right" />{' '}
+                      {finishPointName}
+                    </ListGroup.Item>
+                  </ListGroup>
                 </div>
               </Col>
             </Row>

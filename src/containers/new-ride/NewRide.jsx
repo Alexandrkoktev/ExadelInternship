@@ -69,7 +69,7 @@ class NewRide extends React.Component {
                 type="submit"
                 onClick={this.handleSearchClick}
               >
-                Search
+              Search
               </Button>
             </Row>
             <Row>
@@ -90,7 +90,7 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide}
+            <Maps ref={this.mapComponent}  needPlacemarks={true} showing={this.state.chosenRide}
                   changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
           </Col>
         </Row>

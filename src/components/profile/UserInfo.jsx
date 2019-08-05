@@ -30,7 +30,7 @@ class UserInfo extends React.Component {
             <div>
               <h3 className="textOverflow">{userInfo.username}</h3>
               <h5 className="textOverflow">{userInfo.phoneNumber}</h5>
-              <Row className='mid'>
+              <Row className="mid">
                 <StarRatings
                   rating={4.5}
                   starDimension="21px"
@@ -38,7 +38,7 @@ class UserInfo extends React.Component {
                 />{' '}
                 <h4 className="left-marg">as a Driver</h4>
               </Row>
-              <Row className='mid'>
+              <Row className="mid">
                 <StarRatings
                   rating={3.5}
                   starDimension="21px"

@@ -13,30 +13,38 @@ class PassengerForm extends React.Component {
         </Row>
         <Row>
           <Form>
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">
-              From:
-            </Form.Label>
-            <Col>
-              <Form.Control type="text" value={this.props.depPoint} readOnly/>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">
-              To:
-            </Form.Label>
-            <Col>
-              <Form.Control type="text" value={this.props.destPoint} readOnly/>
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">
-              Time:
-            </Form.Label>
-            <Col>
-              <DateSelector onChange={this.props.onTime}/>
-            </Col>
-          </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                From:
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  value={this.props.depPoint}
+                  readOnly
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                To:
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  value={this.props.destPoint}
+                  readOnly
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
+                Time:
+              </Form.Label>
+              <Col>
+                <DateSelector onChange={this.props.onTime} />
+              </Col>
+            </Form.Group>
           </Form>
         </Row>
       </>

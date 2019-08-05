@@ -23,6 +23,11 @@ export const getDriver = id => {
 export const mapStateToProps = state => ({
   driverName: state.driver.driverName,
   phoneNumber: state.driver.phoneNumber,
+  carInformation: state.driver.carInformation,
+  freeSeats: state.driver.freeSeats,
+  maxSeats: state.driver.maxSeats,
+  startPointName: state.driver.startPointName,
+  finishPointName: state.driver.finishPointName,
 })
 
 export const mapDispatchToProps = dispatch => ({
