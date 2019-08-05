@@ -3,11 +3,14 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { formatDate } from '../../util'
 import './style.sass'
+// eslint-disable-next-line no-unused-vars
 import FavouriteRoute from '../favourite-routes/FavouriteRoute'
+// eslint-disable-next-line no-unused-vars
+import InfiniteScroll from 'react-infinite-scroll-component'
 class RoutesList extends React.Component {
   render() {
-    const { rides } = this.props
     const { getRide } = this.props
+    const {rides}=this.props
     const dRidesArr = rides.map(item => {
       return (
         this.props.favourites?
@@ -24,7 +27,9 @@ class RoutesList extends React.Component {
       )
     })
     return (
-      <div className="pscrollable">
+      <InfiniteScroll
+        dataLength={rides.length}
+        height={300}>
         <ListGroup
           title={this.props.type}
           variant="outline-dark"
@@ -32,7 +37,7 @@ class RoutesList extends React.Component {
         >
           {dRidesArr}
         </ListGroup>
-      </div>
+      </InfiniteScroll>
     )
   }
 }
