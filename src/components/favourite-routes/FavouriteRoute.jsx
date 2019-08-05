@@ -11,19 +11,19 @@ class FavouriteRoute extends React.Component {
   constructor() {
     super()
     this.state = {
-      confirm: false
+      confirm: false,
     }
   }
 
   confirm = () => {
     this.setState({
-      confirm: true
+      confirm: true,
     })
   }
 
   deny = () => {
     this.setState({
-      confirm: false
+      confirm: false,
     })
   }
 
@@ -36,24 +36,34 @@ class FavouriteRoute extends React.Component {
       <>
         <ListGroup.Item>
           <Row>
-            <Col xs={3}>
-              {this.props.name} :
-            </Col>
-            <Col xs='auto'> {this.props.depPoint}{' '}
-              <span className="oi oi-arrow-right" /> {this.props.destPoint}
+            <Col xs={3}>{this.props.name} :</Col>
+            <Col xs="auto">
+              {' '}
+              {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
+              {this.props.destPoint}
             </Col>
             <Col>
-              <Button onClick={this.confirm.bind(this)} variant='outline-danger' className='right'>Delete</Button>
+              <Button
+                onClick={this.confirm.bind(this)}
+                variant="outline-danger"
+                className="right"
+              >
+                Delete
+              </Button>
             </Col>
           </Row>
         </ListGroup.Item>
         <Confirm
           show={this.state.confirm}
           deny={this.deny.bind(this)}
-          confirm={this.delete.bind(this)} />
+          confirm={this.delete.bind(this)}
+        />
       </>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavouriteRoute)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FavouriteRoute)

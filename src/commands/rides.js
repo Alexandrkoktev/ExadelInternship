@@ -105,11 +105,11 @@ const getBookingsHistory = () => {
     }
   }
 }
-export const createRoute = (data,info) => {
+export const createRoute = (data, info) => {
   return async function(dispatch) {
     try {
       dispatch(createRouteStarting())
-      const route=await data;
+      const route = await data
       await client({
         url: '/api/addRoute/',
         method: 'post',
@@ -180,7 +180,7 @@ export const mapDispatchToProps = dispatch => ({
   getActiveBookings: () => dispatch(getActiveBookings()),
   getRoutesHistory: () => dispatch(getRoutesHistory()),
   getBookingsHistory: () => dispatch(getBookingsHistory()),
-  createRoute: (data,info)=> dispatch(createRoute(data,info)),
+  createRoute: (data, info) => dispatch(createRoute(data, info)),
   deleteRoute: id => dispatch(deleteRoute(id)),
   deleteBooking: id => dispatch(deleteBooking(id)),
 })

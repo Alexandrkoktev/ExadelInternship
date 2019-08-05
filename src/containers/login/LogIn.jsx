@@ -35,7 +35,7 @@ class LogIn extends React.Component {
             {error}
           </Alert>
         )}
-        <Card className='cardItem'>
+        <Card className="cardItem">
           <Card.Body>
             <Form>
               <Form.Group>
