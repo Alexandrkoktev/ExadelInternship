@@ -42,10 +42,10 @@ class Maps extends React.Component {
         this.pointA.properties.set({
           balloonContent: address,
         })
-        this.props.changeDepPoint(address);       // Илья, тебе сюда(А)
-      // Илья, тебе сюда(А)
-        
-        if(this.pointB && this.route) {
+        this.props.changeDepPoint(address) // Илья, тебе сюда(А)
+        // Илья, тебе сюда(А)
+
+        if (this.pointB && this.route) {
           // отправляем запрос на валидацию
         }
       } else {
@@ -58,7 +58,7 @@ class Maps extends React.Component {
           iconCaption: 'точка А',
           balloonContent: address,
         })
-        this.props.changeDepPoint(address);       // Илья, тебе сюда(А)
+        this.props.changeDepPoint(address) // Илья, тебе сюда(А)
         this.pointA.events.add(
           'dragend',
           async function() {
@@ -68,7 +68,7 @@ class Maps extends React.Component {
             this.pointA.properties.set({
               balloonContent: address,
             })
-            this.props.changeDepPoint(address);  // и сюда(А)
+            this.props.changeDepPoint(address) // и сюда(А)
           }.bind(this)
         )
       }
@@ -82,7 +82,7 @@ class Maps extends React.Component {
         this.pointB.properties.set({
           balloonContent: address,
         })
-        this.props.changeDestPoint(address);     // а ещё сюда(точка Б)
+        this.props.changeDestPoint(address) // а ещё сюда(точка Б)
       } else {
         this.pointB = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointB)
@@ -93,17 +93,17 @@ class Maps extends React.Component {
           iconCaption: 'точка B',
           balloonContent: address,
         })
-        this.props.changeDestPoint(address);    // сюда(Б)
+        this.props.changeDestPoint(address) // сюда(Б)
         this.pointB.events.add(
           'dragend',
           async function() {
             const address = await this.getAddress(
-                this.pointB.geometry.getCoordinates()
-              )
+              this.pointB.geometry.getCoordinates()
+            )
             this.pointB.properties.set({
               balloonContent: address,
             })
-            this.props.changeDestPoint(address);  // и сюда(Б)
+            this.props.changeDestPoint(address) // и сюда(Б)
           }.bind(this)
         )
       }
@@ -112,10 +112,10 @@ class Maps extends React.Component {
   }
 
   getPoints() {
-    if(this.pointA && this.pointB)
+    if (this.pointA && this.pointB)
       return [
         this.pointA.geometry.getCoordinates(),
-        this.pointB.geometry.getCoordinates()
+        this.pointB.geometry.getCoordinates(),
       ]
   }
 
@@ -127,7 +127,7 @@ class Maps extends React.Component {
       !deepEqual(this.props.showing, nextProps.showing)
     if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>',
+        '<div>Test</div>'
       )
       this.ymaps
         .route(
@@ -138,7 +138,7 @@ class Maps extends React.Component {
             }),
             nextProps.showing.finishPoint,
           ],
-          { balloonContentBodyLayout },
+          { balloonContentBodyLayout }
         )
         .then(route => {
           route.getPaths().options.set({
@@ -168,7 +168,7 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert('There\'s no map, my Lord.')
+      alert("There's no map, my Lord.")
       return
     }
 
@@ -177,7 +177,7 @@ class Maps extends React.Component {
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert('There\'s no route, my Lord.')
+      alert("There's no route, my Lord.")
       return
     }
 
@@ -193,7 +193,7 @@ class Maps extends React.Component {
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert('There\'s no route, my Lord.')
+      alert("There's no route, my Lord.")
       return
     }
 

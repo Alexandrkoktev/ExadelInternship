@@ -30,28 +30,28 @@ class NewRoute extends React.Component {
     this.mapComponent = React.createRef()
   }
 
-  onCarChange = (carId) => {
+  onCarChange = carId => {
     this.setState({ carId: carId })
   }
-  onSeatsChange = (event) => {
+  onSeatsChange = event => {
     const seats = event.target.value
     this.setState({ seats: seats })
   }
-  onTimeChange = (event) => {
+  onTimeChange = event => {
     this.setState({ time: event })
   }
   handleClick = event => {
     event.preventDefault()
-    const route =this.mapComponent.current.getRouteInfo()
-    const information=this.state
-    this.props.createRoute(route,information)
- //   store.dispatch(push('/home'))
+    const route = this.mapComponent.current.getRouteInfo()
+    const information = this.state
+    this.props.createRoute(route, information)
+    //   store.dispatch(push('/home'))
   }
-  handleChange = (data) => {
+  handleChange = data => {
     this.setState({
       from: data[0],
       to: data[1],
-      changed: !this.state.changed
+      changed: !this.state.changed,
     })
   }
 
@@ -62,27 +62,37 @@ class NewRoute extends React.Component {
         <Row>
           <Col sm={4}>
             <Row>
-            <ListGroup>
-              <NewRouteInfo from={this.state.from} to={this.state.to} key={this.state.changed} onSeats={this.onSeatsChange}
-                            onTime={this.onTimeChange} onCar={this.onCarChange}/>
-              <RoutesList rides={rides} favourites={true}/>
-            </ListGroup>
+              <ListGroup>
+                <NewRouteInfo
+                  from={this.state.from}
+                  to={this.state.to}
+                  key={this.state.changed}
+                  onSeats={this.onSeatsChange}
+                  onTime={this.onTimeChange}
+                  onCar={this.onCarChange}
+                />
+                <RoutesList rides={rides} favourites={true} />
+              </ListGroup>
             </Row>
             <Row>
-            <Button
-              className="right"
-              variant="dark"
-              type="submit"
-              onClick={event => {
-                this.handleClick(event)
-              }}
-            >
-              Create route
-            </Button>
+              <Button
+                className="right"
+                variant="dark"
+                type="submit"
+                onClick={event => {
+                  this.handleClick(event)
+                }}
+              >
+                Create route
+              </Button>
             </Row>
           </Col>
-          <Col sm={6} style={{height: "450px"}}>
-            <Maps needRouteEditor={true} ref={this.mapComponent} handleChange={this.handleChange}/>
+          <Col sm={6} style={{ height: '450px' }}>
+            <Maps
+              needRouteEditor={true}
+              ref={this.mapComponent}
+              handleChange={this.handleChange}
+            />
           </Col>
         </Row>
       </Container>

@@ -18,7 +18,7 @@ import currentRide from '../reducers/activeRides'
 // eslint-disable-next-line import/no-duplicates
 import activeRides from '../reducers/activeRides'
 import home from '../reducers/home'
-import passengers from '../reducers/passengers'
+import passenger from '../reducers/passengers'
 import cars from '../reducers/cars'
 import notifications from '../reducers/notifications'
 import statistics from '../reducers/statistics'
@@ -37,7 +37,7 @@ const rootReducer = history =>
     bookingHistory,
     userInfo,
     home,
-    passengers,
+    passenger,
     driver,
     cars,
     statistics,

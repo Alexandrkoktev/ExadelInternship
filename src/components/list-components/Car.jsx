@@ -11,7 +11,7 @@ class Car extends React.Component {
     super(props)
     this.state = {
       show: props.show,
-      confirm: false
+      confirm: false,
     }
   }
 
@@ -71,7 +71,8 @@ class Car extends React.Component {
         <Confirm
           show={this.state.confirm}
           confirm={this.delete.bind(this)}
-          deny={this.deny.bind(this)} />
+          deny={this.deny.bind(this)}
+        />
       </>
     )
   }
