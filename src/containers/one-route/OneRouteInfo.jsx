@@ -23,60 +23,60 @@ class OneRouteInfo extends React.Component {
 
   render() {
     const {
-      passengers: { bookings  = [], enabled  },
+      passengers: { bookings = [], enabled },
       freeSeats,
       maxSeats,
       startPointName,
       finishPointName,
-  } = this.props
+    } = this.props
 
-return (
-  <div className="one-route-info">
-    <div className="block">
-      <Container>
-        <Row>
-          <Col sm="7">
-            <Maps />
-          </Col>
-          <Col sm="5">
-            <h5 className="title-list">List of passengers:</h5>
-            <div className="scrollable list-passengers-style">
-              <ListOfPassengers passengers={bookings} enabled={enabled}  />
-            </div>
-            <ListGroup>
-              <h5 className="title-list">
-                From <span className="oi oi-arrow-right" /> To:{' '}
-              </h5>
-              <ListGroup.Item className="list-item-style">
-                {startPointName} <span className="oi oi-arrow-right" />{' '}
-                {finishPointName}
-              </ListGroup.Item>
-              <h5 className="title-list">Car information: </h5>
-              <ListGroup.Item className="list-item-style">
-                <b>Seats: </b>
-                {freeSeats}/{maxSeats}
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-        </Row>
-        <Row style={{ marginLeft: '1%' }}>
-          <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-            <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
-          </Col>
-          <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-            <span
-              className="oi oi-envelope-closed"
-              style={{ fontSize: '25px' }}
-            />
-          </Col>
-          <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-            <span className="oi oi-trash" style={{ fontSize: '25px' }} />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  </div>
-)
+    return (
+      <div className="one-route-info">
+        <div className="block">
+          <Container>
+            <Row>
+              <Col sm="7">
+                <Maps />
+              </Col>
+              <Col sm="5">
+                <h5 className="title-list">List of passengers:</h5>
+                <div className="scrollable list-passengers-style">
+                  <ListOfPassengers passengers={bookings} enabled={enabled} />
+                </div>
+                <ListGroup>
+                  <h5 className="title-list">
+                    From <span className="oi oi-arrow-right" /> To:{' '}
+                  </h5>
+                  <ListGroup.Item className="list-item-style">
+                    {startPointName} <span className="oi oi-arrow-right" />{' '}
+                    {finishPointName}
+                  </ListGroup.Item>
+                  <h5 className="title-list">Car information: </h5>
+                  <ListGroup.Item className="list-item-style">
+                    <b>Seats: </b>
+                    {freeSeats}/{maxSeats}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Col>
+            </Row>
+            <Row style={{ marginLeft: '1%' }}>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
+              </Col>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span
+                  className="oi oi-envelope-closed"
+                  style={{ fontSize: '25px' }}
+                />
+              </Col>
+              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </div>
+    )
   }
 }
 

@@ -54,8 +54,8 @@ class Route extends React.Component {
                 <StarButton addFav={this.props.addFavourite} id={id} />{' '}
               </Col>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
             <Col sm={7}>
               {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
               {this.props.destPoint} <Badge variant="info">{badge}</Badge>
@@ -87,8 +87,8 @@ class Route extends React.Component {
                   Delete
                 </Button>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </Col>
           </Row>
         </ListGroup.Item>

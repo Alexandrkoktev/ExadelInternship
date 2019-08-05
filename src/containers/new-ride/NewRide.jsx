@@ -46,7 +46,7 @@ class NewRide extends React.Component {
 
   handleConfirmClick = event => {
     event.preventDefault()
-    console.log('confirmed');
+    console.log('confirmed')
   }
 
   render() {
