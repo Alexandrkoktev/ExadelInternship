@@ -42,12 +42,12 @@ class Maps extends React.Component {
         this.pointA.properties.set({
           balloonContent: address,
         })
-        this.props.changeDepPoint(address);       // Илья, тебе сюда(А)
-      // Илья, тебе сюда(А)
+        this.props.changeDepPoint(address);
         
         if(this.pointB && this.route) {
           // отправляем запрос на валидацию
         }
+
       } else {
         this.pointA = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointA)
@@ -58,7 +58,7 @@ class Maps extends React.Component {
           iconCaption: 'точка А',
           balloonContent: address,
         })
-        this.props.changeDepPoint(address);       // Илья, тебе сюда(А)
+        this.props.changeDepPoint(address);
         this.pointA.events.add(
           'dragend',
           async function() {
@@ -68,7 +68,7 @@ class Maps extends React.Component {
             this.pointA.properties.set({
               balloonContent: address,
             })
-            this.props.changeDepPoint(address);  // и сюда(А)
+            this.props.changeDepPoint(address);
           }.bind(this)
         )
       }
@@ -82,7 +82,7 @@ class Maps extends React.Component {
         this.pointB.properties.set({
           balloonContent: address,
         })
-        this.props.changeDestPoint(address);     // а ещё сюда(точка Б)
+        this.props.changeDestPoint(address);
       } else {
         this.pointB = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointB)
@@ -93,7 +93,7 @@ class Maps extends React.Component {
           iconCaption: 'точка B',
           balloonContent: address,
         })
-        this.props.changeDestPoint(address);    // сюда(Б)
+        this.props.changeDestPoint(address);
         this.pointB.events.add(
           'dragend',
           async function() {
@@ -103,7 +103,7 @@ class Maps extends React.Component {
             this.pointB.properties.set({
               balloonContent: address,
             })
-            this.props.changeDestPoint(address);  // и сюда(Б)
+            this.props.changeDestPoint(address);
           }.bind(this)
         )
       }
@@ -263,10 +263,52 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       const routeEditor = this.map.controls.add('routeEditor')
       routeEditor.events.add('deselect', this.getEndPoints)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map'
+        },
+        options: {
+          selectOnClick: false
+        }
+      })
+      clearMapButton.events.add('click',
+      () => {
+        this.map.controls.get('routeEditor').select()
+        this.props.handleChange(['', ''])
+        this.route = null;
+      })
+      this.map.controls.add(clearMapButton, {
+        float: "left"
+      })
     }
 
     if (this.map && this.props.needPlacemarks) {
       this.map.events.add('click', this.addPlacemark)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map'
+        },
+        options: {
+          selectOnClick: false
+        }
+      })
+      clearMapButton.events.add('click',
+      () => {
+        this.map.geoObjects.removeAll();
+        this.props.changeDepPoint('')
+        this.props.changeDestPoint('')
+        this.pointA = null;
+        this.pointB = null;
+        this.isA = true;
+        this.route = null;
+      })
+      this.map.controls.add(clearMapButton, {
+        float: "left"
+      })
     }
 
     // тут прорисовка для просмотра информации о маршруте
