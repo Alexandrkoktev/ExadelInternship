@@ -8,11 +8,11 @@ class PassengerForm extends React.Component {
   render() {
     return (
       <>
-        <Row >
-          <h3 className='styleForHead'>New route:</h3>
+        <Row>
+          <h3 className="styleForHead">New route:</h3>
         </Row>
         <Row>
-          <Form className='styleForForm'>
+          <Form className="styleForForm">
             <Form.Group as={Row}>
               <Form.Control type="text" placeholder="From:" />
             </Form.Group>

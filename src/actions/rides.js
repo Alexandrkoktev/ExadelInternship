@@ -69,18 +69,18 @@ export function getRidesError(error) {
     error,
   }
 }
-export function createRouteStarting(){
-  return{
+export function createRouteStarting() {
+  return {
     type: CREATE_ROUTE_DATA,
   }
 }
-export function createRouteDone(){
-  return{
+export function createRouteDone() {
+  return {
     type: CREATE_ROUTE_DATA,
   }
 }
-export function createRouteError(error){
-  return{
+export function createRouteError(error) {
+  return {
     type: CREATE_ROUTE_DATA,
     error,
   }
