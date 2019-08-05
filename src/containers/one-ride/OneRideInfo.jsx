@@ -34,27 +34,23 @@ class OneRideInfo extends React.Component {
               <Col sm="5">
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
                   <ListGroup>
-                    <h5 style={{ marginLeft: '2%', fontWeight: 'bold' }}>
-                      Driver:{' '}
-                    </h5>
-                    <ListGroup.Item style={{ marginBottom: '4%' }}>
+                    <h5 className="title-list">Driver: </h5>
+                    <ListGroup.Item className="list-item-style">
                       <b>Name:</b> {driverName},
                       <br />
                       <b>Phone number:</b> {phoneNumber}
                     </ListGroup.Item>
-                    <h5 style={{ marginLeft: '2%', fontWeight: 'bold' }}>
-                      Car information:{' '}
-                    </h5>
-                    <ListGroup.Item style={{ marginBottom: '4%' }}>
+                    <h5 className="title-list">Car information: </h5>
+                    <ListGroup.Item className="list-item-style">
                       <b>Info: </b> {carInformation},
                       <br />
                       <b>Seats: </b>
                       {freeSeats}/{maxSeats}
                     </ListGroup.Item>
-                    <h5 style={{ marginLeft: '2%', fontWeight: 'bold' }}>
+                    <h5 className="title-list">
                       From <span className="oi oi-arrow-right" /> To:{' '}
                     </h5>
-                    <ListGroup.Item style={{ marginBottom: '4%' }}>
+                    <ListGroup.Item className="list-item-style">
                       {startPointName} <span className="oi oi-arrow-right" />{' '}
                       {finishPointName}
                     </ListGroup.Item>

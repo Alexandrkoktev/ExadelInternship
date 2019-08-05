@@ -20,7 +20,13 @@ export const getPassengers = id => {
   }
 }
 
-export const mapStateToProps = state => state.passengers
+export const mapStateToProps = state => ({
+  passengers: state.passenger.passengers,
+  freeSeats: state.passenger.freeSeats,
+  maxSeats: state.passenger.maxSeats,
+  startPointName: state.passenger.startPointName,
+  finishPointName: state.passenger.finishPointName,
+})
 
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
