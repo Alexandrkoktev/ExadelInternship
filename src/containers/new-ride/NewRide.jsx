@@ -17,6 +17,10 @@ class NewRide extends React.Component {
       chosenRide: {},
       depPoint: '',
       destPoint: '',
+      time: '',
+      activeRouteId: '',
+      arrayFrom: [],
+      arrayTo: [],
     }
   }
   changeDepPoint = depPoint => {
@@ -25,6 +29,10 @@ class NewRide extends React.Component {
   changeDestPoint = destPoint => {
     this.setState({ destPoint: destPoint })
   }
+  onTimeChange = (event) => {
+    this.setState({ time: event })
+  }
+
   componentDidMount() {
     this.props.getRides()
     this.mapComponent = React.createRef()
@@ -37,16 +45,24 @@ class NewRide extends React.Component {
       this.setState({ chosenRide: current })
     }
   }
-
+  handleConfirmClick = event => {
+    event.preventDefault()
+    const data = {
+      meetPoint: this.state.arrayFrom,
+      destinationPoint: this.state.arrayTo,
+      activeRouteId: this.state.activeRouteId,
+    }
+    this.props.createBooking(data)
+  }
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
-    console.log(points)
+    this.setState({ arrayFrom: points[0], arrayTo: points[1] })
+    const data = { meetPoint: points[0], destinationPoint: points[1], datetime: this.state.time.toJSON() }
+    this.props.getRides(data)
   }
-
-  handleConfirmClick = event => {
-    event.preventDefault()
-    console.log('confirmed')
+  setRouteId = (id) => {
+    this.setState({ activeRouteId: id })
   }
 
   render() {
@@ -57,10 +73,8 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm
-                  depPoint={this.state.depPoint}
-                  destPoint={this.state.destPoint}
-                />
+                <PassengerForm depPoint={this.state.depPoint} destPoint={this.state.destPoint}
+                               onTime={this.onTimeChange}/>
               </ListGroup>
             </Row>
             <Row>
@@ -76,13 +90,14 @@ class NewRide extends React.Component {
               <RoutesList
                 rides={activeRides}
                 getRide={this.choose.bind(this)}
+                setId={this.setRouteId}
               />
             </Row>
             <Row>
               <Button
                 variant="dark"
                 type="submit"
-                onClick={event => event.preventDefault()}
+                onClick={this.handleConfirmClick}
                 style={{ marginTop: '10px' }}
               >
                 Confirm
@@ -106,5 +121,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewRide)
