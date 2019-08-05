@@ -29,7 +29,6 @@ class OneRouteInfo extends React.Component {
       startPointName,
       finishPointName,
     } = this.props
-    debugger
     return (
       <div className="one-route-info">
         <div className="block">

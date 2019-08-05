@@ -23,11 +23,10 @@ class NewRide extends React.Component {
       arrayTo: [],
     }
   }
-
-  changeDepPoint = (depPoint) => {
+  changeDepPoint = depPoint => {
     this.setState({ depPoint: depPoint })
   }
-  changeDestPoint = (destPoint) => {
+  changeDestPoint = destPoint => {
     this.setState({ destPoint: destPoint })
   }
   onTimeChange = (event) => {
@@ -106,8 +105,13 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps ref={this.mapComponent} needPlacemarks={true} showing={this.state.chosenRide}
-                  changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
+            <Maps
+              ref={this.mapComponent}
+              needPlacemarks={true}
+              showing={this.state.chosenRide}
+              changeDepPoint={this.changeDepPoint}
+              changeDestPoint={this.changeDestPoint}
+            />
           </Col>
         </Row>
       </Container>
