@@ -12,6 +12,11 @@ const initialState = {
   freeSeats: '',
   startPointName: '',
   finishPointName: '',
+  viaPoints: [],
+  meetPoint: [],
+  destinationPoint: [],
+  startPoint: [],
+  finishPoint: [],
 }
 
 function reducer(state = initialState, action) {
@@ -29,6 +34,11 @@ function reducer(state = initialState, action) {
         maxSeats,
         startPointName,
         finishPointName,
+        viaPoints,
+        meetPoint,
+        destinationPoint,
+        startPoint,
+        finishPoint,
       } = action.payload
       return {
         ...state,
@@ -39,6 +49,11 @@ function reducer(state = initialState, action) {
         freeSeats,
         startPointName,
         finishPointName,
+        viaPoints,
+        meetPoint,
+        destinationPoint,
+        startPoint,
+        finishPoint,
       }
     case GET_DRIVER_DATA_ERROR:
       const { error } = action

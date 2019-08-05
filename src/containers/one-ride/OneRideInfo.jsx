@@ -22,14 +22,26 @@ class OneRideInfo extends React.Component {
       startPointName,
       finishPointName,
       carInformation,
+      viaPoints,
+      meetPoint,
+      destinationPoint,
+      startPoint,
+      finishPoint,
     } = this.props
+    const passengerInfo = {
+      viaPoints,
+      meetPoint,
+      destinationPoint,
+      startPoint,
+      finishPoint,
+    }
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
               <Col sm="7">
-                <Maps />
+                <Maps passengerInfo="passengerInfo" />
               </Col>
               <Col sm="5">
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
