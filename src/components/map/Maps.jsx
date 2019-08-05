@@ -36,28 +36,35 @@ class Maps extends React.Component {
     if (this.isA) {
       if (this.pointA) {
         this.pointA.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
         this.pointA.properties.set({
-          balloonContent: await this.getAddress(
-            this.pointA.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        console.log(address);       // Илья, тебе сюда(А)
       } else {
         this.pointA = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointA)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
         this.pointA.properties.set({
           iconCaption: 'точка А',
-          balloonContent: await this.getAddress(
-            this.pointA.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        console.log(address)      // и ещё сюда(А)
+
         this.pointA.events.add(
           'dragend',
           async function() {
+            const address = await this.getAddress(
+              this.pointA.geometry.getCoordinates()
+            )
             this.pointA.properties.set({
-              balloonContent: await this.getAddress(
-                this.pointA.geometry.getCoordinates()
-              ),
+              balloonContent: address,
             })
+            console.log(address)  // и сюда(А)
           }.bind(this)
         )
       }
@@ -65,28 +72,34 @@ class Maps extends React.Component {
     } else {
       if (this.pointB) {
         this.pointB.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
         this.pointB.properties.set({
-          balloonContent: await this.getAddress(
-            this.pointB.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        console.log(address)      // а ещё сюда(точка Б)
       } else {
         this.pointB = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointB)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
         this.pointB.properties.set({
           iconCaption: 'точка B',
-          balloonContent: await this.getAddress(
-            this.pointB.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        console.log(address)    // сюда(Б)
         this.pointB.events.add(
           'dragend',
           async function() {
-            this.pointB.properties.set({
-              balloonContent: await this.getAddress(
+            const address = await this.getAddress(
                 this.pointB.geometry.getCoordinates()
-              ),
+              )
+            this.pointB.properties.set({
+              balloonContent: address,
             })
+            console.log(address)    // и сюда(Б)
           }.bind(this)
         )
       }
