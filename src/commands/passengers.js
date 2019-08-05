@@ -8,6 +8,7 @@ import client from './axios'
 export const getPassengers = id => {
   return async function(dispatch) {
     try {
+      debugger
       dispatch(getPassengerStarting())
       const { data } = await client({
         url: `/api/activeRoute/${id}`,

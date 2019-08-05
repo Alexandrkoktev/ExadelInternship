@@ -41,7 +41,7 @@ class OneRideInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7">
-                <Maps passengerInfo="passengerInfo" />
+                <Maps passengerInfo={passengerInfo} />
               </Col>
               <Col sm="5">
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
@@ -56,7 +56,7 @@ class OneRideInfo extends React.Component {
                     <ListGroup.Item className="list-item-style">
                       <b>Info: </b> {carInformation},
                       <br />
-                      <b>Seats: </b>
+                      <b>Free seats / All seats: </b>
                       {freeSeats}/{maxSeats}
                     </ListGroup.Item>
                     <h5 className="title-list">

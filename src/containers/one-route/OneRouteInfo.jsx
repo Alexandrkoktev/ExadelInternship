@@ -52,8 +52,8 @@ class OneRouteInfo extends React.Component {
                   </ListGroup.Item>
                   <h5 className="title-list">Car information: </h5>
                   <ListGroup.Item className="list-item-style">
-                    <b>Seats: </b>
-                    {freeSeats}/{maxSeats}
+                    <b>Free seats / All seats: </b>
+                    {maxSeats - freeSeats}/{maxSeats}
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
