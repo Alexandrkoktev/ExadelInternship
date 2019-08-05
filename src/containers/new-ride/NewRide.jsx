@@ -18,6 +18,9 @@ class NewRide extends React.Component {
       depPoint: '',
       destPoint: '',
       time: '',
+      activeRouteId: '',
+      arrayFrom: [],
+      arrayTo: [],
     }
   }
 
@@ -43,12 +46,24 @@ class NewRide extends React.Component {
       this.setState({ chosenRide: current })
     }
   }
-
+  handleConfirmClick = event => {
+    event.preventDefault()
+    const data = {
+      meetPoint: this.state.arrayFrom,
+      destinationPoint: this.state.arrayTo,
+      activeRouteId: this.state.activeRouteId,
+    }
+    this.props.createBooking(data)
+  }
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
+    this.setState({ arrayFrom: points[0], arrayTo: points[1] })
     const data = { meetPoint: points[0], destinationPoint: points[1], datetime: this.state.time.toJSON() }
     this.props.getRides(data)
+  }
+  setRouteId = (id) => {
+    this.setState({ activeRouteId: id })
   }
 
   render() {
@@ -69,20 +84,21 @@ class NewRide extends React.Component {
                 type="submit"
                 onClick={this.handleSearchClick}
               >
-              Search
+                Search
               </Button>
             </Row>
             <Row>
               <RoutesList
                 rides={activeRides}
                 getRide={this.choose.bind(this)}
+                setId={this.setRouteId}
               />
             </Row>
             <Row>
               <Button
                 variant="dark"
                 type="submit"
-                onClick={event => event.preventDefault()}
+                onClick={this.handleConfirmClick}
                 style={{ marginTop: '10px' }}
               >
                 Confirm
@@ -90,7 +106,7 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps ref={this.mapComponent}  needPlacemarks={true} showing={this.state.chosenRide}
+            <Maps ref={this.mapComponent} needPlacemarks={true} showing={this.state.chosenRide}
                   changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
           </Col>
         </Row>

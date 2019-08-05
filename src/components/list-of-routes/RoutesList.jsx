@@ -15,15 +15,18 @@ class RoutesList extends React.Component {
       return this.props.favourites ? (
         <FavouriteRoute
           key={item.routeId}
+          id={item.routeId}
           name={item.name}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
+          getRide={getRide}
         />
       ) : (
         <ListGroup.Item
           key={item.id}
           onClick={() => {
             getRide(item.id)
+            this.props.setId(item.id)
           }}
         >
           {item.startPointName} <span className="oi oi-arrow-right" />{' '}

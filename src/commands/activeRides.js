@@ -20,7 +20,23 @@ export const mapDispatchToProps = dispatch => ({
   getRides: (data) => dispatch(getRides(data)),
   getRide: id => dispatch(getRideInfo(id)),
   verifyPoints: data =>dispatch(verifyPoints(data)),
+  createBooking: data =>dispatch(createBooking(data)),
 })
+export const createBooking=data=>{
+  return async function(dispatch){
+    try{
+      dispatch(verifyingStarting())
+      await client({
+        url: '/api/createBooking',
+        method: 'post',
+        data: data,
+      })
+      dispatch(verifyingDone())
+    }catch(e){
+      dispatch(verifyingError(e))
+    }
+  }
+}
 export const verifyPoints= data=>{
   return async function(dispatch){
     try{
