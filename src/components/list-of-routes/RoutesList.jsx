@@ -29,7 +29,7 @@ class RoutesList extends React.Component {
     return (
       <InfiniteScroll
         dataLength={rides.length}
-        height={200}>
+        height={300}>
         <ListGroup
           title={this.props.type}
           variant="outline-dark"
