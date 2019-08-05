@@ -29,6 +29,7 @@ class FavouriteRoute extends React.Component {
 
   delete = () => {
     this.props.deleteFavourite(this.props.id)
+    this.props.finish()
   }
   render() {
     return (
@@ -49,8 +50,7 @@ class FavouriteRoute extends React.Component {
         <Confirm
           show={this.state.confirm}
           deny={this.deny.bind(this)}
-          confirm={this.delete.bind(this)}
-        />
+          confirm={this.delete.bind(this)} />
       </>
     )
   }

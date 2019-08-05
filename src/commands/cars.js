@@ -46,7 +46,7 @@ export const sendCar = (id, data) => {
     try {
       dispatch(putCarStarting())
       await client({
-        url: '/api/profile/cars/'.concat(id),
+        url: `/api/profile/cars/${id}`,
         method: 'put',
         data: { id, carInformation: data },
       })
@@ -61,7 +61,7 @@ export const deleteCar = id => {
   return async function(dispatch) {
     try {
       dispatch(deleteCarStarting())
-      await client({ url: '/api/profile/cars/'.concat(id), method: 'delete' })
+      await client({ url: `/api/profile/cars/${id}`, method: 'delete' })
       dispatch(deleteCarDone())
     } catch (e) {
       dispatch(deleteCarError(e))

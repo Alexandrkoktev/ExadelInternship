@@ -16,17 +16,21 @@ class Profile extends React.Component {
     this.props.getFavourites()
   }
 
+  finish = () => {
+    setTimeout(this.props.getFavourites, 1000)
+  }
+
   render() {
     const { favourites = [] } = this.props
     const dRidesArr = favourites.map(item => {
       return (
         <FavouriteRoute
-          routeid={item.routeId}
-          key={item.routeId}
+          key={item.id}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
           name={item.name}
-          id={item.routeId}
+          id={item.id}
+          finish={this.finish.bind(this)}
         />
       )
     })

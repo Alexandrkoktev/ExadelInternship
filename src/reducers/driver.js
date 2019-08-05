@@ -5,7 +5,8 @@ import {
 } from '../actions/driver'
 
 const initialState = {
-  passengers: [],
+  driverName: '',
+  phoneNumber: '',
 }
 
 function reducer(state = initialState, action) {
@@ -15,10 +16,11 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case GET_DRIVER_DATA_SUCCESS:
-      const { passengers } = action.payload
+      const { driverName, phoneNumber } = action.payload
       return {
         ...state,
-        passengers,
+        driverName,
+        phoneNumber,
       }
     case GET_DRIVER_DATA_ERROR:
       const { error } = action
