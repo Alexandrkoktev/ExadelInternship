@@ -20,6 +20,7 @@ class NewRide extends React.Component {
 
   componentDidMount() {
     this.props.getRides()
+    this.mapComponent = React.createRef()
   }
 
   choose = async id => {
@@ -28,6 +29,12 @@ class NewRide extends React.Component {
       const current = this.props.currentRide
       this.setState({ chosenRide: current })
     }
+  }
+
+  handleSearchClick = event => {
+    event.preventDefault()
+    const points = this.mapComponent.current.getPoints()
+    console.log(points);
   }
 
   render() {
@@ -45,7 +52,7 @@ class NewRide extends React.Component {
               <Button
                 variant="dark"
                 type="submit"
-                onClick={event => event.preventDefault()}
+                onClick={this.handleSearchClick}
               >
               Search
               </Button>
@@ -67,7 +74,7 @@ class NewRide extends React.Component {
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
+            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
           </Col>
         </Row>
       </Container>
