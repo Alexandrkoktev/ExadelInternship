@@ -128,11 +128,12 @@ class Maps extends React.Component {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
+      const viaPoints = nextProps.showing.viaPoints || [];
       this.ymaps
         .route(
           [
             nextProps.showing.startPoint,
-            ...nextProps.showing.viaPoints.map(point => {
+            ...viaPoints.map(point => {
               return { type: 'viaPoint', point: point }
             }),
             nextProps.showing.finishPoint,
@@ -309,14 +310,16 @@ class Maps extends React.Component {
     }
 // информация о маршруте пассажира
     if (this.props && this.props.passengerInfo) {
-      const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
+      console.log(this.props);
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
-      ymaps
+      const viaPoints = this.props.passengerInfo.viaPoints || [];
+      this.ymaps
         .route(
           [
             this.props.passengerInfo.startPoint,
-            ...this.props.passengerInfo.viaPoints.map(point => {
+            ...viaPoints.map(point => {
               return {type:'viaPoint', point: point}
             }),
             this.props.passengerInfo.finishPoint
@@ -337,14 +340,15 @@ class Maps extends React.Component {
     }
 // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {
-      const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
-      ymaps
+      const viaPoints = this.props.driverInfo.viaPoints || [];
+      this.ymaps
         .route(
           [
             this.props.driverInfo.startPoint,
-            ...this.props.driverInfo.viaPoints.map(point => {
+            ...viaPoints.map(point => {
               return {type:'viaPoint', point: point}
             }),
             this.props.driverInfo.finishPoint

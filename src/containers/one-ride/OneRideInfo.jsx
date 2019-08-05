@@ -41,7 +41,7 @@ class OneRideInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7">
-                <Maps passengerInfo="passengerInfo" />
+                <Maps passengerInfo={passengerInfo} />
               </Col>
               <Col sm="5">
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
