@@ -22,10 +22,11 @@ class Profile extends React.Component {
       return (
         <FavouriteRoute
           routeid={item.routeId}
-          key={item.id}
+          key={item.routeId}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
           name={item.name}
+          id={item.routeId}
         />
       )
     })
@@ -50,8 +51,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                <ListGroup>{dRidesArr}</ListGroup>
-              )}
+                  <ListGroup>{dRidesArr}</ListGroup>
+                )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />
