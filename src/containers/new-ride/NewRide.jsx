@@ -15,9 +15,16 @@ class NewRide extends React.Component {
     super()
     this.state = {
       chosenRide: {},
+      depPoint:"",
+      destPoint:"",
     }
   }
-
+  changeDepPoint=(depPoint)=>{
+    this.setState({depPoint:depPoint},)
+  }
+  changeDestPoint=(destPoint)=>{
+    this.setState({destPoint:destPoint},)
+  }
   componentDidMount() {
     this.props.getRides()
     this.mapComponent = React.createRef()
@@ -45,7 +52,7 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm />
+                <PassengerForm depPoint={this.state.depPoint} destPoint={this.state.destPoint}/>
               </ListGroup>
             </Row>
             <Row>
@@ -68,13 +75,14 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={event => event.preventDefault()}
+                style={{marginTop:'10px'}}
               >
               Confirm
               </Button>
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
+            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
           </Col>
         </Row>
       </Container>
