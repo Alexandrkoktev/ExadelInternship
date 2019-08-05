@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 class RoutesList extends React.Component {
   render() {
     const { getRide } = this.props
-    const {rides}=this.props
+    const { rides } = this.props
     const dRidesArr = rides.map(item => {
       return this.props.favourites ? (
         <FavouriteRoute
@@ -33,9 +33,7 @@ class RoutesList extends React.Component {
       )
     })
     return (
-      <InfiniteScroll
-        dataLength={rides.length}
-        height={300}>
+      <InfiniteScroll dataLength={rides.length} height={300}>
         <ListGroup
           title={this.props.type}
           variant="outline-dark"

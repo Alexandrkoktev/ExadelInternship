@@ -34,7 +34,7 @@ class OneRouteInfo extends React.Component {
         <div className="block">
           <Container>
             <Row>
-              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
+              <Col sm="7" style={{ marginTop: '1%' }}>
                 <Maps />
               </Col>
               <Col sm="5">
