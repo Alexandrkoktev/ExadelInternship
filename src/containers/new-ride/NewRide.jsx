@@ -44,6 +44,11 @@ class NewRide extends React.Component {
     console.log(points)
   }
 
+  handleConfirmClick = event => {
+    event.preventDefault()
+    console.log('confirmed')
+  }
+
   render() {
     const { activeRides = [] } = this.props
     return (
@@ -87,7 +92,6 @@ class NewRide extends React.Component {
           <Col sm={7}>
             <Maps
               ref={this.mapComponent}
-              onMapClick={console.log}
               needPlacemarks={true}
               showing={this.state.chosenRide}
               changeDepPoint={this.changeDepPoint}

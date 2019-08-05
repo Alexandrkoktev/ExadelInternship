@@ -42,8 +42,7 @@ class Maps extends React.Component {
         this.pointA.properties.set({
           balloonContent: address,
         })
-        this.props.changeDepPoint(address) // Илья, тебе сюда(А)
-        // Илья, тебе сюда(А)
+        this.props.changeDepPoint(address)
 
         if (this.pointB && this.route) {
           // отправляем запрос на валидацию
@@ -58,7 +57,7 @@ class Maps extends React.Component {
           iconCaption: 'точка А',
           balloonContent: address,
         })
-        this.props.changeDepPoint(address) // Илья, тебе сюда(А)
+        this.props.changeDepPoint(address)
         this.pointA.events.add(
           'dragend',
           async function() {
@@ -68,7 +67,7 @@ class Maps extends React.Component {
             this.pointA.properties.set({
               balloonContent: address,
             })
-            this.props.changeDepPoint(address) // и сюда(А)
+            this.props.changeDepPoint(address)
           }.bind(this)
         )
       }
@@ -82,7 +81,7 @@ class Maps extends React.Component {
         this.pointB.properties.set({
           balloonContent: address,
         })
-        this.props.changeDestPoint(address) // а ещё сюда(точка Б)
+        this.props.changeDestPoint(address)
       } else {
         this.pointB = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointB)
@@ -93,7 +92,7 @@ class Maps extends React.Component {
           iconCaption: 'точка B',
           balloonContent: address,
         })
-        this.props.changeDestPoint(address) // сюда(Б)
+        this.props.changeDestPoint(address)
         this.pointB.events.add(
           'dragend',
           async function() {
@@ -103,7 +102,7 @@ class Maps extends React.Component {
             this.pointB.properties.set({
               balloonContent: address,
             })
-            this.props.changeDestPoint(address) // и сюда(Б)
+            this.props.changeDestPoint(address)
           }.bind(this)
         )
       }
@@ -129,11 +128,12 @@ class Maps extends React.Component {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
+      const viaPoints = nextProps.showing.viaPoints || [];
       this.ymaps
         .route(
           [
             nextProps.showing.startPoint,
-            ...nextProps.showing.viaPoints.map(point => {
+            ...viaPoints.map(point => {
               return { type: 'viaPoint', point: point }
             }),
             nextProps.showing.finishPoint,
@@ -263,40 +263,109 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       const routeEditor = this.map.controls.add('routeEditor')
       routeEditor.events.add('deselect', this.getEndPoints)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map',
+        },
+        options: {
+          selectOnClick: false,
+        },
+      })
+      clearMapButton.events.add('click', () => {
+        this.map.controls.get('routeEditor').select()
+        this.props.handleChange(['', ''])
+        this.route = null
+      })
+      this.map.controls.add(clearMapButton, {
+        float: 'left',
+      })
     }
 
     if (this.map && this.props.needPlacemarks) {
       this.map.events.add('click', this.addPlacemark)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map',
+        },
+        options: {
+          selectOnClick: false,
+        },
+      })
+      clearMapButton.events.add('click', () => {
+        this.map.geoObjects.removeAll()
+        this.props.changeDepPoint('')
+        this.props.changeDestPoint('')
+        this.pointA = null
+        this.pointB = null
+        this.isA = true
+        this.route = null
+      })
+      this.map.controls.add(clearMapButton, {
+        float: 'left',
+      })
     }
-
-    // тут прорисовка для просмотра информации о маршруте
-    // if (this.props && this.props.showing) {
-    //   const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
-    //     '<div>Test</div>'
-    //   )
-    //   ymaps
-    //     .route(
-    //       [
-    //         this.props.showing.startPoint,
-    //         ...this.props.showing.viaPoints.map((point)=>{return {type:'viaPoint', point: point}}),
-    //         this.props.showing.finishPoint
-    //       ],
-    //       { balloonContentBodyLayout }
-    //     )
-    //     .then(route => {
-    //       route.getPaths().options.set({
-    //         // в балуне выводим только информацию о времени движения с учетом пробок
-    //         // можно выставить настройки графики маршруту
-    //         strokeColor: '0000ffff',
-    //         opacity: 0.9,
-    //       })
-
-    //       // this.route = route;   // !!!!
-
-    //       // добавляем маршрут на карту
-    //       this.map.geoObjects.add(route)
-    //     })
-    // }
+// информация о маршруте пассажира
+    if (this.props && this.props.passengerInfo) {
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      const viaPoints = this.props.passengerInfo.viaPoints || [];
+      this.ymaps
+        .route(
+          [
+            this.props.passengerInfo.startPoint,
+            ...viaPoints.map(point => {
+              return {type:'viaPoint', point: point}
+            }),
+            this.props.passengerInfo.finishPoint
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route;
+          this.map.geoObjects.add(route)
+        })
+    }
+// информация о маршруте водителя
+    if (this.props && this.props.driverInfo) {
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      const viaPoints = this.props.driverInfo.viaPoints || [];
+      this.ymaps
+        .route(
+          [
+            this.props.driverInfo.startPoint,
+            ...viaPoints.map(point => {
+              return {type:'viaPoint', point: point}
+            }),
+            this.props.driverInfo.finishPoint
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route;
+          this.map.geoObjects.add(route)
+        })
+    }
   }
 
   render() {
