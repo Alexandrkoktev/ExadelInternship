@@ -310,7 +310,6 @@ class Maps extends React.Component {
     }
 // информация о маршруте пассажира
     if (this.props && this.props.passengerInfo) {
-      console.log(this.props);
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
