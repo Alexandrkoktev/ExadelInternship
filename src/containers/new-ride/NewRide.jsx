@@ -15,16 +15,22 @@ class NewRide extends React.Component {
     super()
     this.state = {
       chosenRide: {},
-      depPoint:"",
-      destPoint:"",
+      depPoint: '',
+      destPoint: '',
+      time: '',
     }
   }
-  changeDepPoint=(depPoint)=>{
-    this.setState({depPoint:depPoint},)
+
+  changeDepPoint = (depPoint) => {
+    this.setState({ depPoint: depPoint })
   }
-  changeDestPoint=(destPoint)=>{
-    this.setState({destPoint:destPoint},)
+  changeDestPoint = (destPoint) => {
+    this.setState({ destPoint: destPoint })
   }
+  onTimeChange = (event) => {
+    this.setState({ time: event })
+  }
+
   componentDidMount() {
     this.props.getRides()
     this.mapComponent = React.createRef()
@@ -41,7 +47,8 @@ class NewRide extends React.Component {
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
-    console.log(points);
+    const data = { meetPoint: points[0], destinationPoint: points[1], datetime: this.state.time.toJSON() }
+    this.props.getRides(data)
   }
 
   render() {
@@ -52,7 +59,8 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm depPoint={this.state.depPoint} destPoint={this.state.destPoint}/>
+                <PassengerForm depPoint={this.state.depPoint} destPoint={this.state.destPoint}
+                               onTime={this.onTimeChange}/>
               </ListGroup>
             </Row>
             <Row>
@@ -61,7 +69,7 @@ class NewRide extends React.Component {
                 type="submit"
                 onClick={this.handleSearchClick}
               >
-              Search
+                Search
               </Button>
             </Row>
             <Row>
@@ -75,14 +83,15 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={event => event.preventDefault()}
-                style={{marginTop:'10px'}}
+                style={{ marginTop: '10px' }}
               >
-              Confirm
+                Confirm
               </Button>
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
+            <Maps ref={this.mapComponent} onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide}
+                  changeDepPoint={this.changeDepPoint} changeDestPoint={this.changeDestPoint}/>
           </Col>
         </Row>
       </Container>
@@ -92,5 +101,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewRide)

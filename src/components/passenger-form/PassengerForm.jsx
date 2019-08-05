@@ -9,7 +9,7 @@ class PassengerForm extends React.Component {
     return (
       <>
         <Row >
-          <h3 className='styleForHead'>New route:</h3>
+          <h3 className='styleForHead'>New ride:</h3>
         </Row>
         <Row>
           <Form>
