@@ -29,25 +29,10 @@ class Content extends React.Component {
     }
     return [
       <Route exact path="/home" component={Home} key={1} />,
-      <Route
-        exact
-        path="/home/new-ride"
-        component={NewRide}
-        key={2}
-      />,
-      <Route
-        exact
-        path="/home/new-route"
-        component={NewRoute}
-        key={3}
-      />,
-      <Route exact path="/routes" component={Routes}  key={4} />,
-      <Route
-        exact
-        path="/notifications"
-        component={Notifications}
-        key={5}
-      />,
+      <Route exact path="/home/new-ride" component={NewRide} key={2} />,
+      <Route exact path="/home/new-route" component={NewRoute} key={3} />,
+      <Route exact path="/routes" component={Routes} key={4} />,
+      <Route exact path="/notifications" component={Notifications} key={5} />,
       <Route
         exact
         path="/routes/route-info/:routeid"
@@ -60,9 +45,9 @@ class Content extends React.Component {
         component={OneRideInfo}
         key={10}
       />,
-      <Route exact path="/profile" component={Profile}  key={7} />,
-      <Route exact path="/new-ride" component={NewRide}  key={8} />,
-      <Route render={() => <h1>Page not found</h1>}  key={9} />,
+      <Route exact path="/profile" component={Profile} key={7} />,
+      <Route exact path="/new-ride" component={NewRide} key={8} />,
+      <Route render={() => <h1>Page not found</h1>} key={9} />,
     ]
   }
 

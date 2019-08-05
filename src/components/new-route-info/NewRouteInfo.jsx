@@ -21,7 +21,7 @@ class NewRouteInfo extends React.Component {
     this.props.requestCars()
   }
 
-  changeCar = (event) => {
+  changeCar = event => {
     const carId = event.target.value
     this.setState({ carId })
     this.props.onCar(carId)
@@ -30,7 +30,11 @@ class NewRouteInfo extends React.Component {
   render() {
     const { cars = [] } = this.props
     const carsArr = cars.map(item => {
-      return <option key={item.id} value={item.id}>{item.carInformation}</option>
+      return (
+        <option key={item.id} value={item.id}>
+          {item.carInformation}
+        </option>
+      )
     })
 
     return (
@@ -42,7 +46,7 @@ class NewRouteInfo extends React.Component {
               From:
             </Form.Label>
             <Col>
-              <Form.Control type="text" value={this.state.from} readOnly/>
+              <Form.Control type="text" value={this.state.from} readOnly />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -50,7 +54,7 @@ class NewRouteInfo extends React.Component {
               To:
             </Form.Label>
             <Col>
-              <Form.Control type="text" value={this.state.to} readOnly/>
+              <Form.Control type="text" value={this.state.to} readOnly />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -58,7 +62,7 @@ class NewRouteInfo extends React.Component {
               Time:
             </Form.Label>
             <Col>
-              <DateSelector onChange={this.props.onTime}/>
+              <DateSelector onChange={this.props.onTime} />
             </Col>
           </Form.Group>
 
@@ -67,7 +71,12 @@ class NewRouteInfo extends React.Component {
               Car:
             </Form.Label>
             <Col>
-              <Form.Control as="select" defaulvalue={this.state.carId} onChange={this.changeCar}>{carsArr}
+              <Form.Control
+                as="select"
+                defaulvalue={this.state.carId}
+                onChange={this.changeCar}
+              >
+                {carsArr}
               </Form.Control>
             </Col>
           </Form.Group>
@@ -75,8 +84,8 @@ class NewRouteInfo extends React.Component {
             <Form.Label column sm="2">
               Seats:
             </Form.Label>
-            <Col >
-              <Form.Control type="text" onChange={this.props.onSeats}/>
+            <Col>
+              <Form.Control type="text" onChange={this.props.onSeats} />
             </Col>
           </Form.Group>
         </Form>
@@ -87,5 +96,5 @@ class NewRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRouteInfo)

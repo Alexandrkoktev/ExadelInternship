@@ -28,7 +28,9 @@ class OneRouteInfo extends React.Component {
   }
 
   render() {
-    const { passengers: { bookings } = [] } = this.props
+    const {
+      passengers: { bookings = [], enabled },
+    } = this.props
     return (
       <div className="one-route-info">
         <div className="block">
@@ -43,7 +45,7 @@ class OneRouteInfo extends React.Component {
                   style={{ height: 'auto', maxHeight: '262px' }}
                   className="scrollable"
                 >
-                  <ListOfPassengers passengers={bookings} />
+                  <ListOfPassengers passengers={bookings} enabled={enabled} />
                 </div>
               </Col>
             </Row>

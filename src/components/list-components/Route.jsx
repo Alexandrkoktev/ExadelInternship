@@ -1,7 +1,15 @@
 import React from 'react'
 import Confirm from './Confirm'
 // eslint-disable-next-line no-unused-vars
-import { ListGroup, Row, Col, Button, Badge, Modal, Form } from 'react-bootstrap'
+import {
+  ListGroup,
+  Row,
+  Col,
+  Button,
+  Badge,
+  Modal,
+  Form,
+} from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom'
 import './style.sass'
@@ -10,25 +18,23 @@ import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/home'
 //import StarRatings from 'react-star-ratings'
 
-
-
 class Route extends React.Component {
   constructor() {
     super()
     this.state = {
-      confirm: false
+      confirm: false,
     }
   }
 
   delete = () => {
     this.setState({
-      confirm: true
+      confirm: true,
     })
   }
 
   deny = () => {
     this.setState({
-      confirm: false
+      confirm: false,
     })
   }
 
@@ -43,8 +49,14 @@ class Route extends React.Component {
       <>
         <ListGroup.Item className={styling}>
           <Row>
-            <Col xs='auto'>{passenger ? <StarButton addFav={this.props.addFavourite} id={id} /> : <></>}</Col>
-            <Col xs='auto'>
+            {passenger ? (
+              <Col xs="auto">
+                <StarButton addFav={this.props.addFavourite} id={id} />{' '}
+              </Col>
+            ) : (
+              <></>
+            )}
+            <Col sm={7}>
               {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
               {this.props.destPoint} <Badge variant="info">{badge}</Badge>
               <br />
@@ -56,14 +68,14 @@ class Route extends React.Component {
                 <Link to={'routes/route-info/'.concat(id)}>
                   <Button variant="outline-info" className="right">
                     Route Info
-                </Button>
+                  </Button>
                 </Link>
               )}
               {!passenger && (
                 <Link to={'routes/ride-info/'.concat(id)}>
                   <Button variant="outline-info" className="right">
                     Route Info
-                </Button>
+                  </Button>
                 </Link>
               )}
               {doDelete ? (
@@ -73,10 +85,10 @@ class Route extends React.Component {
                   onClick={this.delete.bind(this)}
                 >
                   Delete
-              </Button>
+                </Button>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </Col>
           </Row>
         </ListGroup.Item>
@@ -94,12 +106,11 @@ class Route extends React.Component {
 }
 
 class StarButton extends React.Component {
-
   constructor() {
     super()
     this.state = {
       show: false,
-      name: ''
+      name: '',
     }
   }
 
@@ -115,36 +126,39 @@ class StarButton extends React.Component {
   hide = () => {
     this.setState({
       show: false,
-      name: ''
+      name: '',
     })
   }
 
   handleChange = event => {
     const { value } = event.target
-    if (value.length < 30)
-      this.setState({ [event.target.name]: value })
+    if (value.length < 30) this.setState({ [event.target.name]: value })
   }
 
   render() {
     return (
       <>
-        <Button variant='outline-info' className='mid' onClick={this.click}>
+        <Button variant="outline-info" className="mid" onClick={this.click}>
           <span className="oi oi-star"></span>
         </Button>
         <Modal show={this.state.show} centered onHide={this.hide}>
-          <Modal.Header><Modal.Title>Name your favourite Route</Modal.Title></Modal.Header>
+          <Modal.Header>
+            <Modal.Title>Name your favourite Route</Modal.Title>
+          </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Label>Routes Name</Form.Label>
               <Form.Control
-                name='name'
+                name="name"
                 value={this.state.name}
                 onChange={this.handleChange}
               />
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='info' onClick={this.send}>Add to Favourites</Button>
+            <Button variant="info" onClick={this.send}>
+              Add to Favourites
+            </Button>
           </Modal.Footer>
         </Modal>
       </>

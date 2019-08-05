@@ -102,7 +102,7 @@ class Maps extends React.Component {
       !deepEqual(this.props.showing, nextProps.showing)
     if (shouldUpdateMap) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>',
+        '<div>Test</div>'
       )
       this.ymaps
         .route(
@@ -113,7 +113,7 @@ class Maps extends React.Component {
             }),
             nextProps.showing.finishPoint,
           ],
-          { balloonContentBodyLayout },
+          { balloonContentBodyLayout }
         )
         .then(route => {
           route.getPaths().options.set({
@@ -143,7 +143,7 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert('There\'s no map, my Lord.')
+      alert("There's no map, my Lord.")
       return
     }
 
@@ -152,7 +152,7 @@ class Maps extends React.Component {
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert('There\'s no route, my Lord.')
+      alert("There's no route, my Lord.")
       return
     }
 
@@ -168,7 +168,7 @@ class Maps extends React.Component {
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert('There\'s no route, my Lord.')
+      alert("There's no route, my Lord.")
       return
     }
 

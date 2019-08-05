@@ -47,7 +47,7 @@ class NewRide extends React.Component {
                 type="submit"
                 onClick={event => event.preventDefault()}
               >
-              Search
+                Search
               </Button>
             </Row>
             <Row>
@@ -62,12 +62,16 @@ class NewRide extends React.Component {
                 type="submit"
                 onClick={event => event.preventDefault()}
               >
-              Confirm
+                Confirm
               </Button>
             </Row>
           </Col>
           <Col sm={7}>
-            <Maps onMapClick={console.log} needPlacemarks={true} showing={this.state.chosenRide} />
+            <Maps
+              onMapClick={console.log}
+              needPlacemarks={true}
+              showing={this.state.chosenRide}
+            />
           </Col>
         </Row>
       </Container>

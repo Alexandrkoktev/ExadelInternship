@@ -4,7 +4,7 @@ import {
   getHomeRidesStarting,
   getFavouritesDone,
   getFavouritesStarting,
-  getFavouritesError
+  getFavouritesError,
 } from '../actions/home-rides'
 import client from './axios'
 
@@ -17,11 +17,11 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   requestRides: () => dispatch(getHomeRides()),
   addFavourite: (id, name) => dispatch(addToFavourites(id, name)),
-  deleteFavourite: (id) => dispatch(deleteFromFavs(id))
+  deleteFavourite: id => dispatch(deleteFromFavs(id)),
 })
 
 export const getHomeRides = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getHomeRidesStarting())
       const {
@@ -36,11 +36,13 @@ export const getHomeRides = () => {
 }
 
 export const addToFavourites = (routeId, name) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getFavouritesStarting())
       await client({
-        url: '/api/favouriteRoute', method: 'post', data: { routeId, name }
+        url: '/api/favouriteRoute',
+        method: 'post',
+        data: { routeId, name },
       })
       dispatch(getFavouritesDone())
     } catch (e) {
@@ -49,12 +51,13 @@ export const addToFavourites = (routeId, name) => {
   }
 }
 
-export const deleteFromFavs = (id) => {
-  return async function (dispatch) {
+export const deleteFromFavs = id => {
+  return async function(dispatch) {
     try {
       dispatch(getFavouritesStarting())
       await client({
-        url: `/api/favouriteRoute/${id}`, method: 'delete'
+        url: `/api/favouriteRoute/${id}`,
+        method: 'delete',
       })
       dispatch(getFavouritesDone())
     } catch (e) {
