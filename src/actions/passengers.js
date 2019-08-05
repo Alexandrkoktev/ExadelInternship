@@ -11,11 +11,10 @@ export function getPassengerStarting() {
   }
 }
 
-export function getPassengerDone(driverName, phoneNumber) {
+export function getPassengerDone(userdata) {
   return {
     type: GET_PASSENGERS_DATA_SUCCESS,
-    payload: driverName,
-    phoneNumber,
+    payload: userdata,
   }
 }
 

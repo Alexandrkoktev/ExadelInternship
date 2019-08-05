@@ -15,11 +15,19 @@ class NewRide extends React.Component {
     super()
     this.state = {
       chosenRide: {},
+      depPoint: '',
+      destPoint: '',
     }
   }
-
+  changeDepPoint = depPoint => {
+    this.setState({ depPoint: depPoint })
+  }
+  changeDestPoint = destPoint => {
+    this.setState({ destPoint: destPoint })
+  }
   componentDidMount() {
     this.props.getRides()
+    this.mapComponent = React.createRef()
   }
 
   choose = async id => {
@@ -30,6 +38,17 @@ class NewRide extends React.Component {
     }
   }
 
+  handleSearchClick = event => {
+    event.preventDefault()
+    const points = this.mapComponent.current.getPoints()
+    console.log(points)
+  }
+
+  handleConfirmClick = event => {
+    event.preventDefault()
+    console.log('confirmed');
+  }
+
   render() {
     const { activeRides = [] } = this.props
     return (
@@ -38,14 +57,17 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm />
+                <PassengerForm
+                  depPoint={this.state.depPoint}
+                  destPoint={this.state.destPoint}
+                />
               </ListGroup>
             </Row>
             <Row>
               <Button
                 variant="dark"
                 type="submit"
-                onClick={event => event.preventDefault()}
+                onClick={this.handleSearchClick}
               >
                 Search
               </Button>
@@ -61,6 +83,7 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={event => event.preventDefault()}
+                style={{ marginTop: '10px' }}
               >
                 Confirm
               </Button>
@@ -68,9 +91,11 @@ class NewRide extends React.Component {
           </Col>
           <Col sm={7}>
             <Maps
-              onMapClick={console.log}
+              ref={this.mapComponent}
               needPlacemarks={true}
               showing={this.state.chosenRide}
+              changeDepPoint={this.changeDepPoint}
+              changeDestPoint={this.changeDestPoint}
             />
           </Col>
         </Row>

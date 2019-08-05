@@ -9,7 +9,7 @@ import {
 import client from './axios'
 
 export const getPassengers = id => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(getPassengerStarting())
       const { data } = await client({
@@ -24,7 +24,7 @@ export const getPassengers = id => {
 }
 
 export const ratePassenger = (id, rate) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(setRatingStarting())
       await client({
@@ -39,7 +39,13 @@ export const ratePassenger = (id, rate) => {
   }
 }
 
-export const mapStateToProps = state => state.passengers
+export const mapStateToProps = state => ({
+  passengers: state.passenger.passengers,
+  freeSeats: state.passenger.freeSeats,
+  maxSeats: state.passenger.maxSeats,
+  startPointName: state.passenger.startPointName,
+  finishPointName: state.passenger.finishPointName,
+})
 
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),

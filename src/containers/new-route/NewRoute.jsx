@@ -38,8 +38,7 @@ class NewRoute extends React.Component {
     this.setState({ seats: seats })
   }
   onTimeChange = event => {
-    const time = event
-    this.setState({ time: time })
+    this.setState({ time: event })
   }
   handleClick = event => {
     event.preventDefault()
@@ -62,27 +61,31 @@ class NewRoute extends React.Component {
       <Container>
         <Row>
           <Col sm={4}>
-            <ListGroup>
-              <NewRouteInfo
-                from={this.state.from}
-                to={this.state.to}
-                key={this.state.changed}
-                onSeats={this.onSeatsChange}
-                onTime={this.onTimeChange}
-                onCar={this.onCarChange}
-              />
-              <RoutesList rides={rides} favourites={true} />
-            </ListGroup>
-            <Button
-              className="right"
-              variant="dark"
-              type="submit"
-              onClick={event => {
-                this.handleClick(event)
-              }}
-            >
-              Create route
-            </Button>
+            <Row>
+              <ListGroup>
+                <NewRouteInfo
+                  from={this.state.from}
+                  to={this.state.to}
+                  key={this.state.changed}
+                  onSeats={this.onSeatsChange}
+                  onTime={this.onTimeChange}
+                  onCar={this.onCarChange}
+                />
+                <RoutesList rides={rides} favourites={true} />
+              </ListGroup>
+            </Row>
+            <Row>
+              <Button
+                className="right"
+                variant="dark"
+                type="submit"
+                onClick={event => {
+                  this.handleClick(event)
+                }}
+              >
+                Create route
+              </Button>
+            </Row>
           </Col>
           <Col sm={6} style={{ height: '450px' }}>
             <Maps

@@ -36,28 +36,39 @@ class Maps extends React.Component {
     if (this.isA) {
       if (this.pointA) {
         this.pointA.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
         this.pointA.properties.set({
-          balloonContent: await this.getAddress(
-            this.pointA.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        this.props.changeDepPoint(address);
+        
+        if(this.pointB && this.route) {
+          // отправляем запрос на валидацию
+        }
+
       } else {
         this.pointA = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointA)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
         this.pointA.properties.set({
           iconCaption: 'точка А',
-          balloonContent: await this.getAddress(
-            this.pointA.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        this.props.changeDepPoint(address);
         this.pointA.events.add(
           'dragend',
           async function() {
+            const address = await this.getAddress(
+              this.pointA.geometry.getCoordinates()
+            )
             this.pointA.properties.set({
-              balloonContent: await this.getAddress(
-                this.pointA.geometry.getCoordinates()
-              ),
+              balloonContent: address,
             })
+            this.props.changeDepPoint(address);
           }.bind(this)
         )
       }
@@ -65,33 +76,47 @@ class Maps extends React.Component {
     } else {
       if (this.pointB) {
         this.pointB.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
         this.pointB.properties.set({
-          balloonContent: await this.getAddress(
-            this.pointB.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        this.props.changeDestPoint(address);
       } else {
         this.pointB = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointB)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
         this.pointB.properties.set({
           iconCaption: 'точка B',
-          balloonContent: await this.getAddress(
-            this.pointB.geometry.getCoordinates()
-          ),
+          balloonContent: address,
         })
+        this.props.changeDestPoint(address);
         this.pointB.events.add(
           'dragend',
           async function() {
+            const address = await this.getAddress(
+              this.pointB.geometry.getCoordinates()
+            )
             this.pointB.properties.set({
-              balloonContent: await this.getAddress(
-                this.pointB.geometry.getCoordinates()
-              ),
+              balloonContent: address,
             })
+            this.props.changeDestPoint(address);
           }.bind(this)
         )
       }
       this.isA = true
     }
+  }
+
+  getPoints() {
+    if (this.pointA && this.pointB)
+      return [
+        this.pointA.geometry.getCoordinates(),
+        this.pointB.geometry.getCoordinates(),
+      ]
   }
 
   componentWillReceiveProps = nextProps => {
@@ -238,10 +263,52 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       const routeEditor = this.map.controls.add('routeEditor')
       routeEditor.events.add('deselect', this.getEndPoints)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map'
+        },
+        options: {
+          selectOnClick: false
+        }
+      })
+      clearMapButton.events.add('click',
+      () => {
+        this.map.controls.get('routeEditor').select()
+        this.props.handleChange(['', ''])
+        this.route = null;
+      })
+      this.map.controls.add(clearMapButton, {
+        float: "left"
+      })
     }
 
     if (this.map && this.props.needPlacemarks) {
       this.map.events.add('click', this.addPlacemark)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map'
+        },
+        options: {
+          selectOnClick: false
+        }
+      })
+      clearMapButton.events.add('click',
+      () => {
+        this.map.geoObjects.removeAll();
+        this.props.changeDepPoint('')
+        this.props.changeDestPoint('')
+        this.pointA = null;
+        this.pointB = null;
+        this.isA = true;
+        this.route = null;
+      })
+      this.map.controls.add(clearMapButton, {
+        float: "left"
+      })
     }
 
     // тут прорисовка для просмотра информации о маршруте
