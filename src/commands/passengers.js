@@ -2,6 +2,9 @@ import {
   getPassengerDone,
   getPassengerError,
   getPassengerStarting,
+  setRatingDone,
+  setRatingError,
+  setRatingStarting,
 } from '../actions/passengers'
 import client from './axios'
 
@@ -20,6 +23,22 @@ export const getPassengers = id => {
   }
 }
 
+export const ratePassenger = (id, rate) => {
+  return async function(dispatch) {
+    try {
+      dispatch(setRatingStarting())
+      await client({
+        url: '/api/activeRoute/setRating',
+        method: 'post',
+        data: { id, rate },
+      })
+      dispatch(setRatingDone())
+    } catch (e) {
+      dispatch(setRatingError(e))
+    }
+  }
+}
+
 export const mapStateToProps = state => ({
   passengers: state.passenger.passengers,
   freeSeats: state.passenger.freeSeats,
@@ -30,4 +49,5 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
+  ratePassenger: (id, rate) => dispatch(ratePassenger(id, rate)),
 })
