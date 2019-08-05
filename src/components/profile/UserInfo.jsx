@@ -1,13 +1,10 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { Row, Col } from 'react-bootstrap'
 import user from '../../img/user.jpg'
-// eslint-disable-next-line no-unused-vars
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/user'
 import './style.sass'
-// eslint-disable-next-line no-unused-vars
 import Image from 'react-bootstrap/Image'
 
 class UserInfo extends React.Component {
@@ -33,7 +30,7 @@ class UserInfo extends React.Component {
             <div>
               <h3 className="textOverflow">{userInfo.username}</h3>
               <h5 className="textOverflow">{userInfo.phoneNumber}</h5>
-              <Row>
+              <Row className='mid'>
                 <StarRatings
                   rating={4.5}
                   starDimension="21px"
@@ -41,7 +38,7 @@ class UserInfo extends React.Component {
                 />{' '}
                 <h4 className="left-marg">as a Driver</h4>
               </Row>
-              <Row>
+              <Row className='mid'>
                 <StarRatings
                   rating={3.5}
                   starDimension="21px"

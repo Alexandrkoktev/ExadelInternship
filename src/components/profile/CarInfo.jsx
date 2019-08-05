@@ -62,7 +62,7 @@ class CarInfo extends React.Component {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" onClick={this.click}>
+          <Button variant="info" onClick={this.click}>
             Save
           </Button>
         </Modal.Footer>
