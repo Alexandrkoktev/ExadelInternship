@@ -43,6 +43,11 @@ class Maps extends React.Component {
           balloonContent: address,
         })
         this.props.changeDepPoint(address);       // Илья, тебе сюда(А)
+      // Илья, тебе сюда(А)
+        
+        if(this.pointB && this.route) {
+          // отправляем запрос на валидацию
+        }
       } else {
         this.pointA = this.createPlacemark(coords)
         this.map.geoObjects.add(this.pointA)
@@ -104,6 +109,14 @@ class Maps extends React.Component {
       }
       this.isA = true
     }
+  }
+
+  getPoints() {
+    if(this.pointA && this.pointB)
+      return [
+        this.pointA.geometry.getCoordinates(),
+        this.pointB.geometry.getCoordinates()
+      ]
   }
 
   componentWillReceiveProps = nextProps => {
