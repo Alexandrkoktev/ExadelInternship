@@ -16,16 +16,21 @@ class Profile extends React.Component {
     this.props.getFavourites()
   }
 
+  finish = () => {
+    setTimeout(this.props.getFavourites, 1000)
+  }
+
   render() {
     const { favourites = [] } = this.props
     const dRidesArr = favourites.map(item => {
       return (
         <FavouriteRoute
-          routeid={item.routeId}
           key={item.id}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
           name={item.name}
+          id={item.id}
+          finish={this.finish.bind(this)}
         />
       )
     })
@@ -50,8 +55,8 @@ class Profile extends React.Component {
               {dRidesArr.length === 0 ? (
                 <div className="noStuff">No favourites yet</div>
               ) : (
-                <ListGroup>{dRidesArr}</ListGroup>
-              )}
+                  <ListGroup>{dRidesArr}</ListGroup>
+                )}
             </Tab.Pane>
             <Tab.Pane eventKey="cars">
               <CarsList />
