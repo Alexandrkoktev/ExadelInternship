@@ -28,6 +28,10 @@ export const mapStateToProps = state => ({
   maxSeats: state.driver.maxSeats,
   startPointName: state.driver.startPointName,
   finishPointName: state.driver.finishPointName,
+  viaPoints: state.driver.viaPoints,
+  meetPoint: state.driver.meetPoint,
+  finishPoint: state.driver.finishPoint,
+  startPoint: state.driver.startPoint,
 })
 
 export const mapDispatchToProps = dispatch => ({
