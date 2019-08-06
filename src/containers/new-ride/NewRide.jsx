@@ -56,7 +56,10 @@ class NewRide extends React.Component {
   }
   handleSearchClick = event => {
     event.preventDefault()
-    const points = this.mapComponent.current.getPoints()
+    let points = this.mapComponent.current.getPoints()
+    if(!points) {
+      points = [null, null];
+    }
     this.setState({ arrayFrom: points[0], arrayTo: points[1] })
     const data = {
       meetPoint: points[0],
