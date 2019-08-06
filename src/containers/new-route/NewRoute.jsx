@@ -86,7 +86,7 @@ class NewRoute extends React.Component {
                 onClick={event => {
                   this.handleClick(event)
                 }}
-                style={{ marginLeft: '500px', marginTop: '20px' }}
+                style={{marginLeft:'630px',marginTop:'20px'}}
               >
                 Create route
               </Button>
