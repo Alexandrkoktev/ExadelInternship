@@ -8,16 +8,6 @@ import {
 } from '../actions/activeRides'
 import client from './axios'
 
-export const mapStateToProps = state => ({
-  activeRides: state.activeRides.activeRides,
-  currentRide: state.currentRide.currentRide,
-})
-
-export const mapDispatchToProps = dispatch => ({
-  getRides: () => dispatch(getRides()),
-  getRide: id => dispatch(getRideInfo(id)),
-})
-
 export const getRides = () => {
   return async function(dispatch) {
     try {
@@ -49,3 +39,13 @@ export const getRideInfo = id => {
     }
   }
 }
+
+export const mapStateToProps = state => ({
+  activeRides: state.activeRides.activeRides,
+  currentRide: state.currentRide.currentRide,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  getRides: () => dispatch(getRides()),
+  getRide: id => dispatch(getRideInfo(id)),
+})
