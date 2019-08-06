@@ -125,6 +125,7 @@ class Maps extends React.Component {
       !!Object.keys(nextProps.showing).length &&
       !deepEqual(this.props.showing, nextProps.showing)
     if (shouldUpdateMap) {
+      this.map.geoObjects.removeAll()
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -303,6 +304,7 @@ class Maps extends React.Component {
     }
 
     if (this.props && this.props.passengerInfo) {
+      this.map.geoObjects.removeAll()
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
