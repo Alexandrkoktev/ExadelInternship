@@ -202,7 +202,7 @@ class Maps extends React.Component {
         .get(i)
         .getSegments()
         .forEach(segment => {
-          for(let j = 0; j < segment.getCoordinates.length-1;++j){
+          for (let j = 0; j < segment.getCoordinates.length - 1; ++j) {
             points.push(segment.getCoordinates()[j])
           }
         })
@@ -212,7 +212,7 @@ class Maps extends React.Component {
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
-      for(let j=0;j<segments[i].getCoordinates().length;++j){
+      for (let j = 0; j < segments[i].getCoordinates().length; ++j) {
         points.push(segments[i].getCoordinates()[j])
       }
     }
@@ -312,9 +312,8 @@ class Maps extends React.Component {
         float: 'left',
       })
     }
-    // информация о маршруте пассажира
+
     if (this.props && this.props.passengerInfo) {
-      console.log(this.props)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )

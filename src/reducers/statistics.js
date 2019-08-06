@@ -8,7 +8,7 @@ const initialState = {
   statistics: [],
   mode: 0,
   order: true,
-  name: ""
+  name: '',
 }
 
 function reducer(state = initialState, action) {
