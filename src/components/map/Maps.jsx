@@ -355,7 +355,6 @@ class Maps extends React.Component {
       this.map.geoObjects.add(destinationPoint)
     }
     if (this.props && this.props.driverInfo) {
-      console.log(this.props.driverInfo)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
