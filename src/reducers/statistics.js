@@ -6,11 +6,14 @@ import {
 
 const initialState = {
   statistics: [],
+  mode: 0,
+  order: true
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_STATISTICS:
+      //const {mode, order}= action.payload
       return {
         ...state,
       }
