@@ -14,6 +14,9 @@ import ListOfPassengers from '../../components/list-of-passengers/ListOfPassenge
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/passengers'
 import ListGroup from 'react-bootstrap/ListGroup'
+import DeleteButton from '../../components/route-buttons/DeleteButton'
+import EditDate from '../../components/route-buttons/EditDate'
+import Message from '../../components/route-buttons/Message'
 
 class OneRouteInfo extends React.Component {
   componentDidMount() {
@@ -23,7 +26,7 @@ class OneRouteInfo extends React.Component {
 
   render() {
     const {
-      passengers: { bookings } = [],
+      passengers: { bookings = [], enabled },
       freeSeats,
       maxSeats,
       startPointName,
@@ -31,6 +34,7 @@ class OneRouteInfo extends React.Component {
       startPoint,
       finishPoint,
       viaPoints,
+      deleteRoute
     } = this.props
     const driverInfo = {
       bookings,
@@ -38,6 +42,7 @@ class OneRouteInfo extends React.Component {
       finishPoint,
       viaPoints,
     }
+    const id = this.props.match.params.routeid
     return (
       <div className="one-route-info">
         <div className="block">
@@ -67,20 +72,18 @@ class OneRouteInfo extends React.Component {
                 </ListGroup>
               </Col>
             </Row>
-            <Row style={{ marginLeft: '1%' }}>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-pencil" style={{ fontSize: '25px' }} />
-              </Col>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span
-                  className="oi oi-envelope-closed"
-                  style={{ fontSize: '25px' }}
-                />
-              </Col>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
-              </Col>
-            </Row>
+            {enabled ?
+              <Row>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <EditDate />
+                </Col>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <Message />
+                </Col>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <DeleteButton click={deleteRoute} id={id} />
+                </Col>
+              </Row> : <></>}
           </Container>
         </div>
       </div>
