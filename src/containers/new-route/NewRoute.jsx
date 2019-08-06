@@ -9,8 +9,6 @@ import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/rides'
-import { store } from '../../store/store'
-import { push } from 'connected-react-router'
 
 class NewRoute extends React.Component {
   constructor() {
@@ -20,7 +18,7 @@ class NewRoute extends React.Component {
       to: '',
       carId: '',
       seats: '',
-      time: '',
+      time: new Date(),
       changed: false,
     }
   }
@@ -45,7 +43,6 @@ class NewRoute extends React.Component {
     const route = this.mapComponent.current.getRouteInfo()
     const information = this.state
     this.props.createRoute(route, information)
-    //   store.dispatch(push('/home'))
   }
   handleChange = data => {
     this.setState({
@@ -74,6 +71,13 @@ class NewRoute extends React.Component {
                 <RoutesList rides={rides} favourites={true} />
               </ListGroup>
             </Row>
+          </Col>
+          <Col sm={8} style={{ height: '450px' }}>
+            <Maps
+              needRouteEditor={true}
+              ref={this.mapComponent}
+              handleChange={this.handleChange}
+            />
             <Row>
               <Button
                 className="right"
@@ -82,17 +86,11 @@ class NewRoute extends React.Component {
                 onClick={event => {
                   this.handleClick(event)
                 }}
+                style={{marginLeft:'500px',marginTop:'20px'}}
               >
                 Create route
               </Button>
             </Row>
-          </Col>
-          <Col sm={6} style={{ height: '450px' }}>
-            <Maps
-              needRouteEditor={true}
-              ref={this.mapComponent}
-              handleChange={this.handleChange}
-            />
           </Col>
         </Row>
       </Container>
