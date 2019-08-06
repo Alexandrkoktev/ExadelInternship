@@ -6,6 +6,8 @@ import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
+import DeleteButton from '../../components/route-buttons/DeleteButton'
+import Message from '../../components/route-buttons/Message'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -27,6 +29,8 @@ class OneRideInfo extends React.Component {
       destinationPoint,
       startPoint,
       finishPoint,
+      deleteBooking,
+      enabled,
     } = this.props
     const passengerInfo = {
       viaPoints,
@@ -35,6 +39,7 @@ class OneRideInfo extends React.Component {
       startPoint,
       finishPoint,
     }
+    const id = this.props.match.params.rideid
     return (
       <div className="one-route-info">
         <div className="block">
@@ -70,18 +75,18 @@ class OneRideInfo extends React.Component {
                 </div>
               </Col>
             </Row>
-
-            <Row style={{ marginLeft: '1%' }}>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span
-                  className="oi oi-envelope-closed"
-                  style={{ fontSize: '25px' }}
-                />
-              </Col>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
-              </Col>
-            </Row>
+            {enabled ? (
+              <Row style={{ marginLeft: '1%' }}>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <Message />
+                </Col>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <DeleteButton click={deleteBooking} id={id} />
+                </Col>
+              </Row>
+            ) : (
+              <></>
+            )}
           </Container>
         </div>
       </div>

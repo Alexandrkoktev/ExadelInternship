@@ -202,7 +202,9 @@ class Maps extends React.Component {
         .get(i)
         .getSegments()
         .forEach(segment => {
-          points.push(segment.getCoordinates()[0])
+          for (let j = 0; j < segment.getCoordinates.length - 1; ++j) {
+            points.push(segment.getCoordinates()[j])
+          }
         })
     }
 
@@ -210,7 +212,9 @@ class Maps extends React.Component {
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
-      points.push(segments[i].getCoordinates()[0])
+      for (let j = 0; j < segments[i].getCoordinates().length; ++j) {
+        points.push(segments[i].getCoordinates()[j])
+      }
     }
     points.push(...segments[nSegments - 1].getCoordinates())
 
@@ -308,9 +312,8 @@ class Maps extends React.Component {
         float: 'left',
       })
     }
-    // информация о маршруте пассажира
+
     if (this.props && this.props.passengerInfo) {
-      console.log(this.props)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -338,29 +341,29 @@ class Maps extends React.Component {
           this.map.geoObjects.add(route)
         })
 
-        const meetPoint = new this.ymaps.Placemark(
-          this.props.passengerInfo.meetPoint,
-          {
-            iconCaption: 'Точка посадки',
-          },
-          {
-            preset: 'islands#greenDotIconWithCaption',
-            draggable: false,
-          }
-        )
-        this.map.geoObjects.add(meetPoint);
+      const meetPoint = new this.ymaps.Placemark(
+        this.props.passengerInfo.meetPoint,
+        {
+          iconCaption: 'Точка посадки',
+        },
+        {
+          preset: 'islands#greenDotIconWithCaption',
+          draggable: false,
+        }
+      )
+      this.map.geoObjects.add(meetPoint)
 
-        const destinationPoint = new this.ymaps.Placemark(
-          this.props.passengerInfo.destinationPoint,
-          {
-            iconCaption: 'Точка высадки',
-          },
-          {
-            preset: 'islands#redDotIconWithCaption',
-            draggable: false,
-          }
-        )
-        this.map.geoObjects.add(destinationPoint);
+      const destinationPoint = new this.ymaps.Placemark(
+        this.props.passengerInfo.destinationPoint,
+        {
+          iconCaption: 'Точка высадки',
+        },
+        {
+          preset: 'islands#redDotIconWithCaption',
+          draggable: false,
+        }
+      )
+      this.map.geoObjects.add(destinationPoint)
     }
     // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {
