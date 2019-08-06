@@ -21,15 +21,18 @@
     "react-star-ratings": "^2.3.0",
     "react-yandex-maps": "^4.0.1",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "serve": "^11.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
-    "prettier": "prettier --write ./**/*.js ./**/*.jsx"
+    "prettier": "prettier --write ./**/*.js ./**/*.jsx",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"

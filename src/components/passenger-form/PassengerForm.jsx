@@ -8,8 +8,8 @@ class PassengerForm extends React.Component {
   render() {
     return (
       <>
-        <Row >
-          <h3 className='styleForHead'>New ride:</h3>
+        <Row>
+          <h3 className="styleForHead">New ride:</h3>
         </Row>
         <Row>
           <Form>

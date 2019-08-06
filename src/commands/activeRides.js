@@ -11,9 +11,9 @@ import {
 } from '../actions/activeRides'
 import client from './axios'
 
-export const createBooking=data=>{
-  return async function(dispatch){
-    try{
+export const createBooking = data => {
+  return async function(dispatch) {
+    try {
       dispatch(verifyingStarting())
       await client({
         url: '/api/createBooking',
@@ -21,14 +21,14 @@ export const createBooking=data=>{
         data: data,
       })
       dispatch(verifyingDone())
-    }catch(e){
+    } catch (e) {
       dispatch(verifyingError(e))
     }
   }
 }
-export const verifyPoints= data=>{
-  return async function(dispatch){
-    try{
+export const verifyPoints = data => {
+  return async function(dispatch) {
+    try {
       dispatch(verifyingStarting())
       await client({
         url: '/api/bookingValid',
@@ -36,7 +36,7 @@ export const verifyPoints= data=>{
         data: data,
       })
       dispatch(verifyingDone())
-    }catch(e){
+    } catch (e) {
       dispatch(verifyingError(e))
     }
   }
@@ -45,11 +45,11 @@ export const getRides = info => {
   return async function(dispatch) {
     try {
       dispatch(getActiveRidesStarting())
-      const form ={ meetPoint: null, destinationPoint:null, datetime:null }
+      const form = { meetPoint: null, destinationPoint: null, datetime: null }
       const { data } = await client({
         url: '/api/searchRoutes',
         method: 'post',
-        data:typeof info==='undefined'?form: info,
+        data: typeof info === 'undefined' ? form : info,
       })
       dispatch(getActiveRidesDone(data))
     } catch (e) {
@@ -79,8 +79,8 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  getRides: (data) => dispatch(getRides(data)),
+  getRides: data => dispatch(getRides(data)),
   getRide: id => dispatch(getRideInfo(id)),
-  verifyPoints: data =>dispatch(verifyPoints(data)),
-  createBooking: data =>dispatch(createBooking(data)),
+  verifyPoints: data => dispatch(verifyPoints(data)),
+  createBooking: data => dispatch(createBooking(data)),
 })

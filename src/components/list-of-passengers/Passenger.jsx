@@ -20,7 +20,12 @@ class Passenger extends React.Component {
   }
 
   render() {
-    const { name, phoneNumber, enabled, userRating } = this.props
+    const {
+      name,
+      phoneNumber,
+      passengers: { enabled },
+      userRating,
+    } = this.props
     return (
       <ListGroup.Item>
         <Row>

@@ -6,7 +6,13 @@ import {
   setRatingError,
   setRatingStarting,
 } from '../actions/passengers'
+import {
+  deleteRideStarting,
+  deleteRideDone,
+  deleteRideError,
+} from '../actions/rides'
 import client from './axios'
+import { push } from 'connected-react-router'
 
 export const getPassengers = id => {
   return async function(dispatch) {
@@ -39,6 +45,24 @@ export const ratePassenger = (id, rate) => {
   }
 }
 
+const deleteRoute = id => {
+  return async function(dispatch) {
+    try {
+      dispatch(deleteRideStarting())
+      await client({
+        url: '/api/deleteRoute',
+        method: 'delete',
+        data: JSON.stringify(id),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      dispatch(deleteRideDone())
+      dispatch(push('/routes'))
+    } catch (e) {
+      dispatch(deleteRideError(e))
+    }
+  }
+}
+
 export const mapStateToProps = state => ({
   passengers: state.passenger.passengers,
   freeSeats: state.passenger.freeSeats,
@@ -53,4 +77,5 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
   ratePassenger: (id, rate) => dispatch(ratePassenger(id, rate)),
+  deleteRoute: id => dispatch(deleteRoute(id)),
 })
