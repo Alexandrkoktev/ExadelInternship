@@ -34,22 +34,22 @@ class FavouriteRoute extends React.Component {
   render() {
     return (
       <div>
-        <ListGroup.Item action >
+        <ListGroup.Item action>
           <Row>
-            {this.props.name} :
-            {' '}
-            {this.props.depPoint} <span className="oi oi-arrow-right" />{' '}
-            {this.props.destPoint}
+            {this.props.name} : {this.props.depPoint}{' '}
+            <span className="oi oi-arrow-right" /> {this.props.destPoint}
             <Col>
-              {this.props.inRoutes ? <div></div> : <Button
-                onClick={
-                  this.confirm.bind(this)}
-                variant="outline-danger"
-                className="right"
-              >
-                Delete
-              </Button>}
-
+              {this.props.inRoutes ? (
+                <div></div>
+              ) : (
+                <Button
+                  onClick={this.confirm.bind(this)}
+                  variant="outline-danger"
+                  className="right"
+                >
+                  Delete
+                </Button>
+              )}
             </Col>
           </Row>
         </ListGroup.Item>

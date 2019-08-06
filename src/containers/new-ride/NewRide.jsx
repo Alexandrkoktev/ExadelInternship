@@ -36,7 +36,7 @@ class NewRide extends React.Component {
   changeCoordinates = (from, to) => {
     this.setState({
       arrayFrom: from,
-      arrayTo: to
+      arrayTo: to,
     })
   }
 
@@ -64,7 +64,7 @@ class NewRide extends React.Component {
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
-    let data;
+    let data
     if (typeof points === 'undefined') {
       this.changeCoordinates(null, null)
       data = {
@@ -146,5 +146,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRide)
