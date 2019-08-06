@@ -338,29 +338,29 @@ class Maps extends React.Component {
           this.map.geoObjects.add(route)
         })
 
-        const meetPoint = new this.ymaps.Placemark(
-          this.props.passengerInfo.meetPoint,
-          {
-            iconCaption: 'Точка посадки',
-          },
-          {
-            preset: 'islands#greenDotIconWithCaption',
-            draggable: false,
-          }
-        )
-        this.map.geoObjects.add(meetPoint);
+      const meetPoint = new this.ymaps.Placemark(
+        this.props.passengerInfo.meetPoint,
+        {
+          iconCaption: 'Точка посадки',
+        },
+        {
+          preset: 'islands#greenDotIconWithCaption',
+          draggable: false,
+        }
+      )
+      this.map.geoObjects.add(meetPoint)
 
-        const destinationPoint = new this.ymaps.Placemark(
-          this.props.passengerInfo.destinationPoint,
-          {
-            iconCaption: 'Точка высадки',
-          },
-          {
-            preset: 'islands#redDotIconWithCaption',
-            draggable: false,
-          }
-        )
-        this.map.geoObjects.add(destinationPoint);
+      const destinationPoint = new this.ymaps.Placemark(
+        this.props.passengerInfo.destinationPoint,
+        {
+          iconCaption: 'Точка высадки',
+        },
+        {
+          preset: 'islands#redDotIconWithCaption',
+          draggable: false,
+        }
+      )
+      this.map.geoObjects.add(destinationPoint)
     }
     // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {

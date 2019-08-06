@@ -6,8 +6,8 @@ import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
-import DeleteButton from '../../components/route-buttons/DeleteButton';
-import Message from '../../components/route-buttons/Message';
+import DeleteButton from '../../components/route-buttons/DeleteButton'
+import Message from '../../components/route-buttons/Message'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class OneRideInfo extends React.Component {
       startPoint,
       finishPoint,
       deleteBooking,
-      enabled
+      enabled,
     } = this.props
     const passengerInfo = {
       viaPoints,
@@ -75,7 +75,7 @@ class OneRideInfo extends React.Component {
                 </div>
               </Col>
             </Row>
-            {enabled ?
+            {enabled ? (
               <Row style={{ marginLeft: '1%' }}>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <Message />
@@ -83,7 +83,10 @@ class OneRideInfo extends React.Component {
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteBooking} id={id} />
                 </Col>
-              </Row> : <></>}
+              </Row>
+            ) : (
+              <></>
+            )}
           </Container>
         </div>
       </div>

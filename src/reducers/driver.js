@@ -17,7 +17,7 @@ const initialState = {
   destinationPoint: [],
   startPoint: [],
   finishPoint: [],
-  enabled: true
+  enabled: true,
 }
 
 function reducer(state = initialState, action) {
@@ -40,7 +40,7 @@ function reducer(state = initialState, action) {
         destinationPoint,
         startPoint,
         finishPoint,
-        enabled
+        enabled,
       } = action.payload
       return {
         ...state,
@@ -56,7 +56,7 @@ function reducer(state = initialState, action) {
         destinationPoint,
         startPoint,
         finishPoint,
-        enabled
+        enabled,
       }
     case GET_DRIVER_DATA_ERROR:
       const { error } = action

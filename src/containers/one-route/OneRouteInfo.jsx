@@ -34,7 +34,7 @@ class OneRouteInfo extends React.Component {
       startPoint,
       finishPoint,
       viaPoints,
-      deleteRoute
+      deleteRoute,
     } = this.props
     const driverInfo = {
       bookings,
@@ -72,7 +72,7 @@ class OneRouteInfo extends React.Component {
                 </ListGroup>
               </Col>
             </Row>
-            {enabled ?
+            {enabled ? (
               <Row>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <EditDate />
@@ -83,7 +83,10 @@ class OneRouteInfo extends React.Component {
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteRoute} id={id} />
                 </Col>
-              </Row> : <></>}
+              </Row>
+            ) : (
+              <></>
+            )}
           </Container>
         </div>
       </div>

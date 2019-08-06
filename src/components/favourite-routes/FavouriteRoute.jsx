@@ -34,7 +34,7 @@ class FavouriteRoute extends React.Component {
   render() {
     return (
       <>
-        <ListGroup.Item onClick={()=>this.props.getRide(this.props.id)}>
+        <ListGroup.Item onClick={() => this.props.getRide(this.props.id)}>
           <Row>
             <Col xs={3}>{this.props.name} :</Col>
             <Col xs="auto">

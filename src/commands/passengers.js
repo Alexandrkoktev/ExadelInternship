@@ -15,7 +15,7 @@ import client from './axios'
 import { push } from 'connected-react-router'
 
 export const getPassengers = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getPassengerStarting())
       const { data } = await client({
@@ -30,7 +30,7 @@ export const getPassengers = id => {
 }
 
 export const ratePassenger = (id, rate) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(setRatingStarting())
       await client({
@@ -46,7 +46,7 @@ export const ratePassenger = (id, rate) => {
 }
 
 const deleteRoute = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(deleteRideStarting())
       await client({
@@ -77,5 +77,5 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
   ratePassenger: (id, rate) => dispatch(ratePassenger(id, rate)),
-  deleteRoute: id => dispatch(deleteRoute(id))
+  deleteRoute: id => dispatch(deleteRoute(id)),
 })
