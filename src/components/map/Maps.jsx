@@ -128,7 +128,7 @@ class Maps extends React.Component {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
-      const viaPoints = nextProps.showing.viaPoints || [];
+      const viaPoints = nextProps.showing.viaPoints || []
       this.ymaps
         .route(
           [
@@ -308,21 +308,21 @@ class Maps extends React.Component {
         float: 'left',
       })
     }
-// информация о маршруте пассажира
+    // информация о маршруте пассажира
     if (this.props && this.props.passengerInfo) {
       console.log(this.props)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
-      const viaPoints = this.props.passengerInfo.viaPoints || [];
+      const viaPoints = this.props.passengerInfo.viaPoints || []
       this.ymaps
         .route(
           [
             this.props.passengerInfo.startPoint,
             ...viaPoints.map(point => {
-              return {type:'viaPoint', point: point}
+              return { type: 'viaPoint', point: point }
             }),
-            this.props.passengerInfo.finishPoint
+            this.props.passengerInfo.finishPoint,
           ],
           { balloonContentBodyLayout }
         )
@@ -334,7 +334,7 @@ class Maps extends React.Component {
           route.options.set({
             mapStateAutoApply: true,
           })
-          this.route = route;
+          this.route = route
           this.map.geoObjects.add(route)
         })
 
@@ -362,20 +362,20 @@ class Maps extends React.Component {
         )
         this.map.geoObjects.add(destinationPoint);
     }
-// информация о маршруте водителя
+    // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
-      const viaPoints = this.props.driverInfo.viaPoints || [];
+      const viaPoints = this.props.driverInfo.viaPoints || []
       this.ymaps
         .route(
           [
             this.props.driverInfo.startPoint,
             ...viaPoints.map(point => {
-              return {type:'viaPoint', point: point}
+              return { type: 'viaPoint', point: point }
             }),
-            this.props.driverInfo.finishPoint
+            this.props.driverInfo.finishPoint,
           ],
           { balloonContentBodyLayout }
         )
@@ -387,7 +387,7 @@ class Maps extends React.Component {
           route.options.set({
             mapStateAutoApply: true,
           })
-          this.route = route;
+          this.route = route
           this.map.geoObjects.add(route)
         })
     }

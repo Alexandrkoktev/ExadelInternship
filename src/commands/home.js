@@ -8,18 +8,6 @@ import {
 } from '../actions/home-rides'
 import client from './axios'
 
-export const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-  passengerRides: state.home.homeRides.passengerRides,
-  driverRides: state.home.homeRides.driverRides,
-})
-
-export const mapDispatchToProps = dispatch => ({
-  requestRides: () => dispatch(getHomeRides()),
-  addFavourite: (id, name) => dispatch(addToFavourites(id, name)),
-  deleteFavourite: id => dispatch(deleteFromFavs(id)),
-})
-
 export const getHomeRides = () => {
   return async function(dispatch) {
     try {
@@ -65,3 +53,15 @@ export const deleteFromFavs = id => {
     }
   }
 }
+
+export const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+  passengerRides: state.home.homeRides.passengerRides,
+  driverRides: state.home.homeRides.driverRides,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  requestRides: () => dispatch(getHomeRides()),
+  addFavourite: (id, name) => dispatch(addToFavourites(id, name)),
+  deleteFavourite: id => dispatch(deleteFromFavs(id)),
+})

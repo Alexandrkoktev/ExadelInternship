@@ -11,17 +11,6 @@ import {
 } from '../actions/activeRides'
 import client from './axios'
 
-export const mapStateToProps = state => ({
-  activeRides: state.activeRides.activeRides,
-  currentRide: state.currentRide.currentRide,
-})
-
-export const mapDispatchToProps = dispatch => ({
-  getRides: (data) => dispatch(getRides(data)),
-  getRide: id => dispatch(getRideInfo(id)),
-  verifyPoints: data =>dispatch(verifyPoints(data)),
-  createBooking: data =>dispatch(createBooking(data)),
-})
 export const createBooking=data=>{
   return async function(dispatch){
     try{
@@ -83,3 +72,15 @@ export const getRideInfo = id => {
     }
   }
 }
+
+export const mapStateToProps = state => ({
+  activeRides: state.activeRides.activeRides,
+  currentRide: state.currentRide.currentRide,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  getRides: (data) => dispatch(getRides(data)),
+  getRide: id => dispatch(getRideInfo(id)),
+  verifyPoints: data =>dispatch(verifyPoints(data)),
+  createBooking: data =>dispatch(createBooking(data)),
+})
