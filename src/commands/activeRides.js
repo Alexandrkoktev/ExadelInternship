@@ -13,7 +13,7 @@ import client from './axios'
 import { push } from 'connected-react-router'
 
 export const createBooking = data => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(verifyingStarting())
       await client({
@@ -22,14 +22,14 @@ export const createBooking = data => {
         data: data,
       })
       dispatch(verifyingDone())
-      dispatch(push("/home"))
+      dispatch(push('/home'))
     } catch (e) {
       dispatch(verifyingError(e))
     }
   }
 }
 export const verifyPoints = data => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(verifyingStarting())
       await client({
@@ -44,7 +44,7 @@ export const verifyPoints = data => {
   }
 }
 export const getRides = info => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getActiveRidesStarting())
       const form = { meetPoint: null, destinationPoint: null, datetime: null }
@@ -61,7 +61,7 @@ export const getRides = info => {
 }
 
 export const getRideInfo = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getRideStarting())
       const { data } = await client({

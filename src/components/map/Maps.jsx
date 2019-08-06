@@ -18,20 +18,45 @@ class Maps extends React.Component {
     this.isA = true
   }
 
-  createPlacemark(coords) {
+  createPlacemark(coords, caption, preset, draggable) {
     return new this.ymaps.Placemark(
       coords,
       {
-        iconCaption: 'поиск...',
+        iconCaption: caption,
       },
       {
-        preset: 'islands#blueDotIconWithCaption',
-        draggable: true,
+        preset: `islands#${preset}`,
+        draggable: draggable,
       }
     )
   }
 
-  addPlacemark = async e => {
+  createRoute = async routeInfo => {
+    const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+      '<div>Test</div>'
+    )
+    const viaPoints = routeInfo.viaPoints || []
+    const route = await this.ymaps.route(
+      [
+        routeInfo.startPoint,
+        ...viaPoints.map(point => {
+          return { type: 'viaPoint', point: point }
+        }),
+        routeInfo.finishPoint,
+      ],
+      { balloonContentBodyLayout }
+    )
+    route.getPaths().options.set({
+      strokeColor: '0000ffff',
+      opacity: 0.9,
+    })
+    route.options.set({
+      mapStateAutoApply: true,
+    })
+    return route
+  }
+
+  addPlacemarkOnClick = async e => {
     const coords = e.get('coords')
     if (this.isA) {
       if (this.pointA) {
@@ -43,12 +68,13 @@ class Maps extends React.Component {
           balloonContent: address,
         })
         this.props.changeDepPoint(address)
-
-        if (this.pointB && this.route) {
-          // отправляем запрос на валидацию
-        }
       } else {
-        this.pointA = this.createPlacemark(coords)
+        this.pointA = this.createPlacemark(
+          coords,
+          'поиск...',
+          'blueDotIcon',
+          true
+        )
         this.map.geoObjects.add(this.pointA)
         const address = await this.getAddress(
           this.pointA.geometry.getCoordinates()
@@ -60,7 +86,7 @@ class Maps extends React.Component {
         this.props.changeDepPoint(address)
         this.pointA.events.add(
           'dragend',
-          async function () {
+          async function() {
             const address = await this.getAddress(
               this.pointA.geometry.getCoordinates()
             )
@@ -83,7 +109,12 @@ class Maps extends React.Component {
         })
         this.props.changeDestPoint(address)
       } else {
-        this.pointB = this.createPlacemark(coords)
+        this.pointB = this.createPlacemark(
+          coords,
+          'поиск...',
+          'blueDotIcon',
+          true
+        )
         this.map.geoObjects.add(this.pointB)
         const address = await this.getAddress(
           this.pointB.geometry.getCoordinates()
@@ -95,7 +126,7 @@ class Maps extends React.Component {
         this.props.changeDestPoint(address)
         this.pointB.events.add(
           'dragend',
-          async function () {
+          async function() {
             const address = await this.getAddress(
               this.pointB.geometry.getCoordinates()
             )
@@ -124,36 +155,18 @@ class Maps extends React.Component {
       nextProps.showing &&
       !!Object.keys(nextProps.showing).length &&
       !deepEqual(this.props.showing, nextProps.showing)
-    if (shouldUpdateMap) {
-      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>'
-      )
-      const viaPoints = nextProps.showing.viaPoints || []
-      this.ymaps
-        .route(
-          [
-            nextProps.showing.startPoint,
-            ...viaPoints.map(point => {
-              return { type: 'viaPoint', point: point }
-            }),
-            nextProps.showing.finishPoint,
-          ],
-          { balloonContentBodyLayout }
-        )
-        .then(route => {
-          route.getPaths().options.set({
-            strokeColor: '0000ffff',
-            opacity: 0.9,
-          })
-          route.options.set({
-            mapStateAutoApply: true,
-          })
 
-          this.map.geoObjects.remove(this.route)
-          this.route = route
-          this.map.geoObjects.add(this.route)
-        })
+    if (shouldUpdateMap) {
+      // this.map.geoObjects.removeAll()
+      this.createRoute(nextProps.showing).then(route => {
+        // промис может заресолвиться на странице, где нет карты
+        this.map.geoObjects.remove(this.route)
+        this.route = route
+        this.map.geoObjects.add(this.route)
+      })
     }
+
+    // баг с отображением информации о маршруте
   }
 
   getAddress(coordinates) {
@@ -166,7 +179,7 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert("There's no map, my Lord.")
+      alert('Map is not available at that moment. Wait for it or refresh page')
       return
     }
 
@@ -175,7 +188,7 @@ class Maps extends React.Component {
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert("There's no route, my Lord.")
+      alert("There's no route.")
       return
     }
 
@@ -191,7 +204,7 @@ class Maps extends React.Component {
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert("There's no route, my Lord.")
+      alert("There's no route.")
       return
     }
 
@@ -276,7 +289,7 @@ class Maps extends React.Component {
     }
 
     if (this.map && this.props.needPlacemarks) {
-      this.map.events.add('click', this.addPlacemark)
+      this.map.events.add('click', this.addPlacemarkOnClick)
 
       const clearMapButton = new this.ymaps.control.Button({
         data: {
@@ -303,107 +316,52 @@ class Maps extends React.Component {
     }
 
     if (this.props && this.props.passengerInfo) {
-      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>'
-      )
-      const viaPoints = this.props.passengerInfo.viaPoints || []
-      this.ymaps
-        .route(
-          [
-            this.props.passengerInfo.startPoint,
-            ...viaPoints.map(point => {
-              return { type: 'viaPoint', point: point }
-            }),
-            this.props.passengerInfo.finishPoint,
-          ],
-          { balloonContentBodyLayout }
+      this.createRoute(this.props.passengerInfo).then(route => {
+        // промис может заресолвиться на странице, где нет карты
+        this.route = route
+        this.map.geoObjects.add(this.route)
+      })
+      this.map.geoObjects.add(
+        this.createPlacemark(
+          this.props.passengerInfo.meetPoint,
+          'Точка посадки',
+          'greenDotIconWithCaption',
+          false
         )
-        .then(route => {
-          route.getPaths().options.set({
-            strokeColor: '0000ffff',
-            opacity: 0.9,
-          })
-          route.options.set({
-            mapStateAutoApply: true,
-          })
-          this.route = route
-          this.map.geoObjects.add(route)
-        })
-
-      const meetPoint = new this.ymaps.Placemark(
-        this.props.passengerInfo.meetPoint,
-        {
-          iconCaption: 'Точка посадки',
-        },
-        {
-          preset: 'islands#greenDotIconWithCaption',
-          draggable: false,
-        }
       )
-      this.map.geoObjects.add(meetPoint)
-
-      const destinationPoint = new this.ymaps.Placemark(
-        this.props.passengerInfo.destinationPoint,
-        {
-          iconCaption: 'Точка высадки',
-        },
-        {
-          preset: 'islands#redDotIconWithCaption',
-          draggable: false,
-        }
+      this.map.geoObjects.add(
+        this.createPlacemark(
+          this.props.passengerInfo.destinationPoint,
+          'Точка высадки',
+          'redDotIconWithCaption',
+          false
+        )
       )
-      this.map.geoObjects.add(destinationPoint)
     }
-    if (this.props && this.props.driverInfo) {
-      console.log(this.props.driverInfo)
-      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
-        '<div>Test</div>'
-      )
-      const viaPoints = this.props.driverInfo.viaPoints || []
-      this.ymaps
-        .route(
-          [
-            this.props.driverInfo.startPoint,
-            ...viaPoints.map(point => {
-              return { type: 'viaPoint', point: point }
-            }),
-            this.props.driverInfo.finishPoint,
-          ],
-          { balloonContentBodyLayout }
-        )
-        .then(route => {
-          route.getPaths().options.set({
-            strokeColor: '0000ffff',
-            opacity: 0.9,
-          })
-          route.options.set({
-            mapStateAutoApply: true,
-          })
-          this.route = route
-          this.map.geoObjects.add(route)
-        })
 
+    if (this.props && this.props.driverInfo) {
+      this.createRoute(this.props.driverInfo).then(route => {
+        // промис может заресолвиться на странице, где нет карты
+        this.route = route
+        this.map.geoObjects.add(this.route)
+      })
       this.props.driverInfo.bookings.forEach(booking => {
-      this.map.geoObjects.add(new this.ymaps.Placemark(
-        booking.meetPoint,
-        {
-          iconCaption: `Посадка ${booking.name}`,
-        },
-        {
-          preset: 'islands#greenDotIconWithCaption',
-          draggable: false,
-        }
-      ))
-      this.map.geoObjects.add(new this.ymaps.Placemark(
-        booking.destinationPoint,
-        {
-          iconCaption: `Высадка ${booking.name}`,
-        },
-        {
-          preset: 'islands#redDotIconWithCaption',
-          draggable: false,
-        }
-      ))
+        this.map.geoObjects.add(
+          this.createPlacemark(
+            booking.meetPoint,
+            `Посадка ${booking.name}`,
+            'greenDotIconWithCaption',
+            false
+          )
+        )
+        this.map.geoObjects.add(
+          this.createPlacemark(
+            booking.destinationPoint,
+            `Высадка ${booking.name}`,
+            'redDotIconWithCaption',
+            false
+          )
+        )
       })
     }
   }

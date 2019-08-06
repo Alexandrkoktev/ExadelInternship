@@ -50,7 +50,7 @@ class RoutesList extends React.Component {
         id={item.id}
         key={item.id}
         passenger={passenger}
-        className='routeListItem'
+        className="routeListItem"
       />
     )
   }
