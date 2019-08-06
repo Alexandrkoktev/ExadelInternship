@@ -17,12 +17,13 @@ class NewRide extends React.Component {
       chosenRide: {},
       depPoint: '',
       destPoint: '',
-      time: '',
+      time: new Date(),
       activeRouteId: '',
       arrayFrom: [],
       arrayTo: [],
     }
   }
+
   changeDepPoint = depPoint => {
     this.setState({ depPoint: depPoint })
   }
@@ -31,6 +32,10 @@ class NewRide extends React.Component {
   }
   onTimeChange = event => {
     this.setState({ time: event })
+  }
+  changeCoordinates=(from,to)=>{
+    this.setState({arrayFrom : from,
+      arrayTo: to})
   }
 
   componentDidMount() {
@@ -57,11 +62,21 @@ class NewRide extends React.Component {
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
-    this.setState({ arrayFrom: points[0], arrayTo: points[1] })
-    const data = {
-      meetPoint: points[0],
-      destinationPoint: points[1],
-      datetime: this.state.time.toJSON(),
+    let data;
+    if (typeof points === 'undefined') {
+      this.changeCoordinates(null,null)
+      data={
+        meetPoint: null,
+        destinationPoint:null,
+        datetime: this.state.time,
+      }
+    } else {
+      this.setState({ arrayFrom: points[0], arrayTo: points[1] })
+      data={
+        meetPoint: points[0],
+        destinationPoint: points[1],
+        datetime: this.state.time,
+      }
     }
     this.props.getRides(data)
   }
@@ -100,16 +115,6 @@ class NewRide extends React.Component {
                 setId={this.setRouteId}
               />
             </Row>
-            <Row>
-              <Button
-                variant="dark"
-                type="submit"
-                onClick={this.handleConfirmClick}
-                style={{ marginTop: '10px' }}
-              >
-                Confirm
-              </Button>
-            </Row>
           </Col>
           <Col sm={7}>
             <Maps
@@ -118,7 +123,18 @@ class NewRide extends React.Component {
               showing={this.state.chosenRide}
               changeDepPoint={this.changeDepPoint}
               changeDestPoint={this.changeDestPoint}
+              clearMap={this.props.getRides}
             />
+            <Row>
+              <Button
+                variant="dark"
+                type="submit"
+                onClick={this.handleConfirmClick}
+                style={{ marginLeft: '450px',marginTop:'100px' }}
+              >
+                Confirm
+              </Button>
+            </Row>
           </Col>
         </Row>
       </Container>
@@ -128,5 +144,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewRide)
