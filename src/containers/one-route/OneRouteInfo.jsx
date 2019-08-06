@@ -28,14 +28,23 @@ class OneRouteInfo extends React.Component {
       maxSeats,
       startPointName,
       finishPointName,
+      startPoint,
+      finishPoint,
+      viaPoints,
     } = this.props
+    const driverInfo = {
+      bookings,
+      startPoint,
+      finishPoint,
+      viaPoints,
+    }
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
               <Col sm="7">
-                <Maps />
+                <Maps driverInfo={driverInfo} />
               </Col>
               <Col sm="5">
                 <h5 className="title-list">List of passengers:</h5>
