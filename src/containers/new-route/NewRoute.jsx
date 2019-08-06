@@ -9,8 +9,7 @@ import NewRouteInfo from '../../components/new-route-info/NewRouteInfo'
 import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/rides'
-import { store } from '../../store/store'
-import { push } from 'connected-react-router'
+
 
 class NewRoute extends React.Component {
   constructor() {

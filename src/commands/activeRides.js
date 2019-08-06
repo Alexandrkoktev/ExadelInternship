@@ -10,10 +10,12 @@ import {
   verifyingError,
 } from '../actions/activeRides'
 import client from './axios'
+import { push } from "connected-react-router"
 
 export const createBooking = data => {
   return async function(dispatch) {
     try {
+      debugger
       dispatch(verifyingStarting())
       await client({
         url: '/api/createBooking',
@@ -21,6 +23,7 @@ export const createBooking = data => {
         data: data,
       })
       dispatch(verifyingDone())
+      dispatch(push('/home'))
     } catch (e) {
       dispatch(verifyingError(e))
     }
