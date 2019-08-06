@@ -289,6 +289,7 @@ class Maps extends React.Component {
         },
       })
       clearMapButton.events.add('click', () => {
+        this.props.clearMap()
         this.map.geoObjects.removeAll()
         this.props.changeDepPoint('')
         this.props.changeDestPoint('')
@@ -354,7 +355,6 @@ class Maps extends React.Component {
       )
       this.map.geoObjects.add(destinationPoint)
     }
-
     if (this.props && this.props.driverInfo) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'

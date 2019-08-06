@@ -6,6 +6,7 @@ import Spinner from 'react-bootstrap/Spinner'
 // eslint-disable-next-line no-unused-vars
 import Route from './Route'
 import '../../containers/profile/profile.sass'
+import './style.sass'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/rides'
 
@@ -49,6 +50,7 @@ class RoutesList extends React.Component {
         id={item.id}
         key={item.id}
         passenger={passenger}
+        className='routeListItem'
       />
     )
   }
