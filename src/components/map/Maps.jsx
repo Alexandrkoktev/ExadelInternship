@@ -202,7 +202,9 @@ class Maps extends React.Component {
         .get(i)
         .getSegments()
         .forEach(segment => {
-          points.push(segment.getCoordinates()[0])
+          for(let j = 0; j < segment.getCoordinates.length-1;++j){
+            points.push(segment.getCoordinates()[j])
+          }
         })
     }
 
@@ -210,7 +212,9 @@ class Maps extends React.Component {
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
-      points.push(segments[i].getCoordinates()[0])
+      for(let j=0;j<segments[i].getCoordinates().length;++j){
+        points.push(segments[i].getCoordinates()[j])
+      }
     }
     points.push(...segments[nSegments - 1].getCoordinates())
 
