@@ -196,15 +196,14 @@ class Maps extends React.Component {
     }
 
     paths.each(path => {
-      path.getSegments()
-          .forEach(segment => {
-            let coordsArr = segment.getCoordinates()
-            coordsArr = coordsArr.slice(0, -1)
-            points.push(...coordsArr)
-          })
+      path.getSegments().forEach(segment => {
+        let coordsArr = segment.getCoordinates()
+        coordsArr = coordsArr.slice(0, -1)
+        points.push(...coordsArr)
+      })
     })
 
-    const routeWPs = route.getWayPoints().toArray();
+    const routeWPs = route.getWayPoints().toArray()
     points.push(routeWPs[routeWPs.length - 1].geometry.getCoordinates())
 
     const [startPointString, finishPointString] = await Promise.all([

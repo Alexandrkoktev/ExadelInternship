@@ -10,7 +10,7 @@ import {
   verifyingError,
 } from '../actions/activeRides'
 import client from './axios'
-import { push } from "connected-react-router"
+import { push } from 'connected-react-router'
 
 export const createBooking = data => {
   return async function(dispatch) {

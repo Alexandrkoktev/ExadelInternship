@@ -15,7 +15,7 @@ import {
   deleteRideError,
 } from '../actions/rides'
 import client from './axios'
-import { push } from "connected-react-router"
+import { push } from 'connected-react-router'
 
 export const getRides = () => {
   return async function(dispatch) {

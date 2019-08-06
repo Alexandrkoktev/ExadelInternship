@@ -10,7 +10,6 @@ import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/rides'
 
-
 class NewRoute extends React.Component {
   constructor() {
     super()
