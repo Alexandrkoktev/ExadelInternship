@@ -310,6 +310,7 @@ class Maps extends React.Component {
     }
     // информация о маршруте пассажира
     if (this.props && this.props.passengerInfo) {
+      console.log(this.props)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -336,6 +337,30 @@ class Maps extends React.Component {
           this.route = route
           this.map.geoObjects.add(route)
         })
+
+        const meetPoint = new this.ymaps.Placemark(
+          this.props.passengerInfo.meetPoint,
+          {
+            iconCaption: 'Точка посадки',
+          },
+          {
+            preset: 'islands#greenDotIconWithCaption',
+            draggable: false,
+          }
+        )
+        this.map.geoObjects.add(meetPoint);
+
+        const destinationPoint = new this.ymaps.Placemark(
+          this.props.passengerInfo.destinationPoint,
+          {
+            iconCaption: 'Точка высадки',
+          },
+          {
+            preset: 'islands#redDotIconWithCaption',
+            draggable: false,
+          }
+        )
+        this.map.geoObjects.add(destinationPoint);
     }
     // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {

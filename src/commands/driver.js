@@ -32,6 +32,7 @@ export const mapStateToProps = state => ({
   meetPoint: state.driver.meetPoint,
   finishPoint: state.driver.finishPoint,
   startPoint: state.driver.startPoint,
+  destinationPoint: state.driver.destinationPoint,
 })
 
 export const mapDispatchToProps = dispatch => ({
