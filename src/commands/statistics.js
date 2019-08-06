@@ -5,11 +5,10 @@ import {
 } from '../actions/statistics'
 import client from './axios'
 
-export const getStatistics = (mode, order, name="") => {
+export const getStatistics = (mode, order, name = '') => {
   return async function(dispatch) {
     try {
       dispatch(getStatisticsStarting())
-      debugger
       const { data } = await client({
         url: `/api/statistic?mode=${mode}&order=${order}&name=${name}`,
         method: 'get',
@@ -25,7 +24,7 @@ export const mapStateToProps = state => ({
   statistics: state.statistics.statistics,
   mode: state.statistics.mode,
   order: state.statistics.order,
-  name: state.statistics.name
+  name: state.statistics.name,
 })
 
 export const mapDispatchToProps = dispatch => ({

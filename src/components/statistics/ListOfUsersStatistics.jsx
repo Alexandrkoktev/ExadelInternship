@@ -16,6 +16,7 @@ class ListOfUsersStatistics extends React.Component {
             amountOfPassengers={item.amountOfPassengers}
             amountOfBookings={item.amountOfBookings}
             amountOfRoutes={item.amountOfRoutes}
+            key={item.id}
           />
         </>
       )

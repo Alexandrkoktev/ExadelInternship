@@ -78,12 +78,10 @@
       }
       var N = a(24),
         P = a(140),
-        x = a
-          .n(P)
-          .a.create({
-            baseURL: 'https://carpool111.herokuapp.com',
-            withCredentials: !0,
-          }),
+        x = a.n(P).a.create({
+          baseURL: 'https://carpool111.herokuapp.com',
+          withCredentials: !0,
+        }),
         w = function(e) {
           return {
             userInfo: e.userInfo,
@@ -2971,12 +2969,10 @@
                         { balloonContentBodyLayout: a }
                       )
                       .then(function(t) {
-                        t
-                          .getPaths()
-                          .options.set({
-                            strokeColor: '0000ffff',
-                            opacity: 0.9,
-                          }),
+                        t.getPaths().options.set({
+                          strokeColor: '0000ffff',
+                          opacity: 0.9,
+                        }),
                           t.options.set({ mapStateAutoApply: !0 }),
                           e.map.geoObjects.remove(e.route),
                           (e.route = t),
@@ -3228,12 +3224,10 @@
                         { balloonContentBodyLayout: r }
                       )
                       .then(function(t) {
-                        t
-                          .getPaths()
-                          .options.set({
-                            strokeColor: '0000ffff',
-                            opacity: 0.9,
-                          }),
+                        t.getPaths().options.set({
+                          strokeColor: '0000ffff',
+                          opacity: 0.9,
+                        }),
                           t.options.set({ mapStateAutoApply: !0 }),
                           (e.route = t),
                           e.map.geoObjects.add(t)
@@ -3257,12 +3251,10 @@
                         { balloonContentBodyLayout: i }
                       )
                       .then(function(t) {
-                        t
-                          .getPaths()
-                          .options.set({
-                            strokeColor: '0000ffff',
-                            opacity: 0.9,
-                          }),
+                        t.getPaths().options.set({
+                          strokeColor: '0000ffff',
+                          opacity: 0.9,
+                        }),
                           t.options.set({ mapStateAutoApply: !0 }),
                           (e.route = t),
                           e.map.geoObjects.add(t)

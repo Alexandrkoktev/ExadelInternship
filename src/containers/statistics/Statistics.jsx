@@ -45,9 +45,9 @@ class Statistics extends React.Component {
               <span
                 className="oi oi-magnifying-glass "
                 onClick={event => {
-                this.props.requestStatistics(0, true, this.state.name)
-                this.setState({ changed: !this.state.changed })
-              }}
+                  this.props.requestStatistics(0, true, this.state.name)
+                  this.setState({ changed: !this.state.changed })
+                }}
               />
             </InputGroup.Text>
           </InputGroup.Prepend>
@@ -55,13 +55,12 @@ class Statistics extends React.Component {
         <div className="table-responsive-sm">
           <Table striped bordered hover size="sm" style={{ margin: 'auto' }}>
             <thead>
-            <tr>
-              <th className="titles name">
-                <span>name </span>
-                <span className="wrap">
+              <tr>
+                <th className="titles name">
+                  <span>name </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
-
                       onClick={event => {
                         this.props.requestStatistics(0, true, this.state.name)
                         this.setState({ changed: !this.state.changed })
@@ -75,10 +74,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles amount">
-                <span>driver rating </span>
-                <span className="wrap">
+                </th>
+                <th className="titles amount">
+                  <span>driver rating </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -94,10 +93,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles amount">
-                <span> passenger rating </span>
-                <span className="wrap">
+                </th>
+                <th className="titles amount">
+                  <span> passenger rating </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -113,10 +112,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles distance">
-                <span>distance </span>
-                <span className="wrap">
+                </th>
+                <th className="titles distance">
+                  <span>distance </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -132,10 +131,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles amount">
-                <span>amount of passengers </span>
-                <span className="wrap">
+                </th>
+                <th className="titles amount">
+                  <span>amount of passengers </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -151,10 +150,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles amount">
-                <span>amount of bookings </span>
-                <span className="wrap">
+                </th>
+                <th className="titles amount">
+                  <span>amount of bookings </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -170,10 +169,10 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-              <th className="titles amount">
-                <span>amount of routes </span>
-                <span className="wrap">
+                </th>
+                <th className="titles amount">
+                  <span>amount of routes </span>
+                  <span className="wrap">
                     <span
                       className="oi oi-caret-bottom arrows"
                       onClick={event => {
@@ -189,8 +188,8 @@ class Statistics extends React.Component {
                       }}
                     />
                   </span>
-              </th>
-            </tr>
+                </th>
+              </tr>
             </thead>
             <ListOfUsersStatistics
               statistics={statistics}
@@ -205,5 +204,5 @@ class Statistics extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Statistics)
