@@ -12,8 +12,6 @@ export const DELETE_CARS_DATA = 'DELETE_CARS_DATA'
 export const DELETE_CARS_DATA_SUCCESS = 'DELETE_CARS_DATA_SUCCESS'
 export const DELETE_CARS_DATA_ERROR = 'DELETE_CARS_DATA_ERROR'
 
-// action handlers
-// get
 export function getCarsStarting() {
   return {
     type: GET_CARS_DATA,

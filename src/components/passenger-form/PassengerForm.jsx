@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, ListGroup, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
 
@@ -8,29 +8,43 @@ class PassengerForm extends React.Component {
   render() {
     return (
       <>
-        <Row>
-          <h3 style={{ marginLeft: '10%' }}>New route:</h3>
+        <Row >
+          <h3 className='styleForHead'>New ride:</h3>
         </Row>
         <Row>
-          <Form style={{ marginLeft: '17.5%' }}>
+          <Form>
             <Form.Group as={Row}>
-              <Form.Control type="text" placeholder="From:" />
+              <Form.Label column sm="2">
+                From:
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  value={this.props.depPoint}
+                  readOnly
+                />
+              </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Control type="text" placeholder="To:" />
+              <Form.Label column sm="2">
+                To:
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  value={this.props.destPoint}
+                  readOnly
+                />
+              </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <DateSelector />
+              <Form.Label column sm="2">
+                Time:
+              </Form.Label>
+              <Col>
+                <DateSelector onChange={this.props.onTime} />
+              </Col>
             </Form.Group>
-            <Row>
-              <Button
-                variant="dark"
-                type="submit"
-                onClick={event => event.preventDefault()}
-              >
-                Apply
-              </Button>
-            </Row>
           </Form>
         </Row>
       </>

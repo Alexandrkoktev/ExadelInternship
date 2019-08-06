@@ -2,10 +2,14 @@ export const GET_RIDES_DATA = 'GET_RIDES_DATA'
 export const GET_RIDES_DATA_SUCCESS = 'GET_RIDES_DATA_SUCCESS'
 export const GET_FAVOURITES_DATA_SUCCESS = 'GET_FAVOURITES_DATA_SUCCESS'
 export const GET_ACTIVE_ROUTES_DATA_SUCCESS = 'GET_ACTIVE_ROUTES_DATA_SUCCESS'
-export const GET_ACTIVE_BOOKINGS_DATA_SUCCESS = 'GET_ACTIVE_BOOKINGS_DATA_SUCCESS'
+export const GET_ACTIVE_BOOKINGS_DATA_SUCCESS =
+  'GET_ACTIVE_BOOKINGS_DATA_SUCCESS'
 export const GET_RIDES_DATA_ERROR = 'GET_RIDES_DATA_ERROR'
 export const GET_ROUTES_HISTORY_SUCCESS = 'GET_ROUTES_HISTORY_SUCCESS'
 export const GET_BOOKINGS_HISTORY_SUCCESS = 'GET_BOOKINGS_HISTORY_SUCCESS'
+export const CREATE_ROUTE_DATA = 'CREATE_ROUTE_DATA'
+export const CREATE_ROUTE_DATA_SUCCESS = 'CREATE_ROUTE_DATA_SUCCESS'
+export const CREATE_ROUTE_DATA_ERROR = 'CREATE_ROUTE_DATA_ERROR'
 export const DELETE_RIDE = 'DELETE_RIDE'
 export const DELETE_RIDE_SUCCESS = 'DELETE_RIDE_SUCCESS'
 export const DELETE_RIDE_ERROR = 'DELETE_RIDE_ERROR'
@@ -62,6 +66,22 @@ export function getBookingsHistoryDone(userData) {
 export function getRidesError(error) {
   return {
     type: GET_RIDES_DATA_ERROR,
+    error,
+  }
+}
+export function createRouteStarting() {
+  return {
+    type: CREATE_ROUTE_DATA,
+  }
+}
+export function createRouteDone() {
+  return {
+    type: CREATE_ROUTE_DATA,
+  }
+}
+export function createRouteError(error) {
+  return {
+    type: CREATE_ROUTE_DATA,
     error,
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Row, Col, Button } from 'react-bootstrap'
 import CarInfo from '../profile/CarInfo'
+import Confirm from './Confirm'
 import './style.sass'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
@@ -10,6 +11,7 @@ class Car extends React.Component {
     super(props)
     this.state = {
       show: props.show,
+      confirm: false,
     }
   }
 
@@ -22,6 +24,14 @@ class Car extends React.Component {
   delete = () => {
     this.props.deleteCar(this.props.id)
     this.props.hide()
+  }
+
+  deny = () => {
+    this.setState({ confirm: false })
+  }
+
+  confirm = () => {
+    this.setState({ confirm: true })
   }
 
   render() {
@@ -44,7 +54,7 @@ class Car extends React.Component {
               <Button
                 variant="outline-danger"
                 className="right"
-                onClick={this.delete.bind(this)}
+                onClick={this.confirm.bind(this)}
               >
                 Delete
               </Button>
@@ -57,6 +67,11 @@ class Car extends React.Component {
           hide={this.hide.bind(this)}
           id={id}
           info={info}
+        />
+        <Confirm
+          show={this.state.confirm}
+          confirm={this.delete.bind(this)}
+          deny={this.deny.bind(this)}
         />
       </>
     )

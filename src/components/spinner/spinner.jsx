@@ -2,13 +2,7 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import Spinner from 'react-bootstrap/Spinner'
-
+import './style.sass'
 export default function() {
-  return (
-    <Spinner
-      animation="grow"
-      variant="info"
-      style={{ marginLeft: '34rem', marginTop: '20rem' }}
-    />
-  )
+  return <Spinner animation="grow" variant="info" className="spinner" />
 }

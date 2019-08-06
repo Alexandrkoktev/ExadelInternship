@@ -5,7 +5,9 @@ import Col from 'react-bootstrap/Col'
 import Maps from '../../components/map/Maps'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import ListGroup from 'react-bootstrap/ListGroup'
+import DeleteButton from '../../components/route-buttons/DeleteButton';
+import Message from '../../components/route-buttons/Message';
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -14,34 +16,74 @@ class OneRideInfo extends React.Component {
   }
 
   render() {
-    const { driver } = this.props
+    const {
+      driverName,
+      phoneNumber,
+      freeSeats,
+      maxSeats,
+      startPointName,
+      finishPointName,
+      carInformation,
+      viaPoints,
+      meetPoint,
+      destinationPoint,
+      startPoint,
+      finishPoint,
+      deleteBooking,
+      enabled
+    } = this.props
+    const passengerInfo = {
+      viaPoints,
+      meetPoint,
+      destinationPoint,
+      startPoint,
+      finishPoint,
+    }
+    const id = this.props.match.params.rideid
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
-              <Col sm="7" style={{ height: '278px', marginTop: '1%' }}>
-                <Maps />
+              <Col sm="7">
+                <Maps passengerInfo={passengerInfo} />
               </Col>
               <Col sm="5">
-                <h5 style={{ marginLeft: '4.4%' }}>Driver: </h5>
                 <div style={{ height: 'auto', maxHeight: '262px' }}>
-                  <ListGroupItem>{driver}</ListGroupItem>
+                  <ListGroup>
+                    <h5 className="title-list">Driver: </h5>
+                    <ListGroup.Item className="list-item-style">
+                      <b>Name:</b> {driverName},
+                      <br />
+                      <b>Phone number:</b> {phoneNumber}
+                    </ListGroup.Item>
+                    <h5 className="title-list">Car information: </h5>
+                    <ListGroup.Item className="list-item-style">
+                      <b>Info: </b> {carInformation},
+                      <br />
+                      <b>Free seats / All seats: </b>
+                      {freeSeats}/{maxSeats}
+                    </ListGroup.Item>
+                    <h5 className="title-list">
+                      From <span className="oi oi-arrow-right" /> To:{' '}
+                    </h5>
+                    <ListGroup.Item className="list-item-style">
+                      {startPointName} <span className="oi oi-arrow-right" />{' '}
+                      {finishPointName}
+                    </ListGroup.Item>
+                  </ListGroup>
                 </div>
               </Col>
             </Row>
-
-            <Row style={{ marginLeft: '1%' }}>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span
-                  className="oi oi-envelope-closed"
-                  style={{ fontSize: '25px' }}
-                />
-              </Col>
-              <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                <span className="oi oi-trash" style={{ fontSize: '25px' }} />
-              </Col>
-            </Row>
+            {enabled ?
+              <Row style={{ marginLeft: '1%' }}>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <Message />
+                </Col>
+                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
+                  <DeleteButton click={deleteBooking} id={id} />
+                </Col>
+              </Row> : <></>}
           </Container>
         </div>
       </div>

@@ -35,7 +35,7 @@ class LogIn extends React.Component {
             {error}
           </Alert>
         )}
-        <Card style={{ width: '18rem', margin: '5rem auto' }}>
+        <Card className="cardItem">
           <Card.Body>
             <Form>
               <Form.Group>

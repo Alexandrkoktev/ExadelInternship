@@ -6,6 +6,13 @@ import {
 
 const initialState = {
   passengers: [],
+  maxSeats: '',
+  freeSeats: '',
+  startPointName: '',
+  finishPointName: '',
+  startPoint: [],
+  finishPoint: [],
+  viaPoints: [],
 }
 
 function reducer(state = initialState, action) {
@@ -16,9 +23,25 @@ function reducer(state = initialState, action) {
       }
     case GET_PASSENGERS_DATA_SUCCESS:
       const passengers = action.payload
+      const {
+        freeSeats,
+        maxSeats,
+        startPointName,
+        finishPointName,
+        startPoint,
+        finishPoint,
+        viaPoints,
+      } = action.payload
       return {
         ...state,
         passengers,
+        freeSeats,
+        maxSeats,
+        startPointName,
+        finishPointName,
+        startPoint,
+        finishPoint,
+        viaPoints,
       }
     case GET_PASSENGERS_DATA_ERROR:
       const { error } = action

@@ -14,7 +14,7 @@ class ClosestRoutesList extends React.Component {
     const { isLoading } = this.props
     const passengerides = passengerRides.map(item => (
       <Route
-        rideid={item.id}
+        id={item.id}
         passenger={false}
         key={item.id}
         depPoint={item.startPointName}
@@ -25,7 +25,7 @@ class ClosestRoutesList extends React.Component {
 
     const driverrides = driverRides.map(item => (
       <Route
-        routeid={item.id}
+        id={item.id}
         passenger={true}
         key={item.id}
         depPoint={item.startPointName}

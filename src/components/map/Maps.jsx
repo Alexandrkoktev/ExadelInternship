@@ -2,6 +2,10 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { YMaps, Map } from 'react-yandex-maps'
 import './map.sass'
+// eslint-disable-next-line import/no-duplicates
+import { debounce } from '../../util'
+// eslint-disable-next-line import/no-duplicates
+import { deepEqual } from '../../util'
 
 class Maps extends React.Component {
   constructor() {
@@ -9,6 +13,149 @@ class Maps extends React.Component {
     this.map = null
     this.ymaps = null
     this.route = null
+    this.pointA = null
+    this.pointB = null
+    this.isA = true
+  }
+
+  createPlacemark(coords) {
+    return new this.ymaps.Placemark(
+      coords,
+      {
+        iconCaption: 'поиск...',
+      },
+      {
+        preset: 'islands#blueDotIconWithCaption',
+        draggable: true,
+      }
+    )
+  }
+
+  addPlacemark = async e => {
+    const coords = e.get('coords')
+    if (this.isA) {
+      if (this.pointA) {
+        this.pointA.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
+        this.pointA.properties.set({
+          balloonContent: address,
+        })
+        this.props.changeDepPoint(address)
+
+        if (this.pointB && this.route) {
+          // отправляем запрос на валидацию
+        }
+      } else {
+        this.pointA = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointA)
+        const address = await this.getAddress(
+          this.pointA.geometry.getCoordinates()
+        )
+        this.pointA.properties.set({
+          iconCaption: 'точка А',
+          balloonContent: address,
+        })
+        this.props.changeDepPoint(address)
+        this.pointA.events.add(
+          'dragend',
+          async function() {
+            const address = await this.getAddress(
+              this.pointA.geometry.getCoordinates()
+            )
+            this.pointA.properties.set({
+              balloonContent: address,
+            })
+            this.props.changeDepPoint(address)
+          }.bind(this)
+        )
+      }
+      this.isA = false
+    } else {
+      if (this.pointB) {
+        this.pointB.geometry.setCoordinates(coords)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
+        this.pointB.properties.set({
+          balloonContent: address,
+        })
+        this.props.changeDestPoint(address)
+      } else {
+        this.pointB = this.createPlacemark(coords)
+        this.map.geoObjects.add(this.pointB)
+        const address = await this.getAddress(
+          this.pointB.geometry.getCoordinates()
+        )
+        this.pointB.properties.set({
+          iconCaption: 'точка B',
+          balloonContent: address,
+        })
+        this.props.changeDestPoint(address)
+        this.pointB.events.add(
+          'dragend',
+          async function() {
+            const address = await this.getAddress(
+              this.pointB.geometry.getCoordinates()
+            )
+            this.pointB.properties.set({
+              balloonContent: address,
+            })
+            this.props.changeDestPoint(address)
+          }.bind(this)
+        )
+      }
+      this.isA = true
+    }
+  }
+
+  getPoints() {
+    if (this.pointA && this.pointB)
+      return [
+        this.pointA.geometry.getCoordinates(),
+        this.pointB.geometry.getCoordinates(),
+      ]
+  }
+
+  componentWillReceiveProps = nextProps => {
+    const shouldUpdateMap =
+      this.map &&
+      nextProps.showing &&
+      !!Object.keys(nextProps.showing).length &&
+      !deepEqual(this.props.showing, nextProps.showing)
+    if (shouldUpdateMap) {
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      const viaPoints = nextProps.showing.viaPoints || []
+      this.ymaps
+        .route(
+          [
+            nextProps.showing.startPoint,
+            ...viaPoints.map(point => {
+              return { type: 'viaPoint', point: point }
+            }),
+            nextProps.showing.finishPoint,
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            // в балуне выводим только информацию о времени движения с учетом пробок
+            // можно выставить настройки графики маршруту
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+
+          this.map.geoObjects.remove(this.route)
+          this.route = route
+          this.map.geoObjects.add(this.route)
+        })
+    }
   }
 
   getAddress(coordinates) {
@@ -25,7 +172,7 @@ class Maps extends React.Component {
       return
     }
 
-    const points = [] // Точки маршрута "от манёвра до манёвра"
+    const points = []
 
     const route = this.map.controls.get('routeEditor').getRoute()
 
@@ -42,8 +189,7 @@ class Maps extends React.Component {
       .toArray()
       .map(point => point.geometry.getCoordinates())
 
-    const paths = route.getPaths() // участки маршрута между wayPoint-ми
-
+    const paths = route.getPaths()
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
@@ -60,7 +206,7 @@ class Maps extends React.Component {
         })
     }
 
-    const segments = paths.get(nPaths - 1).getSegments() // участки конкретного Path-а от манёвра до манёвра
+    const segments = paths.get(nPaths - 1).getSegments()
     const nSegments = segments.length
 
     for (let i = 0; i < nSegments - 1; ++i) {
@@ -85,40 +231,166 @@ class Maps extends React.Component {
     }
   }
 
+  getEndPoints = async () => {
+    this.route = this.map.controls.get('routeEditor').getRoute()
+    if (this.route) {
+      const wayPoints = this.route.getWayPoints().toArray()
+      if (wayPoints.length === 2) {
+        const handler = async () =>
+          this.props.handleChange(
+            await Promise.all(
+              this.route
+                .getWayPoints()
+                .toArray()
+                .map(point => this.getAddress(point.geometry.getCoordinates()))
+            )
+          )
+        this.route.events.add('geometrychange', debounce(handler, 200))
+        this.props.handleChange(
+          await Promise.all(
+            wayPoints.map(point =>
+              this.getAddress(point.geometry.getCoordinates())
+            )
+          )
+        )
+      }
+    }
+  }
+
   onApiAvailable = ymaps => {
     this.ymaps = ymaps
 
     if (this.map && this.props.needRouteEditor) {
-      this.routeEditor = this.map.controls.add('routeEditor')
+      const routeEditor = this.map.controls.add('routeEditor')
+      routeEditor.events.add('deselect', this.getEndPoints)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map',
+        },
+        options: {
+          selectOnClick: false,
+        },
+      })
+      clearMapButton.events.add('click', () => {
+        this.map.controls.get('routeEditor').select()
+        this.props.handleChange(['', ''])
+        this.route = null
+      })
+      this.map.controls.add(clearMapButton, {
+        float: 'left',
+      })
     }
-    /*
-    const balloonContentBodyLayout = ymaps.templateLayoutFactory.createClass(
-      '<div>Test</div>'
-    )
-    ymaps
-      .route(
-        [
-          [53.92769, 27.68307],
-          { type: 'viaPoint', point: 'Логойский тракт, 15/1' },
-          'ул. Веры Хоружей',
-          { type: 'wayPoint', point: 'ст. м. Автозаводская' },
-        ],
-        { balloonContentBodyLayout }
+
+    if (this.map && this.props.needPlacemarks) {
+      this.map.events.add('click', this.addPlacemark)
+
+      const clearMapButton = new this.ymaps.control.Button({
+        data: {
+          content: 'Clear map',
+          title: 'Click to clear the map',
+        },
+        options: {
+          selectOnClick: false,
+        },
+      })
+      clearMapButton.events.add('click', () => {
+        this.map.geoObjects.removeAll()
+        this.props.changeDepPoint('')
+        this.props.changeDestPoint('')
+        this.pointA = null
+        this.pointB = null
+        this.isA = true
+        this.route = null
+      })
+      this.map.controls.add(clearMapButton, {
+        float: 'left',
+      })
+    }
+    // информация о маршруте пассажира
+    if (this.props && this.props.passengerInfo) {
+      console.log(this.props)
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
       )
-      .then(route => {
-        route.getPaths().options.set({
-          // в балуне выводим только информацию о времени движения с учетом пробок
-          // можно выставить настройки графики маршруту
-          strokeColor: '0000ffff',
-          opacity: 0.9,
+      const viaPoints = this.props.passengerInfo.viaPoints || []
+      this.ymaps
+        .route(
+          [
+            this.props.passengerInfo.startPoint,
+            ...viaPoints.map(point => {
+              return { type: 'viaPoint', point: point }
+            }),
+            this.props.passengerInfo.finishPoint,
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route
+          this.map.geoObjects.add(route)
         })
 
-        this.route = route;   // !!!!
+        const meetPoint = new this.ymaps.Placemark(
+          this.props.passengerInfo.meetPoint,
+          {
+            iconCaption: 'Точка посадки',
+          },
+          {
+            preset: 'islands#greenDotIconWithCaption',
+            draggable: false,
+          }
+        )
+        this.map.geoObjects.add(meetPoint);
 
-        // добавляем маршрут на карту
-        this.map.geoObjects.add(route)
-      })
-    */
+        const destinationPoint = new this.ymaps.Placemark(
+          this.props.passengerInfo.destinationPoint,
+          {
+            iconCaption: 'Точка высадки',
+          },
+          {
+            preset: 'islands#redDotIconWithCaption',
+            draggable: false,
+          }
+        )
+        this.map.geoObjects.add(destinationPoint);
+    }
+    // информация о маршруте водителя
+    if (this.props && this.props.driverInfo) {
+      const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
+        '<div>Test</div>'
+      )
+      const viaPoints = this.props.driverInfo.viaPoints || []
+      this.ymaps
+        .route(
+          [
+            this.props.driverInfo.startPoint,
+            ...viaPoints.map(point => {
+              return { type: 'viaPoint', point: point }
+            }),
+            this.props.driverInfo.finishPoint,
+          ],
+          { balloonContentBodyLayout }
+        )
+        .then(route => {
+          route.getPaths().options.set({
+            strokeColor: '0000ffff',
+            opacity: 0.9,
+          })
+          route.options.set({
+            mapStateAutoApply: true,
+          })
+          this.route = route
+          this.map.geoObjects.add(route)
+        })
+    }
   }
 
   render() {
@@ -143,7 +415,7 @@ class Maps extends React.Component {
             zoom: 11,
             controls: ['zoomControl', 'fullscreenControl'],
           }}
-        ></Map>
+        />
       </YMaps>
     )
   }
