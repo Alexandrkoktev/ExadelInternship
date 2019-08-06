@@ -356,6 +356,7 @@ class Maps extends React.Component {
     }
 
     if (this.props && this.props.driverInfo) {
+      console.log(this.props.driverInfo)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -382,6 +383,29 @@ class Maps extends React.Component {
           this.route = route
           this.map.geoObjects.add(route)
         })
+
+      this.props.driverInfo.bookings.forEach(booking => {
+      this.map.geoObjects.add(new this.ymaps.Placemark(
+        booking.meetPoint,
+        {
+          iconCaption: `Посадка ${booking.name}`,
+        },
+        {
+          preset: 'islands#greenDotIconWithCaption',
+          draggable: false,
+        }
+      ))
+      this.map.geoObjects.add(new this.ymaps.Placemark(
+        booking.destinationPoint,
+        {
+          iconCaption: `Высадка ${booking.name}`,
+        },
+        {
+          preset: 'islands#redDotIconWithCaption',
+          draggable: false,
+        }
+      ))
+      })
     }
   }
 
