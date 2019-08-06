@@ -7,7 +7,7 @@ import {
 const initialState = {
   statistics: [],
   mode: 0,
-  order: true
+  order: true,
 }
 
 function reducer(state = initialState, action) {

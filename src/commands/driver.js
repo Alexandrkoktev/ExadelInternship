@@ -12,7 +12,7 @@ import client from './axios'
 import { push } from 'connected-react-router'
 
 export const getDriver = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getDriverDataStarting())
       const { data } = await client({
@@ -26,10 +26,8 @@ export const getDriver = id => {
   }
 }
 
-
-
 const deleteBooking = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(deleteRideStarting())
       await client({
@@ -59,10 +57,10 @@ export const mapStateToProps = state => ({
   finishPoint: state.driver.finishPoint,
   startPoint: state.driver.startPoint,
   destinationPoint: state.driver.destinationPoint,
-  enabled: state.driver.enabled
+  enabled: state.driver.enabled,
 })
 
 export const mapDispatchToProps = dispatch => ({
   requestDriver: id => dispatch(getDriver(id)),
-  deleteBooking: (id) => dispatch(deleteBooking(id))
+  deleteBooking: id => dispatch(deleteBooking(id)),
 })

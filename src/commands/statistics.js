@@ -11,7 +11,7 @@ export const getStatistics = (mode, order) => {
       dispatch(getStatisticsStarting())
       const { data } = await client({
         url: `/api/statistic?mode=${mode}&order=${order}`,
-       // url: "/api/statistic",
+        // url: "/api/statistic",
         method: 'get',
       })
       dispatch(geStatisticsDone(data))
@@ -21,15 +21,15 @@ export const getStatistics = (mode, order) => {
   }
 }
 
-
 export const mapStateToProps = state => ({
   statistics: state.statistics.statistics,
   mode: state.statistics.mode,
-  order: state.statistics.order
+  order: state.statistics.order,
 })
 
 export const mapDispatchToProps = dispatch => ({
-  requestStatistics: (mode,order) => {dispatch(getStatistics(mode,order))
-    console.log("mode = " + mode)},
-
+  requestStatistics: (mode, order) => {
+    dispatch(getStatistics(mode, order))
+    console.log('mode = ' + mode)
+  },
 })

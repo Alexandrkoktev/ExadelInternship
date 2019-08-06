@@ -29,7 +29,7 @@ class NewRide extends React.Component {
   changeDestPoint = destPoint => {
     this.setState({ destPoint: destPoint })
   }
-  onTimeChange = (event) => {
+  onTimeChange = event => {
     this.setState({ time: event })
   }
 
@@ -58,10 +58,14 @@ class NewRide extends React.Component {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
     this.setState({ arrayFrom: points[0], arrayTo: points[1] })
-    const data = { meetPoint: points[0], destinationPoint: points[1], datetime: this.state.time.toJSON() }
+    const data = {
+      meetPoint: points[0],
+      destinationPoint: points[1],
+      datetime: this.state.time.toJSON(),
+    }
     this.props.getRides(data)
   }
-  setRouteId = (id) => {
+  setRouteId = id => {
     this.setState({ activeRouteId: id })
   }
 
@@ -73,8 +77,11 @@ class NewRide extends React.Component {
           <Col sm={5}>
             <Row>
               <ListGroup>
-                <PassengerForm depPoint={this.state.depPoint} destPoint={this.state.destPoint}
-                               onTime={this.onTimeChange}/>
+                <PassengerForm
+                  depPoint={this.state.depPoint}
+                  destPoint={this.state.destPoint}
+                  onTime={this.onTimeChange}
+                />
               </ListGroup>
             </Row>
             <Row>
@@ -121,5 +128,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRide)
