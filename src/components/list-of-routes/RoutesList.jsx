@@ -20,10 +20,13 @@ class RoutesList extends React.Component {
           depPoint={item.startPointName}
           destPoint={item.endPointName}
           getRide={getRide}
+          inRoutes={true}
         />
       ) : (
         <ListGroup.Item
+          action
           key={item.id}
+          className='itemOfActiveRidesList'
           onClick={() => {
             getRide(item.id)
             this.props.setId(item.id)

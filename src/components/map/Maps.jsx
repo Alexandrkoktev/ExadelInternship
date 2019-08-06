@@ -60,7 +60,7 @@ class Maps extends React.Component {
         this.props.changeDepPoint(address)
         this.pointA.events.add(
           'dragend',
-          async function() {
+          async function () {
             const address = await this.getAddress(
               this.pointA.geometry.getCoordinates()
             )
@@ -95,7 +95,7 @@ class Maps extends React.Component {
         this.props.changeDestPoint(address)
         this.pointB.events.add(
           'dragend',
-          async function() {
+          async function () {
             const address = await this.getAddress(
               this.pointB.geometry.getCoordinates()
             )
@@ -142,8 +142,6 @@ class Maps extends React.Component {
         )
         .then(route => {
           route.getPaths().options.set({
-            // в балуне выводим только информацию о времени движения с учетом пробок
-            // можно выставить настройки графики маршруту
             strokeColor: '0000ffff',
             opacity: 0.9,
           })
@@ -197,26 +195,16 @@ class Maps extends React.Component {
       return
     }
 
-    for (let i = 0; i < nPaths - 1; ++i) {
-      paths
-        .get(i)
-        .getSegments()
-        .forEach(segment => {
-          for (let j = 0; j < segment.getCoordinates.length - 1; ++j) {
-            points.push(segment.getCoordinates()[j])
-          }
-        })
-    }
+    paths.each(path => {
+      path.getSegments().forEach(segment => {
+        let coordsArr = segment.getCoordinates()
+        coordsArr = coordsArr.slice(0, -1)
+        points.push(...coordsArr)
+      })
+    })
 
-    const segments = paths.get(nPaths - 1).getSegments()
-    const nSegments = segments.length
-
-    for (let i = 0; i < nSegments - 1; ++i) {
-      for (let j = 0; j < segments[i].getCoordinates().length; ++j) {
-        points.push(segments[i].getCoordinates()[j])
-      }
-    }
-    points.push(...segments[nSegments - 1].getCoordinates())
+    const routeWPs = route.getWayPoints().toArray()
+    points.push(routeWPs[routeWPs.length - 1].geometry.getCoordinates())
 
     const [startPointString, finishPointString] = await Promise.all([
       this.getAddress(points[0]),
@@ -300,6 +288,7 @@ class Maps extends React.Component {
         },
       })
       clearMapButton.events.add('click', () => {
+        this.props.clearMap()
         this.map.geoObjects.removeAll()
         this.props.changeDepPoint('')
         this.props.changeDestPoint('')
@@ -365,7 +354,6 @@ class Maps extends React.Component {
       )
       this.map.geoObjects.add(destinationPoint)
     }
-    // информация о маршруте водителя
     if (this.props && this.props.driverInfo) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
