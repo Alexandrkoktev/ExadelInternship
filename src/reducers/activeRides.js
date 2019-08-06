@@ -57,7 +57,6 @@ function reducer(state = initialState, action) {
     case VERIFY_POINTS_SUCCESS:
       return {
         ...state,
-        currentRide,
       }
     case VERIFY_POINTS_ERROR: {
       const { error } = action
