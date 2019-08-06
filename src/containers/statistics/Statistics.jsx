@@ -1,11 +1,7 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import InputGroup from 'react-bootstrap/InputGroup'
-// eslint-disable-next-line no-unused-vars
 import FormControl from 'react-bootstrap/es/FormControl'
-// eslint-disable-next-line no-unused-vars
 import ListOfUsersStatistics from '../../components/statistics/ListOfUsersStatistics'
-// eslint-disable-next-line no-unused-vars
 import Table from 'react-bootstrap/Table'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/statistics'
 import { connect } from 'react-redux'
@@ -25,7 +21,10 @@ class Statistics extends React.Component {
 
   handleChange = event => {
     const value = event.target.value
-    this.setState({ name: value })
+    this.props.requestStatistics(0, true, value)
+    this.setState({ name: value ,changed: !this.state.changed})
+
+
   }
 
   render() {
