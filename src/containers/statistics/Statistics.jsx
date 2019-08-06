@@ -22,9 +22,7 @@ class Statistics extends React.Component {
   handleChange = event => {
     const value = event.target.value
     this.props.requestStatistics(0, true, value)
-    this.setState({ name: value ,changed: !this.state.changed})
-
-
+    this.setState({ name: value, changed: !this.state.changed })
   }
 
   render() {
