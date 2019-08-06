@@ -142,8 +142,6 @@ class Maps extends React.Component {
         )
         .then(route => {
           route.getPaths().options.set({
-            // в балуне выводим только информацию о времени движения с учетом пробок
-            // можно выставить настройки графики маршруту
             strokeColor: '0000ffff',
             opacity: 0.9,
           })
@@ -197,22 +195,17 @@ class Maps extends React.Component {
       return
     }
 
-    for (let i = 0; i < nPaths - 1; ++i) {
-      paths
-        .get(i)
-        .getSegments()
-        .forEach(segment => {
-          points.push(segment.getCoordinates()[0])
-        })
-    }
+    paths.each(path => {
+      path.getSegments()
+          .forEach(segment => {
+            let coordsArr = segment.getCoordinates()
+            coordsArr = coordsArr.slice(0, -1)
+            points.push(...coordsArr)
+          })
+    })
 
-    const segments = paths.get(nPaths - 1).getSegments()
-    const nSegments = segments.length
-
-    for (let i = 0; i < nSegments - 1; ++i) {
-      points.push(segments[i].getCoordinates()[0])
-    }
-    points.push(...segments[nSegments - 1].getCoordinates())
+    const routeWPs = route.getWayPoints().toArray();
+    points.push(routeWPs[routeWPs.length - 1].geometry.getCoordinates())
 
     const [startPointString, finishPointString] = await Promise.all([
       this.getAddress(points[0]),
@@ -308,9 +301,8 @@ class Maps extends React.Component {
         float: 'left',
       })
     }
-    // информация о маршруте пассажира
+
     if (this.props && this.props.passengerInfo) {
-      console.log(this.props)
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
       )
@@ -362,7 +354,7 @@ class Maps extends React.Component {
         )
         this.map.geoObjects.add(destinationPoint);
     }
-    // информация о маршруте водителя
+
     if (this.props && this.props.driverInfo) {
       const balloonContentBodyLayout = this.ymaps.templateLayoutFactory.createClass(
         '<div>Test</div>'
