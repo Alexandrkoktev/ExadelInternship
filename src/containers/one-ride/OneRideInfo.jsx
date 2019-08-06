@@ -56,7 +56,7 @@ class OneRideInfo extends React.Component {
                     <ListGroup.Item className="list-item-style">
                       <b>Info: </b> {carInformation},
                       <br />
-                      <b>Seats: </b>
+                      <b>Free seats / All seats: </b>
                       {freeSeats}/{maxSeats}
                     </ListGroup.Item>
                     <h5 className="title-list">

@@ -45,6 +45,9 @@ export const mapStateToProps = state => ({
   maxSeats: state.passenger.maxSeats,
   startPointName: state.passenger.startPointName,
   finishPointName: state.passenger.finishPointName,
+  startPoint: state.passenger.startPoint,
+  finishPoint: state.passenger.finishPoint,
+  viaPoints: state.passenger.viaPoints,
 })
 
 export const mapDispatchToProps = dispatch => ({
