@@ -7,6 +7,7 @@ import './style.sass'
 import FavouriteRoute from '../favourite-routes/FavouriteRoute'
 // eslint-disable-next-line no-unused-vars
 import InfiniteScroll from 'react-infinite-scroll-component'
+
 class RoutesList extends React.Component {
   render() {
     const { getRide } = this.props

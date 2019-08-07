@@ -8,6 +8,9 @@ import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
 import Message from '../../components/route-buttons/Message'
+import { formatDate } from '../../util'
+import DateTimePicker from 'react-datetime-picker'
+import RateDriver from '../../components/route-buttons/RateDriver'
 
 class OneRideInfo extends React.Component {
   componentDidMount() {
@@ -18,6 +21,7 @@ class OneRideInfo extends React.Component {
   render() {
     const {
       driverName,
+      driverRating,
       phoneNumber,
       freeSeats,
       maxSeats,
@@ -31,6 +35,9 @@ class OneRideInfo extends React.Component {
       finishPoint,
       deleteBooking,
       enabled,
+      rateDriver,
+      rating,
+      timeAndDate,
     } = this.props
     const passengerInfo = {
       viaPoints,
@@ -56,6 +63,9 @@ class OneRideInfo extends React.Component {
                       <b>Name:</b> {driverName},
                       <br />
                       <b>Phone number:</b> {phoneNumber}
+                      <br />
+                      <RateDriver enabled={enabled} driverRating={driverRating}
+                        id={id} rateDriver={rateDriver} rating={rating} />
                     </ListGroup.Item>
                     <h5 className="title-list">Car information: </h5>
                     <ListGroup.Item className="list-item-style">
@@ -71,6 +81,14 @@ class OneRideInfo extends React.Component {
                       {startPointName} <span className="oi oi-arrow-right" />{' '}
                       {finishPointName}
                     </ListGroup.Item>
+                    <Row style={{ marginLeft: '1%' }}>
+                      <DateTimePicker
+                        disabled={true}
+                        clearIcon=""
+                        calendarIcon=""
+                        value={new Date(timeAndDate)}
+                      />
+                    </Row>
                   </ListGroup>
                 </div>
               </Col>
@@ -78,15 +96,15 @@ class OneRideInfo extends React.Component {
             {enabled ? (
               <Row style={{ marginLeft: '1%' }}>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message />
+                  <Message ride={true} driver={{ id, name: driverName }} />
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteBooking} id={id} />
                 </Col>
               </Row>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </Container>
         </div>
       </div>

@@ -22,11 +22,13 @@ class NewRoute extends React.Component {
       changed: false,
     }
   }
+
   componentDidMount() {
     this.props.requestRides()
     this.props.requestCars()
     this.mapComponent = React.createRef()
   }
+
   onCarChange = carId => {
     this.setState({ carId: carId })
   }

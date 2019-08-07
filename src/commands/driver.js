@@ -8,11 +8,16 @@ import {
   deleteRideDone,
   deleteRideError,
 } from '../actions/rides'
+import {
+  setRatingDone,
+  setRatingError,
+  setRatingStarting,
+} from '../actions/passengers'
 import client from './axios'
 import { push } from 'connected-react-router'
 
 export const getDriver = id => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(getDriverDataStarting())
       const { data } = await client({
@@ -27,7 +32,7 @@ export const getDriver = id => {
 }
 
 const deleteBooking = id => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       dispatch(deleteRideStarting())
       await client({
@@ -40,6 +45,22 @@ const deleteBooking = id => {
       dispatch(push('/routes'))
     } catch (e) {
       dispatch(deleteRideError(e))
+    }
+  }
+}
+
+export const rateDriver = (id, rate) => {
+  return async function (dispatch) {
+    try {
+      dispatch(setRatingStarting())
+      await client({
+        url: '/api/booking/setRating',
+        method: 'post',
+        data: { id, rate },
+      })
+      dispatch(setRatingDone())
+    } catch (e) {
+      dispatch(setRatingError(e))
     }
   }
 }
@@ -58,9 +79,13 @@ export const mapStateToProps = state => ({
   startPoint: state.driver.startPoint,
   destinationPoint: state.driver.destinationPoint,
   enabled: state.driver.enabled,
+  timeAndDate: state.driver.timeAndDate,
+  driverRating: state.driver.driverRating,
+  rating: state.driver.rating
 })
 
 export const mapDispatchToProps = dispatch => ({
   requestDriver: id => dispatch(getDriver(id)),
   deleteBooking: id => dispatch(deleteBooking(id)),
+  rateDriver: (id, rate) => dispatch(rateDriver(id, rate))
 })
