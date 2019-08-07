@@ -52,14 +52,25 @@ class NewRide extends React.Component {
       this.setState({ chosenRide: current })
     }
   }
-  handleConfirmClick = event => {
+  handleConfirmClick = async event => {
     event.preventDefault()
-    const data = {
-      meetPoint: this.state.arrayFrom,
-      destinationPoint: this.state.arrayTo,
-      activeRouteId: this.state.activeRouteId,
+    const points = this.mapComponent.current.getPoints()
+    const verifyData = {
+      meetPoint: points[0],
+      destinationPoint: points[1],
+      id: this.state.activeRouteId,
     }
-    this.props.createBooking(data)
+    if (await this.props.verifyPoints(verifyData)) {
+      this.changeCoordinates(points[0], points[1])
+      const data = {
+        meetPoint: points[0],
+        destinationPoint: points[1],
+        activeRouteId: this.state.activeRouteId,
+      }
+      this.props.createBooking(data)
+    } else {
+      alert('try again :)')
+    }
   }
   handleSearchClick = event => {
     event.preventDefault()
@@ -132,7 +143,7 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={this.handleConfirmClick}
-                style={{ marginLeft: '550px', marginTop: '100px' }}
+                style={{ marginLeft: '78%', marginTop: '100px' }}
               >
                 Confirm
               </Button>

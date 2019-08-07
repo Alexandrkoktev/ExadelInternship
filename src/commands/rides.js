@@ -16,6 +16,7 @@ import {
 } from '../actions/rides'
 import client from './axios'
 import { push } from 'connected-react-router'
+import { getProfileCars } from './cars'
 
 export const getRides = () => {
   return async function(dispatch) {
@@ -173,9 +174,11 @@ export const mapStateToProps = state => ({
   activeBookings: state.activeBookings.activeBookings,
   routesHistory: state.routesHistory.routesHistory,
   bookingHistory: state.bookingHistory.bookingHistory,
+  cars: state.cars.cars,
 })
 
 export const mapDispatchToProps = dispatch => ({
+  requestCars: () => dispatch(getProfileCars()),
   requestRides: () => dispatch(getRides()),
   getFavourites: () => dispatch(getFavourites()),
   getActiveRoutes: () => dispatch(getActiveRoutes()),

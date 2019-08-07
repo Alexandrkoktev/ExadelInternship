@@ -56,10 +56,6 @@ class LogIn extends React.Component {
                   placeholder="Password"
                 />
               </Form.Group>
-
-              <Form.Group>
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
               <Button
                 variant="dark"
                 type="submit"
