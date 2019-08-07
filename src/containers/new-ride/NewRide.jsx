@@ -34,7 +34,10 @@ class NewRide extends React.Component {
     this.setState({ time: event })
   }
   changeCoordinates = (from, to) => {
-    this.setState({ arrayFrom: from, arrayTo: to })
+    this.setState({
+      arrayFrom: from,
+      arrayTo: to,
+    })
   }
 
   componentDidMount() {
@@ -129,7 +132,7 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={this.handleConfirmClick}
-                style={{ marginLeft: '450px', marginTop: '100px' }}
+                style={{ marginLeft: '550px', marginTop: '100px' }}
               >
                 Confirm
               </Button>

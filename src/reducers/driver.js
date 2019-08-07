@@ -6,9 +6,10 @@ import {
 
 const initialState = {
   driverName: '',
-  phoneNumber: '',
+  driverRating: '',
+phoneNumber: '',
   carInformation: '',
-  maxSeats: '',
+   maxSeats: '',
   freeSeats: '',
   startPointName: '',
   finishPointName: '',
@@ -19,6 +20,7 @@ const initialState = {
   finishPoint: [],
   enabled: true,
   timeAndDate: new Date(),
+  rating: ''
 }
 
 function reducer(state = initialState, action) {
@@ -30,6 +32,7 @@ function reducer(state = initialState, action) {
     case GET_DRIVER_DATA_SUCCESS:
       const {
         driverName,
+        driverRating,
         phoneNumber,
         carInformation,
         freeSeats,
@@ -42,11 +45,13 @@ function reducer(state = initialState, action) {
         startPoint,
         finishPoint,
         enabled,
+        rating
         timeAndDate,
       } = action.payload
       return {
         ...state,
         driverName,
+        driverRating,
         phoneNumber,
         carInformation,
         maxSeats,
@@ -60,6 +65,7 @@ function reducer(state = initialState, action) {
         finishPoint,
         enabled,
         timeAndDate,
+        rating
       }
     case GET_DRIVER_DATA_ERROR:
       const { error } = action

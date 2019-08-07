@@ -129,15 +129,15 @@ class OneRouteInfo extends React.Component {
             {enabled ? (
               <Row>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message />
+                  <Message passengers={bookings} />
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteRoute} id={id} />
                 </Col>
               </Row>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </Container>
         </div>
       </div>

@@ -26,7 +26,7 @@ class CarInfo extends React.Component {
 
   textChange = event => {
     const value = event.target.value
-    if (value.length < 185) this.setState({ info: value, isError: false })
+    if (value.length < 200) this.setState({ info: value, isError: false })
     else
       this.setState({ isError: true, error: 'Your description is too long!' })
   }
