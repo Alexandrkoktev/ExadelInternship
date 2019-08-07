@@ -32,7 +32,7 @@ class LogIn extends React.Component {
       <div>
         {isError && (
           <Alert key={1} variant="danger" className={'alertForError'}>
-            {error}
+            Invalid input
           </Alert>
         )}
         <Card className="cardItem">

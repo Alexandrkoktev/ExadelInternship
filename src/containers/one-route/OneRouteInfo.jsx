@@ -44,7 +44,7 @@ class OneRouteInfo extends React.Component {
       deleteRoute,
     } = this.props
     const timeAndDate = new Date(
-      this.state.timeAndDate || this.props.timeAndDate,
+      this.state.timeAndDate || this.props.timeAndDate
     )
 
     const driverInfo = {
@@ -62,19 +62,19 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7">
-                <Maps driverInfo={driverInfo}/>
+                <Maps driverInfo={driverInfo} />
               </Col>
               <Col sm="5">
                 <h5 className="title-list">List of passengers:</h5>
                 <div className="scrollable list-passengers-style">
-                  <ListOfPassengers passengers={bookings}/>
+                  <ListOfPassengers passengers={bookings} />
                 </div>
                 <ListGroup>
                   <h5 className="title-list">
-                    From <span className="oi oi-arrow-right"/> To:{' '}
+                    From <span className="oi oi-arrow-right" /> To:{' '}
                   </h5>
                   <ListGroup.Item className="list-item-style">
-                    {startPointName} <span className="oi oi-arrow-right"/>{' '}
+                    {startPointName} <span className="oi oi-arrow-right" />{' '}
                     {finishPointName}
                   </ListGroup.Item>
                   <h5 className="title-list">Car information: </h5>
@@ -82,7 +82,7 @@ class OneRouteInfo extends React.Component {
                     <b>Free seats / All seats: </b>
                     {freeSeats}/{maxSeats}
                   </ListGroup.Item>
-                  {(!this.state.changed)  && (
+                  {!this.state.changed && (
                     <Row>
                       <Col sm="auto" md="auto">
                         <DateTimePicker
@@ -93,22 +93,24 @@ class OneRouteInfo extends React.Component {
                         />
                       </Col>
                       <Col sm="auto" md="auto">
-                        {enabled && (<Button
-                          style={{ fontSize: '10px' }}
-                          variant="info"
-                          onClick={() => {
-                            this.setState({ changed: true })
-                          }}>
-                          <span
-                            className="oi oi-pencil"
-                            style={{ fontSize: '12px' }}
-
-                          />
-                        </Button>)}
+                        {enabled && (
+                          <Button
+                            style={{ fontSize: '10px' }}
+                            variant="info"
+                            onClick={() => {
+                              this.setState({ changed: true })
+                            }}
+                          >
+                            <span
+                              className="oi oi-pencil"
+                              style={{ fontSize: '12px' }}
+                            />
+                          </Button>
+                        )}
                       </Col>
                     </Row>
                   )}
-                  {(this.state.changed)  && (
+                  {this.state.changed && (
                     <Row>
                       <Col sm="auto" md="auto">
                         <DateTimePicker
@@ -140,10 +142,10 @@ class OneRouteInfo extends React.Component {
             {enabled ? (
               <Row>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message passengers={bookings}/>
+                  <Message passengers={bookings} />
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <DeleteButton click={deleteRoute} id={id}/>
+                  <DeleteButton click={deleteRoute} id={id} />
                 </Col>
               </Row>
             ) : (
@@ -158,5 +160,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(OneRouteInfo)

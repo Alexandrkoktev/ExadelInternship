@@ -6,10 +6,16 @@ import './map.sass'
 import { debounce } from '../../util'
 // eslint-disable-next-line import/no-duplicates
 import { deepEqual } from '../../util'
+import { Container, Row } from 'react-bootstrap'
+import Alert from 'react-bootstrap/Alert'
 
 class Maps extends React.Component {
   constructor() {
     super()
+    this.state = {
+      error: '',
+      isError: false,
+    }
     this.map = null
     this.ymaps = null
     this.route = null
@@ -238,8 +244,12 @@ class Maps extends React.Component {
 
   getRouteInfo = async () => {
     if (!this.map) {
-      alert('Map is not available at that moment. Wait for it or refresh page')
-      return
+      //alert('Map is not available at that moment. Wait for it or refresh page')
+      return this.setState({
+        error:
+          'Map is not available at that moment. Wait for it or refresh page',
+        isError: true,
+      })
     }
 
     const points = []
@@ -247,8 +257,8 @@ class Maps extends React.Component {
     const route = this.map.controls.get('routeEditor').getRoute()
 
     if (!route) {
-      alert("There's no route.")
-      return
+      // alert("There's no route.")
+      return this.setState({ error: "There's no route", isError: true })
     }
 
     const routeDistance = route.getLength()
@@ -263,8 +273,8 @@ class Maps extends React.Component {
     const nPaths = paths.getLength()
 
     if (nPaths === 0) {
-      alert("There's no route.")
-      return
+      // alert("There's no route.")
+      return this.setState({ error: "There's no route", isError: true })
     }
 
     paths.each(path => {
@@ -399,6 +409,13 @@ class Maps extends React.Component {
           load: 'package.full',
         }}
       >
+        {this.state.isError && (
+          <Row style={{ margin: '3%' }}>
+            <Alert key={1} variant="danger" className={'alertForError'}>
+              {this.state.error}
+            </Alert>
+          </Row>
+        )}
         <Map
           instanceRef={ref => {
             this.map = ref
