@@ -82,7 +82,7 @@ class OneRouteInfo extends React.Component {
                     <b>Free seats / All seats: </b>
                     {freeSeats}/{maxSeats}
                   </ListGroup.Item>
-                  {!this.state.changed && (
+                  {(!this.state.changed)  && (
                     <Row>
                       <Col sm="auto" md="auto">
                         <DateTimePicker
@@ -93,7 +93,7 @@ class OneRouteInfo extends React.Component {
                         />
                       </Col>
                       <Col sm="auto" md="auto">
-                        <Button
+                        {enabled && (<Button
                           style={{ fontSize: '10px' }}
                           variant="info"
                           onClick={() => {
@@ -104,11 +104,11 @@ class OneRouteInfo extends React.Component {
                             style={{ fontSize: '12px' }}
 
                           />
-                        </Button>
+                        </Button>)}
                       </Col>
                     </Row>
                   )}
-                  {this.state.changed && (
+                  {(this.state.changed)  && (
                     <Row>
                       <Col sm="auto" md="auto">
                         <DateTimePicker
