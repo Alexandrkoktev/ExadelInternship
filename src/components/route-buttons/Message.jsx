@@ -52,16 +52,21 @@ class SendMessage extends React.Component {
         if (event.target.value.length < 256)
             this.setState({ message: event.target.value })
     }
-    handleClick = event => {
-        const chnge = this.state.chosen
-
-        this.setState({ chosen: chnge })
+    handleClick = (name, event) => {
+        let changed = this.state.chosen
+        const target = event.target
+        if (target.checked)
+            changed = changed.concat(name)
+        else
+            changed = changed.filter(function (e) { return e !== name })
+        this.setState({ chosen: changed })
     }
     render() {
         const { show, send, ride, to, hide } = this.props
         const addressant = ride ? <Form.Label>{to.name}</Form.Label> : to.map(
             item => {
-                return (<Form.Check type='checkbox' label={item.name} id={item.id} key={item.id} />)
+                return (<Form.Check type='checkbox' label={item.name} name={item.bookingId} key={item.bookingId}
+                    onClick={(event) => { this.handleClick(item.bookingId, event) }} />)
             }
         )
         const click = () => {
