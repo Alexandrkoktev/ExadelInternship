@@ -298,12 +298,26 @@ class Maps extends React.Component {
   componentWillReceiveProps = nextProps => {
     const shouldUpdateBookingMap =
       this.map &&
-      nextProps.showing &&
-      !!Object.keys(nextProps.showing).length &&
-      !deepEqual(this.props.showing, nextProps.showing)
+      nextProps.chosenRide &&
+      !!Object.keys(nextProps.chosenRide).length &&
+      !deepEqual(this.props.chosenRide, nextProps.chosenRide)
 
     if (shouldUpdateBookingMap) {
-      this.createRoute(nextProps.showing).then(route => {
+      this.createRoute(nextProps.chosenRide).then(route => {
+        // промис может заресолвиться на странице, где нет карты
+        this.map.geoObjects.remove(this.route)
+        this.route = route
+        this.map.geoObjects.add(this.route)
+      })
+    }
+
+    const shouldUpdateCreateRouteMap =
+      this.map &&
+      nextProps.chosenFavourite &&
+      !!Object.keys(nextProps.chosenFavourite).length &&
+      !deepEqual(this.props.chosenFavourite, nextProps.chosenFavourite)
+    if (shouldUpdateCreateRouteMap) {
+      this.createRoute(nextProps.chosenFavourite).then(route => {
         // промис может заресолвиться на странице, где нет карты
         this.map.geoObjects.remove(this.route)
         this.route = route

@@ -11,15 +11,18 @@ class RoutesList extends React.Component {
   render() {
     const { getRide } = this.props
     const { rides } = this.props
+    const { setId } = this.props
     const dRidesArr = rides.map(item => {
       return this.props.favourites ? (
         <FavouriteRoute
           key={item.routeId}
           id={item.routeId}
+          routeId={item.id}
           name={item.name}
           depPoint={item.startPointName}
           destPoint={item.endPointName}
           getRide={getRide}
+          setId={setId}
           inRoutes={true}
         />
       ) : (

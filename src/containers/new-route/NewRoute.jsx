@@ -20,6 +20,8 @@ class NewRoute extends React.Component {
       seats: '',
       time: new Date(),
       changed: false,
+      chosenFavourite: {},
+      chosenFavouriteId: '',
     }
   }
 
@@ -52,6 +54,18 @@ class NewRoute extends React.Component {
     })
   }
 
+  choose = async id => {
+    if (id !== '') {
+      await this.props.getFavouriteRoute(id)
+      const current = this.props.favouriteRoute
+      this.setState({ chosenFavourite: current })
+    }
+  }
+
+  setRouteId = id => {
+    this.setState({ activeRouteId: id })
+  }
+
   render() {
     const { rides } = this.props
     return (
@@ -68,14 +82,20 @@ class NewRoute extends React.Component {
                   onTime={this.onTimeChange}
                   onCar={this.onCarChange}
                 />
-                <RoutesList rides={rides} favourites={true} />
+                <RoutesList
+                  rides={rides}
+                  getRide={this.choose.bind(this)}
+                  setId={this.setRouteId} // bind this
+                  favourites={true}
+                />
               </ListGroup>
             </Row>
           </Col>
           <Col sm={8} style={{ height: '450px' }}>
             <Maps
-              needRouteEditor={true}
               ref={this.mapComponent}
+              needRouteEditor={true}
+              chosenFavourite={this.state.chosenFavourite}
               handleChange={this.handleChange}
             />
             <Row>

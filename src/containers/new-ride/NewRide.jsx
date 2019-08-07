@@ -122,7 +122,7 @@ class NewRide extends React.Component {
             <Maps
               ref={this.mapComponent}
               needPlacemarks={true}
-              showing={this.state.chosenRide}
+              chosenRide={this.state.chosenRide}
               changeDepPoint={this.changeDepPoint}
               changeDestPoint={this.changeDestPoint}
               clearMap={this.props.getRides}
