@@ -36,7 +36,7 @@ class OneRideInfo extends React.Component {
       deleteBooking,
       enabled,
       rateDriver,
-      rating
+      rating,
       timeAndDate,
     } = this.props
     const passengerInfo = {

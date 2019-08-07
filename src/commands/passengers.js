@@ -19,7 +19,6 @@ export const getPassengers = id => {
   return async function(dispatch) {
     try {
       dispatch(getPassengerStarting())
-      debugger
       const { data } = await client({
         url: `/api/activeRoute/${id}`,
         method: 'get',

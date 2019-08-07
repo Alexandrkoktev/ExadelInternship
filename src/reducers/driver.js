@@ -45,7 +45,7 @@ function reducer(state = initialState, action) {
         startPoint,
         finishPoint,
         enabled,
-        rating
+        rating,
         timeAndDate,
       } = action.payload
       return {
