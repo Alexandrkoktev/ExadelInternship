@@ -10,6 +10,7 @@ import {
   sendMessageStarting,
 } from '../actions/notifications'
 import client from './axios'
+
 export const getNotifications = () => {
   return async function(dispatch) {
     try {
@@ -59,7 +60,21 @@ export const sendMessagePassenger = (bookingId, information) => {
     }
   }
 }
-
+export const checkNotification = id => {
+  return async function (dispatch) {
+    try{
+      dispatch(sendMessageStarting())
+      await client({
+        url: `api/notification/setChecked/${id}`,
+        method: 'post',
+        data: id,
+      })
+      dispatch(sendMessageDone())
+    } catch (e) {
+      dispatch(sendMessageError(e))
+    }
+  }
+}
 export const sendMessageDriver = (bookingId, information) => {
   return async function(dispatch) {
     try {
@@ -87,4 +102,5 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(sendMessagePassenger(bookingId, information)),
   routeMessage: (bookingId, information) =>
     dispatch(sendMessageDriver(bookingId, information)),
+  checkNotification: id => dispatch(checkNotification(id)),
 })

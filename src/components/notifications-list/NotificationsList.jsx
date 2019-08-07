@@ -7,7 +7,7 @@ import '../../containers/notifications/notifications.sass'
 
 class NotificationsList extends React.Component {
   render() {
-    const { notifications, handleDelete } = this.props
+    const { notifications, handleDelete,handleCheck } = this.props
     const notificationArr = notifications.map(item => {
       return (
         <NotificationsItem
@@ -16,6 +16,7 @@ class NotificationsList extends React.Component {
           routeId={item.routeOrBookingId}
           key={item.id}
           handleDelete={handleDelete}
+          handleCheck={handleCheck}
           driver={item.driver}
         />
       )
