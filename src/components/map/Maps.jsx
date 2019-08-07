@@ -16,6 +16,7 @@ class Maps extends React.Component {
     this.pointA = null
     this.pointB = null
     this.isA = true
+    this.receivedRouteInfo = false
   }
 
   createPlacemark(coords, caption, preset, draggable) {
@@ -149,31 +150,89 @@ class Maps extends React.Component {
       ]
   }
 
-  componentWillReceiveProps = nextProps => {
-    const shouldUpdateMap =
-      this.map &&
-      nextProps.showing &&
-      !!Object.keys(nextProps.showing).length &&
-      !deepEqual(this.props.showing, nextProps.showing)
-
-    if (shouldUpdateMap) {
-      // this.map.geoObjects.removeAll()
-      this.createRoute(nextProps.showing).then(route => {
-        // промис может заресолвиться на странице, где нет карты
-        this.map.geoObjects.remove(this.route)
-        this.route = route
-        this.map.geoObjects.add(this.route)
-      })
-    }
-
-    // баг с отображением информации о маршруте
-  }
-
   getAddress(coordinates) {
     return this.ymaps.geocode(coordinates).then(resp => {
       const nearest = resp.geoObjects.get(0)
       const name = nearest.properties.get('name')
       return name.toString()
+    })
+  }
+
+  getEndPoints = async () => {
+    this.route = this.map.controls.get('routeEditor').getRoute()
+    if (this.route) {
+      const wayPoints = this.route.getWayPoints().toArray()
+      if (wayPoints.length === 2) {
+        const handler = async () =>
+          this.props.handleChange(
+            await Promise.all(
+              this.route
+                .getWayPoints()
+                .toArray()
+                .map(point => this.getAddress(point.geometry.getCoordinates()))
+            )
+          )
+        this.route.events.add('geometrychange', debounce(handler, 200))
+        this.props.handleChange(
+          await Promise.all(
+            wayPoints.map(point =>
+              this.getAddress(point.geometry.getCoordinates())
+            )
+          )
+        )
+      }
+    }
+  }
+
+  showPassengerRouteInfo(routeInfo) {
+    this.createRoute(routeInfo).then(route => {
+      // промис может заресолвиться на странице, где нет карты
+      this.route = route
+      this.map.geoObjects.add(this.route)
+
+      this.map.geoObjects.add(
+        this.createPlacemark(
+          routeInfo.meetPoint,
+          'Точка посадки',
+          'greenDotIconWithCaption',
+          false
+        )
+      )
+      this.map.geoObjects.add(
+        this.createPlacemark(
+          routeInfo.destinationPoint,
+          'Точка высадки',
+          'redDotIconWithCaption',
+          false
+        )
+      )
+    })
+  }
+
+  showDriverRouteInfo(routeInfo) {
+    this.createRoute(routeInfo).then(route => {
+      // промис может заресолвиться на странице, где нет карты
+      this.route = route
+      this.map.geoObjects.add(this.route)
+
+      routeInfo.bookings.forEach(booking => {
+        this.map.geoObjects.add(
+          this.createPlacemark(
+            booking.meetPoint,
+            `Посадка ${booking.name}`,
+            'greenDotIconWithCaption',
+            false
+          )
+        )
+        this.map.geoObjects.add(
+          this.createPlacemark(
+            booking.destinationPoint,
+            `Высадка ${booking.name}`,
+            'redDotIconWithCaption',
+            false
+          )
+        )
+      })
     })
   }
 
@@ -236,28 +295,33 @@ class Maps extends React.Component {
     }
   }
 
-  getEndPoints = async () => {
-    this.route = this.map.controls.get('routeEditor').getRoute()
-    if (this.route) {
-      const wayPoints = this.route.getWayPoints().toArray()
-      if (wayPoints.length === 2) {
-        const handler = async () =>
-          this.props.handleChange(
-            await Promise.all(
-              this.route
-                .getWayPoints()
-                .toArray()
-                .map(point => this.getAddress(point.geometry.getCoordinates()))
-            )
-          )
-        this.route.events.add('geometrychange', debounce(handler, 200))
-        this.props.handleChange(
-          await Promise.all(
-            wayPoints.map(point =>
-              this.getAddress(point.geometry.getCoordinates())
-            )
-          )
-        )
+  componentWillReceiveProps = nextProps => {
+    const shouldUpdateBookingMap =
+      this.map &&
+      nextProps.showing &&
+      !!Object.keys(nextProps.showing).length &&
+      !deepEqual(this.props.showing, nextProps.showing)
+
+    if (shouldUpdateBookingMap) {
+      this.createRoute(nextProps.showing).then(route => {
+        // промис может заресолвиться на странице, где нет карты
+        this.map.geoObjects.remove(this.route)
+        this.route = route
+        this.map.geoObjects.add(this.route)
+      })
+    }
+
+    if (nextProps.passengerInfo) {
+      this.receivedRouteInfo = true
+      if (this.map) {
+        this.showPassengerRouteInfo(nextProps.passengerInfo)
+      }
+    }
+
+    if (nextProps.driverInfo) {
+      this.receivedRouteInfo = true
+      if (this.map) {
+        this.showDriverRouteInfo(nextProps.driverInfo)
       }
     }
   }
@@ -315,54 +379,12 @@ class Maps extends React.Component {
       })
     }
 
-    if (this.props && this.props.passengerInfo) {
-      this.createRoute(this.props.passengerInfo).then(route => {
-        // промис может заресолвиться на странице, где нет карты
-        this.route = route
-        this.map.geoObjects.add(this.route)
-      })
-      this.map.geoObjects.add(
-        this.createPlacemark(
-          this.props.passengerInfo.meetPoint,
-          'Точка посадки',
-          'greenDotIconWithCaption',
-          false
-        )
-      )
-      this.map.geoObjects.add(
-        this.createPlacemark(
-          this.props.passengerInfo.destinationPoint,
-          'Точка высадки',
-          'redDotIconWithCaption',
-          false
-        )
-      )
+    if (this.map && this.receivedRouteInfo && this.props.passengerInfo) {
+      this.showPassengerRouteInfo(this.props.passengerInfo)
     }
 
-    if (this.props && this.props.driverInfo) {
-      this.createRoute(this.props.driverInfo).then(route => {
-        // промис может заресолвиться на странице, где нет карты
-        this.route = route
-        this.map.geoObjects.add(this.route)
-      })
-      this.props.driverInfo.bookings.forEach(booking => {
-        this.map.geoObjects.add(
-          this.createPlacemark(
-            booking.meetPoint,
-            `Посадка ${booking.name}`,
-            'greenDotIconWithCaption',
-            false
-          )
-        )
-        this.map.geoObjects.add(
-          this.createPlacemark(
-            booking.destinationPoint,
-            `Высадка ${booking.name}`,
-            'redDotIconWithCaption',
-            false
-          )
-        )
-      })
+    if (this.map && this.receivedRouteInfo && this.props.driverInfo) {
+      this.showDriverRouteInfo(this.props.driverInfo)
     }
   }
 
