@@ -8,8 +8,10 @@ import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
 import Message from '../../components/route-buttons/Message'
+import RateDriver from '../../components/route-buttons/RateDriver'
 
 class OneRideInfo extends React.Component {
+
   componentDidMount() {
     const id = this.props.match.params.rideid
     this.props.requestDriver(id)
@@ -18,6 +20,7 @@ class OneRideInfo extends React.Component {
   render() {
     const {
       driverName,
+      driverRating,
       phoneNumber,
       freeSeats,
       maxSeats,
@@ -31,6 +34,8 @@ class OneRideInfo extends React.Component {
       finishPoint,
       deleteBooking,
       enabled,
+      rateDriver,
+      rating
     } = this.props
     const passengerInfo = {
       viaPoints,
@@ -56,6 +61,9 @@ class OneRideInfo extends React.Component {
                       <b>Name:</b> {driverName},
                       <br />
                       <b>Phone number:</b> {phoneNumber}
+                      <br />
+                      <RateDriver enabled={enabled} driverRating={driverRating}
+                        id={id} rateDriver={rateDriver} rating={rating} />
                     </ListGroup.Item>
                     <h5 className="title-list">Car information: </h5>
                     <ListGroup.Item className="list-item-style">
@@ -85,8 +93,8 @@ class OneRideInfo extends React.Component {
                 </Col>
               </Row>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </Container>
         </div>
       </div>
