@@ -26,17 +26,26 @@ class Message extends React.Component {
     } = this.props
     return (
       <>
-        <Button
-          variant="outline-info"
-          onClick={() => {
-            this.setState({ show: true })
-          }}
-        >
-          <span
-            className="oi oi-envelope-closed"
-            style={{ fontSize: '25px' }}
-          />
-        </Button>
+        {!ride && passengers.length ? (
+          <Button
+            variant="outline-info"
+            onClick={() => {
+              this.setState({ show: true })
+            }}
+          >
+            <span
+              className="oi oi-envelope-closed"
+              style={{ fontSize: '25px' }}
+            />
+          </Button>
+        ) : (
+          <Button variant="outline-info" disabled>
+            <span
+              className="oi oi-envelope-closed"
+              style={{ fontSize: '25px' }}
+            />
+          </Button>
+        )}
         <SendMessage
           show={this.state.show}
           send={ride ? bookingMessage : routeMessage}
@@ -96,8 +105,10 @@ class SendMessage extends React.Component {
       })
     )
     const click = () => {
-      if (this.state.chosen.length && this.state.message.length)
+      if (this.state.chosen.length && this.state.message.length) {
         send(this.state.chosen, this.state.message)
+        hide()
+      }
     }
     return (
       <Modal centered show={show} onHide={hide}>
