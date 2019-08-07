@@ -26,7 +26,7 @@ class RoutesList extends React.Component {
         <ListGroup.Item
           action
           key={item.id}
-          className='itemOfActiveRidesList'
+          className="itemOfActiveRidesList"
           onClick={() => {
             getRide(item.id)
             this.props.setId(item.id)
