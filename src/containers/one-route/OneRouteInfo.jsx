@@ -96,6 +96,7 @@ class OneRouteInfo extends React.Component {
                             style={{ fontSize: '14px' }}
                             onClick={() => {
                               this.setState({ changed: true })
+
                             }}
                           />
                         </button>

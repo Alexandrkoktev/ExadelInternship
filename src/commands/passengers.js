@@ -13,11 +13,13 @@ import {
 } from '../actions/rides'
 import client from './axios'
 import { push } from 'connected-react-router'
+import { sendCar } from './cars'
 
 export const getPassengers = id => {
   return async function(dispatch) {
     try {
       dispatch(getPassengerStarting())
+      debugger
       const { data } = await client({
         url: `/api/activeRoute/${id}`,
         method: 'get',
@@ -95,4 +97,5 @@ export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
   ratePassenger: (id, rate) => dispatch(ratePassenger(id, rate)),
   deleteRoute: id => dispatch(deleteRoute(id)),
+  editDate: (id, date) => dispatch(editDateInRoute(id, date)),
 })
