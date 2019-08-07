@@ -1,7 +1,7 @@
 import {
   getPassengerDone,
   getPassengerError,
-  getPassengerStarting,
+  getPassengerStarting, postEditDateError, postEditDateStarting, postEditDone,
   setRatingDone,
   setRatingError,
   setRatingStarting,
@@ -13,6 +13,7 @@ import {
 } from '../actions/rides'
 import client from './axios'
 import { push } from 'connected-react-router'
+import { sendCar } from './cars'
 
 export const getPassengers = id => {
   return async function(dispatch) {
@@ -25,6 +26,22 @@ export const getPassengers = id => {
       dispatch(getPassengerDone(data))
     } catch (e) {
       dispatch(getPassengerError(e))
+    }
+  }
+}
+
+export const editDateInRoute = (id, date) => {
+  return async function(dispatch) {
+    try {
+      dispatch(postEditDateStarting())
+      const { data } = await client({
+        url: ``,
+        method: 'post',
+        data: { id, date },
+      })
+      dispatch(postEditDone())
+    } catch (e) {
+      dispatch(postEditDateError(e))
     }
   }
 }
@@ -72,10 +89,12 @@ export const mapStateToProps = state => ({
   startPoint: state.passenger.startPoint,
   finishPoint: state.passenger.finishPoint,
   viaPoints: state.passenger.viaPoints,
+  timeAndDate: state.passenger.timeAndDate,
 })
 
 export const mapDispatchToProps = dispatch => ({
   requestPassengers: id => dispatch(getPassengers(id)),
   ratePassenger: (id, rate) => dispatch(ratePassenger(id, rate)),
   deleteRoute: id => dispatch(deleteRoute(id)),
+  editDate: (id, date) => dispatch(editDateInRoute(id, date)),
 })

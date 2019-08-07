@@ -8,10 +8,11 @@ import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
 import Message from '../../components/route-buttons/Message'
+import { formatDate } from '../../util'
+import DateTimePicker from 'react-datetime-picker'
 import RateDriver from '../../components/route-buttons/RateDriver'
 
 class OneRideInfo extends React.Component {
-
   componentDidMount() {
     const id = this.props.match.params.rideid
     this.props.requestDriver(id)
@@ -35,7 +36,8 @@ class OneRideInfo extends React.Component {
       deleteBooking,
       enabled,
       rateDriver,
-      rating
+      rating,
+      timeAndDate,
     } = this.props
     const passengerInfo = {
       viaPoints,
@@ -79,6 +81,14 @@ class OneRideInfo extends React.Component {
                       {startPointName} <span className="oi oi-arrow-right" />{' '}
                       {finishPointName}
                     </ListGroup.Item>
+                    <Row style={{ marginLeft: '1%' }}>
+                      <DateTimePicker
+                        disabled={true}
+                        clearIcon=""
+                        calendarIcon=""
+                        value={new Date(timeAndDate)}
+                      />
+                    </Row>
                   </ListGroup>
                 </div>
               </Col>

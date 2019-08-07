@@ -19,6 +19,7 @@ phoneNumber: '',
   startPoint: [],
   finishPoint: [],
   enabled: true,
+  timeAndDate: new Date(),
   rating: ''
 }
 
@@ -44,7 +45,8 @@ function reducer(state = initialState, action) {
         startPoint,
         finishPoint,
         enabled,
-        rating
+        rating,
+        timeAndDate,
       } = action.payload
       return {
         ...state,
@@ -62,6 +64,7 @@ function reducer(state = initialState, action) {
         startPoint,
         finishPoint,
         enabled,
+        timeAndDate,
         rating
       }
     case GET_DRIVER_DATA_ERROR:
