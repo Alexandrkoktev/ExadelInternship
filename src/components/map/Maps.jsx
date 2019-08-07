@@ -17,6 +17,7 @@ class Maps extends React.Component {
     this.pointB = null
     this.isA = true
     this.receivedRouteInfo = false
+    // this.mapWasCleared = false
   }
 
   createPlacemark(coords, caption, preset, draggable) {
@@ -159,6 +160,8 @@ class Maps extends React.Component {
   }
 
   getEndPoints = async () => {
+    this.map.geoObjects.removeAll()
+
     this.route = this.map.controls.get('routeEditor').getRoute()
     if (this.route) {
       const wayPoints = this.route.getWayPoints().toArray()
@@ -299,8 +302,10 @@ class Maps extends React.Component {
     const shouldUpdateBookingMap =
       this.map &&
       nextProps.chosenRide &&
-      !!Object.keys(nextProps.chosenRide).length &&
-      !deepEqual(this.props.chosenRide, nextProps.chosenRide)
+      !!Object.keys(nextProps.chosenRide).length && (
+        !deepEqual(this.props.chosenRide, nextProps.chosenRide)// ||
+        // this.mapWasCleared
+      )
 
     if (shouldUpdateBookingMap) {
       this.createRoute(nextProps.chosenRide).then(route => {
@@ -308,20 +313,35 @@ class Maps extends React.Component {
         this.map.geoObjects.remove(this.route)
         this.route = route
         this.map.geoObjects.add(this.route)
+        // this.mapWasCleared = false
       })
     }
 
     const shouldUpdateCreateRouteMap =
       this.map &&
       nextProps.chosenFavourite &&
-      !!Object.keys(nextProps.chosenFavourite).length &&
-      !deepEqual(this.props.chosenFavourite, nextProps.chosenFavourite)
+      !!Object.keys(nextProps.chosenFavourite).length && (
+        !deepEqual(this.props.chosenFavourite, nextProps.chosenFavourite)// ||
+        // this.mapWasCleared
+      )
     if (shouldUpdateCreateRouteMap) {
       this.createRoute(nextProps.chosenFavourite).then(route => {
         // промис может заресолвиться на странице, где нет карты
+        this.map.geoObjects.removeAll()
+        this.map.controls.get('routeEditor').select()
         this.map.geoObjects.remove(this.route)
         this.route = route
         this.map.geoObjects.add(this.route)
+
+        Promise.all(
+          this.route
+            .getWayPoints()
+            .toArray()
+            .map(point => this.getAddress(point.geometry.getCoordinates()))
+        ).then(wayPoints => {
+          this.props.handleChange(wayPoints)
+        })
+        // this.mapWasCleared = false
       })
     }
 
@@ -346,6 +366,9 @@ class Maps extends React.Component {
     if (this.map && this.props.needRouteEditor) {
       const routeEditor = this.map.controls.add('routeEditor')
       routeEditor.events.add('deselect', this.getEndPoints)
+      routeEditor.events.add('select', () => {
+        this.map.geoObjects.removeAll()
+      })
 
       const clearMapButton = new this.ymaps.control.Button({
         data: {
@@ -358,7 +381,9 @@ class Maps extends React.Component {
       })
       clearMapButton.events.add('click', () => {
         this.map.controls.get('routeEditor').select()
+        this.map.geoObjects.removeAll()
         this.props.handleChange(['', ''])
+        // this.mapWasCleared = true
         this.route = null
       })
       this.map.controls.add(clearMapButton, {
@@ -386,6 +411,7 @@ class Maps extends React.Component {
         this.pointA = null
         this.pointB = null
         this.isA = true
+        // this.mapWasCleared = true
         this.route = null
       })
       this.map.controls.add(clearMapButton, {
