@@ -27,6 +27,7 @@ export const getDriver = id => {
       dispatch(getDriverDataDone(data))
     } catch (e) {
       dispatch(getDriverDataError(e))
+      dispatch(push('/page-not-found'))
     }
   }
 }
