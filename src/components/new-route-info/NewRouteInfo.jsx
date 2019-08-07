@@ -3,9 +3,8 @@ import React from 'react'
 import { Form, Container, Col, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import DateSelector from '../date/DateSelector'
+
 // eslint-disable-next-line no-unused-vars
-import { connect } from 'react-redux'
-import { mapStateToProps, mapDispatchToProps } from '../../commands/cars'
 
 class NewRouteInfo extends React.Component {
   constructor(props) {
@@ -17,10 +16,6 @@ class NewRouteInfo extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.requestCars()
-  }
-
   changeCar = event => {
     const carId = event.target.value
     this.setState({ carId })
@@ -28,7 +23,7 @@ class NewRouteInfo extends React.Component {
   }
 
   render() {
-    const { cars = [] } = this.props
+    const { cars } = this.props
     const carsArr = cars.map(item => {
       return (
         <option key={item.id} value={item.id}>
@@ -94,7 +89,4 @@ class NewRouteInfo extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewRouteInfo)
+export default NewRouteInfo
