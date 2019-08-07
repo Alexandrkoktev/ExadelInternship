@@ -27,7 +27,7 @@ class LogIn extends React.Component {
   }
 
   render() {
-    const { setUser, error, isError } = this.props
+    const { setUser, isError } = this.props
     return (
       <div>
         {isError && (

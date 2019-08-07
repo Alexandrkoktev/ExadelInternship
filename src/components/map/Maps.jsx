@@ -6,7 +6,7 @@ import './map.sass'
 import { debounce } from '../../util'
 // eslint-disable-next-line import/no-duplicates
 import { deepEqual } from '../../util'
-import { Container, Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert'
 
 class Maps extends React.Component {

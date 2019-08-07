@@ -55,7 +55,6 @@ class OneRouteInfo extends React.Component {
     }
 
     const id = this.props.match.params.routeid
-
     return (
       <div className="one-route-info">
         <div className="block">
@@ -84,7 +83,7 @@ class OneRouteInfo extends React.Component {
                   </ListGroup.Item>
                   {!this.state.changed && (
                     <Row>
-                      <Col sm="auto" md="auto">
+                      <Col xs = "auto" sm="auto" md="auto">
                         <DateTimePicker
                           disabled={true}
                           clearIcon=""
@@ -92,7 +91,7 @@ class OneRouteInfo extends React.Component {
                           value={timeAndDate}
                         />
                       </Col>
-                      <Col sm="auto" md="auto">
+                      <Col xs = "auto" sm="auto" md="auto">
                         {enabled && (
                           <Button
                             style={{ fontSize: '10px' }}
@@ -112,14 +111,14 @@ class OneRouteInfo extends React.Component {
                   )}
                   {this.state.changed && (
                     <Row>
-                      <Col sm="auto" md="auto">
+                      <Col xs = "auto" sm="auto" md="auto">
                         <DateTimePicker
                           onChange={this.onChange}
                           minDate={new Date()}
                           value={timeAndDate}
                         />
                       </Col>
-                      <Col sm="auto" md="auto">
+                      <Col xs = "auto" sm="auto" md="auto">
                         <Button
                           style={{ fontSize: '10px' }}
                           variant="info"
