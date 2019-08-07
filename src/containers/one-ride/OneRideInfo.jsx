@@ -86,7 +86,7 @@ class OneRideInfo extends React.Component {
             {enabled ? (
               <Row style={{ marginLeft: '1%' }}>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message />
+                  <Message ride={true} driver={{ id, name: driverName }} />
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteBooking} id={id} />
