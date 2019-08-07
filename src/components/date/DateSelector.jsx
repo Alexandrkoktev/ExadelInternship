@@ -14,7 +14,11 @@ class DateSelector extends Component {
   render() {
     return (
       <div className="date-selector">
-        <DateTimePicker onChange={this.onChange} value={this.state.date} />
+        <DateTimePicker
+          onChange={this.onChange}
+          value={this.state.date}
+          minDate={new Date()}
+        />
       </div>
     )
   }
