@@ -58,6 +58,7 @@ export const mapStateToProps = state => ({
   startPoint: state.driver.startPoint,
   destinationPoint: state.driver.destinationPoint,
   enabled: state.driver.enabled,
+  timeAndDate: state.driver.timeAndDate,
 })
 
 export const mapDispatchToProps = dispatch => ({

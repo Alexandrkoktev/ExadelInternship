@@ -1,27 +1,33 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import Container from 'react-bootstrap/Container'
-// eslint-disable-next-line no-unused-vars
 import Row from 'react-bootstrap/Row'
-// eslint-disable-next-line no-unused-vars
 import Col from 'react-bootstrap/Col'
-// eslint-disable-next-line no-unused-vars
 import Maps from '../../components/map/Maps'
-// eslint-disable-next-line no-unused-vars
 import './oneRouteInfo.sass'
-// eslint-disable-next-line no-unused-vars
 import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/passengers'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
-import EditDate from '../../components/route-buttons/EditDate'
 import Message from '../../components/route-buttons/Message'
+import DateTimePicker from 'react-datetime-picker'
 
 class OneRouteInfo extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      changed: false,
+      timeAndDate: new Date(),
+    }
+  }
+
   componentDidMount() {
     const id = this.props.match.params.routeid
     this.props.requestPassengers(id)
+  }
+
+  onChange = timeAndDate => {
+    this.setState({ timeAndDate: timeAndDate })
   }
 
   render() {
@@ -35,14 +41,18 @@ class OneRouteInfo extends React.Component {
       finishPoint,
       viaPoints,
       deleteRoute,
+      timeAndDate,
     } = this.props
+
     const driverInfo = {
       bookings,
       startPoint,
       finishPoint,
       viaPoints,
     }
+
     const id = this.props.match.params.routeid
+
     return (
       <div className="one-route-info">
         <div className="block">
@@ -69,14 +79,54 @@ class OneRouteInfo extends React.Component {
                     <b>Free seats / All seats: </b>
                     {freeSeats}/{maxSeats}
                   </ListGroup.Item>
+                  {!this.state.changed && (
+                    <Row>
+                      <Col sm="auto" md="auto">
+                        <DateTimePicker
+                          disabled={true}
+                          clearIcon=""
+                          calendarIcon=""
+                          value={new Date(this.state.timeAndDate)}
+                        />
+                      </Col>
+                      <Col sm="auto" md="auto">
+                        <button style={{ fontSize: '14px' }}>
+                          <span
+                            className="oi oi-pencil"
+                            style={{ fontSize: '14px' }}
+                            onClick={() => {
+                              this.setState({ changed: true })
+                            }}
+                          />
+                        </button>
+                      </Col>
+                    </Row>
+                  )}
+                  {this.state.changed && (
+                    <Row>
+                      <Col sm="auto" md="auto">
+                        <DateTimePicker
+                          onChange={this.onChange}
+                          value={new Date(this.state.timeAndDate)}
+                        />
+                      </Col>
+                      <Col sm="auto" md="auto">
+                        <button
+                          style={{ fontSize: '14px' }}
+                          onClick={() => {
+                            this.setState({ changed: false })
+                          }}
+                        >
+                          Ok
+                        </button>
+                      </Col>
+                    </Row>
+                  )}
                 </ListGroup>
               </Col>
             </Row>
             {enabled ? (
               <Row>
-                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <EditDate />
-                </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <Message />
                 </Col>

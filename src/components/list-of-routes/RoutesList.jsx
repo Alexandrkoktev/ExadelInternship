@@ -7,6 +7,7 @@ import './style.sass'
 import FavouriteRoute from '../favourite-routes/FavouriteRoute'
 // eslint-disable-next-line no-unused-vars
 import InfiniteScroll from 'react-infinite-scroll-component'
+
 class RoutesList extends React.Component {
   render() {
     const { getRide } = this.props
@@ -26,7 +27,7 @@ class RoutesList extends React.Component {
         <ListGroup.Item
           action
           key={item.id}
-          className='itemOfActiveRidesList'
+          className="itemOfActiveRidesList"
           onClick={() => {
             getRide(item.id)
             this.props.setId(item.id)

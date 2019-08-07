@@ -15,7 +15,6 @@ import { push } from 'connected-react-router'
 export const createBooking = data => {
   return async function(dispatch) {
     try {
-      debugger
       dispatch(verifyingStarting())
       await client({
         url: '/api/createBooking',

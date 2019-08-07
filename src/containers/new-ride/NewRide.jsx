@@ -33,9 +33,8 @@ class NewRide extends React.Component {
   onTimeChange = event => {
     this.setState({ time: event })
   }
-  changeCoordinates=(from,to)=>{
-    this.setState({arrayFrom : from,
-      arrayTo: to})
+  changeCoordinates = (from, to) => {
+    this.setState({ arrayFrom: from, arrayTo: to })
   }
 
   componentDidMount() {
@@ -62,17 +61,17 @@ class NewRide extends React.Component {
   handleSearchClick = event => {
     event.preventDefault()
     const points = this.mapComponent.current.getPoints()
-    let data;
+    let data
     if (typeof points === 'undefined') {
-      this.changeCoordinates(null,null)
-      data={
+      this.changeCoordinates(null, null)
+      data = {
         meetPoint: null,
-        destinationPoint:null,
+        destinationPoint: null,
         datetime: this.state.time,
       }
     } else {
       this.setState({ arrayFrom: points[0], arrayTo: points[1] })
-      data={
+      data = {
         meetPoint: points[0],
         destinationPoint: points[1],
         datetime: this.state.time,
@@ -130,7 +129,7 @@ class NewRide extends React.Component {
                 variant="dark"
                 type="submit"
                 onClick={this.handleConfirmClick}
-                style={{ marginLeft: '450px',marginTop:'100px' }}
+                style={{ marginLeft: '450px', marginTop: '100px' }}
               >
                 Confirm
               </Button>
@@ -144,5 +143,5 @@ class NewRide extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NewRide)

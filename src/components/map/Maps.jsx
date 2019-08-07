@@ -45,7 +45,6 @@ class Maps extends React.Component {
         this.props.changeDepPoint(address)
 
         if (this.pointB && this.route) {
-          // отправляем запрос на валидацию
         }
       } else {
         this.pointA = this.createPlacemark(coords)
