@@ -28,14 +28,14 @@ class Header extends React.Component {
         >
           {!isLoggedIn && (
             <>
-              <Navbar.Brand>CarPool</Navbar.Brand>
+              <Navbar.Brand>ELPoputcio</Navbar.Brand>
             </>
           )}
           {isLoggedIn && (
             <>
               <Link to="/home">
                 {' '}
-                <Navbar.Brand>CarPool</Navbar.Brand>
+                <Navbar.Brand>ELPoputcio</Navbar.Brand>
               </Link>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
