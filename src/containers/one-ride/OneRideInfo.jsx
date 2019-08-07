@@ -8,7 +8,6 @@ import { mapDispatchToProps, mapStateToProps } from '../../commands/driver'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
 import Message from '../../components/route-buttons/Message'
-import { formatDate } from '../../util'
 import DateTimePicker from 'react-datetime-picker'
 import RateDriver from '../../components/route-buttons/RateDriver'
 

@@ -36,12 +36,12 @@ export const editDateInRoute = (timeAndDate, id) => {
   return async function(dispatch) {
     try {
       dispatch(postEditDateStarting())
-      const sas = { id: id, timeAndDate: timeAndDate }
+      const info = { id: id, timeAndDate: timeAndDate }
       const { data } = await client({
         headers: { 'Content-Type': 'application/json' },
         url: `/api/editRoute`,
         method: 'post',
-        data: JSON.stringify(sas),
+        data: JSON.stringify(info),
       })
       dispatch(postEditDone())
     } catch (e) {
