@@ -25,6 +25,7 @@ class NewRoute extends React.Component {
 
   componentDidMount() {
     this.props.requestRides()
+    this.props.requestCars()
     this.mapComponent = React.createRef()
   }
 
@@ -53,7 +54,8 @@ class NewRoute extends React.Component {
   }
 
   render() {
-    const { rides } = this.props
+    const { rides = [] } = this.props
+    const { cars } = this.props
     return (
       <Container>
         <Row>
@@ -64,6 +66,7 @@ class NewRoute extends React.Component {
                   from={this.state.from}
                   to={this.state.to}
                   key={this.state.changed}
+                  cars={cars}
                   onSeats={this.onSeatsChange}
                   onTime={this.onTimeChange}
                   onCar={this.onCarChange}
@@ -86,7 +89,7 @@ class NewRoute extends React.Component {
                 onClick={event => {
                   this.handleClick(event)
                 }}
-                style={{ marginLeft: '630px', marginTop: '20px' }}
+                style={{ marginLeft: '85%', marginTop: '20px' }}
               >
                 Create route
               </Button>
@@ -97,6 +100,7 @@ class NewRoute extends React.Component {
     )
   }
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

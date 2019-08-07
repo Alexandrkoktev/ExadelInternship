@@ -28,16 +28,17 @@ export const createBooking = data => {
     }
   }
 }
-export const verifyPoints = data => {
+export const verifyPoints = info => {
   return async function(dispatch) {
     try {
       dispatch(verifyingStarting())
-      await client({
+      const { data } = await client({
         url: '/api/bookingValid',
         method: 'post',
-        data: data,
+        data: info,
       })
       dispatch(verifyingDone())
+      return data
     } catch (e) {
       dispatch(verifyingError(e))
     }
@@ -83,6 +84,6 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   getRides: data => dispatch(getRides(data)),
   getRide: id => dispatch(getRideInfo(id)),
-  verifyPoints: data => dispatch(verifyPoints(data)),
+  verifyPoints: info => dispatch(verifyPoints(info)),
   createBooking: data => dispatch(createBooking(data)),
 })
