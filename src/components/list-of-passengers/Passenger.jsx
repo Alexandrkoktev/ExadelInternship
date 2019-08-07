@@ -36,7 +36,7 @@ class Passenger extends React.Component {
             <Col>
               <StarRatings
                 rating={userRating}
-                starRatedColor="#179EB7"
+                starRatedColor="#888888"
                 numberOfStars={5}
                 name="userRating"
                 starDimension="17px"
@@ -44,21 +44,21 @@ class Passenger extends React.Component {
               />
             </Col>
           ) : (
-            <Col>
-              <StarRatings
-                rating={this.state.rating}
-                starRatedColor="#179EB7"
-                starHoverColor={'rgb(230, 67, 47)'}
-                changeRating={
-                  this.state.rating === 0 ? this.changeRating : null
-                }
-                numberOfStars={5}
-                name="rating"
-                starDimension="17px"
-                starSpacing="2px"
-              />
-            </Col>
-          )}
+              <Col>
+                <StarRatings
+                  rating={this.state.rating}
+                  starRatedColor="#179EB7"
+                  starHoverColor={'rgb(230, 67, 47)'}
+                  changeRating={
+                    this.state.rating === 0 ? this.changeRating : null
+                  }
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="17px"
+                  starSpacing="2px"
+                />
+              </Col>
+            )}
         </Row>
       </ListGroup.Item>
     )

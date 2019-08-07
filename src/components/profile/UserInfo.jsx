@@ -10,6 +10,7 @@ import Image from 'react-bootstrap/Image'
 class UserInfo extends React.Component {
   render() {
     const { userInfo } = this.props
+    debugger
     return (
       <div>
         <Row>
@@ -25,14 +26,13 @@ class UserInfo extends React.Component {
               height="160"
             />
           </Col>
-
           <Col md="auto">
             <div>
               <h3 className="textOverflow">{userInfo.username}</h3>
               <h5 className="textOverflow">{userInfo.phoneNumber}</h5>
               <Row className="mid">
                 <StarRatings
-                  rating={4.5}
+                  rating={userInfo.ratingDriver || 0}
                   starDimension="21px"
                   starSpacing="5px"
                 />{' '}
@@ -40,7 +40,7 @@ class UserInfo extends React.Component {
               </Row>
               <Row className="mid">
                 <StarRatings
-                  rating={3.5}
+                  rating={userInfo.ratingPassenger || 0}
                   starDimension="21px"
                   starSpacing="5px"
                 />{' '}
