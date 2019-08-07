@@ -13,11 +13,11 @@ import Message from '../../components/route-buttons/Message'
 import DateTimePicker from 'react-datetime-picker'
 
 class OneRouteInfo extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       changed: false,
-      timeAndDate: new Date(),
+      timeAndDate: null,
     }
   }
 
@@ -41,8 +41,10 @@ class OneRouteInfo extends React.Component {
       finishPoint,
       viaPoints,
       deleteRoute,
-      timeAndDate,
     } = this.props
+    const timeAndDate = new Date(
+      this.state.timeAndDate || this.props.timeAndDate
+    )
 
     const driverInfo = {
       bookings,
@@ -86,7 +88,7 @@ class OneRouteInfo extends React.Component {
                           disabled={true}
                           clearIcon=""
                           calendarIcon=""
-                          value={new Date(this.state.timeAndDate)}
+                          value={timeAndDate}
                         />
                       </Col>
                       <Col sm="auto" md="auto">
@@ -96,7 +98,6 @@ class OneRouteInfo extends React.Component {
                             style={{ fontSize: '14px' }}
                             onClick={() => {
                               this.setState({ changed: true })
-
                             }}
                           />
                         </button>
@@ -108,14 +109,18 @@ class OneRouteInfo extends React.Component {
                       <Col sm="auto" md="auto">
                         <DateTimePicker
                           onChange={this.onChange}
-                          value={new Date(this.state.timeAndDate)}
+                          value={timeAndDate}
                         />
                       </Col>
                       <Col sm="auto" md="auto">
                         <button
                           style={{ fontSize: '14px' }}
                           onClick={() => {
-                            this.setState({ changed: false })
+                            this.props.editDate(timeAndDate, id)
+                            this.setState({
+                              changed: false,
+                              timeAndDate: timeAndDate,
+                            })
                           }}
                         >
                           Ok
@@ -136,8 +141,8 @@ class OneRouteInfo extends React.Component {
                 </Col>
               </Row>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </Container>
         </div>
       </div>

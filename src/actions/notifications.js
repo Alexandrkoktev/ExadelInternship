@@ -46,7 +46,6 @@ export function deleteNotificationError(error) {
   }
 }
 
-
 export function sendMessageStarting() {
   return {
     type: SEND_MESSAGE,

@@ -64,8 +64,13 @@ class OneRideInfo extends React.Component {
                       <br />
                       <b>Phone number:</b> {phoneNumber}
                       <br />
-                      <RateDriver enabled={enabled} driverRating={driverRating}
-                        id={id} rateDriver={rateDriver} rating={rating} />
+                      <RateDriver
+                        enabled={enabled}
+                        driverRating={driverRating}
+                        id={id}
+                        rateDriver={rateDriver}
+                        rating={rating}
+                      />
                     </ListGroup.Item>
                     <h5 className="title-list">Car information: </h5>
                     <ListGroup.Item className="list-item-style">
@@ -103,8 +108,8 @@ class OneRideInfo extends React.Component {
                 </Col>
               </Row>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </Container>
         </div>
       </div>
