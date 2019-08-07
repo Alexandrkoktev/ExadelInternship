@@ -10,7 +10,6 @@ import Image from 'react-bootstrap/Image'
 class UserInfo extends React.Component {
   render() {
     const { userInfo } = this.props
-    debugger
     return (
       <div>
         <Row>

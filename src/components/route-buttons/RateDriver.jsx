@@ -28,18 +28,18 @@ class RateDriver extends React.Component {
             starSpacing="2px"
           />
         ) : (
-            <StarRatings
-              rating={rating || this.state.rating}
-              starRatedColor="#179EB7"
-              numberOfStars={5}
-              changeRating={
-                this.state.rating === 0 && !rating ? this.changeRating : null
-              }
-              name="driverRating"
-              starDimension="17px"
-              starSpacing="2px"
-            />
-          )}
+          <StarRatings
+            rating={rating || this.state.rating}
+            starRatedColor="#179EB7"
+            numberOfStars={5}
+            changeRating={
+              this.state.rating === 0 && !rating ? this.changeRating : null
+            }
+            name="driverRating"
+            starDimension="17px"
+            starSpacing="2px"
+          />
+        )}
       </>
     )
   }
