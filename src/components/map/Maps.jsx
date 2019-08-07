@@ -87,7 +87,7 @@ class Maps extends React.Component {
         this.props.changeDepPoint(address)
         this.pointA.events.add(
           'dragend',
-          async function () {
+          async function() {
             const address = await this.getAddress(
               this.pointA.geometry.getCoordinates()
             )
@@ -127,7 +127,7 @@ class Maps extends React.Component {
         this.props.changeDestPoint(address)
         this.pointB.events.add(
           'dragend',
-          async function () {
+          async function() {
             const address = await this.getAddress(
               this.pointB.geometry.getCoordinates()
             )

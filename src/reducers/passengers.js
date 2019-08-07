@@ -4,9 +4,8 @@ import {
   GET_PASSENGERS_DATA_ERROR,
   POST_EDIT_DATE_DATA,
   POST_EDIT_DATE_DATA_SUCCESS,
-  POST_EDIT_DATE_DATA_ERROR
+  POST_EDIT_DATE_DATA_ERROR,
 } from '../actions/passengers'
-
 
 const initialState = {
   passengers: [],

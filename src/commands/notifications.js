@@ -7,11 +7,11 @@ import {
   getNotificationsStarting,
   sendMessageDone,
   sendMessageError,
-  sendMessageStarting
+  sendMessageStarting,
 } from '../actions/notifications'
 import client from './axios'
 export const getNotifications = () => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(getNotificationsStarting())
       const { data } = await client({
@@ -25,7 +25,7 @@ export const getNotifications = () => {
   }
 }
 export const deleteNotification = id => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(deleteNotificationStarting())
       const data = JSON.stringify(id)
@@ -43,7 +43,7 @@ export const deleteNotification = id => {
 }
 
 export const sendMessagePassenger = (bookingId, information) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(sendMessageStarting())
       const data = JSON.stringify({ bookingId, information })
@@ -61,7 +61,7 @@ export const sendMessagePassenger = (bookingId, information) => {
 }
 
 export const sendMessageDriver = (bookingId, information) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       dispatch(sendMessageStarting())
       const data = JSON.stringify({ bookingId, information })
@@ -83,6 +83,8 @@ export const mapStateToProps = state => state.notifications
 export const mapDispatchToProps = dispatch => ({
   requestNotifications: () => dispatch(getNotifications()),
   deleteNotification: id => dispatch(deleteNotification(id)),
-  bookingMessage: (bookingId, information) => dispatch(sendMessagePassenger(bookingId, information)),
-  routeMessage: (bookingId, information) => dispatch(sendMessageDriver(bookingId, information))
+  bookingMessage: (bookingId, information) =>
+    dispatch(sendMessagePassenger(bookingId, information)),
+  routeMessage: (bookingId, information) =>
+    dispatch(sendMessageDriver(bookingId, information)),
 })
