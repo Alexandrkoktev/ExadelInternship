@@ -28,6 +28,7 @@ export const getPassengers = id => {
       dispatch(getPassengerDone(data))
     } catch (e) {
       dispatch(getPassengerError(e))
+      dispatch(push('/page-not-found'))
     }
   }
 }

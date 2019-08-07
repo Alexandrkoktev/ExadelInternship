@@ -344,7 +344,7 @@ class Maps extends React.Component {
       })
       clearMapButton.events.add('click', () => {
         this.map.controls.get('routeEditor').select()
-        this.props.handleChange(['', ''])
+        this.props.handleChange(['',''])
         this.route = null
       })
       this.map.controls.add(clearMapButton, {

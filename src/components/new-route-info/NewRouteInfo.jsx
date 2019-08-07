@@ -12,6 +12,7 @@ class NewRouteInfo extends React.Component {
     this.state = {
       from: this.props.from,
       to: this.props.to,
+      seats: this.props.seats,
       carId: '',
     }
   }
@@ -31,7 +32,6 @@ class NewRouteInfo extends React.Component {
         </option>
       )
     })
-
     return (
       <Container>
         <h3>New route:</h3>
@@ -57,7 +57,7 @@ class NewRouteInfo extends React.Component {
               Time:
             </Form.Label>
             <Col>
-              <DateSelector onChange={this.props.onTime} />
+              <DateSelector onChange={this.props.onTime} default={this.props.time}/>
             </Col>
           </Form.Group>
 
@@ -68,7 +68,7 @@ class NewRouteInfo extends React.Component {
             <Col>
               <Form.Control
                 as="select"
-                defaulvalue={this.state.carId}
+                defaultValue={this.state.carId}
                 onChange={this.changeCar}
               >
                 {carsArr}
@@ -80,7 +80,7 @@ class NewRouteInfo extends React.Component {
               Seats:
             </Form.Label>
             <Col>
-              <Form.Control type="text" onChange={this.props.onSeats} />
+              <Form.Control type="text"  defaultValue={this.props.seats} onChange={this.props.onSeats} />
             </Col>
           </Form.Group>
         </Form>
