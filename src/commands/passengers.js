@@ -37,7 +37,7 @@ export const editDateInRoute = (timeAndDate, id) => {
     try {
       dispatch(postEditDateStarting())
       const info = { id: id, timeAndDate: timeAndDate }
-      const { data } = await client({
+      await client({
         headers: { 'Content-Type': 'application/json' },
         url: `/api/editRoute`,
         method: 'post',
