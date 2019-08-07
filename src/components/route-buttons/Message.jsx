@@ -21,12 +21,13 @@ class Message extends React.Component {
       routeMessage,
       bookingMessage,
       ride,
-      passengers,
+      passengers = [],
       driver,
     } = this.props
+    const flag = ride || passengers.length
     return (
       <>
-        {!ride && passengers.length ? (
+        {flag ? (
           <Button
             variant="outline-info"
             onClick={() => {
