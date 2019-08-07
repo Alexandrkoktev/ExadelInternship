@@ -28,9 +28,9 @@ class Passenger extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col>
-            {name}
+            <b>Name:</b> {name}
             <br />
-            {phoneNumber}
+            <b>Phone number:</b> {phoneNumber}
           </Col>
           {enabled ? (
             <Col>

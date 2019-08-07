@@ -11,6 +11,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
 import Message from '../../components/route-buttons/Message'
 import DateTimePicker from 'react-datetime-picker'
+import Button from 'react-bootstrap/Button'
 
 class OneRouteInfo extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class OneRouteInfo extends React.Component {
       deleteRoute,
     } = this.props
     const timeAndDate = new Date(
-      this.state.timeAndDate || this.props.timeAndDate
+      this.state.timeAndDate || this.props.timeAndDate,
     )
 
     const driverInfo = {
@@ -61,19 +62,19 @@ class OneRouteInfo extends React.Component {
           <Container>
             <Row>
               <Col sm="7">
-                <Maps driverInfo={driverInfo} />
+                <Maps driverInfo={driverInfo}/>
               </Col>
               <Col sm="5">
                 <h5 className="title-list">List of passengers:</h5>
                 <div className="scrollable list-passengers-style">
-                  <ListOfPassengers passengers={bookings} />
+                  <ListOfPassengers passengers={bookings}/>
                 </div>
                 <ListGroup>
                   <h5 className="title-list">
-                    From <span className="oi oi-arrow-right" /> To:{' '}
+                    From <span className="oi oi-arrow-right"/> To:{' '}
                   </h5>
                   <ListGroup.Item className="list-item-style">
-                    {startPointName} <span className="oi oi-arrow-right" />{' '}
+                    {startPointName} <span className="oi oi-arrow-right"/>{' '}
                     {finishPointName}
                   </ListGroup.Item>
                   <h5 className="title-list">Car information: </h5>
@@ -92,15 +93,18 @@ class OneRouteInfo extends React.Component {
                         />
                       </Col>
                       <Col sm="auto" md="auto">
-                        <button style={{ fontSize: '14px' }}>
+                        <Button
+                          style={{ fontSize: '10px' }}
+                          variant="info"
+                          onClick={() => {
+                            this.setState({ changed: true })
+                          }}>
                           <span
                             className="oi oi-pencil"
-                            style={{ fontSize: '14px' }}
-                            onClick={() => {
-                              this.setState({ changed: true })
-                            }}
+                            style={{ fontSize: '12px' }}
+
                           />
-                        </button>
+                        </Button>
                       </Col>
                     </Row>
                   )}
@@ -109,12 +113,14 @@ class OneRouteInfo extends React.Component {
                       <Col sm="auto" md="auto">
                         <DateTimePicker
                           onChange={this.onChange}
+                          minDate={new Date()}
                           value={timeAndDate}
                         />
                       </Col>
                       <Col sm="auto" md="auto">
-                        <button
-                          style={{ fontSize: '14px' }}
+                        <Button
+                          style={{ fontSize: '10px' }}
+                          variant="info"
                           onClick={() => {
                             this.props.editDate(timeAndDate, id)
                             this.setState({
@@ -124,7 +130,7 @@ class OneRouteInfo extends React.Component {
                           }}
                         >
                           Ok
-                        </button>
+                        </Button>
                       </Col>
                     </Row>
                   )}
@@ -137,7 +143,7 @@ class OneRouteInfo extends React.Component {
                   <Message passengers={bookings} ride={false}/>
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <DeleteButton click={deleteRoute} id={id} />
+                  <DeleteButton click={deleteRoute} id={id}/>
                 </Col>
               </Row>
             ) : (
@@ -152,5 +158,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OneRouteInfo)
