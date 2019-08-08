@@ -31,7 +31,7 @@ class NotificationsItem extends React.Component {
   isDriver(driver) {
     if (driver) {
       return (
-        <div onClick={() => store.dispatch(push(this.state.routeId))}>
+        <div onClick={() => store.dispatch(push(this.state.routeId))} onMouseEnter={()=>this.props.handleCheck(this.props.id)}>
           <ListGroup.Item
             key={this.props.routeId}
             className="itemOfNotificationList"
@@ -61,7 +61,7 @@ class NotificationsItem extends React.Component {
   isPassenger(driver) {
     if (!driver) {
       return (
-        <div onClick={() => store.dispatch(push(this.state.rideId))}>
+        <div onClick={() => store.dispatch(push(this.state.rideId))} onMouseEnter={()=>this.props.handleCheck(this.props.id)}>
           <ListGroup.Item
             key={this.props.rideId}
             className="itemOfNotificationList"

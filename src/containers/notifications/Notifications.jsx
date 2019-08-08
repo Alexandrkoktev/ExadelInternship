@@ -14,6 +14,9 @@ class Notifications extends React.Component {
   handleDelete = () => {
     this.props.requestNotifications()
   }
+  handleCheck=(id)=>{
+    this.props.checkNotification(id)
+  }
   render() {
     const { notifications } = this.props
     return notifications.length === 0 ? (
@@ -23,6 +26,7 @@ class Notifications extends React.Component {
         <NotificationsList
           notifications={notifications}
           handleDelete={this.handleDelete.bind(this)}
+          handleCheck={this.handleCheck.bind(this)}
         />
       </div>
     )

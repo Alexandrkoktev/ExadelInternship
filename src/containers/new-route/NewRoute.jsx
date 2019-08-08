@@ -20,6 +20,7 @@ class NewRoute extends React.Component {
       seats: '',
       time: new Date(),
       changed: false,
+      car:'',
       chosenFavourite: {},
       chosenFavouriteId: '',
     }
@@ -31,8 +32,8 @@ class NewRoute extends React.Component {
     this.mapComponent = React.createRef()
   }
 
-  onCarChange = carId => {
-    this.setState({ carId: carId })
+  onCarChange = (carId,carInfo) => {
+    this.setState({ carId: carId,car:carInfo,})
   }
   onSeatsChange = event => {
     const seats = event.target.value
@@ -54,7 +55,6 @@ class NewRoute extends React.Component {
       from: data[0],
       to: data[1],
       changed: !this.state.changed,
-      car: (this.props.cars[0] || {}).id
     })
   }
 
@@ -85,6 +85,7 @@ class NewRoute extends React.Component {
                   key={this.state.changed}
                   seats={this.state.seats}
                   time={this.state.time}
+                  car={this.state.car}
                   cars={cars}
                   onSeats={this.onSeatsChange}
                   onTime={this.onTimeChange}

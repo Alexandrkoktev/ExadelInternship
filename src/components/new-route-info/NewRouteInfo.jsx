@@ -2,9 +2,7 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { Form, Container, Col, Row } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
-import DateSelector from '../date/DateSelector'
-
-// eslint-disable-next-line no-unused-vars
+import DateTimePicker from 'react-datetime-picker'
 
 class NewRouteInfo extends React.Component {
   constructor(props) {
@@ -14,20 +12,21 @@ class NewRouteInfo extends React.Component {
       to: this.props.to,
       seats: this.props.seats,
       carId: '',
+      car: this.props.car,
     }
   }
 
-  changeCar = event => {
+  changeCar = (cars,event) => {
     const carId = event.target.value
     this.setState({ carId })
-    this.props.onCar(carId)
+    this.props.onCar(carId,cars.find(item=>item.id===Number(carId)).carInformation)
   }
 
   render() {
     const { cars } = this.props
     const carsArr = cars.map(item => {
       return (
-        <option key={item.id} value={item.id}>
+        <option  key={item.id} value={item.id}>
           {item.carInformation}
         </option>
       )
@@ -57,7 +56,11 @@ class NewRouteInfo extends React.Component {
               Time:
             </Form.Label>
             <Col>
-              <DateSelector onChange={this.props.onTime} default={this.props.time}/>
+              <DateTimePicker
+                onChange={this.props.onTime}
+                value={this.props.time}
+                minDate={new Date()}
+              />
             </Col>
           </Form.Group>
 
@@ -68,8 +71,9 @@ class NewRouteInfo extends React.Component {
             <Col>
               <Form.Control
                 as="select"
-                defaultValue={this.state.carId}
-                onChange={this.changeCar}
+               placeholder={this.state.car}
+                onChange={(event)=>{this.changeCar(cars,event)
+                }}
               >
                 {carsArr}
               </Form.Control>
