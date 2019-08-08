@@ -20,6 +20,8 @@ class NewRoute extends React.Component {
       seats: '',
       time: new Date(),
       changed: false,
+      chosenFavourite: {},
+      chosenFavouriteId: '',
     }
   }
 
@@ -42,20 +44,35 @@ class NewRoute extends React.Component {
   handleClick = event => {
     event.preventDefault()
     const route = this.mapComponent.current.getRouteInfo()
-    const information = this.state
+    const carId = (this.props.cars[0] || {}).id
+    const information = { ...this.state, carId }
     this.props.createRoute(route, information)
   }
   handleChange = data => {
+
     this.setState({
       from: data[0],
       to: data[1],
       changed: !this.state.changed,
+      car: (this.props.cars[0] || {}).id
     })
+  }
+
+  choose = async id => {
+    if (id !== '') {
+      await this.props.getFavouriteRoute(id)
+      const current = this.props.favouriteRoute
+      this.setState({ chosenFavourite: current })
+    }
+  }
+
+  setRouteId = id => {
+    this.setState({ activeRouteId: id })
   }
 
   render() {
     const { rides = [] } = this.props
-    const { cars } = this.props
+    const { cars = [] } = this.props
     return (
       <Container>
         <Row>
@@ -66,19 +83,27 @@ class NewRoute extends React.Component {
                   from={this.state.from}
                   to={this.state.to}
                   key={this.state.changed}
+                  seats={this.state.seats}
+                  time={this.state.time}
                   cars={cars}
                   onSeats={this.onSeatsChange}
                   onTime={this.onTimeChange}
                   onCar={this.onCarChange}
                 />
-                <RoutesList rides={rides} favourites={true} />
+                <RoutesList
+                  rides={rides}
+                  getRide={this.choose.bind(this)}
+                  setId={this.setRouteId}
+                  favourites={true}
+                />
               </ListGroup>
             </Row>
           </Col>
           <Col sm={8} style={{ height: '450px' }}>
             <Maps
-              needRouteEditor={true}
               ref={this.mapComponent}
+              needRouteEditor={true}
+              chosenFavourite={this.state.chosenFavourite}
               handleChange={this.handleChange}
             />
             <Row>
@@ -103,5 +128,5 @@ class NewRoute extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewRoute)

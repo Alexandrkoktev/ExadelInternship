@@ -14,6 +14,8 @@ import routesHistory from '../reducers/rides'
 // eslint-disable-next-line import/no-duplicates
 import bookingHistory from '../reducers/rides'
 // eslint-disable-next-line import/no-duplicates
+import favouriteRoute from '../reducers/rides'
+// eslint-disable-next-line import/no-duplicates
 import currentRide from '../reducers/activeRides'
 // eslint-disable-next-line import/no-duplicates
 import activeRides from '../reducers/activeRides'
@@ -31,6 +33,7 @@ const rootReducer = history =>
     notifications,
     rides,
     favourites,
+    favouriteRoute,
     activeRoutes,
     activeBookings,
     routesHistory,

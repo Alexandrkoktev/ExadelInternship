@@ -36,7 +36,7 @@ class Passenger extends React.Component {
             <Col>
               <StarRatings
                 rating={userRating}
-                starRatedColor="#179EB7"
+                starRatedColor="#888888"
                 numberOfStars={5}
                 name="userRating"
                 starDimension="17px"

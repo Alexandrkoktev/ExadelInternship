@@ -44,7 +44,7 @@ class OneRouteInfo extends React.Component {
       deleteRoute,
     } = this.props
     const timeAndDate = new Date(
-      this.state.timeAndDate || this.props.timeAndDate
+      this.state.timeAndDate || this.props.timeAndDate,
     )
 
     const driverInfo = {
@@ -141,7 +141,7 @@ class OneRouteInfo extends React.Component {
             {enabled ? (
               <Row>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message passengers={bookings} />
+                  <Message passengers={bookings} ride={false}/>
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
                   <DeleteButton click={deleteRoute} id={id} />
