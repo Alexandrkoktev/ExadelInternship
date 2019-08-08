@@ -13,6 +13,9 @@ import {
   deleteRideStarting,
   deleteRideDone,
   deleteRideError,
+  getFavouriteRouteStarting,
+  getFavouriteRouteDone,
+  getFavouriteRouteError
 } from '../actions/rides'
 import client from './axios'
 import { push } from 'connected-react-router'
@@ -29,6 +32,21 @@ export const getRides = () => {
       dispatch(getRidesDone(data))
     } catch (e) {
       dispatch(getRidesError(e))
+    }
+  }
+}
+
+export const getFavouriteRoute = id => {
+  return async function(dispatch) {
+    try {
+      dispatch(getFavouriteRouteStarting())
+      const { data } = await client({
+        url: `/api/favouriteRoute/${id}`,
+        method: 'get',
+      })
+      dispatch(getFavouriteRouteDone(data))
+    } catch (e) {
+      dispatch(getFavouriteRouteError(e))
     }
   }
 }
@@ -174,6 +192,7 @@ export const mapStateToProps = state => ({
   activeBookings: state.activeBookings.activeBookings,
   routesHistory: state.routesHistory.routesHistory,
   bookingHistory: state.bookingHistory.bookingHistory,
+  favouriteRoute: state.favouriteRoute.favouriteRoute,
   cars: state.cars.cars,
 })
 
@@ -188,4 +207,5 @@ export const mapDispatchToProps = dispatch => ({
   createRoute: (data, info) => dispatch(createRoute(data, info)),
   deleteRoute: id => dispatch(deleteRoute(id)),
   deleteBooking: id => dispatch(deleteBooking(id)),
+  getFavouriteRoute: id => dispatch(getFavouriteRoute(id)),
 })

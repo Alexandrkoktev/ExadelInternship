@@ -32,9 +32,17 @@ class FavouriteRoute extends React.Component {
     this.props.finish()
   }
   render() {
+    const { getRide } = this.props
     return (
       <div>
-        <ListGroup.Item action>
+        {this.props.inRoutes ? (
+        <ListGroup.Item
+          action
+          onClick={() => {
+            getRide(this.props.routeId)
+            this.props.setId(this.props.routeId)
+          }}
+        >
           <Row>
             {this.props.name} : {this.props.depPoint}{' '}
             <span className="oi oi-arrow-right" /> {this.props.destPoint}
@@ -53,6 +61,27 @@ class FavouriteRoute extends React.Component {
             </Col>
           </Row>
         </ListGroup.Item>
+        ) : (
+          <ListGroup.Item action>
+            <Row>
+              {this.props.name} : {this.props.depPoint}{' '}
+              <span className="oi oi-arrow-right" /> {this.props.destPoint}
+              <Col>
+                {this.props.inRoutes ? (
+                  <div></div>
+                ) : (
+                  <Button
+                    onClick={this.confirm.bind(this)}
+                    variant="outline-danger"
+                    className="right"
+                  >
+                    Delete
+                  </Button>
+                )}
+              </Col>
+            </Row>
+          </ListGroup.Item>
+        )}
         <Confirm
           show={this.state.confirm}
           deny={this.deny.bind(this)}

@@ -13,6 +13,9 @@ export const CREATE_ROUTE_DATA_ERROR = 'CREATE_ROUTE_DATA_ERROR'
 export const DELETE_RIDE = 'DELETE_RIDE'
 export const DELETE_RIDE_SUCCESS = 'DELETE_RIDE_SUCCESS'
 export const DELETE_RIDE_ERROR = 'DELETE_RIDE_ERROR'
+export const GET_FAVOURITE_ROUTE_DATA = 'GET_FAVOURITE_ROUTE_DATA'
+export const GET_FAVOURITE_ROUTE_SUCCESS = 'GET_FAVOURITE_ROUTE_SUCCESS'
+export const GET_FAVOURITE_ROUTE_ERROR = 'GET_FAVOURITE_ROUTE_ERROR'
 
 // action handlers
 export function getRidesStarting() {
@@ -101,6 +104,26 @@ export function deleteRideDone() {
 export function deleteRideError(error) {
   return {
     type: DELETE_RIDE_ERROR,
+    error,
+  }
+}
+
+export function getFavouriteRouteStarting() {
+  return {
+    type: GET_FAVOURITE_ROUTE_DATA,
+  }
+}
+
+export function getFavouriteRouteDone(userData) {
+  return {
+    type: GET_FAVOURITE_ROUTE_SUCCESS,
+    payload: userData,
+  }
+}
+
+export function getFavouriteRouteError(error) {
+  return {
+    type: GET_FAVOURITE_ROUTE_ERROR,
     error,
   }
 }
