@@ -8,6 +8,11 @@ import {
   deleteRideDone,
   deleteRideError,
 } from '../actions/rides'
+import {
+  setRatingDone,
+  setRatingError,
+  setRatingStarting,
+} from '../actions/passengers'
 import client from './axios'
 import { push } from 'connected-react-router'
 
@@ -22,6 +27,7 @@ export const getDriver = id => {
       dispatch(getDriverDataDone(data))
     } catch (e) {
       dispatch(getDriverDataError(e))
+      dispatch(push('/page-not-found'))
     }
   }
 }
@@ -44,6 +50,22 @@ const deleteBooking = id => {
   }
 }
 
+export const rateDriver = (id, rate) => {
+  return async function(dispatch) {
+    try {
+      dispatch(setRatingStarting())
+      await client({
+        url: '/api/booking/setRating',
+        method: 'post',
+        data: { id, rate },
+      })
+      dispatch(setRatingDone())
+    } catch (e) {
+      dispatch(setRatingError(e))
+    }
+  }
+}
+
 export const mapStateToProps = state => ({
   driverName: state.driver.driverName,
   phoneNumber: state.driver.phoneNumber,
@@ -58,9 +80,13 @@ export const mapStateToProps = state => ({
   startPoint: state.driver.startPoint,
   destinationPoint: state.driver.destinationPoint,
   enabled: state.driver.enabled,
+  timeAndDate: state.driver.timeAndDate,
+  driverRating: state.driver.driverRating,
+  rating: state.driver.rating,
 })
 
 export const mapDispatchToProps = dispatch => ({
   requestDriver: id => dispatch(getDriver(id)),
   deleteBooking: id => dispatch(deleteBooking(id)),
+  rateDriver: (id, rate) => dispatch(rateDriver(id, rate)),
 })

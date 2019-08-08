@@ -1,27 +1,34 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import Container from 'react-bootstrap/Container'
-// eslint-disable-next-line no-unused-vars
 import Row from 'react-bootstrap/Row'
-// eslint-disable-next-line no-unused-vars
 import Col from 'react-bootstrap/Col'
-// eslint-disable-next-line no-unused-vars
 import Maps from '../../components/map/Maps'
-// eslint-disable-next-line no-unused-vars
 import './oneRouteInfo.sass'
-// eslint-disable-next-line no-unused-vars
 import ListOfPassengers from '../../components/list-of-passengers/ListOfPassengers'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/passengers'
 import ListGroup from 'react-bootstrap/ListGroup'
 import DeleteButton from '../../components/route-buttons/DeleteButton'
-import EditDate from '../../components/route-buttons/EditDate'
 import Message from '../../components/route-buttons/Message'
+import DateTimePicker from 'react-datetime-picker'
+import Button from 'react-bootstrap/Button'
 
 class OneRouteInfo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      changed: false,
+      timeAndDate: null,
+    }
+  }
+
   componentDidMount() {
     const id = this.props.match.params.routeid
     this.props.requestPassengers(id)
+  }
+
+  onChange = timeAndDate => {
+    this.setState({ timeAndDate: timeAndDate })
   }
 
   render() {
@@ -36,32 +43,38 @@ class OneRouteInfo extends React.Component {
       viaPoints,
       deleteRoute,
     } = this.props
+    const timeAndDate = new Date(
+      this.state.timeAndDate || this.props.timeAndDate,
+    )
+
     const driverInfo = {
       bookings,
       startPoint,
       finishPoint,
       viaPoints,
     }
+
     const id = this.props.match.params.routeid
+
     return (
       <div className="one-route-info">
         <div className="block">
           <Container>
             <Row>
               <Col sm="7">
-                <Maps driverInfo={driverInfo} />
+                <Maps driverInfo={driverInfo}/>
               </Col>
               <Col sm="5">
                 <h5 className="title-list">List of passengers:</h5>
                 <div className="scrollable list-passengers-style">
-                  <ListOfPassengers passengers={bookings} />
+                  <ListOfPassengers passengers={bookings}/>
                 </div>
                 <ListGroup>
                   <h5 className="title-list">
-                    From <span className="oi oi-arrow-right" /> To:{' '}
+                    From <span className="oi oi-arrow-right"/> To:{' '}
                   </h5>
                   <ListGroup.Item className="list-item-style">
-                    {startPointName} <span className="oi oi-arrow-right" />{' '}
+                    {startPointName} <span className="oi oi-arrow-right"/>{' '}
                     {finishPointName}
                   </ListGroup.Item>
                   <h5 className="title-list">Car information: </h5>
@@ -69,19 +82,68 @@ class OneRouteInfo extends React.Component {
                     <b>Free seats / All seats: </b>
                     {freeSeats}/{maxSeats}
                   </ListGroup.Item>
+                  {!this.state.changed && (
+                    <Row>
+                      <Col sm="auto" md="auto">
+                        <DateTimePicker
+                          disabled={true}
+                          clearIcon=""
+                          calendarIcon=""
+                          value={timeAndDate}
+                        />
+                      </Col>
+                      <Col sm="auto" md="auto">
+                        <Button
+                          style={{ fontSize: '10px' }}
+                          variant="info"
+                          onClick={() => {
+                            this.setState({ changed: true })
+                          }}>
+                          <span
+                            className="oi oi-pencil"
+                            style={{ fontSize: '12px' }}
+
+                          />
+                        </Button>
+                      </Col>
+                    </Row>
+                  )}
+                  {this.state.changed && (
+                    <Row>
+                      <Col sm="auto" md="auto">
+                        <DateTimePicker
+                          onChange={this.onChange}
+                          minDate={new Date()}
+                          value={timeAndDate}
+                        />
+                      </Col>
+                      <Col sm="auto" md="auto">
+                        <Button
+                          style={{ fontSize: '10px' }}
+                          variant="info"
+                          onClick={() => {
+                            this.props.editDate(timeAndDate, id)
+                            this.setState({
+                              changed: false,
+                              timeAndDate: timeAndDate,
+                            })
+                          }}
+                        >
+                          Ok
+                        </Button>
+                      </Col>
+                    </Row>
+                  )}
                 </ListGroup>
               </Col>
             </Row>
             {enabled ? (
               <Row>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <EditDate />
+                  <Message passengers={bookings} ride={false}/>
                 </Col>
                 <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <Message />
-                </Col>
-                <Col xs="auto" sm="auto" style={{ marginTop: '4%' }}>
-                  <DeleteButton click={deleteRoute} id={id} />
+                  <DeleteButton click={deleteRoute} id={id}/>
                 </Col>
               </Row>
             ) : (
@@ -96,5 +158,5 @@ class OneRouteInfo extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OneRouteInfo)

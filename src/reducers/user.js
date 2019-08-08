@@ -15,6 +15,7 @@ const initialState = {
   phoneNumber: '',
   ratingDriver: 0,
   ratingPassenger: 0,
+  amountOfNotifications:0,
 }
 
 function reducer(state = initialState, action) {
@@ -33,6 +34,7 @@ function reducer(state = initialState, action) {
         ratingDriver,
         ratingPassenger,
         phoneNumber,
+        amountOfNotifications,
       } = action.payload
       return {
         ...state,
@@ -45,6 +47,7 @@ function reducer(state = initialState, action) {
         ratingDriver,
         ratingPassenger,
         phoneNumber,
+        amountOfNotifications,
       }
     case GET_USER_DATA_ERROR:
       const {

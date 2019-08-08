@@ -28,15 +28,15 @@ class Passenger extends React.Component {
       <ListGroup.Item>
         <Row>
           <Col>
-            {name}
+            <b>Name:</b> {name}
             <br />
-            {phoneNumber}
+            <b>Phone number:</b> {phoneNumber}
           </Col>
           {enabled ? (
             <Col>
               <StarRatings
                 rating={userRating}
-                starRatedColor="#179EB7"
+                starRatedColor="#888888"
                 numberOfStars={5}
                 name="userRating"
                 starDimension="17px"

@@ -28,6 +28,9 @@ export const getUser = (email, password) => {
       const {
         data: { phoneNumber },
       } = await client({ url: '/api/profile', method: 'get' })
+      const {
+        data: { amountOfNotifications },
+      } = await client({ url: '/api/header', method: 'get' })
       dispatch(
         getUserDone({
           username: data.name,
@@ -36,6 +39,7 @@ export const getUser = (email, password) => {
           ratingDriver: ratingDriver,
           ratingPassenger: ratingPassenger,
           phoneNumber: phoneNumber,
+          amountOfNotifications: amountOfNotifications,
         })
       )
       dispatch(push('/home'))
@@ -62,6 +66,9 @@ export const restoreUser = () => {
       const {
         data: { phoneNumber },
       } = await client({ url: 'api/profile', method: 'get' })
+      const {
+        data: { amountOfNotifications },
+      } = await client({ url: '/api/header', method: 'get' })
       dispatch(
         getUserDone({
           username: data.name,
@@ -70,6 +77,7 @@ export const restoreUser = () => {
           ratingDriver: ratingDriver,
           ratingPassenger: ratingPassenger,
           phoneNumber: phoneNumber,
+          amountOfNotifications:amountOfNotifications,
         })
       )
     } catch (error) {

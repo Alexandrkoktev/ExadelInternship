@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Nav, Navbar } from 'react-bootstrap'
+import { Badge, Nav, Navbar } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import { Link, Redirect } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
@@ -14,6 +14,7 @@ import {
 
 class Header extends React.Component {
   render() {
+
     const { userInfo, userLogOut } = this.props
     const isLoggedIn = !!userInfo.username
     const isAdministrator = userInfo.role === 'ROLE_ADMINISTRATOR'
@@ -28,14 +29,14 @@ class Header extends React.Component {
         >
           {!isLoggedIn && (
             <>
-              <Navbar.Brand>CarPool</Navbar.Brand>
+              <Navbar.Brand>ELPoputcio</Navbar.Brand>
             </>
           )}
           {isLoggedIn && (
             <>
               <Link to="/home">
                 {' '}
-                <Navbar.Brand>CarPool</Navbar.Brand>
+                <Navbar.Brand>ELPoputcio</Navbar.Brand>
               </Link>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
@@ -51,6 +52,7 @@ class Header extends React.Component {
                   <Nav.Item>
                     <Link to="/notifications" className="nav-link">
                       Notifications
+                      <Badge variant="info">{userInfo.amountOfNotifications!==0?userInfo.amountOfNotifications:""}</Badge>
                     </Link>
                   </Nav.Item>
                   <Nav.Item>
