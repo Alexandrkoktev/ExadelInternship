@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table'
 import { mapStateToProps, mapDispatchToProps } from '../../commands/statistics'
 import { connect } from 'react-redux'
 import './statistics.sass'
+import Button from 'react-bootstrap/es/Button'
 
 class Statistics extends React.Component {
   constructor() {
@@ -29,7 +30,7 @@ class Statistics extends React.Component {
     const { statistics } = this.props
     return (
       <>
-        <InputGroup size="sm" className="mb-3 search">
+        <InputGroup size="sm" className="mb-3 search" >
           <FormControl
             aria-label="Small"
             placeholder="Search the person"
@@ -38,15 +39,14 @@ class Statistics extends React.Component {
             onChange={this.handleChange}
           />
           <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">
-              <span
-                className="oi oi-magnifying-glass "
+              <Button
+                variant="outline-info"
                 onClick={event => {
                   this.props.requestStatistics(0, true, this.state.name)
                   this.setState({ changed: !this.state.changed })
-                }}
-              />
-            </InputGroup.Text>
+                }}>
+              <span className="oi oi-magnifying-glass "/>
+              </Button>
           </InputGroup.Prepend>
         </InputGroup>
         <div className="table-responsive-sm">
