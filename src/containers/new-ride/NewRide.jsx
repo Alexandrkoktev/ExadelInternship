@@ -9,6 +9,7 @@ import Maps from '../../components/map/Maps'
 import RoutesList from '../../components/list-of-routes/RoutesList'
 import { connect } from 'react-redux'
 import { mapDispatchToProps, mapStateToProps } from '../../commands/activeRides'
+import Alert from 'react-bootstrap/Alert'
 
 class NewRide extends React.Component {
   constructor() {
@@ -21,6 +22,8 @@ class NewRide extends React.Component {
       activeRouteId: '',
       arrayFrom: [],
       arrayTo: [],
+      error: '',
+      isError: false,
     }
   }
 
@@ -69,7 +72,11 @@ class NewRide extends React.Component {
       }
       this.props.createBooking(data)
     } else {
-      alert('try again :)')
+      this.setState({
+        error: 'Depature/destination points are far from route',
+        isError: true,
+      })
+      //alert('try again :)')
     }
   }
   handleSearchClick = event => {
@@ -101,6 +108,13 @@ class NewRide extends React.Component {
     const { activeRides = [] } = this.props
     return (
       <Container>
+        {this.state.isError && (
+          <Row style={{ margin: '3%' }}>
+            <Alert key={1} variant="danger" className={'alertForError'}>
+              {this.state.error}
+            </Alert>
+          </Row>
+        )}
         <Row>
           <Col sm={5}>
             <Row>
@@ -133,7 +147,7 @@ class NewRide extends React.Component {
             <Maps
               ref={this.mapComponent}
               needPlacemarks={true}
-              showing={this.state.chosenRide}
+              chosenRide={this.state.chosenRide}
               changeDepPoint={this.changeDepPoint}
               changeDestPoint={this.changeDestPoint}
               clearMap={this.props.getRides}

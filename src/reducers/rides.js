@@ -10,6 +10,9 @@ import {
   DELETE_RIDE,
   DELETE_RIDE_SUCCESS,
   DELETE_RIDE_ERROR,
+  GET_FAVOURITE_ROUTE_DATA,
+  GET_FAVOURITE_ROUTE_SUCCESS,
+  GET_FAVOURITE_ROUTE_ERROR
 } from '../actions/rides'
 
 const initialState = {
@@ -19,6 +22,7 @@ const initialState = {
   activeBookings: [],
   routesHistory: [],
   bookingHistory: [],
+  favouriteRoute: {},
 }
 
 function reducer(state = initialState, action) {
@@ -78,6 +82,23 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case DELETE_RIDE_ERROR: {
+      const { error } = action
+      return {
+        ...state,
+        error,
+      }
+    }
+    case GET_FAVOURITE_ROUTE_DATA:
+      return {
+        ...state,
+      }
+    case GET_FAVOURITE_ROUTE_SUCCESS:
+      const favouriteRoute = action.payload
+      return {
+        ...state,
+        favouriteRoute,
+      }
+    case GET_FAVOURITE_ROUTE_ERROR: {
       const { error } = action
       return {
         ...state,
